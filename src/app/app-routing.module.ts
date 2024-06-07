@@ -43,7 +43,7 @@ const routes: Routes = [
   },
   {
     path: 'inspector',
-    loadChildren: () => import('./pages/inspector/inspector.module').then( m => m.InspectorPageModule)
+    loadChildren: () => import('./pages/inspector completion/inspector.module').then( m => m.InspectorPageModule)
   },
 
 ];
