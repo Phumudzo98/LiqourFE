@@ -41,6 +41,10 @@ const routes: Routes = [
     path: 'verify',
     loadChildren: () => import('./pages/verify/verify.module').then( m => m.VerifyPageModule)
   },
+  {
+    path: 'inspector',
+    loadChildren: () => import('./pages/inspector/inspector.module').then( m => m.InspectorPageModule)
+  },
 
 ];
 
