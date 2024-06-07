@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'signin',
     loadChildren: () => import('./pages/signin/signin.module').then( m => m.SigninPageModule)
+  },  {
+    path: 'verify',
+    loadChildren: () => import('./pages/verify/verify.module').then( m => m.VerifyPageModule)
   },
+
 ];
 
 @NgModule({
