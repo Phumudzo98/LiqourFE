@@ -13,3 +13,19 @@
     font-size: 15px;
     padding-bottom: 18px;
   }
+
+  .custom-input {
+    min-width: 300px; /* Set your desired width */
+  }
+
+  ion-input
+  {
+    font-size: 9px;
+    
+  }
+
+  ion-input::placeholder {
+    padding-left: 10px; 
+    
+  }
+
