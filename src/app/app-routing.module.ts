@@ -44,6 +44,10 @@ const routes: Routes = [
     path: 'general',
     loadChildren: () => import('./pages/general/general.module').then( m => m.GeneralPageModule)
   },
+  {
+    path: 'inspector',
+    loadChildren: () => import('./pages/inspector/inspector.module').then( m => m.InspectorPageModule)
+  },
 
 
 ];
