@@ -41,17 +41,22 @@ const routes: Routes = [
     path: 'verify',
     loadChildren: () => import('./pages/verify/verify.module').then( m => m.VerifyPageModule)
   },
-  {
-    path: 'general',
-    loadChildren: () => import('./pages/general/general.module').then( m => m.GeneralPageModule)
-  },
+  
   {
     path: 'inspector',
-    loadChildren: () => import('./pages/inspector/inspector.module').then( m => m.InspectorPageModule)
+    loadChildren: () => import('./pages/inspector completion/inspector.module').then( m => m.InspectorPageModule)
   },
   {
     path: 'business-conduct',
     loadChildren: () => import('./pages/business-conduct/business-conduct.module').then( m => m.BusinessConductPageModule)
+  },
+  {
+    path: 'edit-complaint2',
+    loadChildren: () => import('./pages/edit-complaint2/edit-complaint2.module').then( m => m.EditComplaint2PageModule)
+  },
+
+
+];
     
   },
   {
