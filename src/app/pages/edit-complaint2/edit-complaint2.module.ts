@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GeneralPageRoutingModule } from './general-routing.module';
+import { EditComplaint2PageRoutingModule } from './edit-complaint2-routing.module';
 
-import { GeneralPage } from './general.page';
+import { EditComplaint2Page } from './edit-complaint2.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GeneralPageRoutingModule
+    EditComplaint2PageRoutingModule
   ],
-  declarations: [GeneralPage]
+  declarations: [EditComplaint2Page]
 })
-export class GeneralPageModule {}
+export class EditComplaint2PageModule {}
