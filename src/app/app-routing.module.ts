@@ -48,6 +48,10 @@ const routes: Routes = [
     path: 'inspector',
     loadChildren: () => import('./pages/inspector/inspector.module').then( m => m.InspectorPageModule)
   },
+  {
+    path: 'business-conduct',
+    loadChildren: () => import('./pages/business-conduct/business-conduct.module').then( m => m.BusinessConductPageModule)
+  },
 
 
 ];
