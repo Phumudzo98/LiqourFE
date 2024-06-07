@@ -53,7 +53,11 @@ const routes: Routes = [
   {
     path: 'edit-complaint2',
     loadChildren: () => import('./pages/edit-complaint2/edit-complaint2.module').then( m => m.EditComplaint2PageModule)
+  },  {
+    path: 'location',
+    loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
+
 
 
 ];
