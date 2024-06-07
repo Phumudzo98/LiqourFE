@@ -12,7 +12,7 @@ h1
 
 ion-input
 {
-    margin-left:30px;
+    margin-left:15px;
     margin-bottom: 50px;
 }
 
@@ -28,4 +28,8 @@ p{
     margin-left: 30px;
     font-size: 11px;
     margin-top: 10px;
+  }
+
+  .custom-input {
+    min-width: 300px; /* Set your desired width */
   }
