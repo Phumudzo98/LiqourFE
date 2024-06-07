@@ -1,14 +1,3 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
-
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
@@ -25,13 +14,85 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+@font-face{
+    font-family: 'Inter'; 
+    src: url('../src/assets/Fonts/Inter/Inter-VariableFont_slnt\,wght.ttf'); 
+}
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+/* Ensure ion-item has a transparent background and no borders */
+ion-item {
+  --background: transparent;
+  --ion-background-color: transparent;
+  --ion-item-background: transparent;
+  --border-width: 0;
+  --inner-border-width: 0;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  padding: 0; /* Ensure no additional padding inside ion-item */
+}
+
+/* Remove lines from ion-input inside ion-item */
+ion-item::part(native) {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Container styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100%; 
+  padding: 10px;
+  box-sizing: border-box; 
+}
+
+/* Input styling */
+ion-input {
+  margin-top: 10px;
+  background-color: #ffffff;
+  border: 1px solid #858585;
+  border-radius: 2px;
+  height: 50px; 
+  width: calc(100%) !important; /* Account for padding of the container */
+  --highlight-background: transparent;
+  font-family: 'Inter', sans-serif; 
+  padding-right: 15px !important;
+
+}
+
+/* Optional: Set ion-content background color */
+ion-content {
+  --background: #ffffff;
+}
+
+/* Ensuring background color white for ion-app */
+ion-app {
+  background-color: #ffffff;
+}
+
+.buttonClass {
+    --background: #822B23;
+    --color: #fff;
+    width: calc(100% - 30px);
+    height: 50px;
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 14px;
+    border: 1px solid #822B23;
+    border-radius: 2px; 
+    --border-radius: 2px; 
+    text-transform: none; 
+    font-family: 'Inter', sans-serif; 
+
+  }
+
+  ion-content{
+    font-family: 'Inter', sans-serif; 
+  }
+  
+  
+  
