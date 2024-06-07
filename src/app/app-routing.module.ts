@@ -15,6 +15,18 @@ const routes: Routes = [
     path: 'signin',
     loadChildren: () => import('./pages/signin/signin.module').then( m => m.SigninPageModule)
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'my-tasks',
+    loadChildren: () => import('./pages/my-tasks/my-tasks.module').then( m => m.MyTasksPageModule)
+  },
+  {
+    path: 'update-gis',
+    loadChildren: () => import('./pages/update-gis/update-gis.module').then( m => m.UpdateGisPageModule)
+  },
 ];
 
 @NgModule({
