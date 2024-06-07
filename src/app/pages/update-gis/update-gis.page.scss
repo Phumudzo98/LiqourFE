@@ -20,3 +20,68 @@ ion-card{
     box-shadow: none;
     font-family: 'Inter', sans-serif;
 }
+.buttonClass {
+    --background: #822B23;
+    --color: #fff;
+    width: calc(100%);
+    margin-top: 15px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 4px;
+    border: 1px solid #822B23;
+    border-radius: 2px; 
+    --border-radius: 2px; 
+    text-transform: none; 
+    font-family: 'Inter', sans-serif;
+    margin-top: 5px;
+  }
+  ion-input {
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 1px solid #858585;
+    border-radius: 2px;
+    height: 50px; 
+    width: calc(100%) !important; /* Account for padding of the container */
+    --highlight-background: transparent;
+    font-family: 'Inter', sans-serif; 
+    padding-right: 15px !important;
+  
+  }
+  .top{
+    margin-top: 15px;
+  }
+  .detail-header{
+    color:#2A2A2A;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .centered-col {
+    margin-top: 35px;
+  }
+  .info-time {
+    color: rgba(154, 154, 154, 0.9); 
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 15px;
+  }
+  .search-item {
+    position: relative;
+  }
+  
+  .search-input {
+    padding-left: 30px; 
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px; 
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #9A9A9A;
+  }
+  
+  
+  

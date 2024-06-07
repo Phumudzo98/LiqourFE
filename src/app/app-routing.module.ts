@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+
+
 const routes: Routes = [
   {
     path: 'home',
@@ -16,6 +18,43 @@ const routes: Routes = [
     loadChildren: () => import('./pages/signin/signin.module').then( m => m.SigninPageModule)
   },
   {
+    path: 'menu-footer',
+    loadChildren: () => import('./headerFooter/menu-footer/menu-footer.module').then( m => m.MenuFooterPageModule)
+  },
+  {
+    path: 'menu-header',
+    loadChildren: () => import('./headerFooter/menu-header/menu-header.module').then( m => m.MenuHeaderPageModule)
+  },
+  {
+    path: 'view-complaint',
+    loadChildren: () => import('./pages/view-complaint/view-complaint.module').then( m => m.ViewComplaintPageModule)
+  },
+  {
+    path: 'complaints',
+    loadChildren: () => import('./pages/complaints/complaints.module').then( m => m.ComplaintsPageModule)
+  },
+  {
+    path: 'edit-complaint',
+    loadChildren: () => import('./pages/edit-complaint/edit-complaint.module').then( m => m.EditComplaintPageModule)
+  },
+  {
+    path: 'verify',
+    loadChildren: () => import('./pages/verify/verify.module').then( m => m.VerifyPageModule)
+  },
+  {
+    path: 'general',
+    loadChildren: () => import('./pages/general/general.module').then( m => m.GeneralPageModule)
+  },
+  {
+    path: 'inspector',
+    loadChildren: () => import('./pages/inspector/inspector.module').then( m => m.InspectorPageModule)
+  },
+  {
+    path: 'business-conduct',
+    loadChildren: () => import('./pages/business-conduct/business-conduct.module').then( m => m.BusinessConductPageModule)
+    
+  },
+  {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
@@ -27,7 +66,8 @@ const routes: Routes = [
     path: 'update-gis',
     loadChildren: () => import('./pages/update-gis/update-gis.module').then( m => m.UpdateGisPageModule)
   },
-];
+
+]
 
 @NgModule({
   imports: [
@@ -36,3 +76,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
