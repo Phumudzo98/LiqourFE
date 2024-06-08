@@ -3,15 +3,17 @@
     align-items: center;
     padding-top: 30px;
     padding-left: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
+    font-family: 'Inter', sans-serif;
+
   }
   
   .header-text {
-    //flex: 1; /* This makes the text take up the remaining space */
     text-align: center;
-    padding-left: 60px;
     font-size: 15px;
     padding-bottom: 18px;
+    font-family: 'Inter', sans-serif;
+
   }
 
   ion-label
@@ -20,13 +22,39 @@
     font-size: 13px;
     font-weight: bold;
     margin-bottom: 1px;
+    font-family: 'Inter', sans-serif;
+
   }
 
   p{
     margin-left: 20px;
     font-size: 11px;
     margin-top: 2px;
+    font-family: 'Inter', sans-serif;
+
   }
 
+  .content{
+    font-family: 'Inter', sans-serif;
+  }
+  .card {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4A5568;
+    font-family: 'Inter', sans-serif;
+    padding: 15px;
+}
+.label
+{
+  font-weight: 500;
+  font-size: 14px;
+}
+.info-time {
+  color: rgba(154, 154, 154, 0.9); 
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
   
   
