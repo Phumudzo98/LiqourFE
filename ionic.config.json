@@ -1,7 +1,0 @@
-{
-  "name": "LiquorApp",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
