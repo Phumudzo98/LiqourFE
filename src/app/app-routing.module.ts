@@ -78,6 +78,10 @@ const routes: Routes = [
   {
     path: 'addresses',
     loadChildren: () => import('./pages/addresses/addresses.module').then( m => m.AddressesPageModule)
+  },
+  {
+    path: 'photos',
+    loadChildren: () => import('./pages/photos/photos.module').then( m => m.PhotosPageModule)
   }
 ];
     

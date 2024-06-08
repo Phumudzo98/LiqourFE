@@ -93,6 +93,13 @@ ion-card {
     min-height: 550px; /* Set a minimum height */
   }
   
+  .close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+   
+  }
+  
   .address-card{
     padding: 15px;
     margin: 24px;
@@ -150,5 +157,22 @@ ion-card {
     --padding-start: 8px;
     --padding-end: 8px;
     font-size: 13px;
+  }
+  .buttonClassAddress {
+    --background: #822B23;
+    --color: #fff;
+    width: calc(100% - 30px);
+    height: 50px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 14px;
+    border: 1px solid #822B23;
+    border-radius: 2px; 
+    --border-radius: 2px; 
+    text-transform: none; 
+    font-family: 'Inter', sans-serif; 
+    margin-top: 2px;
+  
   }
   
