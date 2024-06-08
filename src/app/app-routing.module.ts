@@ -53,14 +53,31 @@ const routes: Routes = [
   {
     path: 'edit-complaint2',
     loadChildren: () => import('./pages/edit-complaint2/edit-complaint2.module').then( m => m.EditComplaint2PageModule)
-  },  {
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'my-tasks',
+    loadChildren: () => import('./pages/my-tasks/my-tasks.module').then( m => m.MyTasksPageModule)
+  },
+  {
+    path: 'update-gis',
+    loadChildren: () => import('./pages/update-gis/update-gis.module').then( m => m.UpdateGisPageModule)
+  },
+  {
     path: 'location',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
-  },
-
+  }
 
 
 ];
+    
+  
+  
+
+
 
 @NgModule({
   imports: [

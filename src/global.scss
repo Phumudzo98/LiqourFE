@@ -92,8 +92,19 @@ ion-app {
   }
 
   ion-content{
-    font-family: 'Inter', sans-serif; 
-  }
+    font-family: 'Inter', sans-serif;   }
+
+    .font-weight{
+      font-weight: 700;
+    }
+    .info-time {
+      color: rgba(154, 154, 154, 0.9); 
+      font-size: 15px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    
+ 
   
   
   
