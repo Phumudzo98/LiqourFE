@@ -70,6 +70,12 @@ const routes: Routes = [
     path: 'inspections',
     loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
+  
+  {
+    path: 'complete-inspection',
+    loadChildren: () => import('./pages/complete-inspection/complete-inspection.module').then( m => m.CompleteInspectionPageModule)
+  },
+
 ];
     
 
