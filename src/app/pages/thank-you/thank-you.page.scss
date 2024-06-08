@@ -1,0 +1,89 @@
+.header-container {
+    display: flex;
+    align-items: center;
+    padding-top: 10%;
+    padding-left: 10%;
+    margin-bottom: 1%;
+  }
+  
+  .header-text {
+    //flex: 1; /* This makes the text take up the remaining space */
+    text-align: left;
+    padding-left: 10%;
+    font-size: 15%;
+    padding-bottom: 14%;
+    font-size: 17px;
+    padding-top: 14%;
+  }
+
+  h1{
+    font-size: 13px;
+  }
+
+  .inline-paragraph
+  {
+    
+    color: #8B939F ;
+    padding-right: 1%;
+    font-size: 13px;
+    padding-left: 2px;
+    margin-left: 8%;
+    font-family: 'Inter', sans-serif;
+    width: 90%;
+  }
+
+  .paragraph
+  {
+    
+    margin-top: 0%;
+    padding-right: 1%;
+    font-size: 13px;
+    padding-left: 2px;
+    margin-left: 8%;
+    margin-right: 0%;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .paragraph2
+  {
+    margin-top: 0%;
+    padding-right: 1%;
+    font-size: 13px;
+    padding-left: 2px;
+    margin-left: 8%;
+    margin-right: 0%;
+    font-size: 13px;
+    font-weight: bold;
+    padding-top: 1px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .para-container
+  {
+    border: #f2f2f3 solid 0.5px;
+    margin-left: 8%;
+    border-radius: 6px;
+    background-color: #f2f2f3;
+    padding-left: 3%;
+    width:90%;
+    font-size: 9px;
+    font-family: 'Inter', sans-serif;
+    height: auto;
+  }
+
+  .buttonClass1 {
+    --background:white;
+    --color: #822B23;
+    width: calc(100% - 30px);
+    height: 50px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 14px;
+    border: 1px solid #822B23;
+    border-radius: 8px; 
+    --border-radius: 2px; 
+    text-transform: none; 
+    font-family: 'Inter', sans-serif; 
+
+  }

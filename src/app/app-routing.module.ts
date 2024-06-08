@@ -86,7 +86,9 @@ const routes: Routes = [
   {
     path: 'photos',
     loadChildren: () => import('./pages/photos/photos.module').then( m => m.PhotosPageModule)
-  },  {
+  },
+
+  {
     path: 'navigate-to-outlet',
     loadChildren: () => import('./pages/navigate-to-outlet/navigate-to-outlet.module').then( m => m.NavigateToOutletPageModule)
   },
