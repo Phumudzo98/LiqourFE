@@ -90,7 +90,11 @@ const routes: Routes = [
   {
     path: 'thank-you',
     loadChildren: () => import('./pages/thank-you/thank-you.module').then( m => m.ThankYouPageModule)
+  },  {
+    path: 'notifications',
+    loadChildren: () => import('./pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
   }
+
 
 
 ];
