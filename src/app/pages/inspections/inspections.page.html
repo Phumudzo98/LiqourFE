@@ -3,11 +3,12 @@
 <ion-content>
   <div class="dashboard-container">
       <p class="quick-action">Inspection</p>
-
+      
       <ion-item class="search-item">
-  <ion-input name="search" placeholder="Search Outlets" class="search-input"></ion-input>
-  <ion-icon name="search-outline" class="search-icon"></ion-icon>
-</ion-item>
+        <ion-input name="search" placeholder="             Search Outlets" class="search-input">
+          <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
+        </ion-input>
+      </ion-item>
 
       
 
@@ -32,7 +33,7 @@
           </ion-row>
         </ion-grid>
       
-        <ion-button class="buttonClass">
+        <ion-button class="buttonClass" routerLink="/complete-inspection">
           Complete Inspections
         </ion-button>
 
@@ -55,7 +56,7 @@
           </ion-row>
         </ion-grid>
 
-        <ion-button class="buttonClass">
+        <ion-button class="buttonClass" routerLink="/complete-inspection">
           Complete Inspections
         </ion-button>
 </ion-card>

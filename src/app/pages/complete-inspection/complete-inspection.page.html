@@ -1,0 +1,482 @@
+<ion-content [fullscreen]="true">
+  <div *ngIf="currentForm === 'landing'">
+    <ion-card>
+      <div class="header-content">
+        <ion-card-title (click)="toggleForms('reports')">
+          Inspection report
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/Vector.svg" class="vector"></ion-img>
+      </div>
+      <hr>
+
+      <div class="header-content">
+        <ion-card-title (click)="toggleForms('general')">
+          General
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/Vector.svg" class="vector"></ion-img>
+      </div>
+      <hr>
+      <div class="header-content">
+        <ion-card-title (click)="toggleForms('applicant')">
+          Verification of the applicant
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/Vector.svg" class="vector"></ion-img>
+      </div>
+      <hr>
+      <div class="header-content">
+        <ion-card-title (click)="toggleForms('document')">
+          Verification of the Premises Against Submitted Documentation
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/Vector.svg" class="vector"></ion-img>
+      </div>
+      <hr>
+      <div class="header-content">
+        <ion-card-title (click)="toggleForms('community')">
+          Verification of the Community Consultation Process
+        </ion-card-title >
+        <ion-img src="../../../assets/Images/Vector.svg" class="vector"></ion-img>
+      </div>
+      <hr>
+      <div class="header-content">
+        <ion-card-title (click)="toggleForms('recommendation')">
+          Recommendation
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/Vector.svg" class="vector"></ion-img>
+      </div>
+      <hr>
+      <ion-button class="buttonClass">
+        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+        Save
+      </ion-button>
+    </ion-card>
+  </div>
+
+  <div *ngIf="currentForm === 'reports'" class="card">
+    <span class="inspection-report">Inspection report</span>
+  
+    <ion-card class="upload">
+      <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
+
+      <span>Click to upload</span>
+      DOCX or PDF
+    </ion-card>
+
+    <ion-card class="upload2">
+
+      <div class="header-content2">
+        <ion-card-title>
+          Contract.pdf
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/Trash.svg" class=""></ion-img>
+
+      </div>
+      <span>200KB</span>
+
+     
+    </ion-card>
+
+    <ion-card class="upload2">
+
+      <div class="header-content2">
+        <ion-card-title>
+          Contract.pdf
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/Trash.svg" class=""></ion-img>
+      </div>
+      <span>200KB</span>
+
+    </ion-card>
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+
+  <div *ngIf="currentForm === 'applicant'">
+   
+    <ion-card class="upload2">
+      <span>(a) Was an appointment set with the applicant for inspection on this day?</span>
+        <ion-card-title class="general-name">
+          <ion-grid>
+            <ion-row>
+              <ion-col>Yes</ion-col>
+              <ion-col>No</ion-col>
+            </ion-row>
+          </ion-grid>
+       </ion-card-title>
+       <hr>
+       <span>(b) Is the person found or consulted at the premises the applicant in this matter?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-card-title>
+      <hr>
+       <span>(c) Has the applicant indicated that this particular person will be at the premises?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+      <hr>
+       <span>(d) If not the applicant, can the person found at the premises confirm the applicant?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+    </ion-card>
+    
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+  <div *ngIf="currentForm === 'general'" class="card">
+    <ion-card class="upload2">
+      <span>Person Contacted</span>
+        <ion-card-title class="general-name">
+          Person Name
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Inspection Date</span>
+        <ion-card-title class="general-name">
+          Inspection Date
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Latitude if Outlet (South)</span>
+        <ion-card-title class="general-name">
+          Latitude if Outlet (South)
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Longitude of Outlet (East)</span>
+        <ion-card-title class="general-name">
+          Longitude of Outlet (East)
+       </ion-card-title>
+    </ion-card>
+    
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+  <!--Documentation-->
+
+  <div *ngIf="currentForm === 'document'">
+   
+    <ion-card class="upload2">
+      <span>(a) Does the applicant have a right to occupy the premises ?</span>
+        <ion-card-title class="general-name">
+          <ion-grid>
+            <ion-row>
+              <ion-col>Yes</ion-col>
+              <ion-col>No</ion-col>
+              <ion-col>N/A</ion-col>
+            </ion-row>
+          </ion-grid>
+       </ion-card-title>
+       <hr>
+       <span>(b) If the lease agreement is attached, is the Lessor's proof of right ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-card-title>
+      <hr>
+       <span>(c) Are the premises situated at the address indicated in the application ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+      <hr>
+       <span>(d) Are the premises in line with the plan submitted with the application ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+      <hr>
+      <span>(e) Are the premises suitable for the category of registration applied for ?</span>
+      <ion-card-title class="general-name">
+       <ion-grid>
+         <ion-row>
+           <ion-col>Yes</ion-col>
+           <ion-col>No</ion-col>
+           <ion-col>N/A</ion-col>
+         </ion-row>
+       </ion-grid>
+     </ion-card-title>
+     <hr>
+     <span>(f) Ablution facilities - are these in working order ?</span>
+     <ion-card-title class="general-name">
+      <ion-grid>
+        <ion-row>
+          <ion-col>Yes</ion-col>
+          <ion-col>No</ion-col>
+          <ion-col>N/A</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-title>
+
+    <hr>
+    <span>(g) Are the premises ready to commence with the business ?</span>
+    <ion-card-title class="general-name">
+     <ion-grid>
+       <ion-row>
+         <ion-col>Yes</ion-col>
+         <ion-col>No</ion-col>
+         <ion-col>N/A</ion-col>
+       </ion-row>
+     </ion-grid>
+   </ion-card-title>
+
+
+    </ion-card>
+    
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+
+  <!--Community-->
+
+  <div *ngIf="currentForm === 'community'">
+   
+    <ion-card class="upload2">
+      <span>(a) Was Form 2/8/12 served on the correct ward commitee?</span>
+        <ion-card-title class="general-name">
+          <ion-grid>
+            <ion-row>
+              <ion-col>Yes</ion-col>
+              <ion-col>No</ion-col>
+              <ion-col>N/A</ion-col>
+            </ion-row>
+          </ion-grid>
+       </ion-card-title>
+       <hr>
+       <span>(b) Is the person found or consulted at the premises the applicant in this matter?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-card-title>
+      <hr>
+       <span>(c) Has the applicant indicated that this particular person will be at the premises?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+      <hr>
+       <span>(d) If not the applicant, can the person found at the premises confirm the applicant?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+    </ion-card>
+    
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+  <div *ngIf="currentForm === 'general'" class="card">
+    <ion-card class="upload2">
+      <span>Person Contacted</span>
+        <ion-card-title class="general-name">
+          Person Name
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Inspection Date</span>
+        <ion-card-title class="general-name">
+          Inspection Date
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Latitude if Outlet (South)</span>
+        <ion-card-title class="general-name">
+          Latitude if Outlet (South)
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Longitude of Outlet (East)</span>
+        <ion-card-title class="general-name">
+          Longitude of Outlet (East)
+       </ion-card-title>
+    </ion-card>
+    
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+  <!--Recomendation-->
+
+  <div *ngIf="currentForm === 'applicant'">
+   
+    <ion-card class="upload2">
+      <span>(a) Was an appointment set with the applicant for inspection on this day?</span>
+        <ion-card-title class="general-name">
+          <ion-grid>
+            <ion-row>
+              <ion-col>Yes</ion-col>
+              <ion-col>No</ion-col>
+            </ion-row>
+          </ion-grid>
+       </ion-card-title>
+       <hr>
+       <span>(b) Is the person found or consulted at the premises the applicant in this matter?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-card-title>
+      <hr>
+       <span>(c) Has the applicant indicated that this particular person will be at the premises?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+      <hr>
+       <span>(d) If not the applicant, can the person found at the premises confirm the applicant?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Yes</ion-col>
+            <ion-col>No</ion-col>
+            <ion-col>N/A</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+    </ion-card>
+    
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+  <div *ngIf="currentForm === 'recommendation'" class="card">
+    
+    <ion-card class="upload2">
+        <ion-card-title class="general-name">
+          Yes
+        </ion-card-title>
+        <hr>
+        <ion-card-title class="general-name">
+          No
+        </ion-card-title>
+        <hr>
+        <ion-card-title class="general-name">
+          Section(5)
+        </ion-card-title>
+        <hr>
+        <ion-card-title class="general-name">
+          Hearing
+        </ion-card-title>
+        <hr>
+
+
+    </ion-card>
+    <ion-card class="upload2">
+      <span>Latitude if Outlet (South)</span>
+        <ion-card-title class="general-name">
+          Latitude if Outlet (South)
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Longitude of Outlet (East)</span>
+        <ion-card-title class="general-name">
+          Longitude of Outlet (East)
+       </ion-card-title>
+    </ion-card>
+    
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+
+
+
+</ion-content>

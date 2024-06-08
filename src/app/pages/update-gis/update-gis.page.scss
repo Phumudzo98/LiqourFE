@@ -80,7 +80,26 @@ ion-card{
     transform: translateY(-50%);
     font-size: 20px;
     color: #9A9A9A;
+    padding-left: 5px;
+    font-size: 30px; /* Adjust the font-size as needed */
   }
+  .search-item {
+    position: relative;
+  }
+  
+  .search-input {
+    padding-left: 30px; /* Adjust as needed */
+  }
+  
+  .search-input::placeholder {
+    position: absolute;
+    left: 10px; /* Adjust the icon's position inside the placeholder */
+  }
+  
+
+  
+  
+  
   
   
   

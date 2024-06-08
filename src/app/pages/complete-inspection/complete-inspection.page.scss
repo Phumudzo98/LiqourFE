@@ -1,0 +1,93 @@
+ion-card-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4A5568;
+    width: 80%;
+    font-family: 'Inter', sans-serif;
+}
+
+.vector {
+    width: 12px;
+    height: 12px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+}
+.header-content2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4A5568;
+    font-family: 'Inter', sans-serif;
+    padding: 15px;
+}
+
+select {
+    background-color: #fff;
+    height: 50px;
+    border-bottom: 1px solid #667085;
+    width: 100%;
+}
+
+.inspection-report{
+    color:#667085;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 100px;
+}
+.upload {
+    border: 1px solid #EAECF0;
+    border-radius: 2px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column; /* Ensures children are stacked vertically */
+    align-items: center; /* Horizontally centers the children */
+    justify-content: center; /* Vertically centers the children */
+    text-align: center; /* Centers the text inside elements */
+    padding: 30px;
+    font-family: 'Inter',sans-serif;
+
+}
+
+.upload2{
+    border: 1px solid #EAECF0;
+    border-radius: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: none;
+    font-family: 'Inter',sans-serif;
+}
+
+.upload ion-img{
+    width: 25px;
+    height: 25px;
+}
+.upload span{
+    font-size: 14px;
+    font-weight: 600;
+    color:#822B23;
+}
+
+.general-name{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.buttons
+{
+    display: flex;
+}
+

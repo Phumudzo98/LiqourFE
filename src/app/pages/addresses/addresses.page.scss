@@ -97,7 +97,10 @@ ion-card {
     position: absolute;
     top: 8px;
     right: 8px;
-   
+    --background: #822B23;
+    --color: #fff;
+    --border-radius: 10px;
+    --font-size: 1px; /* Adjust the icon size */
   }
   
   .address-card{

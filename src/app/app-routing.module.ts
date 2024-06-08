@@ -71,6 +71,13 @@ const routes: Routes = [
     path: 'inspections',
     loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
+  
+  
+  {
+    path: 'complete-inspection',
+    loadChildren: () => import('./pages/complete-inspection/complete-inspection.module').then( m => m.CompleteInspectionPageModule)
+  },
+
   {
     path: 'location',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
@@ -87,10 +94,16 @@ const routes: Routes = [
     path: 'photos',
     loadChildren: () => import('./pages/photos/photos.module').then( m => m.PhotosPageModule)
   },
+
   {
-    path: 'thank-you',
-    loadChildren: () => import('./pages/thank-you/thank-you.module').then( m => m.ThankYouPageModule)
-  },  {
+    path: 'navigate-to-outlet',
+    loadChildren: () => import('./pages/navigate-to-outlet/navigate-to-outlet.module').then( m => m.NavigateToOutletPageModule)
+  },
+  {
+    path: 'special-event',
+    loadChildren: () => import('./pages/special-event/special-event.module').then( m => m.SpecialEventPageModule)
+  },
+  {
     path: 'notifications',
     loadChildren: () => import('./pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
   }
