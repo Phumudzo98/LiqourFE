@@ -53,13 +53,14 @@
 
   <div *ngIf="currentForm === 'reports'" class="card">
     <span class="inspection-report">Inspection report</span>
-  
-    <ion-card class="upload">
+    <ion-card class="upload" (click)="triggerFileInput()">
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
-
       <span>Click to upload</span>
-      DOCX or PDF
+      <span>DOCX or PDF</span>
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
     </ion-card>
+ 
+  
 
     <ion-card class="upload2">
 

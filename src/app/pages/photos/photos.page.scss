@@ -1,0 +1,173 @@
+.header-container {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    padding-left: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .header-text {
+    //flex: 1; /* This makes the text take up the remaining space */
+    text-align: center;
+    padding-left: 60px;
+    font-size: 15px;
+    padding-bottom: 18px;
+    padding-left: 100px;
+  }
+
+  .custom-input {
+    min-width: 300px; /* Set your desired width */
+  }
+
+  ion-input
+  {
+    font-size: 9px;
+    
+  }
+
+  ion-input::placeholder {
+    padding-left: 10px; 
+    
+  }
+
+ .back-Arrow{
+    margin-left: -10px;
+ }
+ /* src/app/your-component/your-component.scss */
+
+ion-card {
+  /* Add some padding and margin to the card */
+  padding: 10px;
+  margin-bottom: 10px;
+
+  /* Set a border and border-radius */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 100px;
+
+border-radius: 2px 0px 0px 0px;
+border: 1px 0px 0px 0px;
+opacity: 0px;
+
+}
+
+ion-card-header {
+ 
+
+  /* Set the same font size and line height as card content */
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+ion-card-title {
+    font-size: 16px;
+}
+
+ion-card-content {
+    font-size: 16px;
+    font-weight: bold;
+}
+/* src/app/your-component/your-component.scss */
+
+
+  
+  .image {
+    /* Style the image */
+    width: 20px; /* Set the width of the image */
+    height: 20px; /* Set the height of the image */
+    margin-right: 10px; /* Add some right margin to separate the image from the text */
+    vertical-align: middle; /* Align the image vertically in the middle with the text */
+  }
+  ion-card-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4A5568;
+    width: 80%;
+    font-family: 'Inter', sans-serif;
+}
+
+.vector {
+    width: 12px;
+    height: 12px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+}
+.header-content2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4A5568;
+    font-family: 'Inter', sans-serif;
+    padding: 15px;
+}
+
+select {
+    background-color: #fff;
+    height: 50px;
+    border-bottom: 1px solid #667085;
+    width: 100%;
+}
+
+.inspection-report{
+    color:#667085;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 100px;
+}
+.upload {
+    border: 1px solid #EAECF0;
+    border-radius: 2px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column; /* Ensures children are stacked vertically */
+    align-items: center; /* Horizontally centers the children */
+    justify-content: center; /* Vertically centers the children */
+    text-align: center; /* Centers the text inside elements */
+    padding: 30px;
+    font-family: 'Inter',sans-serif;
+
+}
+
+.upload2{
+    border: 1px solid #EAECF0;
+    border-radius: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: none;
+    font-family: 'Inter',sans-serif;
+}
+
+.upload ion-img{
+    width: 25px;
+    height: 25px;
+}
+.upload span{
+    font-size: 14px;
+    font-weight: 600;
+    color:#822B23;
+}
+
+.general-name{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.buttons
+{
+    display: flex;
+}
+
