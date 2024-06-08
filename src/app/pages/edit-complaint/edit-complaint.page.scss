@@ -1,18 +1,20 @@
 .header-container {
-    display: flex;
-    align-items: center;
-    padding-top: 30px;
-    padding-left: 30px;
-    margin-bottom: 50px;
-  }
+  display: flex;
+  align-items: center;
+  padding-top: 10%;
+  padding-left: 5%;
   
-  .header-text {
-    //flex: 1; /* This makes the text take up the remaining space */
-    text-align: center;
-    padding-left: 60px;
-    font-size: 15px;
-    padding-bottom: 18px;
-  }
+}
+
+.header-text {
+  //flex: 1; /* This makes the text take up the remaining space */
+  text-align: center;
+  padding-left: 20%;
+  font-size: 15%;
+  padding-bottom: 18%;
+  font-size: 17px;
+  padding-top: 14%;
+}
 
   .custom-input {
     min-width: 300px; /* Set your desired width */
@@ -21,11 +23,9 @@
   ion-input
   {
     font-size: 9px;
+    --padding-start: 10px;
     
   }
 
-  ion-input {
-    
-    --padding-start: 10px;
-  }
+  
 

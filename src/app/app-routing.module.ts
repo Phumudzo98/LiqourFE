@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -71,10 +72,39 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
   
+  
   {
     path: 'complete-inspection',
     loadChildren: () => import('./pages/complete-inspection/complete-inspection.module').then( m => m.CompleteInspectionPageModule)
   },
+
+  {
+    path: 'location',
+    loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
+  },
+  {
+    path: 'view-outlet',
+    loadChildren: () => import('./pages/view-outlet/view-outlet.module').then( m => m.ViewOutletPageModule)
+  },
+  {
+    path: 'addresses',
+    loadChildren: () => import('./pages/addresses/addresses.module').then( m => m.AddressesPageModule)
+  },
+  {
+    path: 'photos',
+    loadChildren: () => import('./pages/photos/photos.module').then( m => m.PhotosPageModule)
+  },
+
+  {
+    path: 'navigate-to-outlet',
+    loadChildren: () => import('./pages/navigate-to-outlet/navigate-to-outlet.module').then( m => m.NavigateToOutletPageModule)
+  },
+  {
+    path: 'special-event',
+    loadChildren: () => import('./pages/special-event/special-event.module').then( m => m.SpecialEventPageModule)
+  }
+
+
 
 ];
     
