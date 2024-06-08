@@ -1,11 +1,9 @@
 <ion-content>
-  <ion-header>
     <div class="header-container">
       <a [routerLink]=""><img class="back-Arrow" src="assets/Images/Back Icon.svg"></a>
       <h1 class="header-text">Addresses</h1>
     </div>
     <a (click)="toggleAddressFields()"><img class="add_image" src="../../../assets/Images/add another address.svg"></a>
-  </ion-header>
   
     <!-- Display saved address cards -->
     <ion-card class="address-card" *ngFor="let address of addresses;let i = index">

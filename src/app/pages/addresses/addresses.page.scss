@@ -111,6 +111,15 @@ ion-card {
     max-width: 600px;
     width: 88%;
     min-height: 186px;
+    font-family: 'Inter', sans-serif;
+  }
+  ion-card{
+    font-family: 'Inter', sans-serif;
+  }
+
+  ion-input{
+    font-family: 'Inter', sans-serif;
+    border: none;
   }
   .options-button {
     position: absolute;
