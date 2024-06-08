@@ -1,0 +1,53 @@
+.image-container {
+    display: flex;
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center;     /* Centers the image vertically */
+    height: 70%;            /* Ensures the container takes the full height of the content */
+  }
+  
+  .centered-image {
+    max-width: 100%;         /* Optional: Ensures the image scales within its container */
+  }
+
+  .background-image {
+    display: block; /* Ensures the background image is displayed as a block element */
+  }
+  
+  .overlay-image {
+    position: absolute; /* Positions the overlay image absolutely within the container */
+    top: 1; /* Adjust as needed */
+    left: 1; /* Adjust as needed */
+    transform: translate(50%, 50%); /* Centers the overlay image over the background image */
+  }
+
+  .buttonClassL {
+    --background: #fff;
+    --color: #822B23;
+    width: calc(100% - 30px);
+    height: 50px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 14px;
+   
+    text-transform: none; 
+    font-family: 'Inter', sans-serif; 
+
+  }
+
+  .buttonClassL2 {
+    --background: #822B23;
+    --color: #fff;
+    width: calc(100% - 30px);
+    height: 0px;
+    margin-top: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 14px;
+    border: 1px solid #822B23;
+    border-radius: 8px; 
+    --border-radius: 9px; 
+    text-transform: none; 
+    font-family: 'Inter'; 
+
+  }

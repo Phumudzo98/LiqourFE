@@ -1,0 +1,49 @@
+.header-container {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    padding-left: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .header-text {
+    //flex: 1; /* This makes the text take up the remaining space */
+    text-align: center;
+    padding-left: 40px;
+    font-size: 15px;
+    padding-bottom: 18px;
+    padding-right: 40px;
+  }
+
+  p{
+    //margin-left: 30px;
+    font-size: 11px;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    padding-bottom: 1px;
+    
+  }
+
+  .bordered-paragraph {
+    border: 1px solid #000; /* Adjust border style and color as needed */
+    padding: 10px; /* Optional: Add padding to make the border visible */
+    margin-left: 30px;
+    width: 319px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+  .p1
+  {
+    font-size: 10px;
+  }
+
+  .p2
+  {
+    font-size:11px;
+    font-weight: bold;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center; /* Aligns the button horizontally to the center */
+  }
