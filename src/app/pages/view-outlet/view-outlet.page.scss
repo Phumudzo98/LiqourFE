@@ -43,13 +43,15 @@
   .inline-paragraph
   {
     display: inline-block;
-    border:1px solid #636161;
-    border-color: #636161;
+    border:1px solid #ddd9d9;
+    border-color: #ddd9d9;
     padding-right: 1%;
+    background-color: #ddd9d9;
     font-size: 9px;
     padding-left: 2px;
     margin-left: 8%;
     margin-right: 0%;
+    border-radius: 2px;
   }
 
  .img-location
@@ -69,6 +71,7 @@
  {
     padding-left: 2%;
     color: #8B939F;
+    font-size: 14px;
     
  }
 
@@ -85,6 +88,7 @@
     padding-top: 0%;
     
     color: #8B939F;
+    font-size: 13px;
  }
 
  .img-spacing
