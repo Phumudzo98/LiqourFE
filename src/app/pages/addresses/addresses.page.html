@@ -1,0 +1,63 @@
+<ion-content>
+  <ion-header>
+    <div class="header-container">
+      <a [routerLink]=""><img class="back-Arrow" src="assets/Images/Back Icon.svg"></a>
+      <h1 class="header-text">Addresses</h1>
+    </div>
+    <a (click)="toggleAddressFields()"><img class="add_image" src="../../../assets/Images/add another address.svg"></a>
+  </ion-header>
+  
+    <!-- Display saved address cards -->
+    <ion-card class="address-card" *ngFor="let address of addresses;let i = index">
+      <ion-card-header>
+        <ion-card-title>{{ address.title }}</ion-card-title>
+        <ion-button fill="clear" class="options-button" (click)="presentOptions(address, i)">
+          <ion-icon name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-card-header>
+      <ion-card-content>
+        <p *ngIf="address.line1">{{ address.line1 }}</p>
+        <p *ngIf="address.line2">{{ address.line2 }}</p>
+        <p *ngIf="address.city">{{ address.city }}</p>
+        <p *ngIf="address.country">{{ address.country }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  <!-- Conditional Rendering of Address Fields -->
+  <ion-card *ngIf="showAddressFields">
+    <ion-card-header>
+      <ion-card-title>Add New Address</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input [(ngModel)]="newAddress.title" placeholder="Adress Location type"class="large-input"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="newAddress.line1" placeholder="Enter Address line 1" class="large-input"></ion-input>
+      </ion-item>
+      <ion-item>
+      
+        <ion-input [(ngModel)]="newAddress.line2" placeholder="Enter Address line 2"class="large-input"></ion-input>
+      </ion-item>
+      <ion-item>
+       
+        <ion-input [(ngModel)]="newAddress.city" placeholder="Enter City"class="large-input"></ion-input>
+      </ion-item>
+      <ion-item>
+        
+        <ion-select [(ngModel)]="newAddress.country" placeholder="Select Country">
+          <ion-select-option value="USA">USA</ion-select-option>
+          <ion-select-option value="Canada">Canada</ion-select-option>
+          <ion-select-option value="UK">UK</ion-select-option>
+          <!-- Add more options as needed -->
+        </ion-select>
+      </ion-item>
+      <ion-button class="buttonClass" (click)="saveAddress()">
+        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+        Save
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+ 
+</ion-content>
