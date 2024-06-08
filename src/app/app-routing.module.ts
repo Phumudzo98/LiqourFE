@@ -54,11 +54,6 @@ const routes: Routes = [
     path: 'edit-complaint2',
     loadChildren: () => import('./pages/edit-complaint2/edit-complaint2.module').then( m => m.EditComplaint2PageModule)
   },
-
-
-];
-    
-  },
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
@@ -70,9 +65,16 @@ const routes: Routes = [
   {
     path: 'update-gis',
     loadChildren: () => import('./pages/update-gis/update-gis.module').then( m => m.UpdateGisPageModule)
+  },  {
+    path: 'inspections',
+    loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
 
-]
+
+
+];
+    
+
 
 @NgModule({
   imports: [
