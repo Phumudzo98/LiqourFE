@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -67,20 +68,25 @@ const routes: Routes = [
     loadChildren: () => import('./pages/update-gis/update-gis.module').then( m => m.UpdateGisPageModule)
   },
   {
+    path: 'inspections',
+    loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
+  },
+  {
     path: 'location',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
-  },  {
+  },
+  {
     path: 'view-outlet',
     loadChildren: () => import('./pages/view-outlet/view-outlet.module').then( m => m.ViewOutletPageModule)
+  },
+  {
+    path: 'addresses',
+    loadChildren: () => import('./pages/addresses/addresses.module').then( m => m.AddressesPageModule)
   }
-
 
 
 ];
     
-  
-  
-
 
 
 @NgModule({
@@ -90,4 +96,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 
