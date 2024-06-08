@@ -14,6 +14,12 @@ ion-input
 {
     margin-left:15px;
     margin-bottom: 50px;
+    font-size: 13px;
+}
+
+ion-input::placeholder
+{
+    padding-left: 9%;
 }
 
 ion-label
@@ -22,14 +28,18 @@ ion-label
     margin-left:30px;
     font-size: 13px;
     font-weight: bold;
+    font-family: 'Inter','Courier New';
 }
 
 p{
     margin-left: 30px;
     font-size: 11px;
     margin-top: 10px;
+    color: #8B939F;
+    font-family: 'Inter','Courier New';
   }
 
   .custom-input {
     min-width: 300px; /* Set your desired width */
+    --padding-start: 10px;
   }
