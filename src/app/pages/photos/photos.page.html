@@ -7,12 +7,13 @@
   </ion-header>
   <span class="inspection-report">Upload Photos</span>
   
-    <ion-card class="upload">
-      <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
-
-      <span>Click to upload</span>
-      DOCX or PDFSVG, PNG, JPG or GIF (max. 800x400px)
-    </ion-card>
+  <ion-card class="upload" (click)="triggerFileInput()">
+    <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
+    <span>Click to upload</span>
+    <p>DOCX or PDF, SVG, PNG, JPG or GIF (max. 800x400px)</p>
+    <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf, .svg, .png, .jpg, .gif">
+  </ion-card>
+  
 
   
   <ion-button class="buttonClass">
