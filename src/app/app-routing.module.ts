@@ -102,6 +102,10 @@ const routes: Routes = [
   {
     path: 'special-event',
     loadChildren: () => import('./pages/special-event/special-event.module').then( m => m.SpecialEventPageModule)
+  },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
   }
 
 
