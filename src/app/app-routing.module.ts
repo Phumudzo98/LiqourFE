@@ -76,6 +76,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
   {
+    path: 'view-outlet',
+    loadChildren: () => import('./pages/view-outlet/view-outlet.module').then( m => m.ViewOutletPageModule)
+  },
+  {
     path: 'addresses',
     loadChildren: () => import('./pages/addresses/addresses.module').then( m => m.AddressesPageModule)
   },
@@ -83,6 +87,8 @@ const routes: Routes = [
     path: 'photos',
     loadChildren: () => import('./pages/photos/photos.module').then( m => m.PhotosPageModule)
   }
+
+
 ];
     
 
