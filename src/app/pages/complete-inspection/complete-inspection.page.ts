@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -16,6 +16,18 @@ export class CompleteInspectionPage implements OnInit {
 
   toggleForms(form: string) {
     this.currentForm = form;
+  }
+  @ViewChild('fileInput', { static: false })
+  fileInput!: ElementRef<HTMLInputElement>;
+
+  triggerFileInput() {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    console.log('Selected file:', file);
+    // Handle the file selection logic here
   }
 
 }
