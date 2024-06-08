@@ -65,13 +65,11 @@ const routes: Routes = [
   {
     path: 'update-gis',
     loadChildren: () => import('./pages/update-gis/update-gis.module').then( m => m.UpdateGisPageModule)
-  },  {
+  },
+  {
     path: 'inspections',
     loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
-
-
-
 ];
     
 
@@ -83,4 +81,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 
