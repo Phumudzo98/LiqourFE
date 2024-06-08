@@ -69,7 +69,11 @@ const routes: Routes = [
   {
     path: 'location',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
+  },  {
+    path: 'view-outlet',
+    loadChildren: () => import('./pages/view-outlet/view-outlet.module').then( m => m.ViewOutletPageModule)
   }
+
 
 
 ];

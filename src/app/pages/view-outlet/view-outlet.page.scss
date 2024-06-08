@@ -1,0 +1,98 @@
+.header-container {
+    display: flex;
+    align-items: center;
+    padding-top: 10%;
+    padding-left: 10%;
+    margin-bottom: 1%;
+  }
+  
+  .header-text {
+    //flex: 1; /* This makes the text take up the remaining space */
+    text-align: center;
+    padding-left: 20%;
+    font-size: 15%;
+    padding-bottom: 18%;
+    font-size: 17px;
+    padding-top: 14%;
+  }
+
+  .main-img
+  {
+    margin-left: 4%;
+    margin-top: 1%;
+  }
+
+  .paragraph-container {
+    border: 2px solid #000; /* Black border */
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 10px; /* Padding inside the container */
+    border-radius: 5px; /* Optional: rounded corners */
+  }
+  
+  .inline-paragraph {
+    display: inline-block; /* Display paragraphs on the same line */
+    margin-right: 10px; /* Space between paragraphs */
+    vertical-align: top; /* Align paragraphs to the top */
+  }
+  
+  .inline-paragraph:last-child {
+    margin-right: 0; /* Remove margin from the last paragraph */
+  }
+
+  .inline-paragraph
+  {
+    display: inline-block;
+    border:1px solid #636161;
+    border-color: #636161;
+    padding-right: 1%;
+    font-size: 9px;
+    padding-left: 2px;
+    margin-left: 8%;
+    margin-right: 0%;
+  }
+
+ .img-location
+ {
+    width: 5%;  
+    height: auto;  
+    margin-left: 4%;
+
+ }
+
+ .header{
+    font-weight:bold;
+    margin-left: 4%;
+ }
+
+ .location-paraPadding
+ {
+    padding-left: 2%;
+    color: #8B939F;
+    
+ }
+
+ .paraPadding
+ {
+    margin-left: 4%;
+    padding-top: 0%;
+    font-weight: bold;
+ }
+
+ .paraPadding2
+ {
+    margin-left: 4%;
+    padding-top: 0%;
+    
+    color: #8B939F;
+ }
+
+ .img-spacing
+ {
+    border-radius: 19px;
+    margin-left: 4%;
+    width: 50%;
+    height: auto;
+ }
+
+
+
