@@ -118,3 +118,23 @@ select {
     height: 20px;
   }
   
+  .header-container {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    padding-left: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .header-text {
+    //flex: 1; /* This makes the text take up the remaining space */
+    text-align: center;
+    padding-left: 60px;
+    font-size: 15px;
+    padding-bottom: 18px;
+  
+  }
+  .back-Arrow{
+    margin-left: -10px;
+  }
+  

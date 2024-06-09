@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { InspectionsPageRoutingModule } from './inspections-routing.module';
 
 import { InspectionsPage } from './inspections.page';
-
+import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InspectionsPageRoutingModule
+    InspectionsPageRoutingModule,
+    MenuFooterPageModule,
+    MenuHeaderPageModule
   ],
   declarations: [InspectionsPage]
 })
