@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center; /* Centers the image horizontally */
     align-items: center;     /* Centers the image vertically */
-    height: 70%;            /* Ensures the container takes the full height of the content */
+    height: 40%; 
+    margin-top: 25%;           /* Ensures the container takes the full height of the content */
   }
   
   .centered-image {
@@ -50,4 +51,19 @@
     text-transform: none; 
     font-family: 'Inter'; 
 
+  }
+
+  p{
+    align-items: center;
+    text-align: center;
+    font-family: 'Inter', monospace;
+    font-weight: bold;
+    font-size: 18px;
+    
+  }
+
+  .input-style
+  {
+    margin-left: 9px;
+    --padding-start: 10px;
   }
