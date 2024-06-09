@@ -112,6 +112,10 @@ const routes: Routes = [
   {
     path: 'thank-you',
     loadChildren: () => import('./pages/thank-you/thank-you.module').then( m => m.ThankYouPageModule)
+  },
+  {
+    path: 'recommendations',
+    loadChildren: () => import('./pages/recommendations/recommendations.module').then( m => m.RecommendationsPageModule)
   }
   
 
