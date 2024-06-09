@@ -15,6 +15,7 @@ import { MenuHeaderPage } from './menu-header.page';
     IonicModule,
     MenuHeaderPageRoutingModule
   ],
-  declarations: [MenuHeaderPage]
+  declarations: [MenuHeaderPage],
+  exports:[MenuHeaderPage]
 })
 export class MenuHeaderPageModule {}

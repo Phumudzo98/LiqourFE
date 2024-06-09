@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { UpdateGisPageRoutingModule } from './update-gis-routing.module';
 
 import { UpdateGisPage } from './update-gis.page';
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
+import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdateGisPageRoutingModule
+    UpdateGisPageRoutingModule,
+    MenuFooterPageModule,
+    MenuHeaderPageModule
   ],
   declarations: [UpdateGisPage]
 })

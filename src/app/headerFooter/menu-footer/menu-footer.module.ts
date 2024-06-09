@@ -15,6 +15,7 @@ import { MenuFooterPage } from './menu-footer.page';
     IonicModule,
     MenuFooterPageRoutingModule
   ],
-  declarations: [MenuFooterPage]
+  declarations: [MenuFooterPage],
+  exports:[MenuFooterPage]
 })
 export class MenuFooterPageModule {}
