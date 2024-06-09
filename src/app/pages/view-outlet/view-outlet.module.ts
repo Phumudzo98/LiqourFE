@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { ViewOutletPageRoutingModule } from './view-outlet-routing.module';
 
 import { ViewOutletPage } from './view-outlet.page';
-
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ViewOutletPageRoutingModule
+    ViewOutletPageRoutingModule,
+    MenuFooterPageModule
   ],
   declarations: [ViewOutletPage]
 })

@@ -1,45 +1,110 @@
-h1
-{
-    font-size: 20px;
-
-    margin-top: 80px;
-    margin-left: 30px;
-    color: #822B23;
-    font-weight: bold;
-    margin-bottom: 50px;
-    //font-style: Inter;
-}
-
-ion-input
-{
-    margin-left:15px;
-    margin-bottom: 50px;
-    font-size: 13px;
-}
-
-ion-input::placeholder
-{
-    padding-left: 9%;
-}
-
-ion-label
-{
+.header-container {
+    display: flex;
+    align-items: center;
     padding-top: 30px;
-    margin-left:30px;
+    padding-left: 30px;
+    margin-bottom: 0px;
+    font-family: 'Inter', sans-serif;
+
+  }
+  
+  .header-text {
+    text-align: center;
+    font-size: 15px;
+    padding-bottom: 18px;
+    font-family: 'Inter', sans-serif;
+
+  }
+
+  ion-label
+  {
+    margin-left: 20px;
     font-size: 13px;
     font-weight: bold;
-    font-family: 'Inter','Courier New';
-}
+    margin-bottom: 1px;
+    font-family: 'Inter', sans-serif;
 
-p{
-    margin-left: 30px;
+  }
+
+  p{
+    margin-left: 20px;
     font-size: 11px;
-    margin-top: 10px;
-    color: #8B939F;
-    font-family: 'Inter','Courier New';
+    margin-top: 2px;
+    font-family: 'Inter', sans-serif;
+
   }
 
-  .custom-input {
-    min-width: 300px; /* Set your desired width */
-    --padding-start: 10px;
+  .content{
+    font-family: 'Inter', sans-serif;
   }
+  .card {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4A5568;
+    font-family: 'Inter', sans-serif;
+    padding: 15px;
+}
+.label
+{
+  font-weight: 500;
+  font-size: 14px;
+}
+.info-time {
+  color: rgba(154, 154, 154, 0.9); 
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+.quick-action{
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif; 
+    color:#822B23;
+    margin-top: 15px;
+    margin-left: 6px;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.vector {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    z-index: 1;
+    margin-right: 10px;
+    margin-top: 10%;
+  }
+  
+  .dropdown-content ion-item {
+    text-decoration: none;
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+  
+  .dropdown-content ion-item:hover {
+    font-weight: 600;
+  }
+  
+  .dropdown-content.show {
+    display: block;
+  }
+  
+  

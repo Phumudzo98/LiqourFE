@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-complaint',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditComplaintPage implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router, private eRef: ElementRef) {}
 
   ngOnInit() {
   }
-
+  navigateToBack() {
+    this.route.navigate(['complaints']);
+  }
 }

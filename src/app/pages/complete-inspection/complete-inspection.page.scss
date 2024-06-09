@@ -90,4 +90,31 @@ select {
 {
     display: flex;
 }
+.header-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    font-family: 'Inter', sans-serif;
+  
+  }
+  
+  .header-text {
+    text-align: center;
+    font-size: 15px;
+    padding-bottom: 18px;
+    font-family: 'Inter', sans-serif;
+  }
+  .radios{
+    display: flex;
+  }
+  label{
+    margin-left: 10px;
+  }
 
+  ion-col input{
+    color: #CFAA35;
+    width: 20px;
+    height: 20px;
+  }
+  

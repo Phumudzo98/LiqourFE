@@ -1,20 +1,22 @@
 .header-container {
-    display: flex;
-    align-items: center;
-    padding-top: 10%;
-    padding-left: 10%;
-    margin-bottom: 1%;
-  }
-  
-  .header-text {
-    //flex: 1; /* This makes the text take up the remaining space */
-    text-align: center;
-    padding-left: 20%;
-    font-size: 15%;
-    padding-bottom: 18%;
-    font-size: 17px;
-    padding-top: 14%;
-  }
+  display: flex;
+  align-items: center;
+  padding-top: 30px;
+  padding-left: 30px;
+  margin-bottom: 50px;
+}
+
+.header-text {
+  //flex: 1; /* This makes the text take up the remaining space */
+  text-align: center;
+  padding-left: 60px;
+  font-size: 15px;
+  padding-bottom: 18px;
+  padding-left: 100px;
+}
+.back-Arrow{
+  margin-left: -10px;
+}
 
   .main-img
   {

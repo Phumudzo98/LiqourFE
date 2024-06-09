@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { SpecialEventPageRoutingModule } from './special-event-routing.module';
 
 import { SpecialEventPage } from './special-event.page';
-
+import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SpecialEventPageRoutingModule
+    SpecialEventPageRoutingModule,
+    MenuFooterPageModule,
+    MenuHeaderPageModule
   ],
   declarations: [SpecialEventPage]
 })

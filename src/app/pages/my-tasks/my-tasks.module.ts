@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { MyTasksPageRoutingModule } from './my-tasks-routing.module';
 
 import { MyTasksPage } from './my-tasks.page';
-
+import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MyTasksPageRoutingModule
+    MyTasksPageRoutingModule,
+    MenuFooterPageModule,
+    MenuHeaderPageModule
   ],
   declarations: [MyTasksPage]
 })
