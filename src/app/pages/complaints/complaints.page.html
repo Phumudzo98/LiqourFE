@@ -1,18 +1,22 @@
 <ion-content>
   <div class="dashboard-container">
-  <p class="quick-action">Complaints</p>
-  <ion-item>
-   
-  <ion-input class="custom-input" type="text" placeholder="Search"></ion-input>
-  </ion-item>
+    <p class="quick-action">Complaints</p>
 
-  <ion-label>Anonymous user</ion-label>
-  <p>This place is very loud, even....</p>
+    <ng-container *ngFor="let user of users">
+      <div class="header-content">
+        <ion-label class="label">{{ user }}</ion-label>
+        <ion-img src="../../../assets/Images/dots.svg" class="vector" (click)="toggleDropdown($event, user)"></ion-img>
+        <div class="dropdown-content" [class.show]="dropdownVisible[user]">
+          <ion-item (click)="navigateToView()">View</ion-item>
+          <ion-item (click)="navigateToEdit()">Edit</ion-item>
+        </div>
+      </div>
+      <ng-container *ngFor="let complaint of userComplaints[user]">
+        <p class="info-time">{{ complaint }}</p>
+       
 
-  <ion-label>Anonymous user</ion-label>
-  <p>This place is very loud, even....</p>
-  
-  <ion-label>Anonymous user</ion-label>
-  <p>This place is very loud, even....</p>
-</div>
+      </ng-container>
+    </ng-container>
+  </div>
 </ion-content>
+

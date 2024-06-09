@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -7,7 +8,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class CompleteInspectionPage implements OnInit {
 
-  constructor() { }
+  selectedOption: string = ''; 
+  constructor(private route: Router, private eRef: ElementRef,) {}
 
   ngOnInit() {
   }
@@ -28,6 +30,9 @@ export class CompleteInspectionPage implements OnInit {
     const file = event.target.files[0];
     console.log('Selected file:', file);
     // Handle the file selection logic here
+  }
+  navigateToBack() {
+    this.route.navigate(['complete-inspection']);
   }
 
 }
