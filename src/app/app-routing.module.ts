@@ -116,7 +116,11 @@ const routes: Routes = [
   {
     path: 'recommendations',
     loadChildren: () => import('./pages/recommendations/recommendations.module').then( m => m.RecommendationsPageModule)
+  },  {
+    path: 'upload-image',
+    loadChildren: () => import('./pages/upload-image/upload-image.module').then( m => m.UploadImagePageModule)
   }
+
   
 
 
