@@ -1,30 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Photos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  
-    <div class="header-container">
-      <a [routerLink]=""><img  class="back-Arrow"src="assets/Images/Back Icon.svg"></a>
-      <h1 class="header-text">Photos</h1>
-    </div>
+  <div class="header-container">
+    <a [routerLink]=""><img class="back-Arrow" src="assets/Images/Back Icon.svg"></a>
+    <h1 class="header-text">Photos</h1>
+  </div>
 
- 
-  
-   <ion-card class="upload" >
-  
+  <ion-card class="upload">
+    <p>No photo uploaded yet</p>
+  </ion-card>
 
-  <p>No photo uploaded yet</p>
-  <input type="file" #fileInput  accept=".docx, .pdf, .svg, .png, .jpg, .gif">
-</ion-card>
+  <div class="add-ticket-container">
+    <ion-img src="../../../assets/Images/Vector.svg" (click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
+  </div>
 
-<div class="add-ticket-container">
-  <ion-img src="../../../assets/Images/Vector.svg"(click)="takePicture()" class="add-ticket-icon"></ion-img>
-</div>
-<div *ngIf="imageUrl">
-  <img [src]="imageUrl" alt="Captured Image" />
-</div>
-  
   <ion-button class="buttonClass">
-    <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+    <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
     Save
   </ion-button>
-  
-  
 </ion-content>

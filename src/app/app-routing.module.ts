@@ -8,12 +8,8 @@ const routes: Routes = [
 
 
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'upload-image',
     pathMatch: 'full'
   },
   {
@@ -116,10 +112,13 @@ const routes: Routes = [
   {
     path: 'recommendations',
     loadChildren: () => import('./pages/recommendations/recommendations.module').then( m => m.RecommendationsPageModule)
-  },  {
+  },
+  {
     path: 'upload-image',
     loadChildren: () => import('./pages/upload-image/upload-image.module').then( m => m.UploadImagePageModule)
-  }
+  },
+  
+
 
   
 
