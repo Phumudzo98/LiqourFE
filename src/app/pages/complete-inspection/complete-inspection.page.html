@@ -98,201 +98,14 @@
 
   <div *ngIf="currentForm === 'applicant'">
    
-    <ion-card class="upload2">
-      <span>(a) Was an appointment set with the applicant for inspection on this day?</span>
-        <ion-card-title class="general-name">
-          <ion-grid>
-            <ion-row>
-              <ion-col>Yes</ion-col>
-              <ion-col>No</ion-col>
-            </ion-row>
-          </ion-grid>
-       </ion-card-title>
-       <hr>
-       <span>(b) Is the person found or consulted at the premises the applicant in this matter?</span>
-       <ion-card-title class="general-name">
-        <ion-grid>
-          <ion-row>
-            <ion-col>Yes</ion-col>
-            <ion-col>No</ion-col>
-          </ion-row>
-        </ion-grid>
-        </ion-card-title>
-      <hr>
-       <span>(c) Has the applicant indicated that this particular person will be at the premises?</span>
-       <ion-card-title class="general-name">
-        <ion-grid>
-          <ion-row>
-            <ion-col>Yes</ion-col>
-            <ion-col>No</ion-col>
-            <ion-col>N/A</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-title>
-      <hr>
-       <span>(d) If not the applicant, can the person found at the premises confirm the applicant?</span>
-       <ion-card-title class="general-name">
-        <ion-grid>
-          <ion-row>
-            <ion-col>Yes</ion-col>
-            <ion-col>No</ion-col>
-            <ion-col>N/A</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-title>
-    </ion-card>
-    
-
-    <ion-button class="buttonClass">
-      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-      Save
-    </ion-button>
-  
-  </div>
-
-  <div *ngIf="currentForm === 'general'" class="card">
-    <ion-card class="upload2">
-      <span>Person Contacted</span>
-        <ion-card-title class="general-name">
-          Person Name
-        </ion-card-title>
-    </ion-card>
-
-    <ion-card class="upload2">
-      <span>Inspection Date</span>
-        <ion-card-title class="general-name">
-          Inspection Date
-        </ion-card-title>
-    </ion-card>
-
-    <ion-card class="upload2">
-      <span>Latitude Of Outlet (South)</span>
-        <ion-card-title class="general-name">
-          Latitude Of Outlet (South)
-        </ion-card-title>
-    </ion-card>
-
-    <ion-card class="upload2">
-      <span>Longitude of Outlet (East)</span>
-        <ion-card-title class="general-name">
-          Longitude of Outlet (East)
-       </ion-card-title>
-    </ion-card>
-    
-
-    <ion-button class="buttonClass">
-      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-      Save
-    </ion-button>
-  
-  </div>
-
-  <!--Documentation-->
-
-  <div *ngIf="currentForm === 'document'">
-   
-    <ion-card class="upload2">
-      <span>(a) Does the applicant have a right to occupy the premises ?</span>
-        <ion-card-title class="general-name">
-          <ion-grid>
-            <ion-row>
-              <ion-col>Yes</ion-col>
-              <ion-col>No</ion-col>
-              <ion-col>N/A</ion-col>
-            </ion-row>
-          </ion-grid>
-       </ion-card-title>
-       <hr>
-       <span>(b) If the lease agreement is attached, is the Lessor's proof of right ?</span>
-       <ion-card-title class="general-name">
-        <ion-grid>
-          <ion-row>
-            <ion-col>Yes</ion-col>
-            <ion-col>No</ion-col>
-            <ion-col>N/A</ion-col>
-          </ion-row>
-        </ion-grid>
-        </ion-card-title>
-      <hr>
-       <span>(c) Are the premises situated at the address indicated in the application ?</span>
-       <ion-card-title class="general-name">
-        <ion-grid>
-          <ion-row>
-            <ion-col>Yes</ion-col>
-            <ion-col>No</ion-col>
-            <ion-col>N/A</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-title>
-      <hr>
-       <span>(d) Are the premises in line with the plan submitted with the application ?</span>
-       <ion-card-title class="general-name">
-        <ion-grid>
-          <ion-row>
-            <ion-col>Yes</ion-col>
-            <ion-col>No</ion-col>
-            <ion-col>N/A</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-title>
-      <hr>
-      <span>(e) Are the premises suitable for the category of registration applied for ?</span>
-      <ion-card-title class="general-name">
-       <ion-grid>
-         <ion-row>
-           <ion-col>Yes</ion-col>
-           <ion-col>No</ion-col>
-           <ion-col>N/A</ion-col>
-         </ion-row>
-       </ion-grid>
-     </ion-card-title>
-     <hr>
-     <span>(f) Ablution facilities - are these in working order ?</span>
-     <ion-card-title class="general-name">
-      <ion-grid>
-        <ion-row>
-          <ion-col>Yes</ion-col>
-          <ion-col>No</ion-col>
-          <ion-col>N/A</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-title>
-
-    <hr>
-    <span>(g) Are the premises ready to commence with the business ?</span>
-    <ion-card-title class="general-name">
-     <ion-grid>
-       <ion-row>
-         <ion-col>Yes</ion-col>
-         <ion-col>No</ion-col>
-         <ion-col>N/A</ion-col>
-       </ion-row>
-     </ion-grid>
-   </ion-card-title>
-
-
-    </ion-card>
-    
-
-    <ion-button class="buttonClass">
-      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-      Save
-    </ion-button>
-  
-  </div>
-
-
-  <!--Community-->
-
-  <div *ngIf="currentForm === 'community'" >
     <div class="header-container">
       <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
-      <h1 class="header-text">Verification of the Community Consultation Process</h1>
+      <h1 class="header-text">Verification of the Applicant</h1>
     </div>
    
     <ion-card class="upload2">
       
-      <span>(a) Was Form 2/8/12 served on the correct ward commitee?</span>
+      <span>(a) Was an appointment set with the applicant for inspection on this day?</span>
         <ion-card-title class="general-name">
           <ion-grid>
             <ion-row>
@@ -399,8 +212,576 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(e) Does the applicant have any other interests in the liquor trade in the republic?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(f) Has any of the above listed outlets ever been issued with a compliance notice ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(g) Were any complaints received against any of the outlets mentioned in (f) ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+     
+    </ion-card>
+   
+  </div>
+
+  <div *ngIf="currentForm === 'general'" class="card">
+    <div class="header-container">
+      <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
+      <h1 class="header-text">General</h1>
+    </div>
+    <ion-card class="upload2">
+      <span>Person Contacted</span>
+        <ion-card-title class="general-name">
+          Person Name
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Inspection Date</span>
+        <ion-card-title class="general-name">
+          Inspection Date
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Latitude Of Outlet (South)</span>
+        <ion-card-title class="general-name">
+          Latitude Of Outlet (South)
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card class="upload2">
+      <span>Longitude of Outlet (East)</span>
+        <ion-card-title class="general-name">
+          Longitude of Outlet (East)
+       </ion-card-title>
+    </ion-card>
+    
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+  <!--Documentation-->
+
+  <div *ngIf="currentForm === 'document'">
+
+    <div class="header-container">
+      <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
+      <h1 class="header-text">Verification of the Premises Against Submitted Documentation</h1>
+    </div>
+   
+    <ion-card class="upload2">
+      
+      <span>(a) Does the applicant have a right to occupy the premises ?</span>
+        <ion-card-title class="general-name">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div class="radios">
+                  <input type="radio" id="yes" name="choice" value="">
+                  <label for="yes">Yes</label>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="radios">
+                  <input type="radio" id="no" name="choice" value="">
+                  <label for="yes">No</label>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="radios">
+                  <input type="radio" id="n/a" name="choice" value="">
+                  <label for="yes">N/A</label>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+         
+          
+          
+       </ion-card-title>
+       <hr>
+       <span>(b) If the lease agreement is attached, is the Lessor's proof of right ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+       
+        </ion-card-title>
+      <hr>
+       <span>(c) Are the premises situated at the address indicated in the application ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
        
       </ion-card-title>
+      <hr>
+       <span>(d) Are the premises in line with the plan submitted with the application ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(e) Are the premises suitable for the category of registration applied for ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(f) Ablution facilities - are these in working order ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(g) Are the premises ready to commence with the business ?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      
+    </ion-card>
+    
+
+
+    <ion-button class="buttonClass">
+      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  
+  </div>
+
+
+  <!--Community-->
+
+  <div *ngIf="currentForm === 'community'" >
+    <div class="header-container">
+      <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
+      <h1 class="header-text">Verification of the Community Consultation Process</h1>
+    </div>
+   
+    <ion-card class="upload2">
+      
+      <span>(a) Was Form 2/8/12 served on the correct ward commitee?</span>
+        <ion-card-title class="general-name">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div class="radios">
+                  <input type="radio" id="yes" name="choice" value="">
+                  <label for="yes">Yes</label>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="radios">
+                  <input type="radio" id="no" name="choice" value="">
+                  <label for="yes">No</label>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="radios">
+                  <input type="radio" id="n/a" name="choice" value="">
+                  <label for="yes">N/A</label>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+         
+          
+          
+       </ion-card-title>
+       <hr>
+       <span>(b) Form 2/8/12 was confirmed by the ward councillor of the specific ward?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+       
+        </ion-card-title>
+      <hr>
+       <span>(c) Is the ward committee’s report in terms of Section 22(2)(d)(i) filed in the application?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+       
+      </ion-card-title>
+      <hr>
+       <span>(d) Was the community appropriately and adequately consulted(furnish a report regarding verification)?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(e) Is there an educational institution within the prescribed 100m radius?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(f) Was Form 2/8/12 appropriately served at the educational institution?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(g) Is there a place of worship within  the prescribed 100m?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
+      <hr>
+       <span>(h) Was Form 2/8/12 appropriately served at the place of worship?</span>
+       <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes" name="choice" value="">
+                <label for="yes">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no" name="choice" value="">
+                <label for="yes">No</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="n/a" name="choice" value="">
+                <label for="yes">N/A</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+
     </ion-card>
     
 
@@ -423,19 +804,27 @@
     
     <ion-card class="upload2">
         <ion-card-title class="general-name">
-          Yes
+          <div class="radios">
+            <input type="radio" id="no" name="choice" value="">
+          Yes </div>
         </ion-card-title>
         <hr>
         <ion-card-title class="general-name">
-          No
+          <div class="radios">
+            <input type="radio" id="no" name="choice" value="">
+          No </div>
         </ion-card-title>
         <hr>
         <ion-card-title class="general-name">
-          Section(5)
+          <div class="radios">
+            <input type="radio" id="no" name="choice" value="">
+          Section(5) </div>
         </ion-card-title>
         <hr>
         <ion-card-title class="general-name">
-          Hearing
+          <div class="radios">
+            <input type="radio" id="no" name="choice" value="">
+          Hearing </div>
         </ion-card-title>
         <hr>
 

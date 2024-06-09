@@ -117,4 +117,20 @@ select {
     width: 20px;
     height: 20px;
   }
-  
+  .buttonClass {
+    --background: #822B23;
+    --color: #fff;
+    width: calc(100% - 30px);
+    height: 50px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 14px;
+    border: 1px solid #822B23;
+    border-radius: 2px; 
+    --border-radius: 2px; 
+    text-transform: none; 
+    font-family: 'Inter', sans-serif; 
+    margin-bottom: 15px;
+
+  }
