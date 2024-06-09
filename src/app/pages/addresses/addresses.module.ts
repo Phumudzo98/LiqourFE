@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { AddressesPageRoutingModule } from './addresses-routing.module';
 
 import { AddressesPage } from './addresses.page';
-
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddressesPageRoutingModule
+    AddressesPageRoutingModule,
+    MenuFooterPageModule
   ],
   declarations: [AddressesPage]
 })

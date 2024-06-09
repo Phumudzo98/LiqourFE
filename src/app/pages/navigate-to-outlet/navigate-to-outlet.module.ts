@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { NavigateToOutletPageRoutingModule } from './navigate-to-outlet-routing.module';
 
 import { NavigateToOutletPage } from './navigate-to-outlet.page';
-
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
+import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NavigateToOutletPageRoutingModule
+    NavigateToOutletPageRoutingModule,
+    MenuFooterPageModule,
+    MenuHeaderPageModule
   ],
   declarations: [NavigateToOutletPage]
 })
