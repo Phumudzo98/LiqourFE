@@ -2,15 +2,25 @@
 
 
   <div class="image-container">
-  <img src="assets/Images/location.svg" class="background-image">
-  
+  <img src="assets/Images/Location2.svg" class="background-image">
+  </div>
+
+  <div>
+    <p>What's your location?</p>
   </div>
 
   <div class="button-containerL2">
-    <ion-button class="buttonClass">Allow location access</ion-button>
+    <ion-button (click)="getCurrentPosition()" class="buttonClass">Allow location access</ion-button>
   </div>
   <div class="button-container">
-    <ion-button class="buttonClassL">Enter location manually</ion-button>
+    <ion-button (click)="toggleManualInput()" class="buttonClassL">Enter location manually</ion-button>
   </div>
+
+  <div *ngIf="showManualInput">
+    <ion-item>
+    <ion-input class="input-style" type="text" placeholder="Type in your address"></ion-input>
+  </ion-item>
+  </div>
+  
 
 </ion-content>

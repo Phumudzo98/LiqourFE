@@ -1,4 +1,10 @@
-<ion-content [fullscreen]="true">
+
+
+<ion-content >
+  <div class="header-container">
+    <a [routerLink]=""><img  class="back-Arrow"src="assets/Images/Back Icon.svg"></a>
+    <h1 class="header-text">Complete Inspection</h1>
+  </div>
   <div *ngIf="currentForm === 'landing'">
     <ion-card>
       <div class="header-content">
@@ -856,3 +862,4 @@
 
 
 </ion-content>
+<app-menu-footer></app-menu-footer>

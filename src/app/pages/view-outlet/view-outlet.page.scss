@@ -9,11 +9,36 @@
 }
 
 .header-text {
+  //flex: 1; /* This makes the text take up the remaining space */
+  text-align: center;
+  padding-left: 60px;
+  font-size: 15px;
+  padding-bottom: 18px;
+  padding-left: 100px;
+}
+.back-Arrow{
+  margin-left: -10px;
+}
+
+.header-text {
   text-align: center;
   font-size: 15px;
   padding-bottom: 18px;
   font-family: 'Inter', sans-serif;
 
+  margin-bottom: 50px;
+}
+
+.header-text {
+  //flex: 1; /* This makes the text take up the remaining space */
+  text-align: center;
+  padding-left: 60px;
+  font-size: 15px;
+  padding-bottom: 18px;
+  padding-left: 100px;
+}
+.back-Arrow{
+  margin-left: -10px;
 }
 
   .main-img

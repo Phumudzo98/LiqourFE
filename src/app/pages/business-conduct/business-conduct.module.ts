@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { BusinessConductPageRoutingModule } from './business-conduct-routing.module';
 
 import { BusinessConductPage } from './business-conduct.page';
-
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BusinessConductPageRoutingModule
+    BusinessConductPageRoutingModule,
+    MenuFooterPageModule
   ],
   declarations: [BusinessConductPage]
 })
