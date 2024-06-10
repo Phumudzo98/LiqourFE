@@ -17,5 +17,6 @@ import { ViewImagePage } from './view-image.page';
   ],
   declarations: [ViewImagePage],
   exports: [ViewImagePage]
+  
 })
 export class ViewImagePageModule {}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ActionSheetController, AlertController, ModalController } from '@ionic/angular';
+import { ViewImagePage } from '../view-image/view-image.page';
 
 
 @Component({
@@ -114,16 +115,15 @@ deleteImage(imageUrl: string) {
 
  
 
-  async viewImage(imageUrl: string) {
-    this.viewImageUrl = imageUrl;
+  async viewImage(image: string) {
     const modal = await this.modalController.create({
-      component: 'modal-component',
-      componentProps: {
-        imageUrl: this.viewImageUrl,
-      },
+      component: ViewImagePage,
+      componentProps: { image },
+      backdropDismiss: true // This enables clicking outside the modal to dismiss it
     });
-    await modal.present();
+    return await modal.present();
   }
+
 
   async dismissModal() {
     this.viewImageUrl = null;
