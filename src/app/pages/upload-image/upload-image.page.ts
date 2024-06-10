@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ActionSheetController, AlertController, ModalController } from '@ionic/angular';
 import { ViewImagePage } from '../view-image/view-image.page';
@@ -10,11 +10,14 @@ import { ViewImagePage } from '../view-image/view-image.page';
   styleUrls: ['./upload-image.page.scss'],
 })
 export class UploadImagePage implements OnInit {
-  imageSources: string[] = []; // Declare the imageSources property as an array of strings
+  imageSources: string[] = [];
  
-  users: string[] = ['Anonymous user 1', 'Anonymous user 2', 'Anonymous user 3'];
   user: boolean[] = [];
-  constructor(private actionSheetController: ActionSheetController,private alertController: AlertController,private modalController: ModalController) { }
+  constructor(private actionSheetController: ActionSheetController,
+    private alertController: AlertController,
+    private modalController: ModalController,
+    private eRef: ElementRef) 
+  { }
 
   ngOnInit() { }
 
@@ -57,7 +60,6 @@ export class UploadImagePage implements OnInit {
       this.imageSources.push(image.dataUrl);
     }
   }
-  // In your component class
 
 dropdownVisible: { [index: string]: boolean } = {};
 toggleDropdown(event: Event, index: number) {
@@ -65,14 +67,19 @@ toggleDropdown(event: Event, index: number) {
     this.dropdownVisible[index] = !this.dropdownVisible[index];
   }
 
+  @HostListener('document:click', ['$event'])
+  clickout(event: Event) {
+    Object.keys(this.dropdownVisible).forEach(user => {
+      if (this.dropdownVisible[user] && !this.eRef.nativeElement.querySelector('.label').contains(event.target)) {
+        this.dropdownVisible[user] = false;
+      }
+    });
+  }
 
 deleteImage(imageUrl: string) {
-  // Find the index of the image in the imageSources array
   const index = this.imageSources.indexOf(imageUrl);
   if (index !== -1) {
-    // Remove the image from the imageSources array
     this.imageSources.splice(index, 1);
-    // Update the corresponding photoVisibility entry to hide the dropdown
     this.dropdownVisible[index] = false;
   }
 }
