@@ -119,6 +119,10 @@ const routes: Routes = [
   },  {
     path: 'upload-image',
     loadChildren: () => import('./pages/upload-image/upload-image.module').then( m => m.UploadImagePageModule)
+  },
+  {
+    path: 'sidemenu',
+    loadChildren: () => import('./pages/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
   }
 
   
