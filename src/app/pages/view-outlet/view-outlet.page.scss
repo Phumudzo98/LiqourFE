@@ -3,6 +3,29 @@
   align-items: center;
   padding-top: 30px;
   padding-left: 30px;
+  margin-bottom: 0px;
+  font-family: 'Inter', sans-serif;
+
+}
+
+.header-text {
+  //flex: 1; /* This makes the text take up the remaining space */
+  text-align: center;
+  padding-left: 60px;
+  font-size: 15px;
+  padding-bottom: 18px;
+  padding-left: 100px;
+}
+.back-Arrow{
+  margin-left: -10px;
+}
+
+.header-text {
+  text-align: center;
+  font-size: 15px;
+  padding-bottom: 18px;
+  font-family: 'Inter', sans-serif;
+
   margin-bottom: 50px;
 }
 
@@ -20,9 +43,9 @@
 
   .main-img
   {
-    margin-left: 4%;
     margin-top: 1%;
-    width: auto;
+    margin-bottom: 1%;
+   
   }
 
   .paragraph-container {
@@ -33,9 +56,8 @@
   }
   
   .inline-paragraph {
-    display: inline-block; /* Display paragraphs on the same line */
-    margin-right: 10px; /* Space between paragraphs */
-    vertical-align: top; /* Align paragraphs to the top */
+    display: inline-block; 
+    vertical-align: top; 
   }
   
   .inline-paragraph:last-child {
@@ -45,28 +67,33 @@
   .inline-paragraph
   {
     display: inline-block;
-    border:1px solid #ddd9d9;
-    border-color: #ddd9d9;
     padding-right: 1%;
-    background-color: #ddd9d9;
-    font-size: 9px;
-    padding-left: 2px;
-    margin-left: 8%;
+    background-color: #F7F7FE;
+    font-size: 10px;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     margin-right: 0%;
     border-radius: 2px;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    
   }
 
  .img-location
  {
     width: 5%;  
     height: auto;  
-    margin-left: 4%;
 
  }
 
  .header{
-    font-weight:bold;
-    margin-left: 4%;
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color:#000;
+  margin-bottom:-1%;
+  
  }
 
  .location-paraPadding
@@ -79,16 +106,13 @@
 
  .paraPadding
  {
-    margin-left: 4%;
-    padding-top: 0%;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
  }
-
  .paraPadding2
  {
-    margin-left: 4%;
     padding-top: 0%;
-    
     color: #8B939F;
     font-size: 13px;
  }
@@ -96,8 +120,7 @@
  .img-spacing
  {
     border-radius: 19px;
-    margin-left: 4%;
-    width: 50%;
+    width: auto;
     height: auto;
  }
 

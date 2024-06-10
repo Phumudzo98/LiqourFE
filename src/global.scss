@@ -37,6 +37,12 @@ ion-item::part(native) {
   border: none !important;
   box-shadow: none !important;
 }
+.header-text {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 20px;
+  padding-right: 20px;
+}
 
 /* Container styling */
 .container {
@@ -64,12 +70,11 @@ ion-input {
 }
 
 
-/* Optional: Set ion-content background color */
 ion-content {
   --background: #ffffff;
+  font-family: 'Inter', sans-serif !important;
 }
 
-/* Ensuring background color white for ion-app */
 ion-app {
   background-color: #ffffff;
 }
@@ -137,18 +142,21 @@ ion-app {
   font-family: 'Inter', sans-serif;
   padding: 15px;
 }
+.flex{
+  display: flex;
+}
 
 
 
 
 input[type="radio"] {
-  background-color: #000;
+  background-color: #fff;
   width: 20px;
   height: 20px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 5px solid #CFAA35;
+  border: 7px solid #CFAA35;
   border-radius: 50%;
   padding: 2px;
   margin-right: 10px; 
