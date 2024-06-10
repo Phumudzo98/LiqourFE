@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    font-family: 'Inter', sans-serif;
   }
   
   .back-Arrow {
@@ -31,8 +32,13 @@
   }
   
   .no-photo-text {
-    margin-top: 190px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
+  
   
   .image-grid {
     display: grid;
