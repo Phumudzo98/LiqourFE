@@ -32,6 +32,7 @@
     "@capacitor/keyboard": "6.0.0",
     "@capacitor/status-bar": "6.0.0",
     "@ionic/angular": "^8.0.0",
+    "@ionic/pwa-elements": "^3.3.0",
     "add": "^2.0.6",
     "android": "^0.0.8",
     "capacitor": "^0.5.6",

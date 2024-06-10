@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-upload-image',
@@ -7,23 +8,49 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   styleUrls: ['./upload-image.page.scss'],
 })
 export class UploadImagePage implements OnInit {
-  imageUrl: string | null | undefined = null; // Adjusted type to include undefined
+  imageSources: string[] = [];
 
-  constructor() { }
+  constructor(private actionSheetController: ActionSheetController) { }
 
   ngOnInit() { }
 
-  async takePicture() {
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Select Image Source',
+      buttons: [
+        {
+          text: 'Photos',
+          icon: 'image',
+          handler: () => {
+            this.selectImage(CameraSource.Photos);
+          }
+        },
+        {
+          text: 'Camera',
+          icon: 'camera',
+          handler: () => {
+            this.selectImage(CameraSource.Camera);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          icon: 'close'
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+
+  async selectImage(source: CameraSource) {
     const image = await Camera.getPhoto({
       quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: source
     });
-  
-    // image.webPath will contain a path that can be set as an image src.
-    // You can access the original file using image.path, which can be
-    // passed to the Filesystem API to read the raw data of the image,
-    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-    this.imageUrl = image.webPath;
+    if (image.dataUrl) {
+      this.imageSources.push(image.dataUrl);
+    }
   }
 }
