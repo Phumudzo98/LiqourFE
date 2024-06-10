@@ -1,0 +1,17 @@
+
+  
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+  
+    <ion-buttons slot="end">
+     
+        <ion-icon name="close" class="close-icon" (click)="dismiss()"></ion-icon>
+  
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="image-container" (click)="dismiss()">
+    <img [src]="image" class="view-image" (click)="$event.stopPropagation()">
+  </div>
+</ion-content>

@@ -116,14 +116,21 @@ const routes: Routes = [
   {
     path: 'recommendations',
     loadChildren: () => import('./pages/recommendations/recommendations.module').then( m => m.RecommendationsPageModule)
-  },  {
+  },
+  {
     path: 'upload-image',
     loadChildren: () => import('./pages/upload-image/upload-image.module').then( m => m.UploadImagePageModule)
+  },
+  {
+    path: 'view-image',
+    loadChildren: () => import('./pages/view-image/view-image.module').then( m => m.ViewImagePageModule)
   },
   {
     path: 'sidemenu',
     loadChildren: () => import('./pages/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
   }
+
+
 
   
 

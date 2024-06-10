@@ -1,42 +1,32 @@
-<ion-content>
- 
-    <div class="header-container">
-      <a [routerLink]=""><img  class="back-Arrow"src="assets/Images/Back Icon.svg"></a>
+<ion-content [fullscreen]="true">
+  <div class="header-container">
+      <a [routerLink]=""><img src="assets/Images/Back Icon.svg"></a>
       <h1 class="header-text">View Outlet</h1>
     </div>
- 
-  <ion-item class="main-img">
-    <img src="assets/Images/PicsArt_05-14-05.58 1.svg">
-  </ion-item>
 
-  <div>
-    <p class="inline-paragraph">Active</p>
-    <p class="inline-paragraph">On and Off Consumption</p>
-  </div>
-  <ion-item>
-  <h1 class="header">G-Spot</h1>
-</ion-item>
-  <ion-item>
-    <img src="assets/Images/location.svg" class="img-location">
-    <p class="location-paraPadding">East london</p>
-  </ion-item>
-  <ion-item>
-    <p class="paraPadding">On and Off Consumption</p>
-  </ion-item>
-  <ion-item>
-    <p class="paraPadding2">G. Spot Tavern, Erf 1191, Caner of Julies. REF5R807045090084. Ward 7 Inxuba Yethemba.</p>
-  </ion-item>
-  <ion-item>
-    <p class="paraPadding">Gallery</p>
-  </ion-item>
+    <div class="card">
+      <img src="assets/Images/PicsArt_05-14-05.58 1.svg">
+      <div>
+        <p class="inline-paragraph">Active</p>
+        <p class="inline-paragraph">On and Off Consumption</p>
+      </div>
 
-  <ion-item>
-    <img src="assets/Images/PicsArt_05-14-05.58 2.svg" class="img-spacing">
-    <img src="assets/Images/PicsArt_05-14-05.58 2.svg" class="img-spacing">
-    <img src="assets/Images/PicsArt_05-14-05.58 2.svg" class="img-spacing">
-  </ion-item>
+      <h1 class="header">G-Spot</h1>
 
-  
+      <div class="flex">
+        <img src="assets/Images/location.svg" class="img-location">
+        <p class="location-paraPadding">East london</p>
+        </div>
+        <p class="paraPadding">On and Off Consumption</p>
 
+        <p class="paraPadding2">G. Spot Tavern, Erf 1191, Caner of Julies. REF5R807045090084. Ward 7 Inxuba Yethemba.</p>
+        <p class="paraPadding">Gallery</p>
+    
+        <!--
+        <img src="assets/Images/PicsArt_05-14-05.58 2.svg" class="img-spacing">
+        <img src="assets/Images/PicsArt_05-14-05.58 2.svg" class="img-spacing">
+        <img src="assets/Images/PicsArt_05-14-05.58 2.svg" class="img-spacing">
+        -->
+    </div>
 </ion-content>
 <app-menu-footer></app-menu-footer>

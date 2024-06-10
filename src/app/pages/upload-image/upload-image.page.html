@@ -1,30 +1,42 @@
 <ion-content>
-  
-    <div class="header-container">
-      <a [routerLink]=""><img  class="back-Arrow"src="assets/Images/Back Icon.svg"></a>
-      <h1 class="header-text">Photos</h1>
-    </div>
+  <div class="header-container">
+    <a [routerLink]="['/previous-page']">
+      <img class="back-Arrow" src="assets/Images/Back Icon.svg">
+    </a>
+    <h1 class="header-text">Photos</h1>
+  </div>
 
- 
-  
-   <ion-card class="upload" >
-  
+  <ion-card class="upload">
+    <ng-container *ngIf="imageSources.length > 0; else noPhoto">
+      <ng-container *ngIf="imageSources.length === 1; else multiplePhotos">
+        <img [src]="imageSources[0]" alt="Uploaded Photo" class="single-uploaded-photo" (click)="toggleDropdown($event, 0)">
+        <div class="dropdown-content"  [class.show]="dropdownVisible[0]">
+          <ion-item (click)="viewImage(imageSources[0])">View</ion-item>
+          <ion-item (click)="deleteImage(imageSources[0])">Delete</ion-item>
+        </div>
+      </ng-container>
+      <ng-template #multiplePhotos>
+        <div class="image-grid">
+          <div *ngFor="let image of imageSources; let i = index">
+            <img [src]="image" alt="Uploaded Photo" class="uploaded-photo" (click)="toggleDropdown($event, i)">
+            <div  class="dropdown-content" [class.show]="dropdownVisible[i]">
+              <ion-item (click)="viewImage(image)">View</ion-item>
+              <ion-item (click)="deleteImage(image)">Delete</ion-item>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-template #noPhoto>
+      <p class="no-photo-text">No photo uploaded yet</p>
+    </ng-template>
+  </ion-card>
 
-  <p>No photo uploaded yet</p>
-  <input type="file" #fileInput  accept=".docx, .pdf, .svg, .png, .jpg, .gif">
-</ion-card>
-
-<div class="add-ticket-container">
-  <ion-img src="../../../assets/Images/Vector.svg"(click)="takePicture()" class="add-ticket-icon"></ion-img>
-</div>
-<div *ngIf="imageUrl">
-  <img [src]="imageUrl" alt="Captured Image" />
-</div>
-  
-  <ion-button class="buttonClass">
-    <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-    Save
-  </ion-button>
-  
-  
+  <div class="add-ticket-container">
+    <ion-buttons slot="end">
+      <ion-img src="assets/Images/Vector.svg" (click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
+    </ion-buttons>
+  </div>
 </ion-content>
+
+<app-menu-footer></app-menu-footer>

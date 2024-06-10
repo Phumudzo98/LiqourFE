@@ -6,12 +6,20 @@ ion-card-title {
     font-family: 'Inter', sans-serif;
 }
 
+
 .vector {
     width: 12px;
     height: 12px;
 }
 
 .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+}
+.header-content3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,6 +53,7 @@ select {
     font-size: 14px;
     font-family: 'Inter', sans-serif;
     margin-bottom: 100px;
+    margin-left: 10px;
 }
 .upload {
     border: 1px solid #EAECF0;
@@ -81,6 +90,18 @@ select {
     color:#822B23;
 }
 
+.input-field
+{
+    margin-bottom: 5%;
+    font-family: 'Inter', sans-serif;
+    
+}
+ion-input{
+    font-family: 'Inter', sans-serif;
+    color: #667085;
+
+}
+
 .general-name{
     font-size: 14px;
     font-weight: 600;
@@ -96,15 +117,11 @@ select {
     margin-bottom: 0px;
     margin-left: 10px;
     font-family: 'Inter', sans-serif;
+    margin-top: 5%;
   
   }
   
-  .header-text {
-    text-align: center;
-    font-size: 15px;
-    padding-bottom: 18px;
-    font-family: 'Inter', sans-serif;
-  }
+
   .radios{
     display: flex;
   }
@@ -117,24 +134,22 @@ select {
     width: 20px;
     height: 20px;
   }
-  
-  .header-container {
-    display: flex;
-    align-items: center;
-    padding-top: 30px;
-    padding-left: 30px;
-    margin-bottom: 50px;
+  .buttonClass {
+    --background: #822B23;
+    --color: #fff;
+    width: calc(100% - 30px);
+    height: 50px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 14px;
+    border: 1px solid #822B23;
+    border-radius: 2px; 
+    --border-radius: 2px; 
+    text-transform: none; 
+    font-family: 'Inter', sans-serif; 
+    margin-bottom: 15px;
+
   }
   
-  .header-text {
-    //flex: 1; /* This makes the text take up the remaining space */
-    text-align: center;
-    padding-left: 60px;
-    font-size: 15px;
-    padding-bottom: 18px;
-  
-  }
-  .back-Arrow{
-    margin-left: -10px;
-  }
-  
+

@@ -10,7 +10,7 @@
       <ion-card-header>
         <ion-card-title>{{ address.title }}</ion-card-title>
         <ion-button fill="clear" class="options-button" (click)="presentOptions(address, i)">
-          <ion-icon name="ellipsis-vertical"></ion-icon>
+          <ion-icon name="ellipsis-vertical"></ion-icon> 
         </ion-button>
       </ion-card-header>
       <ion-card-content>
@@ -22,7 +22,7 @@
     </ion-card>
 
   <!-- Conditional Rendering of Address Fields -->
-  <ion-card *ngIf="showAddressFields">
+  <ion-card *ngIf="showAddressFields" class="address-card" >
     <ion-card-header>
       <ion-card-title>Add New Address</ion-card-title>
       <ion-button class="close-button" (click)="toggleAddressFields()" >

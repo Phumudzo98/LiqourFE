@@ -12,27 +12,70 @@
   </app-menu-header> -->
 
   
-    <ion-card>
-      <ion-card-header>
+  <div class="slider-container">
+    <ion-card class="slide visible">
+      <ion-card-header style="height: auto;">
         <ion-card-title class="welcome">Inspector Center</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p class="message">Welcome to Inspector Center, your platform for ensuring safety in hospitality venues.</p>
       </ion-card-content>
-      <!--
-      <ion-img src="../../../assets/Images/" class="black-man"></ion-img>
-      -->
+      <ion-img src="../../../assets/Images/Black man.svg" class="black-man"></ion-img>
     </ion-card>
+    <!--Second Slide-->
+    <ion-card class="slide">
+      <ion-card-header style="height: auto;">
+        <ion-card-title class="welcome">Inspector Center 2</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incid.</p>
+      </ion-card-content>
+      <ion-img src="../../../assets/Images/Black man.svg" class="black-man"></ion-img>
+    </ion-card>
+
+    <!--Third Slide-->
+    <ion-card class="slide">
+      <ion-card-header style="height: auto;">
+        <ion-card-title class="welcome">Inspector Center 3</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incid.</p>
+      </ion-card-content>
+      <ion-img src="../../../assets/Images/Black man.svg" class="black-man"></ion-img>
+    </ion-card>
+
+     <!--Fourth Slide-->
+     <ion-card class="slide">
+      <ion-card-header style="height: auto;">
+        <ion-card-title class="welcome">Inspector Center 4</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incid.</p>
+      </ion-card-content>
+      <ion-img src="../../../assets/Images/Black man.svg" class="black-man"></ion-img>
+    </ion-card>
+  </div>
+  
+  <!-- Dots -->
+  <div class="dots-container">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+
+  </div>
+  
+  
 
     <div class="dashboard-container">
       <p class="quick-action">Quick action</p>
         <ion-grid>
           <ion-row>
-            <ion-col class="center-content">  
+            <ion-col class="center-content" (click)="navigateToTasks()" >  
               <ion-img src="../../../assets/Images/calendar-tick.svg" class="icon-image"></ion-img>
               <p class="col-header">My Tasks</p>
             </ion-col>
-            <ion-col class="center-content" offset="0.2">
+            <ion-col class="center-content" offset="0.2" (click)="navigateToComplaints()">
               <ion-img src="../../../assets/Images/message-notif.svg" class="icon-image"></ion-img>
               <p class="col-header">Complaints</p>
             </ion-col>
@@ -40,11 +83,11 @@
         </ion-grid>
         <ion-grid>
           <ion-row>
-            <ion-col class="center-content">
+            <ion-col class="center-content" (click)="navigateToUpdate()">
               <ion-img src="../../../assets/Images/map.svg" class="icon-image"></ion-img>
               <p class="col-header">Update GIS</p>
             </ion-col>
-            <ion-col class="center-content" offset="0.2">   
+            <ion-col class="center-content" offset="0.2" (click)="navigateToNavigate()">   
               <ion-img src="../../../assets/Images/location.svg" class="icon-image"></ion-img>
               <p class="col-header">Navigate to Outlet</p>
             </ion-col>
@@ -52,7 +95,7 @@
         </ion-grid>
         <ion-grid>
           <ion-row>
-            <ion-col class="center-content">
+            <ion-col class="center-content" (click)="navigateToInspection()">
               <ion-img src="../../../assets/Images/folder.svg" class="icon-image"></ion-img>
               <p class="col-header">Inspections</p>
             </ion-col>
