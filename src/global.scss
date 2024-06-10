@@ -64,12 +64,11 @@ ion-input {
 }
 
 
-/* Optional: Set ion-content background color */
 ion-content {
   --background: #ffffff;
+  font-family: 'Inter', sans-serif !important;
 }
 
-/* Ensuring background color white for ion-app */
 ion-app {
   background-color: #ffffff;
 }

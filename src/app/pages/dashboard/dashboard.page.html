@@ -20,11 +20,11 @@
       <p class="quick-action">Quick action</p>
         <ion-grid>
           <ion-row>
-            <ion-col class="center-content">  
+            <ion-col class="center-content" (click)="navigateToTasks()" >  
               <ion-img src="../../../assets/Images/calendar-tick.svg" class="icon-image"></ion-img>
               <p class="col-header">My Tasks</p>
             </ion-col>
-            <ion-col class="center-content" offset="0.2">
+            <ion-col class="center-content" offset="0.2" (click)="navigateToComplaints()">
               <ion-img src="../../../assets/Images/message-notif.svg" class="icon-image"></ion-img>
               <p class="col-header">Complaints</p>
             </ion-col>
@@ -32,11 +32,11 @@
         </ion-grid>
         <ion-grid>
           <ion-row>
-            <ion-col class="center-content">
+            <ion-col class="center-content" (click)="navigateToUpdate()">
               <ion-img src="../../../assets/Images/map.svg" class="icon-image"></ion-img>
               <p class="col-header">Update GIS</p>
             </ion-col>
-            <ion-col class="center-content" offset="0.2">   
+            <ion-col class="center-content" offset="0.2" (click)="navigateToNavigate()">   
               <ion-img src="../../../assets/Images/location.svg" class="icon-image"></ion-img>
               <p class="col-header">Navigate to Outlet</p>
             </ion-col>
@@ -44,7 +44,7 @@
         </ion-grid>
         <ion-grid>
           <ion-row>
-            <ion-col class="center-content">
+            <ion-col class="center-content" (click)="navigateToInspection()">
               <ion-img src="../../../assets/Images/folder.svg" class="icon-image"></ion-img>
               <p class="col-header">Inspections</p>
             </ion-col>

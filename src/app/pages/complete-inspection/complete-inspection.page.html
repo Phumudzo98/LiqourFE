@@ -1,11 +1,12 @@
 
 
 <ion-content >
-  <div class="header-container">
-    <a [routerLink]=""><img  class="back-Arrow"src="assets/Images/Back Icon.svg"></a>
-    <h1 class="header-text">Complete Inspection</h1>
-  </div>
+  
   <div *ngIf="currentForm === 'landing'">
+    <div class="header-container">
+      <a [routerLink]="['/inspections']"><img src="assets/Images/Back Icon.svg"></a>
+      <h1 class="header-text">Complete Inspection</h1>
+    </div>
     <ion-card>
       <div class="header-content">
         <ion-card-title (click)="toggleForms('reports')">
@@ -57,7 +58,17 @@
     </ion-card>
   </div>
 
-  <div *ngIf="currentForm === 'reports'" class="card">
+  <div *ngIf="currentForm === 'reports'" >
+
+    <div class="header-container">
+      <a><img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')"></a>
+      <h1 class="header-text" style="color: black;">Inspection Reports</h1>
+    </div>
+    <!--
+    <ion-item class="input-field">
+    <ion-input></ion-input>
+  </ion-item>-->
+
     <span class="inspection-report">Inspection report</span>
     <ion-card class="upload" (click)="triggerFileInput()">
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
@@ -106,7 +117,7 @@
    
     <div class="header-container">
       <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
-      <h1 class="header-text">Verification of the Applicant</h1>
+      <h1 class="header-text">Applicant</h1>
     </div>
    
     <ion-card class="upload2">
@@ -306,7 +317,7 @@
    
   </div>
 
-  <div *ngIf="currentForm === 'general'" class="card">
+  <div *ngIf="currentForm === 'general'" >
     <div class="header-container">
       <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
       <h1 class="header-text">General</h1>
@@ -353,7 +364,7 @@
 
     <div class="header-container">
       <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
-      <h1 class="header-text">Verification of the Premises Against Submitted Documentation</h1>
+      <h1 class="header-text">Documentation</h1>
     </div>
    
     <ion-card class="upload2">
@@ -566,7 +577,7 @@
   <div *ngIf="currentForm === 'community'" >
     <div class="header-container">
       <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
-      <h1 class="header-text">Verification of the Community Consultation Process</h1>
+      <h1 class="header-text">Community</h1>
     </div>
    
     <ion-card class="upload2">
