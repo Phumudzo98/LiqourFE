@@ -89,3 +89,34 @@
     height: 24px;
   }
   
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    z-index: 1;
+    margin-right: 10px;
+    margin-top: 10%;
+  }
+  
+  .dropdown-content ion-item {
+    text-decoration: none;
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+  
+  .dropdown-content ion-item:hover {
+    font-weight: 600;
+  }
+  
+  .dropdown-content.show {
+    display: block;
+  }
+  
+  
