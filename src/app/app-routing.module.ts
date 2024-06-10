@@ -128,7 +128,11 @@ const routes: Routes = [
   {
     path: 'sidemenu',
     loadChildren: () => import('./pages/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
+  },  {
+    path: 'outlet-dashboard',
+    loadChildren: () => import('./Outlet/outlet-dashboard/outlet-dashboard.module').then( m => m.OutletDashboardPageModule)
   }
+
 
 
 

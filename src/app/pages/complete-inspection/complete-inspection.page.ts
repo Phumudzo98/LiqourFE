@@ -14,6 +14,12 @@ export class CompleteInspectionPage implements OnInit {
 
   ngOnInit() {
   }
+  personContacted: string ="Person Contacted";
+  inspectionDate: Date = new Date();
+  latitude: string = "Latitude Of Outlet (South)";
+  longitude: string = "logitude Of Outlet (South)";
+
+
 
   currentForm: string = 'landing';
 
