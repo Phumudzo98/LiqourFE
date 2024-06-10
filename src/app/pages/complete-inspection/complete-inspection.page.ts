@@ -10,6 +10,7 @@ export class CompleteInspectionPage implements OnInit {
 
   selectedOption: string = ''; 
   constructor(private route: Router, private eRef: ElementRef,) {}
+  
 
   ngOnInit() {
   }

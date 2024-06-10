@@ -11,7 +11,7 @@
     //flex: 1; /* This makes the text take up the remaining space */
     text-align: center;
     padding-left: 35px;
-    font-size: 15px;
+    font-size: 120%;
     padding-bottom: 18px;
     padding-right: 40px;
     font-family: 'Inter';
@@ -19,7 +19,7 @@
 
   p{
     //margin-left: 30px;
-    font-size: 11px;
+    
     margin-top: 10px;
     margin-bottom: 1px;
     padding-bottom: 1px;
@@ -34,16 +34,17 @@
     width: 319px;
     border-radius: 3px;
     margin-bottom: 120%;
+    font-size:70%;
   }
   .p1
   {
-    font-size: 10px;
+    
     font-family: 'Inter';
   }
 
   .p2
   {
-    font-size:11px;
+   
     font-weight: bold;
     font-family: 'Inter';
   }
