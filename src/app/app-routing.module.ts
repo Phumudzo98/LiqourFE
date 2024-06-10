@@ -131,6 +131,10 @@ const routes: Routes = [
   },  {
     path: 'outlet-dashboard',
     loadChildren: () => import('./Outlet/outlet-dashboard/outlet-dashboard.module').then( m => m.OutletDashboardPageModule)
+  },
+  {
+    path: 'outlet-edit-profile',
+    loadChildren: () => import('./Outlet/outlet-edit-profile/outlet-edit-profile.module').then( m => m.OutletEditProfilePageModule)
   }
 
 
