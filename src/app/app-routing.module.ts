@@ -128,14 +128,27 @@ const routes: Routes = [
   {
     path: 'sidemenu',
     loadChildren: () => import('./pages/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
-  },  {
+  },
+  {
     path: 'outlet-dashboard',
     loadChildren: () => import('./Outlet/outlet-dashboard/outlet-dashboard.module').then( m => m.OutletDashboardPageModule)
   },
   {
     path: 'outlet-edit-profile',
     loadChildren: () => import('./Outlet/outlet-edit-profile/outlet-edit-profile.module').then( m => m.OutletEditProfilePageModule)
+  },
+  {
+    path: 'outlet-menu-footer',
+    loadChildren: () => import('./outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module').then( m => m.OutletMenuFooterPageModule)
+  },  {
+    path: 'update-outlet-location',
+    loadChildren: () => import('./Outlet/update-outlet-location/update-outlet-location.module').then( m => m.UpdateOutletLocationPageModule)
+  },
+  {
+    path: 'payment-history',
+    loadChildren: () => import('./Outlet/payment-history/payment-history.module').then( m => m.PaymentHistoryPageModule)
   }
+
 
 
 
