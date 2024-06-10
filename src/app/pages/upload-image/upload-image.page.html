@@ -1,28 +1,34 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Photos</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="header-container">
-    <a [routerLink]=""><img class="back-Arrow" src="assets/Images/Back Icon.svg"></a>
-    <h1 class="header-text">Photos</h1>
-  </div>
+  
+    <div class="header-container">
+      <a [routerLink]=""><img  class="back-Arrow"src="assets/Images/Back Icon.svg"></a>
+      <h1 class="header-text">Photos</h1>
+    </div>
 
-  <ion-card class="upload">
-    <p>No photo uploaded yet</p>
-  </ion-card>
+    <ion-card class="upload">
+      <ng-container *ngIf="imageSources.length > 0; else noPhoto">
+        <ng-container *ngIf="imageSources.length === 1; else multiplePhotos">
+          <img [src]="imageSources[0]" alt="Uploaded Photo" class="single-uploaded-photo">
+        </ng-container>
+        <ng-template #multiplePhotos>
+          <div class="image-grid">
+            <div *ngFor="let image of imageSources">
+              <img [src]="image" alt="Uploaded Photo" class="uploaded-photo">
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+      <ng-template #noPhoto>
+        <p class="no-photo-text">No photo uploaded yet</p>
+      </ng-template>
+    </ion-card>
+<div class="add-ticket-container">
+  <ion-buttons slot="end">
+  <ion-img src="../../../assets/Images/Vector.svg"(click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
+</ion-buttons>
+</div>
 
-  <div class="add-ticket-container">
-    <ion-img src="../../../assets/Images/Vector.svg" (click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
-  </div>
 
-  <ion-button class="buttonClass">
-    <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-    Save
-  </ion-button>
+  
+  
 </ion-content>

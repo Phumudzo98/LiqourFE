@@ -8,7 +8,7 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['./upload-image.page.scss'],
 })
 export class UploadImagePage implements OnInit {
-  imageSource: string | undefined;
+  imageSources: string[] = [];
 
   constructor(private actionSheetController: ActionSheetController) { }
 
@@ -49,6 +49,8 @@ export class UploadImagePage implements OnInit {
       resultType: CameraResultType.DataUrl,
       source: source
     });
-    this.imageSource = image.dataUrl;
+    if (image.dataUrl) {
+      this.imageSources.push(image.dataUrl);
+    }
   }
 }
