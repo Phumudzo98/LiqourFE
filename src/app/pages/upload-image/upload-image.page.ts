@@ -75,38 +75,45 @@ toggleDropdown(event: Event, index: number) {
       }
     });
   }
-
-async deleteImage(imageUrl: string) {
-  const alert = await this.alertController.create({
-    header: 'Confirm Delete',
-    message: 'Are you sure you want to delete this image?',
-    buttons: [
-      {
-        text: 'No',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {
-          console.log('Cancel delete');
-        }
-      },
-      {
-        text: 'Yes',
-        handler: () => {
-          // Call your delete logic here
-          // Find the index of the image in the imageSources array
-  const index = this.imageSources.indexOf(imageUrl);
-  if (index !== -1) {
-    this.imageSources.splice(index, 1);
-    this.dropdownVisible[index] = false;
+  async deleteImage(imageUrl: string) {
+    const alert = await this.createDeleteAlert(imageUrl);
+    await alert.present();
   }
-          console.log('Confirm delete');
+  
+  private async createDeleteAlert(imageUrl: string) {
+    return this.alertController.create({
+      header: 'Confirm Delete',
+      message: 'Are you sure you want to delete this image?',
+      cssClass: 'custom-alert',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary-button',
+          handler: () => {
+            console.log('Cancel delete');
+          }
+        },
+        {
+          text: 'Yes',
+          cssClass: 'primary-button',
+          handler: () => {
+            this.removeImage(imageUrl);
+            console.log('Confirm delete');
+          }
         }
-      }
-    ]
-  });
-
-  await alert.present();
-}
+      ]
+    });
+  }
+  
+  private removeImage(imageUrl: string) {
+    const index = this.imageSources.indexOf(imageUrl);
+    if (index !== -1) {
+      this.imageSources.splice(index, 1);
+      this.dropdownVisible[index] = false;
+    }
+  }
+  
 
   
   async showOptions(imageUrl: string) {
