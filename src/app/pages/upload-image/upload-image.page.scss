@@ -118,5 +118,26 @@
   .dropdown-content.show {
     display: block;
   }
-  
+  /* global.scss */
+
+.custom-alert .alert-wrapper {
+ --background-color: #fff; /* Background color of the alert */
+}
+
+.custom-alert .alert-title {
+  --color: #d13131; /* Color of the alert title */
+}
+
+.custom-alert .alert-message {
+  --color: #666; /* Color of the alert message */
+}
+
+.custom-alert .alert-button {
+  --color: #a80d2c; /* Color of the alert buttons */
+}
+
+.custom-alert .alert-button.danger {
+  --color: #dc3545; /* Color of the danger (delete) button */
+}
+
   
