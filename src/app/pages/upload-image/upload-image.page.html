@@ -1,34 +1,44 @@
 <ion-content>
-  
-    <div class="header-container">
-      <a [routerLink]=""><img  class="back-Arrow"src="assets/Images/Back Icon.svg"></a>
-      <h1 class="header-text">Photos</h1>
-    </div>
+  <div class="header-container">
+    <a [routerLink]="['/previous-page']">
+      <img class="back-Arrow" src="assets/Images/Back Icon.svg">
+    </a>
+    <h1 class="header-text">Photos</h1>
+  </div>
 
-    <ion-card class="upload">
-      <ng-container *ngIf="imageSources.length > 0; else noPhoto">
-        <ng-container *ngIf="imageSources.length === 1; else multiplePhotos">
-          <img [src]="imageSources[0]" alt="Uploaded Photo" class="single-uploaded-photo">
-        </ng-container>
-        <ng-template #multiplePhotos>
-          <div class="image-grid">
-            <div *ngFor="let image of imageSources">
-              <img [src]="image" alt="Uploaded Photo" class="uploaded-photo">
+  <ion-card class="upload">
+    <ng-container *ngIf="imageSources.length > 0; else noPhoto">
+      <ng-container *ngIf="imageSources.length === 1; else multiplePhotos">
+        <img [src]="imageSources[0]" alt="Uploaded Photo" class="single-uploaded-photo" (click)="toggleDropdown($event, 0)">
+        <div *ngIf="dropdownVisible[0]" class="dropdown-options">
+          <ion-button (click)="viewImage(imageSources[0])">View</ion-button>
+          <ion-button (click)="deleteImage(imageSources[0])">Delete</ion-button>
+        </div>
+      </ng-container>
+      <ng-template #multiplePhotos>
+        <div class="image-grid">
+          <div *ngFor="let image of imageSources; let i = index">
+            <img [src]="image" alt="Uploaded Photo" class="uploaded-photo" (click)="toggleDropdown($event, i)">
+            <div *ngIf="dropdownVisible[i]" class="dropdown-options">
+              <ion-button (click)="viewImage(image)">View</ion-button>
+              <ion-button (click)="deleteImage(image)">Delete</ion-button>
             </div>
           </div>
-        </ng-template>
-      </ng-container>
-      <ng-template #noPhoto>
-        <p class="no-photo-text">No photo uploaded yet</p>
+        </div>
       </ng-template>
-    </ion-card>
-<div class="add-ticket-container">
-  <ion-buttons slot="end">
-  <ion-img src="../../../assets/Images/Vector.svg"(click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
-</ion-buttons>
-</div>
+    </ng-container>
+    <ng-template #noPhoto>
+      <p class="no-photo-text">No photo uploaded yet</p>
+    </ng-template>
+  </ion-card>
 
+  <div class="add-ticket-container">
+    <ion-buttons slot="end">
+      <ion-img src="assets/Images/Vector.svg" (click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
+    </ion-buttons>
+  </div>
 
-  
-  
+ 
 </ion-content>
+<app-view-image></app-view-image>
+<app-menu-footer></app-menu-footer>

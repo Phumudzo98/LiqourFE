@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    font-family: 'Inter', sans-serif;
   }
   
   .back-Arrow {
@@ -31,8 +32,13 @@
   }
   
   .no-photo-text {
-    margin-top: 190px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
+  
   
   .image-grid {
     display: grid;
@@ -82,4 +88,35 @@
     width: 24px;
     height: 24px;
   }
+  
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    z-index: 1;
+    margin-right: 10px;
+    margin-top: 10%;
+  }
+  
+  .dropdown-content ion-item {
+    text-decoration: none;
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+  
+  .dropdown-content ion-item:hover {
+    font-weight: 600;
+  }
+  
+  .dropdown-content.show {
+    display: block;
+  }
+  
   
