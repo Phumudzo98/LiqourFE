@@ -1,19 +1,25 @@
 .header-container {
-    display: flex;
-    align-items: center;
-    padding-top: 30px;
-    padding-left: 30px;
-    margin-bottom: 50px;
-  }
-  
-  .header-text {
-    //flex: 1; /* This makes the text take up the remaining space */
-    text-align: center;
-    padding-left: 60px;
-    font-size: 15px;
-    padding-bottom: 18px;
-    padding-left: 100px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.back-Arrow {
+  width: 50px;
+  height: 50px;
+  margin-top: 20px;
+  padding-left: 10px;
+ 
+}
+
+.header-text {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 20px;
+  padding-right: 20px;
+}
 
   .custom-input {
     min-width: 300px; /* Set your desired width */
@@ -30,9 +36,7 @@
     
   }
 
- .back-Arrow{
-    margin-left: -10px;
- }
+
  /* src/app/your-component/your-component.scss */
 
 ion-card {

@@ -3,7 +3,7 @@
 <ion-content >
   <div *ngIf="currentForm === 'landing'">
     <div class="header-container">
-      <a [routerLink]="['/inspections']"><img src="assets/Images/Back Icon.svg"></a>
+      <a [routerLink]="['/inspections']" class="back-Arrow"><img src="assets/Images/Back Icon.svg"></a>
       <h1 class="header-text">Complete Inspection</h1>
     </div>
     <ion-card>
@@ -60,7 +60,7 @@
   <div *ngIf="currentForm === 'reports'" >
 
     <div class="header-container">
-      <a><img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')"></a>
+      <a><img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="toggleForms('landing')"></a>
       <h1 class="header-text" style="color: black;">Inspection Reports</h1>
     </div>
     <!--
@@ -115,7 +115,7 @@
   <div *ngIf="currentForm === 'applicant'">
    
     <div class="header-container">
-      <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
+      <img src="assets/Images/Back Icon.svg"  class="back-Arrow"(click)="toggleForms('landing')">
       <h1 class="header-text">Applicant</h1>
     </div>
    
@@ -318,7 +318,7 @@
 
   <div *ngIf="currentForm === 'general'" >
     <div class="header-container">
-      <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
+      <img src="assets/Images/Back Icon.svg"  class="back-Arrow"(click)="toggleForms('landing')">
       <h1 class="header-text">General</h1>
     </div>
     <ion-card class="upload2">
@@ -362,7 +362,7 @@
   <div *ngIf="currentForm === 'document'">
 
     <div class="header-container">
-      <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
+      <img src="assets/Images/Back Icon.svg"  class="back-Arrow" (click)="toggleForms('landing')">
       <h1 class="header-text">Documentation</h1>
     </div>
    
@@ -575,7 +575,7 @@
 
   <div *ngIf="currentForm === 'community'" >
     <div class="header-container">
-      <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
+      <img src="assets/Images/Back Icon.svg"  class="back-Arrow" (click)="toggleForms('landing')">
       <h1 class="header-text">Community</h1>
     </div>
    
@@ -814,7 +814,7 @@
   <div *ngIf="currentForm === 'recommendation'" >
 
     <div class="header-container">
-      <img src="assets/Images/Back Icon.svg" (click)="toggleForms('landing')">
+      <img src="assets/Images/Back Icon.svg"  class="back-Arrow"(click)="toggleForms('landing')">
       <h1 class="header-text">Recommendation</h1>
     </div>
     

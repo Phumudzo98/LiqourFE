@@ -1,21 +1,23 @@
 .header-container {
-    display: flex;
-    align-items: center;
-    padding-top: 30px;
-    padding-left: 30px;
-    margin-bottom: 50px;
-    font-family: 'Inter';
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.back-Arrow {
+  width: 50px;
+  height: 50px;
   
-  .header-text {
-    //flex: 1; /* This makes the text take up the remaining space */
-    text-align: center;
-    padding-left: 35px;
-    font-size: 120%;
-    padding-bottom: 18px;
-    padding-right: 40px;
-    font-family: 'Inter';
-  }
+}
+
+.header-text {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 20px;
+  padding-right: 20px;
+}
 
   p{
     //margin-left: 30px;
