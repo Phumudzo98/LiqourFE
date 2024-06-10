@@ -22,7 +22,7 @@
     </ion-card>
 
   <!-- Conditional Rendering of Address Fields -->
-  <ion-card *ngIf="showAddressFields">
+  <ion-card *ngIf="showAddressFields" class="address-card" >
     <ion-card-header>
       <ion-card-title>Add New Address</ion-card-title>
       <ion-button class="close-button" (click)="toggleAddressFields()" >
