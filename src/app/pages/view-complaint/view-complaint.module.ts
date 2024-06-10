@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ViewComplaintPageRoutingModule } from './view-complaint-routing.module';
 
 import { ViewComplaintPage } from './view-complaint.page';
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 import { MenuFooterPage } from 'src/app/headerFooter/menu-footer/menu-footer.page';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MenuFooterPage } from 'src/app/headerFooter/menu-footer/menu-footer.pag
     CommonModule,
     FormsModule,
     IonicModule,
-    ViewComplaintPageRoutingModule
+    ViewComplaintPageRoutingModule,
+    MenuFooterPageModule
   ],
   declarations: [ViewComplaintPage]
 })

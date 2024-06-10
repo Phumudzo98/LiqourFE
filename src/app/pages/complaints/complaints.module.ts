@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ComplaintsPageRoutingModule } from './complaints-routing.module';
 
 import { ComplaintsPage } from './complaints.page';
-
+import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComplaintsPageRoutingModule
+    ComplaintsPageRoutingModule,
+    MenuFooterPageModule,
+    MenuHeaderPageModule
   ],
   declarations: [ComplaintsPage]
 })

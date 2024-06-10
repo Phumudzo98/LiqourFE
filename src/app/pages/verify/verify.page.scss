@@ -8,14 +8,14 @@ text-align: center;
 justify-content: center;
 align-items: center;
 display: flex;
-width: 335px;
+width: 87%;
 height: 42px;
 top: -34px;
 left: 9000000px;
 gap: 0px;
 opacity: 0px;
 container: 10px;
-padding-left: 64px;
+padding-left: 10%;
 }
 .welcome{
     color: #822B23;
@@ -27,7 +27,7 @@ padding-left: 64px;
    justify-content: center;
    align-items: center;
    font-family: 'Inter', sans-serif; 
-
+   padding-right: 5%;
 }
 .signin{
     color: #000;
@@ -54,8 +54,8 @@ p a {
     display: flex;
     justify-content: center;
     margin: 20px 0;
-    width: 330px;
-    padding-left: 50px;
+    width: 87%;
+    padding-left: 10%;
   }
   
   .otp-box {

@@ -116,38 +116,41 @@ toggleDropdown(event: Event, index: number) {
   
 
   
-  async showOptions(imageUrl: string) {
-    const alert = await this.alertController.create({
-      header: 'Options',
-      buttons: [
-        {
-          text: 'View',
-          handler: () => {
-            // Handle view action
-            console.log('View clicked for:', imageUrl);
-          }
-        },
-        {
-          text: 'Delete',
-          handler: () => {
-            // Handle delete action
-            console.log('Delete clicked for:', imageUrl);
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            // Handle cancel action
-            console.log('Cancel clicked');
-          }
+async showOptions(imageUrl: string) {
+  const alert = await this.alertController.create({
+    header: 'Options',
+    message: 'Choose an action for this image:',
+    buttons: [
+      {
+        text: 'View',
+        handler: () => {
+          // Handle view action
+          console.log('View clicked for:', imageUrl);
         }
-      ]
-    });
+      },
+      {
+        text: 'Delete',
+        cssClass: 'danger',
+        handler: () => {
+          // Handle delete action
+          console.log('Delete clicked for:', imageUrl);
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          // Handle cancel action
+          console.log('Cancel clicked');
+        }
+      }
+    ]
+  });
 
-    await alert.present();
-  }
+  await alert.present();
+}
+
 
   viewImageUrl: string | null = null;
 
