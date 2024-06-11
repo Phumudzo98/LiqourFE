@@ -150,6 +150,10 @@ const routes: Routes = [
     loadChildren: () => import('./Outlet/payment-history/payment-history.module').then( m => m.PaymentHistoryPageModule)
   },
   
+  {
+    path: 'outlet-settings',
+    loadChildren: () => import('./Outlet/outlet-settings/outlet-settings.module').then( m => m.OutletSettingsPageModule)
+  }
 
 
 
@@ -171,4 +175,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-
+  

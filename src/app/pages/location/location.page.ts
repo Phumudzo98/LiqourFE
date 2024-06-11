@@ -17,7 +17,7 @@ export class LocationPage implements OnInit {
   input:string='';
   addresses: any[] = [];
 
-  private apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${environment.googleMapsApiKey}`;
+  //private apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${environment.googleMapsApiKey}`;
 
 
   constructor(private http:HttpClient) { }
@@ -46,18 +46,18 @@ export class LocationPage implements OnInit {
   }
 
   onInputChange() {
-    if (this.input.length > 2) {
-      this.getAddresses(this.input).subscribe(response => {
-        this.addresses = response.predictions;
-      });
-    } else {
-      this.addresses = [];
-    }
+    // if (this.input.length > 2) {
+    //   this.getAddresses(this.input).subscribe(response => {
+    //     this.addresses = response.predictions;
+    //   });
+    // } else {
+    //   this.addresses = [];
+    // }
   }
 
-  getAddresses(input: string) {
-    const url = `${this.apiUrl}&input=${input}`;
-    return this.http.get<any>(url);
-  }
+  // getAddresses(input: string) {
+  //   const url = `${this.apiUrl}&input=${input}`;
+  //   return this.http.get<any>(url);
+  // }
 
 }
