@@ -34,23 +34,23 @@ export class OutletDashboardPage implements OnInit {
   }
 
 
-  navigateToTasks(){
-    this.route.navigate(['my-tasks'])
+  navigateToCorrespondence(){
+    this.route.navigate(['correspondence'])
   }
 
-  navigateToUpdate(){
-    this.route.navigate(['update-gis'])
+  navigateToUploadDocuments(){
+    this.route.navigate(['upload-documents'])
   }
 
-  navigateToInspection(){
-    this.route.navigate(['inspections'])
+  navigateToOutlets(){
+    this.route.navigate(['my-outlets'])
   }
 
-  navigateToComplaints(){
-    this.route.navigate(['complaints'])
+  navigateToPayments(){
+    this.route.navigate(['payments'])
   }
-  navigateToNavigate(){
-    this.route.navigate(['navigate-to-outlet'])
+  navigateToLocation(){
+    this.route.navigate(['update-outlet-location'])
   }
 
 }

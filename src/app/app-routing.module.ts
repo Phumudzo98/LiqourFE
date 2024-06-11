@@ -198,6 +198,10 @@ const routes: Routes = [
   {
     path: 'view-documents',
     loadChildren: () => import('./Outlet/view-documents/view-documents.module').then( m => m.ViewDocumentsPageModule)
+  },
+  {
+    path: 'payment-details',
+    loadChildren: () => import('./Outlet/payment-details/payment-details.module').then( m => m.PaymentDetailsPageModule)
   }
 
 
