@@ -11,7 +11,7 @@
        
         <!-- Other menu items -->
         <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/special-event" routerLinkActive="active-item"  >
+          <ion-item routerLink="/special-event" routerLinkActive="active-item">
             <ion-label>Special event</ion-label>
           </ion-item>
         </ion-menu-toggle>
@@ -39,27 +39,36 @@
     </ion-content>
   </ion-menu>
 
+  <!-- Another Menu for Settings Page -->
+  <ion-menu menuId="another-menu" contentId="main-content">
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/Sign out" routerLinkActive="active-item">
+            <ion-label>Profile</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/account-settings" routerLinkActive="active-item">
+            <ion-label>Account Settings</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/privacy" routerLinkActive="active-item">
+            <ion-label>Privacy</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/help" routerLinkActive="active-item">
+            <ion-label>Help</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 
   <!-- Main Content Area -->
   <ion-router-outlet id="main-content"></ion-router-outlet>
 
-  <!-- Footer Menu -->
-  <div class="image-container">
-    <a routerLink="">
-      <img src="assets/Images/discover.svg">
-      <ion-label>Discover</ion-label>
-    </a>
-    <a routerLink="">
-      <img src="assets/Images/save-2.svg">
-      <ion-label>Save</ion-label>
-    </a>
-    <a [routerLink]="['/notifications']">
-      <img src="assets/Images/notification-bing.svg">
-      <ion-label>Notifications</ion-label>
-    </a>
-    <a (click)="toggleMenu('main-menu')">
-      <img src="assets/Images/MenuButton.svg">
-      <ion-label>Menu</ion-label>
-    </a>
-  </div>
+  
 </ion-app>

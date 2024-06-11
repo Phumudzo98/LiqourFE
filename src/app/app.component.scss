@@ -25,4 +25,35 @@ ion-item {
  ion-menu{
     font-family: 'Inter', sans-serif;
  }
-  
+  /* Global Styles (src/global.css or src/app/global.scss) */
+.image-container {
+  display: flex;
+  justify-content: space-around; /* Distribute items evenly along the main axis */
+  align-items: center; /* Align items vertically */
+}
+
+.image-container a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align items at the top */
+  text-align: center;
+  text-decoration: none; /* Remove underline */
+}
+
+.image-container img {
+  width: 30px; /* Adjust image size as needed */
+  height: 30px; /* Adjust image size as needed */
+  margin-bottom: 5px; /* Add space between image and label */
+}
+
+.image-container ion-label {
+  font-size: 14px; /* Adjust font size as needed */
+  color: #333; /* Set the text color */
+  text-decoration: none; /* Remove underline */
+}
+hr {
+  border: none; /* Remove default border */
+  border-bottom: 1px solid #ccc; /* Set border properties for bottom only */
+  margin: 10px 0; /* Adjust margin as needed */
+}

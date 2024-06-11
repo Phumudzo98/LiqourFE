@@ -1,39 +1,4 @@
-<ion-menu menuId="main-menu" contentId="main">
-    <ion-content>
-      <ion-list>
-        <ion-menu-toggle auto-hide="false">
-          <ion-item [routerLink]="['/inspections']" routerLinkActive="active-item" (click)="addHoverEffect('dashboard')">
-            <ion-label>Home</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="" routerLinkActive="active-item" (click)="addHoverEffect('special-event')">
-            <ion-label>Special event</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/photos" routerLinkActive="active-item">
-            <ion-label>Photos</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/addresses" routerLinkActive="active-item">
-            <ion-label>Addresses</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="">
-            <ion-label>Settings</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/signin" routerLinkActive="active-item">
-            <ion-label>Sign out</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+
   
   <ion-header>
     
@@ -56,7 +21,7 @@
         
 
       
-      <a (click)="toggleMenu('main-menu')">
+      <a (click)="toggleMenu()">
         <img src="assets/Images/MenuButton.svg">
         <ion-label>Menu</ion-label>
       </a>
