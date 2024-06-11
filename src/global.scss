@@ -141,6 +141,9 @@ ion-app {
   display: flex;
 }
 
+.action{
+  float: inline-end !important;}
+
 
 
 
@@ -161,5 +164,37 @@ input[type="radio"] {
 input[type="radio"]:checked {
   background-color: #fff;
 }
-  
+.outlet-header{
+  font-size: 16px;
+  font-weight: 900; 
+  color: #474A56;
+  font-family: 'Inter', sans-serif;
+}
+.header-img{
+  display:flex;
+}
+.img{
+  margin-right: 5%;
+}
+
+.correspondence-paragraph
+{
+  font-weight: bold;
+  font-size: 14px;
+  color: #474A56;
+}
+
+
+.time-frame{
+  color: #8A8A8A;
+  margin-top: 5px;
+}
+.outlet-subheader{
+  font-size: 14px;
+  font-weight: 900; 
+  color: #474A56;
+  font-family: 'Inter';
+}
+
+
   
