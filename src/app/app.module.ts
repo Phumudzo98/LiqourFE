@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewImagePageModule } from './pages/view-image/view-image.module';
+import { MenuController } from '@ionic/angular';  // Import MenuControlle
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,11 +18,13 @@ import { ViewImagePageModule } from './pages/view-image/view-image.module';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    ViewImagePageModule
+    ViewImagePageModule,
+    
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    ModalController // Add ModalController to the providers array
+    ModalController ,// Add ModalController to the providers array
+    MenuController, 
   ],
   bootstrap: [AppComponent]
 })

@@ -5,15 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { MenuFooterPageRoutingModule } from './menu-footer-routing.module';
-
 import { MenuFooterPage } from './menu-footer.page';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuFooterPageRoutingModule
+    MenuFooterPageRoutingModule,
+    
   ],
   declarations: [MenuFooterPage],
   exports:[MenuFooterPage]

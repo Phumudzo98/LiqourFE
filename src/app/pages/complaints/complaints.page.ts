@@ -1,5 +1,6 @@
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-complaints',

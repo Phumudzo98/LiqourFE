@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { SidemenuPageRoutingModule } from './sidemenu-routing.module';
 
 import { SidemenuPage } from './sidemenu.page';
-
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SidemenuPageRoutingModule
+    SidemenuPageRoutingModule,
+    MenuFooterPageModule
   ],
-  declarations: [SidemenuPage]
+  declarations: [SidemenuPage],
+  exports:[SidemenuPage]
 })
 export class SidemenuPageModule {}
