@@ -140,14 +140,36 @@ const routes: Routes = [
   {
     path: 'outlet-menu-footer',
     loadChildren: () => import('./outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module').then( m => m.OutletMenuFooterPageModule)
-  },  {
+  },
+  {
     path: 'update-outlet-location',
     loadChildren: () => import('./Outlet/update-outlet-location/update-outlet-location.module').then( m => m.UpdateOutletLocationPageModule)
   },
   {
     path: 'payment-history',
     loadChildren: () => import('./Outlet/payment-history/payment-history.module').then( m => m.PaymentHistoryPageModule)
+  },
+  {
+    path: 'correspondence',
+    loadChildren: () => import('./Outlet/correspondence/correspondence.module').then( m => m.CorrespondencePageModule)
+  },
+  
+  {
+    path: 'view-details',
+    loadChildren: () => import('./Outlet/view-details/view-details.module').then( m => m.ViewDetailsPageModule)
+  },  {
+    path: 'payments',
+    loadChildren: () => import('./Outlet/payments/payments.module').then( m => m.PaymentsPageModule)
+  },
+  {
+    path: 'my-outlets',
+    loadChildren: () => import('./Outlet/my-outlets/my-outlets.module').then( m => m.MyOutletsPageModule)
+  },
+  {
+    path: 'upload-documents',
+    loadChildren: () => import('./Outlet/upload-documents/upload-documents.module').then( m => m.UploadDocumentsPageModule)
   }
+
 
 
 

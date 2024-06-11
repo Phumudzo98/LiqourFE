@@ -1,0 +1,83 @@
+<ion-toolbar>
+  <div class="header-img">
+  <ion-title class="outlet-header">Upload Documents</ion-title>
+  <ion-img src="../../../assets/Images/Correspondence Icon.svg" class="img"></ion-img>
+</div>
+</ion-toolbar>
+<ion-content [fullscreen]="true" >
+
+  <ion-card class="info-paragraph">
+    <div class="flex">
+      <ion-img src="../../../assets/Images/Vector 2 para.svg" class="paragraph-icon"></ion-img>
+      <span class="paragraph">
+        You have 2
+        <span class="highlight-red"> Pending Document</span> Submission that require immediate 
+        <span class="highlight-red">action</span>
+      </span>
+    </div>
+  </ion-card>
+  
+
+  <ion-card class="red-tab">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <span>File Name Remarks</span>
+        </ion-col>
+        <ion-col>
+          <span>Action Required</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="document-card">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-img src="../../../assets/Images/Group 1261153326.svg" class="payment-icon"></ion-img>
+        </ion-col>
+        <ion-col size="6">
+          <p class="document-name">ID Document</p>
+          <p class="time-frame2 document-name">PENDING DOCUMENT</p>
+        </ion-col>
+        <ion-col>
+          <ion-img src="../../../assets/Images/Button-upload.svg" class="button-upload" id="buttonUpload"></ion-img>
+          <input type="file" id="fileInput" style="display: none;">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="document-card">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-img src="../../../assets/Images/Group 1261153326.svg" class="payment-icon"></ion-img>
+        </ion-col>
+        <ion-col size="6">
+          <p class="document-name">Tax Document</p>
+          <p class="time-frame2 document-name">PENDING DOCUMENT</p>
+        </ion-col>
+        <ion-col>
+          <ion-img src="../../../assets/Images/Button-upload.svg" class="button-upload" id="buttonUpload"></ion-img>
+          <input type="file" id="fileInput" style="display: none;">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card class="info-paragraph2">
+    <div class="flex">
+
+      <span class="paragraph">
+        If for some reason you are not able to upload, 
+        please send your files to: 
+        <span class="highlight-red">Email here</span>
+        and mention your reference address.
+      </span>
+    </div>
+  </ion-card>
+  
+</ion-content>
+
+

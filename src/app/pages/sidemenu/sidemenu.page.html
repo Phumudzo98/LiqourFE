@@ -1,44 +1,30 @@
-<ion-app>
-  
+
 
   <ion-menu menuId="main-menu" contentId="main">
       <ion-header>
         <ion-title>Menu</ion-title>
       </ion-header>
-  </ion-menu>
-    <ion-content>
+      <ion-content>
       <ion-list>
-        <ion-menu-toggle>
-        <ion-item routerLink="/dashboard">
-          <ion-label>Home</ion-label>
+        <ion-item >
+          <ion-label routerLink="/dashboard">Home</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item routerLink="">
           <ion-label>Special event</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item routerLink="/photos">
           <ion-label>Photos</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item routerLink="/addresses">
           <ion-label>Addresses</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item routerLink="">
           <ion-label>Settings</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item routerLink="/signin">
           <ion-label>Sign out</ion-label>
         </ion-item>
-      </ion-menu-toggle>
       </ion-list>
     </ion-content>
+  </ion-menu>
   <ion-router-outlet id="main"></ion-router-outlet>
-</ion-app>
