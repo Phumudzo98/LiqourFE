@@ -140,14 +140,16 @@ const routes: Routes = [
   {
     path: 'outlet-menu-footer',
     loadChildren: () => import('./outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module').then( m => m.OutletMenuFooterPageModule)
-  },  {
+  },
+  {
     path: 'update-outlet-location',
     loadChildren: () => import('./Outlet/update-outlet-location/update-outlet-location.module').then( m => m.UpdateOutletLocationPageModule)
   },
   {
     path: 'payment-history',
     loadChildren: () => import('./Outlet/payment-history/payment-history.module').then( m => m.PaymentHistoryPageModule)
-  }
+  },
+  
 
 
 

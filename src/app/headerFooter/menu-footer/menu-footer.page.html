@@ -1,25 +1,78 @@
+<ion-menu menuId="main-menu" contentId="main">
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerLink]="['/inspections']" routerLinkActive="active-item" (click)="addHoverEffect('dashboard')">
+            <ion-label>Home</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="" routerLinkActive="active-item" (click)="addHoverEffect('special-event')">
+            <ion-label>Special event</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/photos" routerLinkActive="active-item">
+            <ion-label>Photos</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/addresses" routerLinkActive="active-item">
+            <ion-label>Addresses</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="">
+            <ion-label>Settings</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/signin" routerLinkActive="active-item">
+            <ion-label>Sign out</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-header>
+    
+    <hr> <!-- Horizontal line divider -->
+    <div class="image-container">
+        <a routerLink="">
+            <img src="assets/Images/discover.svg">
+            <ion-label>Discover</ion-label>
+        </a>
+        
+        <a routerLink="">
+            <img src="assets/Images/save-2.svg">
+            <ion-label>Save</ion-label>
+        </a>
+        
+        <a [routerLink]="['/notifications']">
+            <img src="assets/Images/notification-bing.svg">
+            <ion-label>Notifications</ion-label>
+        </a>
+        
 
-<hr> <!-- Horizontal line divider -->
+      
+      <a (click)="toggleMenu('main-menu')">
+        <img src="assets/Images/MenuButton.svg">
+        <ion-label>Menu</ion-label>
+      </a>
+      <!-- Other footer menu items -->
+    </div>
+    <hr> <!-- Horizontal line divider -->
 <div class="image-container">
   
-  <a routerLink="">
-      <img src="assets/Images/discover.svg">
-      <ion-label>Discover</ion-label>
-  </a>
-  
-  <a routerLink="">
-      <img src="assets/Images/save-2.svg">
-      <ion-label>Save</ion-label>
-  </a>
-  
-  <a [routerLink]="['/notifications']">
-      <img src="assets/Images/notification-bing.svg">
-      <ion-label>Notifications</ion-label>
-  </a>
-  
-  <a routerLink="">
-      <img src="assets/Images/MenuButton.svg">
-      <ion-label>Menu</ion-label>
-  </a>
-  
+    
 </div>
+  </ion-header>
+  
+  <ion-content id="main">
+   
+  <ion-router-outlet></ion-router-outlet>
+  
+  
+  
+  

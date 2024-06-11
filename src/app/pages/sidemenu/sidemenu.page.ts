@@ -37,4 +37,6 @@ export class SidemenuPage implements OnInit {
     this.activeItem = item;
     console.log('Active Item:', this.activeItem);
   }
+
+  menuType: string = 'overlay';
 }

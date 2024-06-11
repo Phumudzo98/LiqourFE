@@ -1,0 +1,28 @@
+ion-app
+{
+    font-family: 'Inter', sans-serif;
+}
+/* Add hover effect */
+ion-item {
+    --background: none;
+    transition: background-color 0.3s;
+  }
+  
+  ion-item:hover, ion-item.hovered {
+    --background:  #f0f0f0 !important;
+  }
+  
+  /* Active item background */
+  ion-item.active-item {
+    --background:#822B23 !important;
+    color: white;
+    font-weight: 600;
+  }
+ .home{
+    margin-top: 10px;
+ }
+
+ ion-menu{
+    font-family: 'Inter', sans-serif;
+ }
+  

@@ -18,6 +18,7 @@ import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-head
    MenuFooterPageModule,
    MenuHeaderPageModule
   ],
-  declarations: [DashboardPage]
+  declarations: [DashboardPage],
+ 
 })
 export class DashboardPageModule {}
