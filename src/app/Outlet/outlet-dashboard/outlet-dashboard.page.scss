@@ -1,0 +1,133 @@
+ion-card{
+    --background: #822B23;
+    --border-radius: 2px;
+    border-radius: 2px;
+    box-shadow: none;
+    font-family: 'Inter', sans-serif;
+    height: auto;
+}
+
+.message{
+    color:white;
+    font-size: 12px;
+    font-weight: 400;
+    width: 75%;
+    margin-bottom: 10px;
+}
+.welcome{
+    margin-top: 10px;
+    color: white;
+    font-size: 26px;
+    font-weight: 700;
+   margin-bottom: -5px;
+   font-family: 'Inter', sans-serif; 
+}
+
+.quick-action2{
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif; 
+    color:#822B23;
+    margin-top: -15px;
+    
+}
+.dashboard-container{
+    padding: 10px;
+    margin-top: 10px;
+}
+ion-col {
+    position: relative; 
+    border: 1px solid #822B23;
+    border-radius: 2px;
+    overflow: hidden;
+    padding-left: 10px; 
+}
+
+ion-col::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #822B23;
+    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%); 
+}
+
+
+
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    height: 100%; 
+  }
+  
+  .icon-image {
+    width: 25px; 
+    height: 25px; 
+    margin-top: 15px;
+  }
+  
+  .col-header {
+    margin-top: 10px; 
+    font-size: 14px; 
+    color: #000; 
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .slider-container {
+    position: relative;
+  }
+
+  .slide {
+    display: none;
+  }
+
+  .slide.visible {
+    display: block;
+  }
+
+  .black-man {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 0;
+  }
+
+  ion-card {
+    position: relative;
+  }
+
+  ion-card-content,
+  ion-card-header {
+    z-index: 1;
+    position: relative;
+  }
+
+  .dots-container {
+    text-align: center;
+    margin-top: -5px;
+  }
+
+  .dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: rgba(130, 43, 35, 0.1);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .dot.active {
+    background-color: #822B23;
+    height: 12px;
+    width: 12px
+  }
