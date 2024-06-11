@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-=======
 import { Component, OnInit, Renderer2 } from '@angular/core';
->>>>>>> a330abaeaa6ef78624fafbaa761455d7765afcef
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,11 +8,7 @@ import { Router } from '@angular/router';
 })
 export class SidemenuPage implements OnInit {
 
-<<<<<<< HEAD
-  constructor(private router: Router) { }
-=======
   constructor(private renderer: Renderer2,private router: Router) {}
->>>>>>> a330abaeaa6ef78624fafbaa761455d7765afcef
 
   ngOnInit() {
   }
@@ -24,12 +16,6 @@ export class SidemenuPage implements OnInit {
     this.router.navigate(['dashboard']);
   }
 
-<<<<<<< HEAD
-  navigateToDashboard(){
-    this.router.navigate(['dashboard']);
-  }
-
-=======
   addHoverEffect(id: string) {
     const activeItem = document.querySelector('.active-item');
     if (activeItem) {
@@ -53,5 +39,4 @@ export class SidemenuPage implements OnInit {
   }
 
   menuType: string = 'overlay';
->>>>>>> a330abaeaa6ef78624fafbaa761455d7765afcef
 }

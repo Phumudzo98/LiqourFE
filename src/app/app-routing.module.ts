@@ -194,6 +194,10 @@ const routes: Routes = [
   {
     path: 'outlet-settings',
     loadChildren: () => import('./Outlet/outlet-settings/outlet-settings.module').then( m => m.OutletSettingsPageModule)
+  },
+  {
+    path: 'view-documents',
+    loadChildren: () => import('./Outlet/view-documents/view-documents.module').then( m => m.ViewDocumentsPageModule)
   }
 
 
