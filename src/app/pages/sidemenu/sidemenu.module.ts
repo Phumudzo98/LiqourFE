@@ -15,6 +15,7 @@ import { SidemenuPage } from './sidemenu.page';
     IonicModule,
     SidemenuPageRoutingModule
   ],
-  declarations: [SidemenuPage]
+  declarations: [SidemenuPage],
+  exports:[SidemenuPage]
 })
 export class SidemenuPageModule {}

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewImagePageModule } from './pages/view-image/view-image.module';
+import { SidemenuPageModule } from './pages/sidemenu/sidemenu.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { ViewImagePageModule } from './pages/view-image/view-image.module';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    ViewImagePageModule
+    ViewImagePageModule,
+    SidemenuPageModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
