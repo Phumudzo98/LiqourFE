@@ -47,7 +47,7 @@ export class OutletDashboardPage implements OnInit {
   }
 
   navigateToPayments(){
-    this.route.navigate(['payments'])
+    this.route.navigate(['payment-history'])
   }
   navigateToLocation(){
     this.route.navigate(['update-outlet-location'])
