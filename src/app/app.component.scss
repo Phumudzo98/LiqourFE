@@ -54,3 +54,12 @@ hr {
   border-bottom: 1px solid #ccc; /* Set border properties for bottom only */
   margin: 10px 0; /* Adjust margin as needed */
 }
+
+ion-label{
+  font-family: 'Inter', sans-serif !important;
+}
+
+ion-list{
+  padding-left: 10px;
+  padding-right: 10px;
+}
