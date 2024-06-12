@@ -146,7 +146,7 @@ const routes: Routes = [
     loadChildren: () => import('./Outlet/update-outlet-location/update-outlet-location.module').then( m => m.UpdateOutletLocationPageModule)
   },
   {
-    path: 'payment-history',
+    path: 'payments',
     loadChildren: () => import('./Outlet/payment-history/payment-history.module').then( m => m.PaymentHistoryPageModule)
   },
   {
@@ -159,7 +159,7 @@ const routes: Routes = [
     loadChildren: () => import('./Outlet/view-details/view-details.module').then( m => m.ViewDetailsPageModule)
   },
   {
-    path: 'payments',
+    path: 'payment-history',
     loadChildren: () => import('./Outlet/payments/payments.module').then( m => m.PaymentsPageModule)
   },
   {
@@ -206,7 +206,7 @@ const routes: Routes = [
  
   {
     path: 'outlethaeder',
-    loadChildren: () => import('./outletHeaderFooter/outletHeader-menu/outlethaeder.module').then( m => m.OutlethaederPageModule)
+    loadChildren: () => import('./outletHeaderFooter/outlethaeder/outlethaeder.module').then( m => m.OutlethaederPageModule)
   }
 
 

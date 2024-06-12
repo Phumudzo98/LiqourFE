@@ -8,7 +8,7 @@ import { OutletEditProfilePageRoutingModule } from './outlet-edit-profile-routin
 
 import { OutletEditProfilePage } from './outlet-edit-profile.page';
 import { OutletMenuFooterPageModule } from 'src/app/outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module';
-import { OutlethaederPageModule } from 'src/app/outletHeaderFooter/outletHeader-menu/outlethaeder.module';
+import { OutlethaederPageModule } from 'src/app/outletHeaderFooter/outlethaeder/outlethaeder.module';
 @NgModule({
   imports: [
     CommonModule,
