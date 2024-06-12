@@ -1,9 +1,15 @@
+
+
 <ion-content>
-  <ion-header>
-    <div class="header-container">
-    <img src="assets/Images/Back Icon.svg" class="back-Arrow"> <h1 class="header-text">Edit profile</h1>
-    </div>
-  </ion-header>
+ 
+    
+   
+   <div class="header-container">
+    <a [routerLink]="['/previous-page']">
+      <img class="back-Arrow" src="assets/Images/Back Icon.svg">
+    </a>
+    <h1 class="header-text">Edit profile</h1>
+  </div>
 
 
   <ion-item>
@@ -17,3 +23,4 @@
   </ion-item>
 
 </ion-content>
+<app-outlet-menu-footer></app-outlet-menu-footer>

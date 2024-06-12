@@ -202,7 +202,13 @@ const routes: Routes = [
   {
     path: 'payment-details',
     loadChildren: () => import('./Outlet/payment-details/payment-details.module').then( m => m.PaymentDetailsPageModule)
+  },
+ 
+  {
+    path: 'outlethaeder',
+    loadChildren: () => import('./outletHeaderFooter/outletHeader-menu/outlethaeder.module').then( m => m.OutlethaederPageModule)
   }
+
 
 
 

@@ -15,6 +15,7 @@ import { OutletMenuFooterPage } from './outlet-menu-footer.page';
     IonicModule,
     OutletMenuFooterPageRoutingModule
   ],
-  declarations: [OutletMenuFooterPage]
+  declarations: [OutletMenuFooterPage],
+  exports:[OutletMenuFooterPage]
 })
 export class OutletMenuFooterPageModule {}
