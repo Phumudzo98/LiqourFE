@@ -1,5 +1,4 @@
 
-dhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
   <div class="slider-container">
     <ion-card class="slide visible">
       <ion-card-header style="height: auto;">
@@ -59,11 +58,11 @@ dhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
       <p class="quick-action2">Quick actions</p>
         <ion-grid>
           <ion-row>
-            <ion-col class="center-content" >  
+            <ion-col class="center-content" (click)="navigateToCorrespondence()">  
               <ion-img src="../../../assets/Images/device-message.svg" class="icon-image"></ion-img>
               <p class="col-header">Correspondence</p>
             </ion-col>
-            <ion-col class="center-content" offset="0.2" >
+            <ion-col class="center-content" offset="0.2" (click)="navigateToUploadDocuments()">
               <ion-img src="../../../assets/Images/simcard-2.svg" class="icon-image"></ion-img>
               <p class="col-header">Upload Documents</p>
             </ion-col>
@@ -71,11 +70,11 @@ dhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
         </ion-grid>
         <ion-grid>
           <ion-row>
-            <ion-col class="center-content" >
+            <ion-col class="center-content" (click)="navigateToOutlets()">
               <ion-img src="../../../assets/Images/folder-open.svg" class="icon-image"></ion-img>
               <p class="col-header">My Outlets</p>
             </ion-col>
-            <ion-col class="center-content" offset="0.2" >   
+            <ion-col class="center-content" offset="0.2" (click)="navigateToPayments()">   
               <ion-img src="../../../assets/Images/wallet-minus.svg" class="icon-image"></ion-img>
               <p class="col-header">Payments History</p>
             </ion-col>
@@ -83,7 +82,7 @@ dhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
         </ion-grid>
         <ion-grid>
           <ion-row>
-            <ion-col class="center-content" >
+            <ion-col class="center-content" (click)="navigateToLocation()">
               <ion-img src="../../../assets/Images/location-tick.svg" class="icon-image"></ion-img>
               <p class="col-header">Update Outlet Location</p>
             </ion-col>
@@ -91,7 +90,6 @@ dhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
           </ion-row>
         </ion-grid>
      </div>
-     dhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 
 
 

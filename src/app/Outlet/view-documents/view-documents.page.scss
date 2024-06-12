@@ -1,0 +1,109 @@
+.red-tab{
+    background-color: #822B23;
+    padding: 5px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    border-radius: 2px;
+}
+
+.document-card{
+    background-color: #F8F8FA;
+    padding: 5px;
+    font-family: 'Inter', sans-serif;
+    box-shadow: none;
+}
+.document-name{
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 5px;
+    text-decoration: underline !important;
+    color: #822B23;
+}
+
+.document-name2{
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 5px;
+    color: #364261;
+    margin-left: 5px;
+}
+.time-frame2{
+    margin-top: -10px;
+    font-weight: 400;
+}
+.payment-icon
+  {
+    width: 50px;
+    height: 50px;
+  }
+  .button-upload{
+    margin-top: 10%;
+  }
+
+  .info-paragraph{
+    background-color: #fff;
+    padding: 5px;
+    font-family: 'Inter', sans-serif;
+    box-shadow: none;
+  }
+
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .info-paragraph2 {
+    background-color: #fff;
+    padding: 5px;
+    font-family: 'Inter', sans-serif;
+    box-shadow: none;
+    margin-top: auto; 
+  }
+  .paragraph-icon{
+    width: 15px;
+    height: 15px;
+    margin-top: 5px;
+  }
+  .paragraph-icon2{
+    width: 18px;
+    height: 18px;
+    margin-top: 5px;
+  }
+
+  .paragraph{
+    margin-left: 5px;
+    font-size: 12px;
+  }
+  
+.highlight-red {
+    color: #822B23;
+    font-style: italic;
+  }
+  .button-delete{
+    width: 15px;
+    height: 15px;
+  }
+  .end-align {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .document-name {
+    margin: 0;
+  }
+  
+  .button-delete {
+    cursor: pointer;
+  }
+
+  .date-time{
+    margin-top: -15px;
+  }
+  .document-img{
+    margin-top: -10px;
+    
+  }
