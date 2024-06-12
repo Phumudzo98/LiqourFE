@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { CorrespondencePageRoutingModule } from './correspondence-routing.module';
 
 import { CorrespondencePage } from './correspondence.page';
-
+import { OutletMenuFooterPageModule } from 'src/app/outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module';
+import { OutlethaederPageModule } from 'src/app/outletHeaderFooter/outlethaeder/outlethaeder.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CorrespondencePageRoutingModule
+    CorrespondencePageRoutingModule,
+    OutletMenuFooterPageModule,
+    OutlethaederPageModule
   ],
   declarations: [CorrespondencePage]
 })

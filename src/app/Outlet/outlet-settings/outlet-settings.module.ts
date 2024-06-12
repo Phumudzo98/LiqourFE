@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { OutletSettingsPageRoutingModule } from './outlet-settings-routing.module';
 
 import { OutletSettingsPage } from './outlet-settings.page';
-
+import { OutletMenuFooterPageModule } from 'src/app/outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OutletSettingsPageRoutingModule
+    OutletSettingsPageRoutingModule,
+   OutletMenuFooterPageModule
   ],
   declarations: [OutletSettingsPage]
 })

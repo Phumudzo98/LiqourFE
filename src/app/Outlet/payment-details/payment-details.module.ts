@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { PaymentDetailsPageRoutingModule } from './payment-details-routing.module';
 
 import { PaymentDetailsPage } from './payment-details.page';
-
+import { OutletMenuFooterPageModule } from 'src/app/outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PaymentDetailsPageRoutingModule
+    PaymentDetailsPageRoutingModule,
+    OutletMenuFooterPageModule
   ],
   declarations: [PaymentDetailsPage]
 })
