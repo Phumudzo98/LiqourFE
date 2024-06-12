@@ -18,25 +18,12 @@ export class AppComponent {
       }
     });
   }
-  handleMenuToggle(url: string) {
-    const isSettingsPage = url.includes('/dashboard',);
-    if (isSettingsPage) {
-      this.menu.enable(true, 'another-menu');
-    } else {
-      this.menu.enable(false, 'another-menu');
-    }
-    this.menu.enable(!isSettingsPage, 'main-menu');
-  }
+
 
   toggleMenu() {
     this.openCorrectMenu();
   }
-  
- 
-
-
-  
- 
+   
   private openCorrectMenu() {
     if (this.currentUrl.includes('/dashboard') || this.currentUrl.includes('/upload-image') || this.currentUrl.includes('/recommendations') || this.currentUrl.includes('/thank-you') || this.currentUrl.includes('/notifications')|| this.currentUrl.includes('/special-event')|| this.currentUrl.includes('/navigate-to-outlet')|| this.currentUrl.includes('/photos')|| this.currentUrl.includes('/addresses')|| this.currentUrl.includes('/view-outlet')|| this.currentUrl.includes('/location')|| this.currentUrl.includes('/complete-inspection')|| this.currentUrl.includes('/inspections')|| this.currentUrl.includes('/update-gis')|| this.currentUrl.includes('/my-tasks')|| this.currentUrl.includes('/edit-complaint2')|| this.currentUrl.includes('/business-conduct')|| this.currentUrl.includes('/verify')|| this.currentUrl.includes('/edit-complaint')|| this.currentUrl.includes('/complaints')|| this.currentUrl.includes('/view-complaint')|| this.currentUrl.includes('/help')) {
       this.menu.enable(false, 'another-menu');

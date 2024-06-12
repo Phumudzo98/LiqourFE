@@ -19,7 +19,9 @@ export class OutletMenuFooterPage implements OnInit {
 
     });
   }
-
+  ngOnInit() {
+  }
+ 
   toggleMenu() {
     this.openCorrectMenu();
   }
@@ -38,11 +40,7 @@ export class OutletMenuFooterPage implements OnInit {
   
 
 
-  ngOnInit() {
-  }
-  navigateToDashboard() {
-    this.router.navigate(['dashboard']);
-  }
+ 
 
   addHoverEffect(id: string) {
     const activeItem = document.querySelector('.active-item');
