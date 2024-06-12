@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { UploadDocumentsPageRoutingModule } from './upload-documents-routing.module';
 
 import { UploadDocumentsPage } from './upload-documents.page';
-
+import { OutletMenuFooterPageModule } from 'src/app/outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module';
+import { OutlethaederPageModule } from 'src/app/outletHeaderFooter/outlethaeder/outlethaeder.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UploadDocumentsPageRoutingModule
+    UploadDocumentsPageRoutingModule,
+    OutletMenuFooterPageModule,
+    OutlethaederPageModule
   ],
   declarations: [UploadDocumentsPage]
 })
