@@ -1,23 +1,23 @@
 /* Global Styles (src/global.css or src/app/global.scss) */
 .image-container {
   display: flex;
-  justify-content: space-around; /* Distribute items evenly along the main axis */
-  align-items: center; /* Align items vertically */
+  justify-content: space-around; 
+  align-items: center; 
 }
 
 .image-container a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Align items at the top */
+  justify-content: flex-start; 
   text-align: center;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none; 
 }
 
 .image-container img {
-  width: 30px; /* Adjust image size as needed */
-  height: 30px; /* Adjust image size as needed */
-  margin-bottom: 5px; /* Add space between image and label */
+  width: 30px; 
+  height: 30px; 
+  margin-bottom: 5px; 
 }
 
 .image-container ion-label {
