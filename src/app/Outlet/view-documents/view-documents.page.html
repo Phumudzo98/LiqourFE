@@ -1,11 +1,11 @@
-<ion-toolbar>
-  <div class="header-img">
-  <ion-title class="outlet-header">View Uploads</ion-title>
-  <ion-img src="../../../assets/Images/Correspondence Icon.svg" class="img"></ion-img>
-</div>
-</ion-toolbar>
-<ion-content [fullscreen]="true" >
 
+<ion-content  >
+  <div class="header-container">
+    <a [routerLink]="['/previous-page']">
+      <img class="back-Arrow" src="assets/Images/Back Icon.svg">
+    </a>
+    <h1 class="header-text">View Uploads</h1>
+  </div>
 
   <ion-card class="document-card">
     <ion-grid>
@@ -41,5 +41,5 @@
   </ion-card>
   
 </ion-content>
-
+<app-outlet-menu-footer></app-outlet-menu-footer>
 

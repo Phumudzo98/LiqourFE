@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ViewDocumentsPageRoutingModule } from './view-documents-routing.module';
 
 import { ViewDocumentsPage } from './view-documents.page';
-
+import { OutletMenuFooterPageModule } from 'src/app/outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module'; 
+import { OutlethaederPageModule } from 'src/app/outletHeaderFooter/outlethaeder/outlethaeder.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ViewDocumentsPageRoutingModule
+    ViewDocumentsPageRoutingModule,
+    OutletMenuFooterPageModule,
+    OutlethaederPageModule
   ],
   declarations: [ViewDocumentsPage]
 })
