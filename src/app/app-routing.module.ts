@@ -208,19 +208,6 @@ const routes: Routes = [
     path: 'outlethaeder',
     loadChildren: () => import('./outletHeaderFooter/outlethaeder/outlethaeder.module').then( m => m.OutlethaederPageModule)
   }
-
-
-
-
-
-
-
-
-
-  
-
-
-
 ];
     
 

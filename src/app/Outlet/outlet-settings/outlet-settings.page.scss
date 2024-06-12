@@ -1,58 +1,84 @@
 .header-container {
-    display: flex;
-    align-items: center;
-    margin-top: 5%;
-    margin-bottom: 30%;
-  }
-
-  .header-text {
-    flex-grow: 1;
-    text-align: center;
-    font-size: 120%;
-    padding-right: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
 }
 
 .back-Arrow {
-    width: 7%;
-    height: 7%;
-    margin-top: 3%;
-    margin-left: 10%;
-   
+  width: 50px;
+  height: 50px;
+  margin-top: 20px;
+  padding-left: 10px;
+ 
+}
+
+
+.header-text {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 20px;
+  padding-right: 10%;
+}
+
+  ion-label
+  {
+    margin-left: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 1px;
+    font-family: 'Inter', sans-serif;
+
   }
 
+  p{
+    margin-left: 20px;
+    font-size: 11px;
+    margin-top: 2px;
+    font-family: 'Inter', sans-serif;
 
-
-  div{
-    margin-bottom: 0%;
   }
 
-  ion-item div ion-button {
-    --background: none; 
-    --background-activated: none; 
-    --background-focused: none; 
-    --background-hover: none; 
-    padding: 0; 
-    margin: 0;
+  .content{
+    font-family: 'Inter', sans-serif;
   }
 
+  .document-card{
+    background-color: #F8F8FA;
+    padding-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    font-family: 'Inter', sans-serif;
+    box-shadow: none;
+}
 
-  .center-button {
+.settings-header{
+  font-weight: 600;
+  font-size: 16px;
+  color: #474A56;
+}
+.settings-img{
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  margin-top: 80%;
-  --background: white;
-  color:black;
+
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-header {
+  flex-grow: 1;
+}
+
+.settings-img {
+  margin-left: auto;
+}
+
   
-}
-
-.center-button ion-button {
-  margin: auto;
-  width: 90%;
-  --background: rgb(223, 220, 220);
-  color:black;
-}
-
-.full-width-image {
-    width: 100%;
-  }
+  
