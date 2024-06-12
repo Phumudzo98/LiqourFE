@@ -17,7 +17,22 @@
 
   <div *ngIf="showManualInput">
     <ion-item>
-      <ion-input [(ngModel)]="input" class="input-style" type="text" placeholder="Type in your address" (ionInput)="onInputChange()"></ion-input>
+      <ion-input [(ngModel)]="number" class="input-style" type="text" placeholder="Street number" (ionInput)="onInputChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="streetName" class="input-style" type="text" placeholder="Street name" (ionInput)="onInputChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="town" class="input-style" type="text" placeholder="Town" (ionInput)="onInputChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="city" class="input-style" type="text" placeholder="City" (ionInput)="onInputChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="province" class="input-style" type="text" placeholder="Province" (ionInput)="onInputChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="postalCode" class="input-style" type="text" placeholder="Postal code" (ionInput)="onInputChange()"></ion-input>
     </ion-item>
     
     <ion-list *ngIf="addresses.length > 0">

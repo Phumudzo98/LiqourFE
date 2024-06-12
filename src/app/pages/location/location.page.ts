@@ -17,8 +17,16 @@ export class LocationPage implements OnInit {
   input:string='';
   addresses: any[] = [];
 
-  //private apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${environment.googleMapsApiKey}`;
+  streetName:string=''
+  number:string=''
+  town:string=''
+  city:string=''
+  province=''
+  postalCode=''
 
+  //private apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${environment.googleMapsApiKey}`;
+  private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
+  fullAddress: string = '';
 
   constructor(private http:HttpClient) { }
 
@@ -30,6 +38,8 @@ export class LocationPage implements OnInit {
 
       console.log(this.latitude);
       console.log(this.longitude);
+
+      this.getAddressFromCoordinates(this.latitude, this.longitude);
       
     } catch (err) {
       console.error('Error getting location', err);
@@ -59,5 +69,15 @@ export class LocationPage implements OnInit {
   //   const url = `${this.apiUrl}&input=${input}`;
   //   return this.http.get<any>(url);
   // }
+
+  getAddressFromCoordinates(latitude: number, longitude: number) {
+    const url = `${this.geocodeUrl}&latlng=${latitude},${longitude}`;
+    this.http.get<any>(url).subscribe(response => {
+      if (response.results && response.results.length > 0) {
+        this.fullAddress = response.results[0].formatted_address;
+        console.log(this.fullAddress);
+      }
+    });
+  }
 
 }
