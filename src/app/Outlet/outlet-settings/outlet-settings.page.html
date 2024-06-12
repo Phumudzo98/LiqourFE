@@ -1,10 +1,12 @@
 <ion-content>
+
+  <div *ngIf="currentForm==='landing'">
   <div class="header-container">
     <img src="assets/Images/Back Icon.svg" class="back-Arrow">
     <h1 class="header-text">Settings</h1>
   </div>
 
-  <ion-card class="document-card">
+  <ion-card class="document-card" (click)="toggleForms('profile')">
     <div class="flex">
     <span class="settings-header">Personal details</span>
     <ion-img src="../../../assets/Images/Profile vector.svg" class="settings-img"></ion-img>
@@ -31,6 +33,27 @@
     <ion-img src="../../../assets/Images/Profile vector.svg" class="settings-img"></ion-img>
   </div>
   </ion-card>
+</div>
 
+<div *ngIf="currentForm==='profile'">
+  <div class="header-container">
+    <img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="toggleForms('landing')">
+    <h1 class="header-text">Edit Profile Details</h1>
+  </div>
+  <ion-item>
+    <ion-input class="input-styling" type="text" placeholder="Name & Surname"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input class="input-styling" type="text" placeholder="Email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input class="input-styling" type="text" placeholder="Phone number"></ion-input>
+  </ion-item>
+
+  <ion-button class="buttonClass">
+    <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+    Save
+  </ion-button>
+</div>
 </ion-content>
 <app-outlet-menu-footer></app-outlet-menu-footer>
