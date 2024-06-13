@@ -69,33 +69,34 @@ ion-card{
   .search-item {
     position: relative;
   }
-  
-  .search-input {
-    padding-left: 30px; 
-  }
+
   
   .search-icon {
     position: absolute;
     top: 50%;
-    left: 10px; 
+    left: -25px; 
     transform: translateY(-50%);
     font-size: 20px;
     color: #9A9A9A;
     padding-left: 5px;
-    font-size: 30px; /* Adjust the font-size as needed */
+    height: 20px;
+    width: 20px;
   }
   .search-item {
     position: relative;
   }
   
   .search-input {
-    padding-left: 30px; /* Adjust as needed */
+    padding-left: 30px !important;
+    font-size: 15px !important;
+    color: #2A2A2A;
+    
   }
   
   .search-input::placeholder {
     position: absolute;
-    left: 100px; /* Adjust the icon's position inside the placeholder */
-
+    margin-left: 10px !important;
+    font-size: 15px !important;
   }
   
 

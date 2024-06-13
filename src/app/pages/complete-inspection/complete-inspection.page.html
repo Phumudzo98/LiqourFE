@@ -57,17 +57,13 @@
     </ion-card>
   </div>
 
-  <div *ngIf="currentForm === 'reports'" >
+  <div *ngIf="currentForm === 'reports'">
 
     <div class="header-container">
       <a><img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="toggleForms('landing')"></a>
       <h1 class="header-text" style="color: black;">Inspection Reports</h1>
     </div>
-    <!--
-    <ion-item class="input-field">
-    <ion-input></ion-input>
-  </ion-item>-->
-
+  
     <span class="inspection-report">Inspection report</span>
     <ion-card class="upload" (click)="triggerFileInput()">
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
@@ -75,42 +71,19 @@
       <span>DOCX or PDF</span>
       <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
     </ion-card>
- 
   
-
-    <ion-card class="upload2">
-
-      <div class="header-content2">
-        <ion-card-title>
-          Contract.pdf
-        </ion-card-title>
-        <ion-img src="../../../assets/Images/Trash.svg" class=""></ion-img>
-
-      </div>
-      <span>200KB</span>
-
-     
-    </ion-card>
-
-    <ion-card class="upload2">
-
-      <div class="header-content2">
-        <ion-card-title>
-          Contract.pdf
-        </ion-card-title>
-        <ion-img src="../../../assets/Images/Trash.svg" class=""></ion-img>
-      </div>
-      <span>200KB</span>
-
-    </ion-card>
-
-    <ion-button class="buttonClass">
-      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-      Save
-    </ion-button>
+    <div *ngFor="let file of uploadedFiles; let i = index">
+      <ion-card class="upload2">
+        <div class="header-content2">
+          <ion-card-title>{{ file.name }}</ion-card-title>
+          <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirm(i)" class=""></ion-img>
+        </div>
+        <span>{{ (file.size / 1024).toFixed(2) }} KB</span>
+      </ion-card>
+    </div>
   
   </div>
-
+  
 
   <div *ngIf="currentForm === 'applicant'">
    
