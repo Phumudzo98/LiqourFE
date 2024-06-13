@@ -7,13 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
-  email:string="";
+
   password!: string;
 
-  constructor(private router: Router) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  constructor(private router: Router) { }
+
+  ngOnInit() {
   }
+
+  
+  email: string = "";
+  email2: string = "mkay2@gmail.com";
+
 
   sign(){
     if(this.email === "mkay1@gmail.com")
@@ -22,7 +27,7 @@ export class SigninPage implements OnInit {
       }
       else{
         this.router.navigate(['outlet-dashboard'])
-
       }
   }
+
 }
