@@ -21,14 +21,15 @@ export class SigninPage implements OnInit {
   email2: string = "mkay2@gmail.com";
 
 
-  sign(){
-    if(this.email === "mkay1@gmail.com")
-      {
-        this.router.navigate(['dashboard'])
-      }
-      else{
-        this.router.navigate(['outlet-dashboard'])
-      }
+  sign() {
+    // Your sign-in logic here
+    if (this.email === 'inspector@gmail.com' && this.password === 'admin123') {
+      this.router.navigate(['/verify'], { queryParams: { email: this.email } });
+    } else if (this.email === 'outlet@gmail.com' && this.password === 'admin123') {
+      this.router.navigate(['/verify'], { queryParams: { email: this.email } });
+    } else {
+      alert('Sign-in failed');
+    }
   }
 
 }
