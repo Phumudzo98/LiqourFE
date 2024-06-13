@@ -9,26 +9,26 @@ import { AlertController } from '@ionic/angular';
 })
 export class CompleteInspectionPage implements OnInit {
 
-  selectedOption: string = ''; 
-  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController) {}
+  selectedOption: string = '';
+  uploadedFiles: { name: string, size: number }[] = [];
+  currentForm: string = 'landing';
   
+  @ViewChild('fileInput', { static: false })
+  fileInput!: ElementRef<HTMLInputElement>;
+
+  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController) {}
 
   ngOnInit() {
   }
-  personContacted: string ="Person Contacted";
+
+  personContacted: string = "Person Contacted";
   inspectionDate: Date = new Date();
   latitude: string = "Latitude Of Outlet (South)";
-  longitude: string = "logitude Of Outlet (South)";
-
-
-
-  currentForm: string = 'landing';
+  longitude: string = "Longitude Of Outlet (South)";
 
   toggleForms(form: string) {
     this.currentForm = form;
   }
-  @ViewChild('fileInput', { static: false })
-  fileInput!: ElementRef<HTMLInputElement>;
 
   triggerFileInput() {
     this.fileInput.nativeElement.click();
@@ -36,22 +36,24 @@ export class CompleteInspectionPage implements OnInit {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    console.log('Selected file:', file);
-    // Handle the file selection logic here
+    if (file) {
+      this.uploadedFiles.push({ name: file.name, size: file.size });
+    }
   }
+
   navigateToBack() {
     this.route.navigate(['complete-inspection']);
   }
-  async presentAlertConfirm() {
+
+  async presentAlertConfirm(index: number) {
     const alert = await this.alertController.create({
       header: 'Confirm Deletion',
-      message: 'Are you sure you want to delete this Document?',
+      message: 'Are you sure you want to delete this document?',
       buttons: [
         {
           text: 'Yes',
           handler: () => {
-            console.log('Confirm Delete');
-            this.deleteItem();
+            this.deleteItem(index);
           }
         },
         {
@@ -61,16 +63,14 @@ export class CompleteInspectionPage implements OnInit {
           handler: () => {
             console.log('Confirm Cancel');
           }
-        }, 
+        },
       ]
     });
 
     await alert.present();
   }
 
-  deleteItem() {
-    // Your deletion logic here
-    console.log('Item deleted');
+  deleteItem(index: number) {
+    this.uploadedFiles.splice(index, 1);
   }
-
 }
