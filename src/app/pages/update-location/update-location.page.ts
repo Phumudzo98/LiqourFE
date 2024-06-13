@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Geolocation } from '@capacitor/geolocation';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-update-location',
@@ -10,8 +12,11 @@ import { AlertController } from '@ionic/angular';
 export class UpdateLocationPage implements OnInit {
 
 
-  latitude: string ="";
-  longitude: string="";
+  latitude?: number;
+  longitude?:number;
+
+  lat?:number;
+  lon?:number;
 
   
   selectedOption: string = '';
@@ -24,6 +29,22 @@ export class UpdateLocationPage implements OnInit {
   constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController) {}
 
   ngOnInit() {
+  }
+
+  async getCurrentPosition() {
+    try {
+      const coordinates = await Geolocation.getCurrentPosition();
+      this.lat = coordinates.coords.latitude;
+      this.lon = coordinates.coords.longitude;
+
+      this.longitude=this.lon;
+      this.latitude=this.lat;
+
+      //this.getAddressFromCoordinates(this.latitude, this.longitude);
+      
+    } catch (err) {
+      console.error('Error getting location', err);
+    }
   }
 
   
