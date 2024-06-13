@@ -77,9 +77,6 @@ ion-select {
   --ion-color-select-text: #000000; /* Set the text color if needed */
 }
 
-
-
-
 ion-content {
   --background: #ffffff;
   font-family: 'Inter', sans-serif !important;
@@ -208,7 +205,11 @@ input[type="radio"]:checked {
   color: #474A56;
   font-family: 'Inter';
 }
-
+.detail-header{
+  color:#2A2A2A;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
 
 
 
