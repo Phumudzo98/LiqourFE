@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class CompleteInspectionPage implements OnInit {
 
   selectedOption: string = ''; 
-  constructor(private route: Router, private eRef: ElementRef,) {}
+  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController) {}
   
 
   ngOnInit() {
@@ -40,6 +41,36 @@ export class CompleteInspectionPage implements OnInit {
   }
   navigateToBack() {
     this.route.navigate(['complete-inspection']);
+  }
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Do you really want to delete this Document?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Confirm Delete');
+            this.deleteItem();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, 
+      ]
+    });
+
+    await alert.present();
+  }
+
+  deleteItem() {
+    // Your deletion logic here
+    console.log('Item deleted');
   }
 
 }
