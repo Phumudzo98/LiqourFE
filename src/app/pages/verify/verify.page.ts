@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-verify',
@@ -7,55 +8,109 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./verify.page.scss'],
 })
 export class VerifyPage implements OnInit {
-  email: string = ''; 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute ) {}
- 
+  email: string = ""; 
+  otp: string = "";
+  toast: any; // Change the type to 'any' for the toast instance
+
+  constructor(
+    private router: Router, 
+    private activatedRoute: ActivatedRoute,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController 
+  ) {}
+
   ngOnInit() {
-     // Read email from query parameters
-     this.activatedRoute.queryParams.subscribe(params => {
+    // Read email from query parameters
+    this.activatedRoute.queryParams.subscribe(params => {
       this.email = params['email'];
+      this.setIpFocus();
     });
   }
 
-  otp: string[] = ['', '', '', '']; 
-  @ViewChildren('otpInput')
-  otpInputs!: QueryList<ElementRef>;
-
-  moveFocus(event: KeyboardEvent | undefined, index: number) {
-    if (event && event.target instanceof HTMLInputElement) {
-      const input = event.target as HTMLInputElement;
-      if (input.value.length === 1 && index < this.otp.length - 1) {
-        this.otpInputs.toArray()[index + 1].nativeElement.focus();
-      } else if (input.value.length === 0 && index > 0 && event.key === 'Backspace') {
-        this.otpInputs.toArray()[index - 1].nativeElement.focus();
+  setIpFocus() {
+    for (let i = 1; i <= 4; i++) {
+      const element = document.getElementById('ip' + i);
+      if (element) {
+        if (i === this.otp.length + 1) {
+          element.style.background = 'var(--ion-color-dark)';
+        } else {
+          element.style.background = 'var(--ion-color-light)';
+        }
       }
     }
   }
 
-  // Assume verifyResult is a boolean indicating successful verification
-  verify() {
-    const enteredOTP = this.otp.join(''); // Combine the OTP digits into a string
+  clear() {
+    this.otp = "";
+    this.setIpFocus();
+  }
 
-    // Replace this with your actual OTP verification logic
-    const verifyResult = this.verifyOTP(enteredOTP);
+  back() {
+    this.otp = this.otp.slice(0, -1);
+    this.setIpFocus();
+  }
 
-    if (verifyResult) {
-      if (this.email === 'inspector@gmail.com') {
-        this.router.navigate(['/dashboard']);
-      } else if (this.email === 'outlet@gmail.com') {
-        this.router.navigate(['/outlet-dashboard']);
-      }
-    } else {
-      alert('Verification failed');
+  set(number: string) {
+    if (this.otp.length < 4) {
+      this.otp += number;
+      this.setIpFocus();
     }
   }
 
-  verifyOTP(userInput: string): boolean {
-    const storedOTP = '1234'; // Example: Assume the stored OTP is '123456'
-
-    // Check if the user input matches the stored OTP
-    return userInput === storedOTP;
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Verifying OTP...',
+      spinner: "circular"
+    });
+    await loading.present();
   }
 
-  
+  async presentToast(message: string, color: string) {
+    this.toast = await this.toastCtrl.create({
+      message: message,
+      color: color,
+      duration: 1000,
+      position: "middle",
+    });
+
+    await this.toast.present();
+
+    // Handle toast dismissal
+    this.toast.onDidDismiss().then(() => {
+      // Optional: Add any code you want to run after the toast is dismissed
+    });
+  }
+
+  async checkOTP() {
+    await this.presentLoading();
+    setTimeout(async () => {
+      await this.loadingCtrl.dismiss();
+      if (this.otp === "1234") {
+        //await this.presentToast("OTP Verified", "success");
+        if (this.email === 'inspector@gmail.com') {
+          this.router.navigate(['/dashboard']).then(() => {
+            // Dismiss toast after navigation
+            this.toast.dismiss();
+          });
+        } else if (this.email === 'outlet@gmail.com') {
+          this.router.navigate(['/outlet-dashboard']).then(() => {
+            // Dismiss toast after navigation
+            this.toast.dismiss();
+          });
+        }
+      } else {
+        //await this.presentToast("Invalid OTP", "danger");
+      }
+    }, 2000);
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    const key = event.key;
+    if (key === 'Backspace') {
+      this.back();
+    } else if (!isNaN(Number(key)) && key !== ' ') {
+      this.set(key);
+    }
+  }
 }
