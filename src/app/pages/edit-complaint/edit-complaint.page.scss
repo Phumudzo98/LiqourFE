@@ -22,6 +22,7 @@
 
 .custom-input {
   min-width: 100%;
+  margin-bottom: 8px;
 }
 
 ion-input, ion-select {
@@ -42,4 +43,9 @@ ion-select{
   --highlight-background: transparent;
   font-family: 'Inter', sans-serif; 
   padding-right: 15px !important;
+}
+
+ion-label{
+  margin-left: 15px !important;
+  font-size: 12px !important;
 }

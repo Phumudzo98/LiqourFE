@@ -1,9 +1,7 @@
-
 <app-menu-header></app-menu-header>
 <ion-content>
   <div class="dashboard-container">
     <p class="quick-action">Complaints</p>
-    
     
     <ion-item class="search-item">
       <ion-input name="search" placeholder="Search Complaints" class="search-input">
@@ -11,7 +9,6 @@
       </ion-input>
     </ion-item>
     
-   
     <ng-container *ngFor="let user of users">
       <div class="header-content">
         <ion-label class="label">{{ user }}</ion-label>
@@ -22,9 +19,13 @@
         </div>
       </div>
       <ng-container *ngFor="let complaint of userComplaints[user]">
-        <p class="info-time">{{ complaint }}</p>
+        <p class="">Complaint: {{ complaint.complaint }}</p>
+        <p class="">Reference Number: {{ complaint.referenceNumber }}</p>
+        <p class="">Date: {{ complaint.date }}</p>
+        <p class="">Time: {{ complaint.time }}</p>
       </ng-container>
     </ng-container>
   </div>
 </ion-content>
 <app-menu-footer></app-menu-footer>
+

@@ -5,16 +5,19 @@
   </div>
 
   <div>
+    <ion-label >Reference Number</ion-label>
     <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Reference Number"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="Reference Number"[(ngModel)]="reference"></ion-input>
     </ion-item>
+    <ion-label>Description</ion-label>
     <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Description"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="Description" [(ngModel)]="description"></ion-input>
     </ion-item>
+    <ion-label >Offending Outlet</ion-label>
     <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Offending Outlet"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="Offending Outlet" [(ngModel)]="offOutlet"></ion-input>
     </ion-item>
-   
+    <ion-label >Complaint Status</ion-label>
     <ion-item>
       <ion-select class="custom-input" placeholder="Complaint Status">
         <ion-select-option value="inspector1">Open</ion-select-option>
@@ -23,21 +26,30 @@
         <ion-select-option value="inspector4">Closed</ion-select-option>
       </ion-select>
     </ion-item>
+    <ion-label >ECP Number</ion-label>
     <ion-item>
       <ion-input class="custom-input" type="text" placeholder="ECP Number"></ion-input>
     </ion-item>
+    <ion-label >Street Address</ion-label>
     <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Street Address"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="Street Address" [(ngModel)]="strAddress"></ion-input>
     </ion-item>
+    <ion-label >District Municipality</ion-label>
     <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="District Municipality"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="District Municipality"[(ngModel)]="districMunicipalty"></ion-input>
     </ion-item>
+    <ion-label >Local Municipality</ion-label>
+
     <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Local Municipality"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="Local Municipality" [(ngModel)]="localMunicipality"></ion-input>
     </ion-item>
+    <ion-label >Town</ion-label>
+
     <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Town"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="Town" [(ngModel)]="town"></ion-input>
     </ion-item>
+    <ion-label >Relevant Inspector</ion-label>
+
     <ion-item>
       <ion-select class="custom-input" placeholder="Relevant Inspector">
         <ion-select-option value="inspector1">Eric Mata</ion-select-option>
@@ -48,12 +60,15 @@
         <!-- Add more options as needed -->
       </ion-select>
     </ion-item>
-   
+    <ion-label >Comment</ion-label>
+
     <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Comment"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="Comment" [(ngModel)]="comment"></ion-input>
     </ion-item>
+    <ion-label >Comment history</ion-label>
+
     <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Comment history"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="Comment history" [(ngModel)]="history"></ion-input>
     </ion-item>
 
     <div class="button-container">
