@@ -1,53 +1,67 @@
 <ion-content>
-    <div class="header-container">
-      <img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="navigateToBack()">
-      <h1 class="header-text">Edit Complaint</h1>
-    </div>
+  <div class="header-container">
+    <img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="navigateToBack()">
+    <h1 class="header-text">Edit Complaint</h1>
+  </div>
 
-  <div class="">
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="Reference Number"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="Description"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="Offending Outlet"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="Complain Status"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="ECP Number"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="Street Address"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="District Municipality"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="Local Municipality"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="Town"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input class="custom-input" type="text" placeholder="Relevant Inspector"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input type="text" placeholder="Comment"></ion-input>
+  <div>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Reference Number"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Comment history"></ion-input>
+      <ion-input class="custom-input" type="text" placeholder="Description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Offending Outlet"></ion-input>
+    </ion-item>
+   
+    <ion-item>
+      <ion-select class="custom-input" placeholder="Complaint Status">
+        <ion-select-option value="inspector1">Open</ion-select-option>
+        <ion-select-option value="inspector2">In Progress</ion-select-option>
+        <ion-select-option value="inspector3">Cancelled</ion-select-option>
+        <ion-select-option value="inspector4">Closed</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="ECP Number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Street Address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="District Municipality"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Local Municipality"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Town"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select class="custom-input" placeholder="Relevant Inspector">
+        <ion-select-option value="inspector1">Eric Mata</ion-select-option>
+        <ion-select-option value="inspector2">Lulamile Timana</ion-select-option>
+        <ion-select-option value="inspector3">Xoliswa Sibeko</ion-select-option>
+        <ion-select-option value="inspector4">Vuyo Mfula</ion-select-option>
+        <ion-select-option value="inspector5">Mkangeli Mtimkulu</ion-select-option>
+        <!-- Add more options as needed -->
+      </ion-select>
+    </ion-item>
+   
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Comment"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Comment history"></ion-input>
     </ion-item>
 
     <div class="button-container">
       <ion-button class="buttonClass">
-        <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
         Save
       </ion-button>
-     </div>
-</div>
+    </div>
+  </div>
 </ion-content>
 <app-menu-footer></app-menu-footer>
