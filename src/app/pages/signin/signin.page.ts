@@ -14,18 +14,5 @@ export class SigninPage implements OnInit {
   }
 
   
-  email: string = "";
-  email2: string = "mkay2@gmail.com";
-
-
-  sign(){
-    if(this.email === "mkay1@gmail.com")
-      {
-        this.router.navigate(['outlet-dashboard'])
-      }
-      else{
-        this.router.navigate(['dashboard'])
-      }
-  }
 
 }
