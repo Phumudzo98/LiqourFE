@@ -17,9 +17,6 @@ export class SigninPage implements OnInit {
 
   
   email: string = "";
-  email2: string = "mkay2@gmail.com";
-
-
   sign() {
     // Your sign-in logic here
     if (this.email === 'inspector@gmail.com' && this.password === 'admin123') {

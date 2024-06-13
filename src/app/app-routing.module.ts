@@ -45,18 +45,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/verify/verify.module').then( m => m.VerifyPageModule)
   },
   
-  {
-    path: 'inspector',
-    loadChildren: () => import('./pages/inspector completion/inspector.module').then( m => m.InspectorPageModule)
-  },
+ 
   {
     path: 'business-conduct',
     loadChildren: () => import('./pages/business-conduct/business-conduct.module').then( m => m.BusinessConductPageModule)
   },
-  {
-    path: 'edit-complaint2',
-    loadChildren: () => import('./pages/edit-complaint2/edit-complaint2.module').then( m => m.EditComplaint2PageModule)
-  },
+
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
@@ -125,10 +119,7 @@ const routes: Routes = [
     path: 'view-image',
     loadChildren: () => import('./pages/view-image/view-image.module').then( m => m.ViewImagePageModule)
   },
-  {
-    path: 'sidemenu',
-    loadChildren: () => import('./pages/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
-  },
+  
   {
     path: 'outlet-dashboard',
     loadChildren: () => import('./Outlet/outlet-dashboard/outlet-dashboard.module').then( m => m.OutletDashboardPageModule)
@@ -207,7 +198,12 @@ const routes: Routes = [
   {
     path: 'outlethaeder',
     loadChildren: () => import('./outletHeaderFooter/outlethaeder/outlethaeder.module').then( m => m.OutlethaederPageModule)
+  },
+  {
+    path: 'special-event-inspections',
+    loadChildren: () => import('./pages/special-event-inspections/special-event-inspections.module').then( m => m.SpecialEventInspectionsPageModule)
   }
+
 ];
     
 

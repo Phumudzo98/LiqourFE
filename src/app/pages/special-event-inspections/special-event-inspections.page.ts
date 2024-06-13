@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-complete-inspection',
-  templateUrl: './complete-inspection.page.html',
-  styleUrls: ['./complete-inspection.page.scss'],
+  selector: 'app-special-event-inspections',
+  templateUrl: './special-event-inspections.page.html',
+  styleUrls: ['./special-event-inspections.page.scss'],
 })
-export class CompleteInspectionPage implements OnInit {
+export class SpecialEventInspectionsPage implements OnInit {
 
   selectedOption: string = '';
   uploadedFiles: { name: string, size: number }[] = [];

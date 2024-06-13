@@ -4,18 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EditComplaint2PageRoutingModule } from './edit-complaint2-routing.module';
-
-import { EditComplaint2Page } from './edit-complaint2.page';
+import { SpecialEventInspectionsPageRoutingModule } from './special-event-inspections-routing.module';
+import { SpecialEventInspectionsPage } from './special-event-inspections.page';
 import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EditComplaint2PageRoutingModule,
-   MenuFooterPageModule
+    SpecialEventInspectionsPageRoutingModule,
+    MenuFooterPageModule
   ],
-  declarations: [EditComplaint2Page]
+  declarations: [SpecialEventInspectionsPage]
 })
-export class EditComplaint2PageModule {}
+export class SpecialEventInspectionsPageModule {}
