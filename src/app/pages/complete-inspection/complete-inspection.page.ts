@@ -44,8 +44,8 @@ export class CompleteInspectionPage implements OnInit {
   }
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
-      header: 'Confirm!',
-      message: 'Do you really want to delete this Document?',
+      header: 'Confirm Deletion',
+      message: 'Are you sure you want to delete this Document?',
       buttons: [
         {
           text: 'Yes',
