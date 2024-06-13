@@ -1,0 +1,198 @@
+ion-card-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4A5568;
+    width: 80%;
+    font-family: 'Inter', sans-serif;
+}
+
+
+.vector {
+    width: 12px;
+    height: 12px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+}
+.header-content3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+}
+.header-content2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4A5568;
+    font-family: 'Inter', sans-serif;
+    padding: 15px;
+}
+
+select {
+    background-color: #fff;
+    height: 50px;
+    border-bottom: 1px solid #667085;
+    width: 100%;
+}
+
+.inspection-report{
+    color:#667085;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 100px;
+    margin-left: 10px;
+}
+.upload {
+    border: 1px solid #EAECF0;
+    border-radius: 2px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column; /* Ensures children are stacked vertically */
+    align-items: center; /* Horizontally centers the children */
+    justify-content: center; /* Vertically centers the children */
+    text-align: center; /* Centers the text inside elements */
+    padding: 30px;
+    font-family: 'Inter',sans-serif;
+
+}
+
+.upload2{
+    border: 1px solid #EAECF0;
+    border-radius: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: none;
+    font-family: 'Inter',sans-serif;
+}
+
+.upload ion-img{
+    width: 25px;
+    height: 25px;
+}
+.upload span{
+    font-size: 14px;
+    font-weight: 600;
+    color:#822B23;
+}
+
+.input-field
+{
+    margin-bottom: 5%;
+    font-family: 'Inter', sans-serif;
+    
+}
+ion-input{
+    font-family: 'Inter', sans-serif;
+    color: #667085;
+
+}
+
+.general-name{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.buttons
+{
+    display: flex;
+}
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .back-Arrow {
+    width: 50px;
+    height: 50px;
+    margin-top: 20px;
+    padding-left: 10px;
+   
+  }
+  
+  
+  .header-text {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 20px;
+    padding-right: 10%;
+  }
+  
+
+  .radios{
+    display: flex;
+  }
+  label{
+    margin-left: 10px;
+  }
+
+  ion-col input{
+    color: #CFAA35;
+    width: 20px;
+    height: 20px;
+  }
+  .buttonClass {
+    --background: #822B23;
+    --color: #fff;
+    width: calc(100% - 30px);
+    height: 50px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 14px;
+    border: 1px solid #822B23;
+    border-radius: 2px; 
+    --border-radius: 2px; 
+    text-transform: none; 
+    font-family: 'Inter', sans-serif; 
+    margin-bottom: 15px;
+
+  }
+  
+.custom-input {
+    min-width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  ion-input, ion-select {
+    font-size: 11px;
+    --padding-start: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    width: 100%;
+  }
+  
+  ion-select{
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 1px solid #858585;
+    border-radius: 2px;
+    height: 50px; 
+    width: calc(100%) !important; /* Account for padding of the container */
+    --highlight-background: transparent;
+    font-family: 'Inter', sans-serif; 
+    padding-right: 15px !important;
+  }
+  
+  ion-label{
+    margin-left: 15px !important;
+    font-size: 12px !important;
+  }
+
