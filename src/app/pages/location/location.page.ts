@@ -46,8 +46,6 @@ export class LocationPage implements OnInit {
     }
   }
 
-
-
   ngOnInit() {
   }
 
