@@ -24,7 +24,7 @@ ion-card{
 .buttonClass {
     --background: #822B23;
     --color: #fff;
-    width: calc(100%);
+    width: auto;
     margin-top: 15px;
     height: 35px;
     font-size: 14px;
@@ -35,6 +35,9 @@ ion-card{
     text-transform: none; 
     font-family: 'Inter', sans-serif;
     margin-top: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
   }
   ion-input {
     margin-top: 10px;

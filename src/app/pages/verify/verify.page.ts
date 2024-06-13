@@ -11,6 +11,7 @@ export class VerifyPage implements OnInit {
   email: string = ""; 
   otp: string = "";
   toast: any; // Change the type to 'any' for the toast instance
+  activeInput: number = 1; // Initialize activeInput to 1
 
   constructor(
     private router: Router, 
@@ -31,7 +32,7 @@ export class VerifyPage implements OnInit {
     for (let i = 1; i <= 4; i++) {
       const element = document.getElementById('ip' + i);
       if (element) {
-        if (i === this.otp.length + 1) {
+        if (i === this.activeInput) {
           element.style.background = 'var(--ion-color-dark)';
         } else {
           element.style.background = 'var(--ion-color-light)';
@@ -46,13 +47,26 @@ export class VerifyPage implements OnInit {
   }
 
   back() {
-    this.otp = this.otp.slice(0, -1);
-    this.setIpFocus();
+    if (this.activeInput > 1) {
+      const activeIndex = this.activeInput - 1; // Adjust index to 0-based
+      this.otp = this.otp.substring(0, activeIndex) + this.otp.substring(this.activeInput); // Remove character at activeIndex
+      this.activeInput--;
+      this.setIpFocus();
+    } else if (this.activeInput === 1 && this.otp.length > 0) {
+      this.otp = this.otp.substring(0, this.otp.length - 1); // Remove last character if backspace is pressed on the first box
+      this.setIpFocus();
+    } else if (this.activeInput === 1 && this.otp.length === 0) {
+      this.activeInput = 2; // Move active input to box 2 if attempting to delete when box 1 is empty
+      this.setIpFocus();
+    }
   }
+  
+  
 
   set(number: string) {
-    if (this.otp.length < 4) {
-      this.otp += number;
+    if (this.activeInput <= 4) {
+      this.otp = this.otp.substring(0, this.activeInput - 1) + number + this.otp.substring(this.activeInput);
+      this.activeInput++;
       this.setIpFocus();
     }
   }
@@ -112,5 +126,10 @@ export class VerifyPage implements OnInit {
     } else if (!isNaN(Number(key)) && key !== ' ') {
       this.set(key);
     }
+  }
+
+  setActiveInput(index: number) {
+    this.activeInput = index;
+    this.setIpFocus();
   }
 }

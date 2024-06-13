@@ -12,54 +12,27 @@
 
       
 
-      <ion-card>
-        <span class="outlet">Outlets</span>
+      <ion-card *ngFor="let outlet of outlets">
         <ion-grid class="top">
           <ion-row>
             <ion-col>
-              <ion-img src="../../../assets/Images/PicsArt_05-14-05.58 2.svg"></ion-img>
+              <ion-img [src]="outlet.imgSrc"></ion-img>
             </ion-col>
             <ion-col size="6">
               <!--Header-->
-              <span class="detail-header font-weight">G-Spot</span>
+              <span class="detail-header font-weight">{{ outlet.header }}</span>
               <br>
               <!--Details-->
-              <span class="info-time">ECP08389/90424/OO <br>Off Consumption</span>
+              <span class="info-time" [innerHTML]="outlet.details"></span>
               <br>
             </ion-col>
             <ion-col class="centered-col">
-              <ion-img src="../../../assets/Images/Group 88.svg"></ion-img>
+              <ion-img [src]="outlet.iconSrc"></ion-img>
             </ion-col>
           </ion-row>
         </ion-grid>
       
-        <ion-button class="buttonClass" routerLink="/complete-inspection">
-          Complete Inspections
+        <ion-button class="buttonClass">
+          View details
         </ion-button>
-
-        <ion-grid class="top">
-          <ion-row>
-            <ion-col>
-              <ion-img src="../../../assets/Images/PicsArt_05-14-05.58 2.svg"></ion-img>
-            </ion-col>
-            <ion-col size="6">
-              <!--Header-->
-              <span class="detail-header font-weight">G-Spot</span>
-              <br>
-              <!--Details-->
-              <span class="info-time">ECP08389/90424/OO <br>Off Consumption</span>
-              <br>
-            </ion-col>
-            <ion-col class="centered-col">
-              <ion-img src="../../../assets/Images/Group 88.svg"></ion-img>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-
-        <ion-button class="buttonClass" routerLink="/complete-inspection">
-          Complete Inspections
-        </ion-button>
-</ion-card>
-  </div>
-</ion-content>
-<app-menu-footer></app-menu-footer>
+      </ion-card>
