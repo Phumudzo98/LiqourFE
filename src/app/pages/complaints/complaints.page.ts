@@ -10,9 +10,13 @@ import { MenuController } from '@ionic/angular';
 export class ComplaintsPage implements OnInit {
 
   dropdownVisible: { [user: string]: boolean } = {};
-  users: string[] = ['Xolisa sibeko1', 'Vuyo Mfula', 'Andrew king', 'Mkangeli Mtimkulu', 'Eric Mata'];
-  userComplaints: { [user: string]: string[] } = {};
- 
+  users: string[] = ['Parklane Restaurant', 'THE BURGER INN', 'VIVAS TAVERN', 'THEMBEKA PLACE', 'Kwa Coca Tavern'];
+  userComplaints: { [user: string]: { 
+    complaint: string, 
+    referenceNumber: string, 
+    date: string, 
+    time: string, 
+  }[] } = {};
 
   constructor(private route: Router, private eRef: ElementRef) {}
 
@@ -20,7 +24,12 @@ export class ComplaintsPage implements OnInit {
     this.users.forEach(user => {
       this.dropdownVisible[user] = false;
       this.userComplaints[user] = [
-        'Residential home is used a shebeen and the patrons are misbehaving and disturbing the peace of the community with loud music played.',
+        {
+          complaint: 'Residential home is used a shebeen and the patrons are misbehaving and disturbing the peace of the community with loud music played.',
+          referenceNumber: 'REF123456',
+          date: '2024-06-13',
+          time: '14:30'
+        }
       ];
     });
   }
@@ -37,10 +46,6 @@ export class ComplaintsPage implements OnInit {
   navigateToEdit() {
     this.route.navigate(['edit-complaint']);
   }
-
- 
-
-
 
   @HostListener('document:click', ['$event'])
   clickout(event: Event) {

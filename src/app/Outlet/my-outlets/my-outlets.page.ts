@@ -43,7 +43,7 @@ export class MyOutletsPage implements OnInit {
     {
       imgSrc: '../../../assets/Images/burguer nn.jpeg',
       header: 'THE BURGER INN',
-      details: 'ECP00852/90454/ON <br>On Consumption',
+      details: 'ECP00852/90454/ <br>On Consumption',
       iconSrc: '../../../assets/Images/Group 88.svg',
     },
     
