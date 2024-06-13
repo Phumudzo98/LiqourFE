@@ -16,18 +16,19 @@
 
     <p class="welcome">Welcome</p>
     <p class="signin">Sign in</p>
+   
     <ion-item>
-      <ion-input name="email" type="email" placeholder="Email"></ion-input>
+      <ion-input name="email" [(ngModel)]="email" type="email" placeholder="Email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input name="password" type="password" placeholder="Password"></ion-input>
+      <ion-input name="password" [(ngModel)]="password" type="password" placeholder="Password"></ion-input>
     </ion-item>
+  
 
     <p class="welcome forgot"><a>Forgot password?</a></p>
 
-    <ion-button class="buttonClass">Sign in</ion-button>
-
+    <ion-button class="buttonClass" (click)="sign()">Sign in</ion-button>
   </div>
   <!--Login Form-->
 

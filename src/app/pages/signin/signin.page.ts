@@ -8,11 +8,26 @@ import { Router } from '@angular/router';
 })
 export class SigninPage implements OnInit {
 
+  password!: string;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   
+  email: string = "";
+  email2: string = "mkay2@gmail.com";
+
+
+  sign(){
+    if(this.email === "mkay1@gmail.com")
+      {
+        this.router.navigate(['dashboard'])
+      }
+      else{
+        this.router.navigate(['outlet-dashboard'])
+      }
+  }
 
 }

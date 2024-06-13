@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SigninPageRoutingModule } from './signin-routing.module';
 
 import { SigninPage } from './signin.page';
-
+import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     CommonModule,
