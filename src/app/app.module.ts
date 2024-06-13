@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewImagePageModule } from './pages/view-image/view-image.module';
 import { MenuController } from '@ionic/angular';  // Import MenuControlle
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // Import this
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,9 +19,12 @@ import { MenuController } from '@ionic/angular';  // Import MenuControlle
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      animated: false // Disable Ionic animations
+    }),
     AppRoutingModule,
     ViewImagePageModule,
+    NoopAnimationsModule
     
   ],
   providers: [

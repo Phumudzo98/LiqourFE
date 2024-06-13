@@ -63,6 +63,21 @@ ion-input {
   padding-right: 15px !important;
 
 }
+ion-select {
+  margin-top: 10px;
+  background-color: #ffffff;
+  border: 1px solid #858585;
+  border-radius: 2px;
+  height: 50px; 
+  width: calc(100%) !important; /* Account for padding of the container */
+  --highlight-background: transparent !important;
+  font-family: 'Inter', sans-serif; 
+  padding-right: 15px !important;
+  --ion-color-select-background: transparent !important; /* Set the background to transparent */
+  --ion-color-select-text: #000000; /* Set the text color if needed */
+}
+
+
 
 
 ion-content {

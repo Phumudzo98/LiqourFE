@@ -11,9 +11,7 @@
   height: 50px;
   margin-top: 20px;
   padding-left: 10px;
- 
 }
-
 
 .header-text {
   flex-grow: 1;
@@ -22,17 +20,26 @@
   padding-right: 10%;
 }
 
-  .custom-input {
-    min-width: 100%; /* Set your desired width */
-  }
+.custom-input {
+  min-width: 100%;
+}
 
-  ion-input
-  {
-    font-size: 11px;
-    --padding-start: 10px;
-    font-family: 'Inter',sans-serif;
-    font-weight: 500;
-  }
+ion-input, ion-select {
+  font-size: 11px;
+  --padding-start: 10px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  width: 100%;
+}
 
-  
-
+ion-select{
+  margin-top: 10px;
+  background-color: #ffffff;
+  border: 1px solid #858585;
+  border-radius: 2px;
+  height: 50px; 
+  width: calc(100%) !important; /* Account for padding of the container */
+  --highlight-background: transparent;
+  font-family: 'Inter', sans-serif; 
+  padding-right: 15px !important;
+}

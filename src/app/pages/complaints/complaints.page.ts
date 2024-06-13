@@ -10,7 +10,7 @@ import { MenuController } from '@ionic/angular';
 export class ComplaintsPage implements OnInit {
 
   dropdownVisible: { [user: string]: boolean } = {};
-  users: string[] = ['Anonymous user 1', 'Anonymous user 2', 'Anonymous user 3'];
+  users: string[] = ['Xolisa sibeko1', 'Vuyo Mfula', 'Andrew king', 'Mkangeli Mtimkulu', 'Eric Mata'];
   userComplaints: { [user: string]: string[] } = {};
  
 
@@ -20,7 +20,7 @@ export class ComplaintsPage implements OnInit {
     this.users.forEach(user => {
       this.dropdownVisible[user] = false;
       this.userComplaints[user] = [
-        'Residential home is used as a shebeen and the patrons are misbehaving and disturbing the peace of the community with loud music played',
+        'Residential home is used a shebeen and the patrons are misbehaving and disturbing the peace of the community with loud music played.',
       ];
     });
   }
