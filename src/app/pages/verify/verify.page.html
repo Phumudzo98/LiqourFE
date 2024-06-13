@@ -4,10 +4,10 @@
     <p class="emailOTP">Please, enter the OTP code sent to adum ***&#64;** com</p>
 
     <div class="otp-inputs">
-      <input type="text" value="{{otp.substring(0,1)}}" readonly id="ap1">
-      <input type="text" value="{{otp.substring(1,2)}}" readonly id="ap2">
-      <input type="text" value="{{otp.substring(2,3)}}" readonly id="ap3">
-      <input type="text" value="{{otp.substring(3,4)}}" readonly id="ap4">
+      <input type="text" [class.active]="activeInput === 1" value="{{otp.substring(0,1)}}" readonly id="ap1" (click)="setActiveInput(1)">
+      <input type="text" [class.active]="activeInput === 2" value="{{otp.substring(1,2)}}" readonly id="ap2" (click)="setActiveInput(2)">
+      <input type="text" [class.active]="activeInput === 3" value="{{otp.substring(2,3)}}" readonly id="ap3" (click)="setActiveInput(3)">
+      <input type="text" [class.active]="activeInput === 4" value="{{otp.substring(3,4)}}" readonly id="ap4" (click)="setActiveInput(4)">
     </div>
    
     <ion-button class="buttonClass" (click)="checkOTP()">Verify</ion-button>
