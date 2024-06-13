@@ -40,8 +40,6 @@ export class UpdateLocationPage implements OnInit {
       this.longitude=this.lon;
       this.latitude=this.lat;
 
-
-
       //this.getAddressFromCoordinates(this.latitude, this.longitude);
       
     } catch (err) {
