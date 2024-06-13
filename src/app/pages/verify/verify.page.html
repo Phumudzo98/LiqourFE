@@ -4,11 +4,22 @@
     <p class="emailOTP">Please, enter the OTP code sent to adum ***&#64;** com</p>
 
     <div class="otp-inputs">
-      <input type="text" [class.active]="activeInput === 1" value="{{otp.substring(0,1)}}" readonly id="ap1" (click)="setActiveInput(1)">
-      <input type="text" [class.active]="activeInput === 2" value="{{otp.substring(1,2)}}" readonly id="ap2" (click)="setActiveInput(2)">
-      <input type="text" [class.active]="activeInput === 3" value="{{otp.substring(2,3)}}" readonly id="ap3" (click)="setActiveInput(3)">
-      <input type="text" [class.active]="activeInput === 4" value="{{otp.substring(3,4)}}" readonly id="ap4" (click)="setActiveInput(4)">
+      <ion-row>
+        <ion-col>
+          <ion-input #otp1 required="true" maxLength="1" [(ngModel)]="OTP[0]" class="otp-box" (keyup)="otpController($event)"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input #otp2 required="true" maxLength="1" [(ngModel)]="OTP[1]" class="otp-box" (keyup)="otpController($event)"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input #otp3 required="true" maxLength="1" [(ngModel)]="OTP[2]" class="otp-box" (keyup)="otpController($event)"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input #otp4 required="true" maxLength="1" [(ngModel)]="OTP[3]" class="otp-box" (keyup)="otpController($event)"></ion-input>
+        </ion-col>
+      </ion-row>
     </div>
+    
    
     <ion-button class="buttonClass" (click)="checkOTP()">Verify</ion-button>
   </div>

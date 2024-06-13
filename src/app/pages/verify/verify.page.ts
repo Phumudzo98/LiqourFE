@@ -1,6 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonInput, LoadingController, ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-verify',
@@ -8,16 +8,21 @@ import { LoadingController, ToastController } from '@ionic/angular';
   styleUrls: ['./verify.page.scss'],
 })
 export class VerifyPage implements OnInit {
-  email: string = ""; 
-  otp: string = "";
+  OTP: string[] = ['', '', '', '']; // Array to store OTP digits
   toast: any; // Change the type to 'any' for the toast instance
   activeInput: number = 1; // Initialize activeInput to 1
+  email: string = ''; // Set the email for testing
+
+  @ViewChild('otp1', { static: false }) otp1!: IonInput; // Use ! to mark property as initialized later
+  @ViewChild('otp2', { static: false }) otp2!: IonInput; // Use ! to mark property as initialized later
+  @ViewChild('otp3', { static: false }) otp3!: IonInput; // Use ! to mark property as initialized later
+  @ViewChild('otp4', { static: false }) otp4!: IonInput; // Use ! to mark property as initialized later
 
   constructor(
-    private router: Router, 
-    private activatedRoute: ActivatedRoute,
     public loadingCtrl: LoadingController,
-    public toastCtrl: ToastController 
+    public toastCtrl: ToastController,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -29,44 +34,53 @@ export class VerifyPage implements OnInit {
   }
 
   setIpFocus() {
-    for (let i = 1; i <= 4; i++) {
-      const element = document.getElementById('ip' + i);
-      if (element) {
-        if (i === this.activeInput) {
-          element.style.background = 'var(--ion-color-dark)';
-        } else {
-          element.style.background = 'var(--ion-color-light)';
-        }
-      }
+    switch (this.activeInput) {
+      case 1:
+        this.otp1.setFocus();
+        break;
+      case 2:
+        this.otp2.setFocus();
+        break;
+      case 3:
+        this.otp3.setFocus();
+        break;
+      case 4:
+        this.otp4.setFocus();
+        break;
+      default:
+        break;
     }
   }
 
   clear() {
-    this.otp = "";
+    this.OTP = ['', '', '', ''];
+    this.activeInput = 1; // Reset to the first input
     this.setIpFocus();
   }
 
   back() {
     if (this.activeInput > 1) {
-      const activeIndex = this.activeInput - 1; // Adjust index to 0-based
-      this.otp = this.otp.substring(0, activeIndex) + this.otp.substring(this.activeInput); // Remove character at activeIndex
       this.activeInput--;
-      this.setIpFocus();
-    } else if (this.activeInput === 1 && this.otp.length > 0) {
-      this.otp = this.otp.substring(0, this.otp.length - 1); // Remove last character if backspace is pressed on the first box
-      this.setIpFocus();
-    } else if (this.activeInput === 1 && this.otp.length === 0) {
-      this.activeInput = 2; // Move active input to box 2 if attempting to delete when box 1 is empty
+      this.OTP[this.activeInput - 1] = ''; // Clear the current input in OTP array
       this.setIpFocus();
     }
   }
-  
-  
 
-  set(number: string) {
-    if (this.activeInput <= 4) {
-      this.otp = this.otp.substring(0, this.activeInput - 1) + number + this.otp.substring(this.activeInput);
-      this.activeInput++;
+  otpController(event: any) {
+    const key = event.key;
+    const activeIndex = this.activeInput - 1; // Adjust index to 0-based
+
+    if (key === 'Backspace') {
+      if (this.OTP[activeIndex]) {
+        this.OTP[activeIndex] = ''; // Clear the current input
+      } else if (this.activeInput > 1) {
+        this.back();
+      }
+    } else if (!isNaN(Number(key)) && key !== ' ' && this.activeInput <= 4) {
+      this.OTP[activeIndex] = key; // Update the OTP with the entered digit
+      if (this.activeInput < 4) {
+        this.activeInput++;
+      }
       this.setIpFocus();
     }
   }
@@ -74,7 +88,7 @@ export class VerifyPage implements OnInit {
   async presentLoading() {
     const loading = await this.loadingCtrl.create({
       message: 'Verifying OTP...',
-      spinner: "circular"
+      spinner: 'circular',
     });
     await loading.present();
   }
@@ -84,52 +98,34 @@ export class VerifyPage implements OnInit {
       message: message,
       color: color,
       duration: 1000,
-      position: "middle",
+      position: 'middle',
     });
 
     await this.toast.present();
-
-    // Handle toast dismissal
-    this.toast.onDidDismiss().then(() => {
-      // Optional: Add any code you want to run after the toast is dismissed
-    });
   }
 
   async checkOTP() {
     await this.presentLoading();
     setTimeout(async () => {
       await this.loadingCtrl.dismiss();
-      if (this.otp === "1234") {
-        //await this.presentToast("OTP Verified", "success");
+      if (this.OTP.join('') === '1234') { // Check the joined OTP string
+     
         if (this.email === 'inspector@gmail.com') {
           this.router.navigate(['/dashboard']).then(() => {
-            // Dismiss toast after navigation
             this.toast.dismiss();
+          }).catch(err => {
+          
           });
         } else if (this.email === 'outlet@gmail.com') {
           this.router.navigate(['/outlet-dashboard']).then(() => {
-            // Dismiss toast after navigation
             this.toast.dismiss();
+          }).catch(err => {
+            
           });
         }
       } else {
-        //await this.presentToast("Invalid OTP", "danger");
+        await this.presentToast("Invalid OTP", "danger");
       }
     }, 2000);
-  }
-
-  @HostListener('window:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    const key = event.key;
-    if (key === 'Backspace') {
-      this.back();
-    } else if (!isNaN(Number(key)) && key !== ' ') {
-      this.set(key);
-    }
-  }
-
-  setActiveInput(index: number) {
-    this.activeInput = index;
-    this.setIpFocus();
   }
 }
