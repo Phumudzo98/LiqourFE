@@ -20,6 +20,16 @@ ion-card{
   padding: 10px;
   margin-top: -120px;
 }
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+
 ion-col {
     position: relative; 
     border: 1px solid #822B23;
