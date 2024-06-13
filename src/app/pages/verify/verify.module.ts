@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { VerifyPageRoutingModule } from './verify-routing.module';
 
 import { VerifyPage } from './verify.page';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { VerifyPage } from './verify.page';
     FormsModule,
     IonicModule,
     VerifyPageRoutingModule
+   
   ],
   declarations: [VerifyPage]
 })

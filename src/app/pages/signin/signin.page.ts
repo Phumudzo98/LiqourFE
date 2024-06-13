@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -8,27 +9,26 @@ import { Router } from '@angular/router';
 })
 export class SigninPage implements OnInit {
 
-  constructor(private router:Router) { }
+  password!: string;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  email:string=''
+  
+  email: string = "";
+  email2: string = "mkay2@gmail.com";
 
-  signin()
-  {
 
-    switch(this.email) {
-      case "mkay1@gmail.com":
-        this.router.navigate(['outlet-dashboard']);
-        break;
-      case "mkay2@gmail.com":
-        this.router.navigate(['dashboard']);
-        break;
-      default:
-        // Optional: handle cases where the email does not match any of the specified cases
-        break;
-    }
+  sign(){
+    if(this.email === "mkay1@gmail.com")
+      {
+        this.router.navigate(['dashboard'])
+      }
+      else{
+        this.router.navigate(['outlet-dashboard'])
+      }
   }
 
 }
