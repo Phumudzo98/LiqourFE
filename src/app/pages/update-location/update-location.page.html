@@ -23,7 +23,7 @@
   <ion-card class="upload" (click)="triggerFileInput()">
     <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
     <span>Click to upload GIS Report</span>
-    <span>DOCX or PDF</span>
+    <span>PDF</span>
     <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
   </ion-card>
 
@@ -36,6 +36,13 @@
       <span>{{ (file.size / 1024).toFixed(2) }} KB</span>
     </ion-card>
   </div>
+
+  <ion-button class="buttonClass">
+    <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+    Save
+  </ion-button>
+
+
 
 </div>
 </ion-content>
