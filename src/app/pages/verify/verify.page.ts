@@ -42,39 +42,52 @@ export class VerifyPage {
       }
     } else if (!isNaN(Number(key)) && key !== ' ' && index < 4) {
       this.OTP[index] = key; // Update the OTP with the entered digit
-      this.setFocus(index + 1); // Move focus to the next input
-    }
-  }
-
-
-
-
-
-
-  async checkOTP() {
-    if (this.OTP.join('') === '1234') {
-      const message = "OTP Verified";
-      const color = "success";
-      await this.presentToast(message, color);
-      
-      if (this.email === 'inspector@gmail.com') {
-        this.router.navigate(['/dashboard']);
-      } else if (this.email === 'outlet@gmail.com') {
-        this.router.navigate(['/outlet-dashboard']);
+      if (index < 3) {
+        this.setFocus(index + 1); // Move focus to the next input
       }
-    } else {
-      await this.presentToast("Invalid OTP", "danger");
     }
   }
 
-  private async presentToast(message: string, color: string) {
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Verifying OTP...',
+      spinner: 'circular',
+    });
+    await loading.present();
+  }
+
+  async presentToast(message: string, color: string, customClass: string) {
     const toast = await this.toastCtrl.create({
       message: message,
       color: color,
-      duration: 2000,
+      duration: 1000,
       position: 'middle',
+      cssClass: customClass,
     });
+
     await toast.present();
+
+    // Handle toast dismissal
+    toast.onDidDismiss().then(() => {
+      // Optional: Add any code you want to run after the toast is dismissed
+    });
+  }
+
+  async checkOTP() {
+    await this.presentLoading();
+    setTimeout(async () => {
+      await this.loadingCtrl.dismiss();
+      if (this.OTP.join('') === '1234') { // Check the joined OTP string
+        
+        if (this.email === 'inspector@gmail.com') {
+          this.router.navigate(['/dashboard']);
+        } else if (this.email === 'outlet@gmail.com') {
+          this.router.navigate(['/outlet-dashboard']);
+        }
+      } else {
+        await this.presentToast('Invalid OTP', 'danger', 'custom-toast');
+      }
+    }, 2000);
   }
 
   private setFocus(index: number) {

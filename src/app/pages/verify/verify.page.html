@@ -6,15 +6,16 @@
     <div class="otp-inputs">
       
        
-        <ion-input #otp1 maxlength="1" class="otp-box"(keyup)="otpController($event, 0)"></ion-input>
-        <ion-input #otp2 maxlength="1" class="otp-box" (keyup)="otpController($event, 1)"></ion-input>
-        <ion-input #otp3 maxlength="1" class="otp-box"(keyup)="otpController($event, 2)"></ion-input>
-        <ion-input #otp4 maxlength="1" class="otp-box"(keyup)="otpController($event, 3)"></ion-input>
-    
+      <ion-input #otp1 maxlength="1" [(ngModel)]="OTP[0]" (keyup)="otpController($event, 0)"></ion-input>
+      <ion-input #otp2 maxlength="1" [(ngModel)]="OTP[1]" (keyup)="otpController($event, 1)"></ion-input>
+      <ion-input #otp3 maxlength="1" [(ngModel)]="OTP[2]" (keyup)="otpController($event, 2)"></ion-input>
+      <ion-input #otp4 maxlength="1" [(ngModel)]="OTP[3]" (keyup)="otpController($event, 3)"></ion-input>
+      
     
     </div>
     
    
     <ion-button class="buttonClass" (click)="checkOTP()">Verify</ion-button>
+    
   </div>
 </ion-content>
