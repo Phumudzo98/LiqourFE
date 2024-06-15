@@ -92,19 +92,27 @@ p a {
     background-color: green;
   }
   
-  
+/* For the cursor color */
+::ng-deep ion-input input {
+  caret-color: #822B23 !important;
+}
 
-  
-  .otp-box:focus {
-    outline: none;
-    border-color: #0f151b; /* Border color on focus */
-  }
-  
-  .otp-box::placeholder {
-    color: transparent;
-  }
-  
-  .otp-box:not(:placeholder-shown) {
-    border-color: #0f151b; /* Border color when filled */
-  }
-  
+/* For the active state color */
+::ng-deep ion-input input:focus {
+  color: #822B23!important;
+  --color: #822B23!important;
+  --highlight-color-focused: #822B23!important; /* Added for increased specificity */
+}
+
+/* For the valid state color */
+::ng-deep ion-input.input-has-value.ion-pristine:not(.ion-invalid) {
+  --highlight-color-valid: #822B23 !important;
+}
+
+
+
+
+
+
+
+

@@ -27,10 +27,8 @@ export class VerifyPage {
     // Read email from query parameters
     this.activatedRoute.queryParams.subscribe(params => {
       this.email = params['email'];
-     
     });
   }
-
 
   handleKeydown(event: KeyboardEvent, currentIndex: number) {
     const input = event.target as HTMLInputElement;
@@ -99,5 +97,10 @@ export class VerifyPage {
   resetOTP() {
     this.otp = ['', '', '', ''];
     this.otpInputs.first.setFocus(); // Focus the first input field
+  }
+
+  // Add this method to dynamically change the active state color
+  changeActiveColor(input: IonInput) {
+    input.color = 'black';
   }
 }
