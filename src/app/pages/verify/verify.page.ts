@@ -72,9 +72,13 @@ export class VerifyPage {
       const otpCode = this.otp.join('');
       if (otpCode === '1234') {
         if (this.email === 'inspector@gmail.com') {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard']).then(() => {
+            this.resetOTP();
+          });
         } else if (this.email === 'outlet@gmail.com') {
-          this.router.navigate(['/outlet-dashboard']);
+          this.router.navigate(['/outlet-dashboard']).then(() => {
+            this.resetOTP();
+          });
         }
       } else {
         this.showAlertMessage('danger', 'Invalid OTP');
@@ -90,5 +94,10 @@ export class VerifyPage {
     setTimeout(() => {
       this.showAlert = false;
     }, 2000); // Disable the message after 2 seconds
+  }
+
+  resetOTP() {
+    this.otp = ['', '', '', ''];
+    this.otpInputs.first.setFocus(); // Focus the first input field
   }
 }
