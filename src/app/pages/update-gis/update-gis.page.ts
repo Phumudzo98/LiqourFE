@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-gis',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateGisPage implements OnInit {
 
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit() {
   }
@@ -48,6 +49,10 @@ export class UpdateGisPage implements OnInit {
     },
     
   ];
+
+  navigateToBack() {
+    this.route.navigate(['dashboard']);
+  }
 
 
 
