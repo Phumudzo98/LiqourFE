@@ -91,6 +91,15 @@ ion-card{
     color: #2A2A2A;
     
   }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-left: 3%;
+    font-family: 'Inter', sans-serif;
+  }
   
   .search-input::placeholder {
     position: absolute;
@@ -98,6 +107,8 @@ ion-card{
     font-size: 15px !important;
     
   }
+
+
   
 
   

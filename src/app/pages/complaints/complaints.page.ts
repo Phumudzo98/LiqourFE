@@ -43,6 +43,10 @@ export class ComplaintsPage implements OnInit {
     this.route.navigate(['view-complaint']);
   }
 
+  navigateToBack() {
+    this.route.navigate(['dashboard']);
+  }
+  
   navigateToEdit() {
     this.route.navigate(['edit-complaint']);
   }

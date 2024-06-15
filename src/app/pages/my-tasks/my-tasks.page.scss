@@ -17,6 +17,16 @@ ion-card{
    
     
 }
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-left: 3%;
+  font-family: 'Inter', sans-serif;
+}
+
 .dashboard-container{
   padding: 10px;
 

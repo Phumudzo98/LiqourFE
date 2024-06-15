@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inspections',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InspectionsPage implements OnInit {
 
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit() {
   }
@@ -47,5 +48,9 @@ export class InspectionsPage implements OnInit {
     },
     
   ];
+
+  navigateToBack() {
+    this.route.navigate(['dashboard']);
+  }
 
 }
