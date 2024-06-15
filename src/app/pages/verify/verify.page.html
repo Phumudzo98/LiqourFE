@@ -6,16 +6,19 @@
     <div class="otp-inputs">
       
        
-      <ion-input #otp1 maxlength="1" [(ngModel)]="OTP[0]" (keyup)="otpController($event, 0)"></ion-input>
-      <ion-input #otp2 maxlength="1" [(ngModel)]="OTP[1]" (keyup)="otpController($event, 1)"></ion-input>
-      <ion-input #otp3 maxlength="1" [(ngModel)]="OTP[2]" (keyup)="otpController($event, 2)"></ion-input>
-      <ion-input #otp4 maxlength="1" [(ngModel)]="OTP[3]" (keyup)="otpController($event, 3)"></ion-input>
-      
+      <ion-input #otpInput type="text" maxlength="1" [(ngModel)]="otp[0]" (keydown)="handleKeydown($event, 0)" (keyup)="focusNext($event, 1)" inputmode="numeric"></ion-input>
+      <ion-input #otpInput type="text" maxlength="1" [(ngModel)]="otp[1]" (keydown)="handleKeydown($event, 1)" (keyup)="focusNext($event, 2)" inputmode="numeric"></ion-input>
+      <ion-input #otpInput type="text" maxlength="1" [(ngModel)]="otp[2]" (keydown)="handleKeydown($event, 2)" (keyup)="focusNext($event, 3)" inputmode="numeric"></ion-input>
+      <ion-input #otpInput type="text" maxlength="1" [(ngModel)]="otp[3]" (keydown)="handleKeydown($event, 3)" (keyup)="focusNext($event, 4)" inputmode="numeric"></ion-input>
+    
     
     </div>
     
    
     <ion-button class="buttonClass" (click)="checkOTP()">Verify</ion-button>
-    
+    <div *ngIf="showAlert" class="alert" [ngClass]="alertType">
+      {{ alertMessage }}
+    </div>
   </div>
+  
 </ion-content>

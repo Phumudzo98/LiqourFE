@@ -72,7 +72,25 @@ p a {
    
   
   }
+  .alert {
+    position: fixed;
+    bottom: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  }
   
+  .danger {
+    background-color: red;
+  }
+  
+  .success {
+    background-color: green;
+  }
   
   
 
