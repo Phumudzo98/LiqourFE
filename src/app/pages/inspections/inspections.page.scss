@@ -98,3 +98,12 @@ ion-card{
     font-size: 15px !important;
     
   }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-left: 0%;
+    font-family: 'Inter', sans-serif;
+  }

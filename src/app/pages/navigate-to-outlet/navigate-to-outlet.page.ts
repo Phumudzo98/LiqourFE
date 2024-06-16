@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigate-to-outlet',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigateToOutletPage implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
   }
@@ -47,4 +48,8 @@ export class NavigateToOutletPage implements OnInit {
     },
     
   ];
+
+  navigateToBack() {
+    this.route.navigate(['dashboard']);
+  }
 }
