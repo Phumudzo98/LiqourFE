@@ -40,3 +40,10 @@ ion-input
   font-family: 'Inter',sans-serif;
   font-weight: 500;
 }
+
+
+/* For the cursor color */
+::ng-deep ion-input input {
+    caret-color: #822B23 !important;
+  }
+  
