@@ -99,9 +99,9 @@ p a {
 
 /* For the active state color */
 ::ng-deep ion-input input:focus {
-  color: #822B23!important;
-  --color: #822B23!important;
-  --highlight-color-focused: #822B23!important; /* Added for increased specificity */
+  color: black!important;
+  --color: black!important;
+  --highlight-color-focused: black!important; /* Added for increased specificity */
 }
 
 /* For the valid state color */

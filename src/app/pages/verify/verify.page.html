@@ -4,10 +4,10 @@
     <p class="emailOTP">Please, enter the OTP code sent to adum ***&#64;** com</p>
 
     <div class="otp-inputs">
-      <ion-input style="--highlight-color-valid: #822B23; --color: #822B23;"#otpInput type="text" maxlength="1" [(ngModel)]="otp[0]" (keydown)="handleKeydown($event, 0)" (keyup)="focusNext($event, 1)" inputmode="numeric"></ion-input>
-      <ion-input style="--highlight-color-valid: #822B23; --color: #822B23;"#otpInput type="text" maxlength="1" [(ngModel)]="otp[1]" (keydown)="handleKeydown($event, 1)" (keyup)="focusNext($event, 2)" inputmode="numeric"></ion-input>
-      <ion-input style="--highlight-color-valid: #822B23; --color: #822B23;" #otpInput type="text" maxlength="1" [(ngModel)]="otp[2]" (keydown)="handleKeydown($event, 2)" (keyup)="focusNext($event, 3)" inputmode="numeric"></ion-input>
-      <ion-input style="--highlight-color-valid: #822B23; --color: #822B23;" #otpInput type="text" maxlength="1" [(ngModel)]="otp[3]" (keydown)="handleKeydown($event, 3)" (keyup)="focusNext($event, 4)" inputmode="numeric"></ion-input>
+      <ion-input style="--highlight-color-valid: #822B23; --color: black;"#otpInput type="text" maxlength="1" [(ngModel)]="otp[0]" (keydown)="handleKeydown($event, 0)" (keyup)="focusNext($event, 1)" inputmode="numeric"></ion-input>
+      <ion-input style="--highlight-color-valid: #822B23; --color: black;"#otpInput type="text" maxlength="1" [(ngModel)]="otp[1]" (keydown)="handleKeydown($event, 1)" (keyup)="focusNext($event, 2)" inputmode="numeric"></ion-input>
+      <ion-input style="--highlight-color-valid: #822B23; --color: black;" #otpInput type="text" maxlength="1" [(ngModel)]="otp[2]" (keydown)="handleKeydown($event, 2)" (keyup)="focusNext($event, 3)" inputmode="numeric"></ion-input>
+      <ion-input style="--highlight-color-valid: #822B23; --color: black;" #otpInput type="text" maxlength="1" [(ngModel)]="otp[3]" (keydown)="handleKeydown($event, 3)" (keyup)="focusNext($event, 4)" inputmode="numeric"></ion-input>
     </div>
 
     <ion-button class="buttonClass" (click)="checkOTP()">Verify</ion-button>
