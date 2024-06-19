@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { headers, headersSecure } from 'src/app/util/service/const';
+import { headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-navigate-to-outlet',
@@ -9,15 +9,14 @@ import { headers, headersSecure } from 'src/app/util/service/const';
   styleUrls: ['./navigate-to-outlet.page.scss'],
 })
 export class NavigateToOutletPage implements OnInit {
-
-  constructor(private route: Router, private http: HttpClient) { }
-
   outlets: any[] = [];
   specific: any = '';
   loading: boolean = true; // Add loading state
 
+  constructor(private route: Router, private http: HttpClient) { }
+
   ngOnInit() {
-    let url = "/api/outlet"
+    let url = "/api/outlet";
     this.http.get<any[]>(url + "/get-outlets", { headers: headersSecure }).subscribe(response => {
         const large = response;
         this.specific = large;
