@@ -58,6 +58,16 @@ ion-input {
 .centered-col {
   margin-top: 35px;
 }
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-left: 0%;
+  font-family: 'Inter', sans-serif;
+}
+
 .info-time {
   color: rgba(154, 154, 154, 0.9); 
   font-size: 13px;
