@@ -2,7 +2,10 @@
 
 
  <app-menu-header></app-menu-header>
-
+<div *ngIf="loading" class="loader-container">
+  <div class="loader"></div>
+  <div class="loading-text">Loading...</div>
+</div>
 <ion-content >
   <div class="header-container">
     <img src="assets/Images/Back Icon.svg" (click)="navigateToBack()" class="back-Arrow">

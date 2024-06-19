@@ -1,4 +1,9 @@
 <app-menu-header></app-menu-header>
+<!-- Loader that will be displayed while loading -->
+<div *ngIf="loading" class="loader-container">
+  <div class="loader"></div>
+  <div class="loading-text">Loading...</div>
+</div>
 <ion-content>
   <div class="dashboard-container">
 
@@ -6,20 +11,18 @@
     
 
     <!-- Main Content Section -->
-   
-      <div class="header-container">
+  
+      <div class="header-container" >
         <img src="assets/Images/Back Icon.svg" (click)="navigateToBack()" class="back-Arrow">
       </div>
-      <p class="quick-action">Navigate to Outlet</p>
+      <p class="quick-action" *ngIf="!loading">Navigate to Outlet</p>
 
-      <ion-item class="search-item">
+      <ion-item class="search-item" *ngIf="!loading">
         <ion-input name="search" placeholder="Search Outlets" class="search-input">
           <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
         </ion-input>
       </ion-item>
-      <div *ngIf="loading" class="spinner-container">
-        <ion-spinner name="crescent"></ion-spinner>
-      </div>
+
     <div *ngIf="!loading">
       <ion-card *ngFor="let outlet of outlets">
         <ion-grid class="top">
