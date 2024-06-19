@@ -9,29 +9,28 @@ import { headersSecure } from 'src/app/util/service/const';
   styleUrls: ['./my-tasks.page.scss'],
 })
 export class MyTasksPage implements OnInit {
+  collect: any[] = [];
+  loading: boolean = true; // Add loading state
 
-  constructor(private route:Router, private http:HttpClient) { }
-
-  collect:any[]=[]
+  constructor(private route: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    let url="/api/general/get-inbox"
+    let url = "/api/general/get-inbox";
 
-    this.http.get<any[]>(url,{headers:headersSecure}).subscribe(response=>
-      {
+    this.http.get<any[]>(url, { headers: headersSecure }).subscribe(
+      response => {
         console.log(response);
-        this.collect=response;
+        this.collect = response;
+        this.loading = false; // Hide loader after data is loaded
+      },
+      error => {
+        console.log(error);
+        this.loading = false; // Hide loader if there's an error
       }
-      ,error=>
-        {
-          console.log(error);
-          
-        }
-    )
+    );
   }
 
   navigateToBack() {
     this.route.navigate(['dashboard']);
   }
-
 }
