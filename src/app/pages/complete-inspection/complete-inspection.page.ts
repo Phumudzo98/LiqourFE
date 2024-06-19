@@ -40,8 +40,6 @@ export class CompleteInspectionPage implements OnInit {
       indicatedParticularPerson: ['', [Validators.required]],
       personFoundConfirmed: ['', [Validators.required]],
       rightToOccupy: ['', [Validators.required]],
-      
-
     });
 
     this.communityForm = this.fb.group({

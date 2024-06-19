@@ -93,6 +93,7 @@
     </div>
    
     <ion-card class="upload2">
+      <form [formGroup]="applicantForm">
       
         <span>(a) Was an appointment set with the applicant for inspection on this day?</span>
         <ion-card-title class="general-name">
@@ -100,19 +101,19 @@
                 <ion-row>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="yes_appt" name="appt" value="yes">
+                            <input type="radio" id="yes_appt" name="appt" value="1" formControlName="appointmentSet">
                             <label for="yes_appt">Yes</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="no_appt" name="appt" value="no">
+                            <input type="radio" id="no_appt" name="appt" value="2" formControlName="appointmentSet">
                             <label for="no_appt">No</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="na_appt" name="appt" value="na">
+                            <input type="radio" id="na_appt" name="appt" value="3" formControlName="appointmentSet">
                             <label for="na_appt">N/A</label>
                         </div>
                     </ion-col>
@@ -127,19 +128,19 @@
                 <ion-row>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="yes_person" name="person" value="yes">
+                            <input type="radio" id="yes_person" name="" value="1" formControlName="personConsulted">
                             <label for="yes_person">Yes</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="no_person" name="person" value="no">
+                            <input type="radio" id="no_person" name="" value="2" formControlName="personConsulted">
                             <label for="no_person">No</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="na_person" name="person" value="na">
+                            <input type="radio" id="na_person" name="" value="3" formControlName="personConsulted">
                             <label for="na_person">N/A</label>
                         </div>
                     </ion-col>
@@ -154,19 +155,19 @@
                 <ion-row>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="yes_indicated" name="indicated" value="yes">
+                            <input type="radio" id="yes_indicated" name="indicated" value="1" formControlName="indicatedParticularPerson">
                             <label for="yes_indicated">Yes</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="no_indicated" name="indicated" value="no">
+                            <input type="radio" id="no_indicated" name="indicated" value="2" formControlName="indicatedParticularPerson">
                             <label for="no_indicated">No</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="na_indicated" name="indicated" value="na">
+                            <input type="radio" id="na_indicated" name="indicated" value="3" formControlName="indicatedParticularPerson">
                             <label for="na_indicated">N/A</label>
                         </div>
                     </ion-col>
@@ -181,19 +182,19 @@
                 <ion-row>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="yes_confirm" name="confirm" value="yes">
+                            <input type="radio" id="yes_confirm" name="confirm" value="1" formControlName="personFoundConfirmed">
                             <label for="yes_confirm">Yes</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="no_confirm" name="confirm" value="no">
+                            <input type="radio" id="no_confirm" name="confirm" value="2" formControlName="personFoundConfirmed">
                             <label for="no_confirm">No</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="na_confirm" name="confirm" value="na">
+                            <input type="radio" id="na_confirm" name="confirm" value="3" formControlName="personFoundConfirmed">
                             <label for="na_confirm">N/A</label>
                         </div>
                     </ion-col>
@@ -208,19 +209,19 @@
                 <ion-row>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="yes_interests" name="interests" value="yes">
+                            <input type="radio" id="yes_interests" name="interests" value="1">
                             <label for="yes_interests">Yes</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="no_interests" name="interests" value="no">
+                            <input type="radio" id="no_interests" name="interests" value="2">
                             <label for="no_interests">No</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="na_interests" name="interests" value="na">
+                            <input type="radio" id="na_interests" name="interests" value="3">
                             <label for="na_interests">N/A</label>
                         </div>
                     </ion-col>
@@ -282,6 +283,8 @@
             </ion-grid>
         </ion-card-title>
         <hr>
+  </form>
+
     </ion-card>
 </div>
 
