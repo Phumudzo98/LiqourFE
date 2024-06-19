@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { headers, headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-navigate-to-outlet',
@@ -8,46 +10,59 @@ import { Router } from '@angular/router';
 })
 export class NavigateToOutletPage implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private http: HttpClient) { }
+
+  outlets: any[] = [];
+  specific: any = '';
+  loading: boolean = true; // Add loading state
 
   ngOnInit() {
-  }
-  outlets = [
-    {
-      imgSrc: '../../../assets/Images/kwa coca.jpeg',
-      header: 'Kwa Coca Tavern',
-      details: 'ECP08498/03017/OO <br>On & Off Consumption',
-      iconSrc: '../../../assets/Images/Group 88.svg',
-    },
-    {
-      imgSrc: '../../../assets/Images/pllas.jpeg',
-      header: 'POLLAS TAVERN',
-      details: 'ECP08500/03020/OO <br>On & Off Consumption',
-      iconSrc: '../../../assets/Images/Group 88.svg',
-    },
- 
+    let url = "/api/outlet"
+    this.http.get<any[]>(url + "/get-outlets", { headers: headersSecure }).subscribe(response => {
+        const large = response;
+        this.specific = large;
 
-    {
-      imgSrc: '../../../assets/Images/viva.jpeg',
-      header: 'VIVAS TAVERN',
-      details: 'ECP08507/90454/OO <br>On & Off Consumption',
-      iconSrc: '../../../assets/Images/Group 88.svg',
-    },
-    {
-      imgSrc: '../../../assets/Images/shakis.jpeg',
-      header: 'SAKHIS TAVERN',
-      details: 'ECP08517/03033/OO <br>On & Off Consumption',
-      iconSrc: '../../../assets/Images/Group 88.svg',
-    },
-   
-    {
-      imgSrc: '../../../assets/Images/burguer nn.jpeg',
-      header: 'THE BURGER INN',
-      details: 'ECP00852/90454/ON <br>On Consumption',
-      iconSrc: '../../../assets/Images/Group 88.svg',
-    },
-    
-  ];
+        this.outlets = [
+          {
+            imgSrc: '../../../assets/Images/kwa coca.jpeg',
+            header: this.specific[5].organisationName,
+            details: this.specific[5].ecpNumber + " " + this.specific[5].licenseCategory,
+            iconSrc: '../../../assets/Images/Group 88.svg',
+          },
+          {
+            imgSrc: '../../../assets/Images/pllas.jpeg',
+            header: this.specific[6].organisationName,
+            details: this.specific[6].ecpNumber + " " + this.specific[6].licenseCategory,
+            iconSrc: '../../../assets/Images/Group 88.svg',
+          },
+          {
+            imgSrc: '../../../assets/Images/viva.jpeg',
+            header: this.specific[7].organisationName,
+            details: this.specific[7].ecpNumber + " " + this.specific[7].licenseCategory,
+            iconSrc: '../../../assets/Images/Group 88.svg',
+          },
+          {
+            imgSrc: '../../../assets/Images/shakis.jpeg',
+            header: this.specific[8].organisationName,
+            details: this.specific[8].ecpNumber + " " + this.specific[8].licenseCategory,
+            iconSrc: '../../../assets/Images/Group 88.svg',
+          },
+          {
+            imgSrc: '../../../assets/Images/burguer nn.jpeg',
+            header: this.specific[9].organisationName,
+            details: this.specific[9].ecpNumber + " " + this.specific[9].licenseCategory,
+            iconSrc: '../../../assets/Images/Group 88.svg',
+          },
+        ];
+
+        this.loading = false; // Hide spinner after data is loaded
+      },
+      error => {
+        console.log(error);
+        this.loading = false; // Hide spinner if there's an error
+      }
+    );
+  }
 
   navigateToBack() {
     this.route.navigate(['dashboard']);

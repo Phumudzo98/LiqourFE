@@ -1,36 +1,19 @@
-
-<!--
-
-//We have no header in the login page//
-
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>signin</ion-title>
-  </ion-toolbar>
-</ion-header>-->
-
 <ion-content>
-  
   <div class="container">
-    <ion-img src="../../../assets/Images/logo (7) 2.svg" alt="Logo" class="image" ></ion-img>
+    <ion-img src="../../../assets/Images/logo (7) 2.svg" alt="Logo" class="image"></ion-img>
 
     <p class="welcome">Welcome</p>
     <p class="signin">Sign in</p>
-   
-    <ion-item>
-      <ion-input name="email" [(ngModel)]="email" type="email" placeholder="Email"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-input name="password" [(ngModel)]="password" type="password" placeholder="Password"></ion-input>
-    </ion-item>
-  
-
-    <p class="welcome forgot"><a>Forgot password?</a></p>
-
-    <ion-button class="buttonClass" (click)="sign()">Sign in</ion-button>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-item>
+        <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+      </ion-item>
+      <p class="welcome forgot"><a>Forgot password?</a></p>
+      <ion-button class="buttonClass" type="submit">Sign in</ion-button>
+    </form>
   </div>
-  <!--Login Form-->
-
-
 </ion-content>

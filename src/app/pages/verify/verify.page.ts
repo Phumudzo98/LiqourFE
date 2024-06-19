@@ -1,13 +1,20 @@
-import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { IonInput, LoadingController, ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Auth } from 'src/app/util/service/Auth';
+import { HelperService } from 'src/app/util/service/helper.service';
+import { OtpServiceService } from 'src/app/util/service/otp-service.service';
+import { DataService } from 'src/app/util/service/data.service';
+
+
+
 
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.page.html',
   styleUrls: ['./verify.page.scss'],
 })
-export class VerifyPage {
+export class VerifyPage implements OnInit{
   otp: string[] = ['', '', '', ''];
   email: string = ''; // Add the email property
 
@@ -15,19 +22,39 @@ export class VerifyPage {
   alertType!: string;
   alertMessage!: string;
   showAlert!: boolean;
+  enteredOtp: string=''; 
+  
+
+  
+
 
   constructor(
     private loadingCtrl: LoadingController,
     private router: Router,
-    private toastCtrl: ToastController,
+    private dataService: DataService,
     private activatedRoute: ActivatedRoute,
+    private auth: Auth,
+    private helper:HelperService,
+    private service: OtpServiceService
+   
+    
   ) {}
 
+  sharedData: string='';
+
   ngOnInit() {
+
+
+
     // Read email from query parameters
     this.activatedRoute.queryParams.subscribe(params => {
       this.email = params['email'];
     });
+
+    this.sharedData = this.dataService.getData();
+    
+    
+   
   }
 
   handleKeydown(event: KeyboardEvent, currentIndex: number) {
@@ -44,6 +71,8 @@ export class VerifyPage {
       }
     }
   }
+
+  
 
   focusNext(event: KeyboardEvent, nextIndex: number) {
     const input = event.target as HTMLInputElement;
@@ -63,26 +92,7 @@ export class VerifyPage {
     await loading.present();
   }
 
-  async checkOTP() {
-    await this.presentLoading();
-    setTimeout(async () => {
-      await this.loadingCtrl.dismiss();
-      const otpCode = this.otp.join('');
-      if (otpCode === '1234') {
-        if (this.email === 'inspector@gmail.com') {
-          this.router.navigate(['/dashboard']).then(() => {
-            this.resetOTP();
-          });
-        } else if (this.email === 'outlet@gmail.com') {
-          this.router.navigate(['/outlet-dashboard']).then(() => {
-            this.resetOTP();
-          });
-        }
-      } else {
-        this.showAlertMessage('danger', 'Invalid OTP');
-      }
-    }, 2000);
-  }
+  
 
   showAlertMessage(type: string, message: string) {
     this.alertType = type;
@@ -103,4 +113,44 @@ export class VerifyPage {
   changeActiveColor(input: IonInput) {
     input.color = 'black';
   }
+
+  
+
+  public submitOTP(): void {
+
+    console.log(localStorage.getItem('otp'));
+    this.enteredOtp = localStorage.getItem('otp') ?? '';
+ 
+    this.auth.otp = this.enteredOtp; 
+
+    let username = localStorage.getItem('username');
+    
+
+    this.auth.username = (username !== null && username !== undefined) ? username.toString() : '';
+
+    this.service.validateOTP(this.auth).subscribe({
+      next: (res:any) => {
+        //this.spinner.hide();
+        
+        this.router.navigate(['/dashboard']);
+
+        console.log(this.helper.setToken(res.message))
+
+       
+      }, error: (error: any) => {
+        
+        /*Swal.fire({position: 'center',
+        icon: 'error',
+        text: message.message,
+        title: message.success,
+        showConfirmButton: false,
+        timer: 5000})*/
+        //this.spinner.hide()
+      }
+    })
+  }
+
+  
+
+
 }

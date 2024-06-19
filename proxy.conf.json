@@ -1,0 +1,9 @@
+{
+    "/api":
+    {
+        "target":"https://system.eclb.co.za/eclb",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel":"debug"
+    }
+}

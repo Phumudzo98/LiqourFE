@@ -10,7 +10,7 @@
       <ion-input style="--highlight-color-valid: #822B23; --color: black;" #otpInput type="text" maxlength="1" [(ngModel)]="otp[3]" (keydown)="handleKeydown($event, 3)" (keyup)="focusNext($event, 4)" inputmode="numeric"></ion-input>
     </div>
 
-    <ion-button class="buttonClass" (click)="checkOTP()">Verify</ion-button>
+    <ion-button class="buttonClass" (click)="submitOTP()">Verify</ion-button>
     <div *ngIf="showAlert" class="alert" [ngClass]="alertType">
       {{ alertMessage }}
     </div>

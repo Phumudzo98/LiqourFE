@@ -12,21 +12,21 @@
       </ion-input>
     </ion-item>
     
-    <ng-container *ngFor="let user of users">
+    <ng-container *ngFor="let user of collect">
       <div class="header-content">
-        <ion-label class="label">{{ user }}</ion-label>
+        <ion-label class="label">{{ user.outletName }}</ion-label>
         <ion-img src="../../../assets/Images/dots.svg" class="vector" (click)="toggleDropdown($event, user)"></ion-img>
         <div class="dropdown-content" [class.show]="dropdownVisible[user]">
           <ion-item (click)="navigateToView()">View</ion-item>
           <ion-item (click)="navigateToEdit()">Edit</ion-item>
         </div>
       </div>
-      <ng-container *ngFor="let complaint of userComplaints[user]">
-        <p class="">Complaint: {{ complaint.complaint }}</p>
-        <p class="">Reference Number: {{ complaint.referenceNumber }}</p>
-        <p class="">Date: {{ complaint.date }}</p>
-        <p class="">Time: {{ complaint.time }}</p>
-      </ng-container>
+      
+        <p class="">Complaint: {{ user.descriptionOfComplaint }}</p>
+        <p class="">Reference Number: {{ user.referenceNumber }}</p>
+        <p class="">Date: {{ user.dateComplaintLogged }}</p>
+        <p class="">Time: {{ user.dateComplaintLogged }}</p>
+      
     </ng-container>
   </div>
 </ion-content>
