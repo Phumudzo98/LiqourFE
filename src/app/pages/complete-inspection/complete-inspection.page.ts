@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -16,9 +18,29 @@ export class CompleteInspectionPage implements OnInit {
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController) {}
+  constructor(private aRoute: Router, private route: ActivatedRoute, private eRef: ElementRef, private alertController: AlertController, private http :HttpClient) {}
+
+  caseId:any;
 
   ngOnInit() {
+
+    let url="/api/general/get-inspection/"
+    this.route.paramMap.subscribe(param => {
+      this.caseId = param.get('caseId');
+
+     this.http.get<any>(url+this.caseId,{headers: headersSecure}).subscribe(response=>
+      {
+        console.log(response);
+        
+      },error=>{
+        console.log(error);
+        
+      }
+     )
+
+      
+     
+    });
   }
 
   personContacted: string = "Person Contacted";
@@ -60,7 +82,7 @@ export class CompleteInspectionPage implements OnInit {
   }
 
   navigateToBack() {
-    this.route.navigate(['complete-inspection']);
+    this.aRoute.navigate(['complete-inspection']);
   }
 
   async presentAlertConfirm(index: number) {
