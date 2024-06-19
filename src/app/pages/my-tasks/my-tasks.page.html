@@ -11,77 +11,26 @@
     <ion-grid>
       <p class="quick-action">My Tasks</p>
       <p class="new">New</p>
+      <div *ngFor="let task of collect">
       <ion-row>
+        
         <ion-col class="center-content" offset="0.2">   
-          <p class="col-header">Kwa Coca Tarven </p>
+          <p class="col-header">{{task.outletName}} </p>
           <div class="info">
-            <span>Complete Reports</span>
+            <span>{{task.status}}</span>
             <br>
             <span>East London</span>
           </div>
           <div class="info-time">
-            <span>Due: 17 May 2024</span>
+            <span>Due: {{task.dueDate}}</span>
             <br>
             <span>11:30 AM - 12:30 PM</span>
           </div>
         </ion-col>
+      
       </ion-row>
+    </div>
     </ion-grid>
-
-    <ion-grid>
-      <ion-row>
-        <ion-col class="center-content" offset="0.2">   
-          <p class="col-header">Poca's Tarven</p>
-          <div class="info">
-            <span>Complete Reports</span>
-            <br>
-            <span>East London</span>
-          </div>
-          <div class="info-time">
-            <span>Due: 6 July 2024</span>
-            <br>
-            <span>11:30 AM - 12:30 PM</span>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid>
-      <ion-row>
-        <ion-col class="center-content" offset="0.2">   
-          <p class="col-header">VIVAS Tarven</p>
-          <div class="info">
-            <span>Complete Reports</span>
-            <br>
-            <span>King Williams Town</span>
-          </div>
-          <div class="info-time">
-            <span>Due: 19 June 2024</span>
-            <br>
-            <span>11:30 AM - 12:30 PM</span>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid>
-      <ion-row>
-        <ion-col class="center-content" offset="0.2">   
-          <p class="col-header">SAKHIS Tavern</p>
-          <div class="info">
-            <span>Complete Reports</span>
-            <br>
-            <span>East London</span>
-          </div>
-          <div class="info-time">
-            <span>Due: 7 May 2024</span>
-            <br>
-            <span>10:30 AM - 11:30 PM</span>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
    
   </div>
 </ion-content>

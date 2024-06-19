@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-my-tasks',
@@ -8,9 +10,24 @@ import { Router } from '@angular/router';
 })
 export class MyTasksPage implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor(private route:Router, private http:HttpClient) { }
+
+  collect:any[]=[]
 
   ngOnInit() {
+    let url="/api/general/get-inbox"
+
+    this.http.get<any[]>(url,{headers:headersSecure}).subscribe(response=>
+      {
+        console.log(response);
+        this.collect=response;
+      }
+      ,error=>
+        {
+          console.log(error);
+          
+        }
+    )
   }
 
   navigateToBack() {
