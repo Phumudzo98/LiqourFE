@@ -165,7 +165,34 @@ ion-input{
     margin-bottom: 15px;
 
   }
-  ion-input{
-    margin-top: 20px;
-    color: black;
+
+  .custom-input {
+    min-width: 100%;
+    margin-bottom: 8px;
   }
+  
+  ion-input, ion-select {
+    font-size: 11px;
+    --padding-start: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    width: 100%;
+  }
+  
+  ion-select{
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 1px solid #858585;
+    border-radius: 2px;
+    height: 50px; 
+    width: calc(100%) !important; /* Account for padding of the container */
+    --highlight-background: transparent;
+    font-family: 'Inter', sans-serif; 
+    padding-right: 15px !important;
+  }
+  
+  ion-label{
+    margin-left: 15px !important;
+    font-size: 12px !important;
+  }
+  
