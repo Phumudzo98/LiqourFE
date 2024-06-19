@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { headers, headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-complaints',
@@ -10,28 +12,25 @@ import { MenuController } from '@ionic/angular';
 export class ComplaintsPage implements OnInit {
 
   dropdownVisible: { [user: string]: boolean } = {};
-  users: string[] = ['Parklane Restaurant', 'THE BURGER INN', 'VIVAS TAVERN', 'THEMBEKA PLACE', 'Kwa Coca Tavern'];
-  userComplaints: { [user: string]: { 
-    complaint: string, 
-    referenceNumber: string, 
-    date: string, 
-    time: string, 
-  }[] } = {};
+  collect: any[] = [];
 
-  constructor(private route: Router, private eRef: ElementRef) {}
+  constructor(private route: Router, private eRef: ElementRef, private http:HttpClient) {}
 
   ngOnInit() {
-    this.users.forEach(user => {
-      this.dropdownVisible[user] = false;
-      this.userComplaints[user] = [
-        {
-          complaint: 'Residential home is used a shebeen and the patrons are misbehaving and disturbing the peace of the community with loud music played.',
-          referenceNumber: 'REF123456',
-          date: '2024-06-13',
-          time: '14:30'
-        }
-      ];
-    });
+    
+
+      let url="/api/general/get-complaints"
+
+      this.http.get<any>(url,{headers: headersSecure}).subscribe(response=>{
+        console.log(response);
+        this.collect=response;
+      },
+    error=>
+    {
+      console.log(error);
+      
+    })
+
   }
 
   toggleDropdown(event: Event, user: string) {

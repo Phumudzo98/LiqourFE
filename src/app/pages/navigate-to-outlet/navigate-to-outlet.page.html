@@ -1,10 +1,15 @@
-
 <app-menu-header></app-menu-header>
 <ion-content>
   <div class="dashboard-container">
-    <div class="header-container">
-      <img src="assets/Images/Back Icon.svg" (click)="navigateToBack()" class="back-Arrow">
-    </div>
+
+    <!-- Spinner Section -->
+    
+
+    <!-- Main Content Section -->
+   
+      <div class="header-container">
+        <img src="assets/Images/Back Icon.svg" (click)="navigateToBack()" class="back-Arrow">
+      </div>
       <p class="quick-action">Navigate to Outlet</p>
 
       <ion-item class="search-item">
@@ -12,7 +17,10 @@
           <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
         </ion-input>
       </ion-item>
-    
+      <div *ngIf="loading" class="spinner-container">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+    <div *ngIf="!loading">
       <ion-card *ngFor="let outlet of outlets">
         <ion-grid class="top">
           <ion-row>
@@ -37,6 +45,8 @@
           Navigate to Location
         </ion-button>
       </ion-card>
+    </div>
+
   </div>
 </ion-content>
 <app-menu-footer></app-menu-footer>
