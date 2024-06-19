@@ -166,7 +166,7 @@ input[type="radio"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 7px solid #CFAA35;
+  border: 1px solid #000;
   border-radius: 50%;
   padding: 2px;
   margin-right: 10px; 
@@ -175,6 +175,15 @@ input[type="radio"] {
 
 input[type="radio"]:checked {
   background-color: #fff;
+  width: 20px;
+  height: 20px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 7px solid #CFAA35;
+  border-radius: 50%;
+  padding: 2px;
+  margin-right: 10px; 
 }
 .outlet-header{
   font-size: 16px;
