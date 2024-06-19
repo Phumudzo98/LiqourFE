@@ -19,12 +19,12 @@
           <div class="info">
             <span>{{task.status}}</span>
             <br>
-            <span>East London</span>
+            <span>CaseID: <a [routerLink]="['/complete-inspection', task.caseId]">{{task.caseId}}</a></span>
           </div>
           <div class="info-time">
             <span>Due: {{task.dueDate}}</span>
             <br>
-            <span>11:30 AM - 12:30 PM</span>
+            <span>Time: {{task.dueDate }}</span>
           </div>
         </ion-col>
       

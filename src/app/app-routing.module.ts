@@ -70,7 +70,7 @@ const routes: Routes = [
   
   
   {
-    path: 'complete-inspection',
+    path: 'complete-inspection/:caseId',
     loadChildren: () => import('./pages/complete-inspection/complete-inspection.module').then( m => m.CompleteInspectionPageModule)
   },
 
@@ -202,7 +202,8 @@ const routes: Routes = [
   {
     path: 'special-event-inspections',
     loadChildren: () => import('./pages/special-event-inspections/special-event-inspections.module').then( m => m.SpecialEventInspectionsPageModule)
-  },  {
+  },
+  {
     path: 'update-location',
     loadChildren: () => import('./pages/update-location/update-location.module').then( m => m.UpdateLocationPageModule)
   }
