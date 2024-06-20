@@ -29,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./headerFooter/menu-header/menu-header.module').then( m => m.MenuHeaderPageModule)
   },
   {
-    path: 'view-complaint',
+    path: 'view-complaint/:referenceNumber',
     loadChildren: () => import('./pages/view-complaint/view-complaint.module').then( m => m.ViewComplaintPageModule)
   },
   {
@@ -37,7 +37,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/complaints/complaints.module').then( m => m.ComplaintsPageModule)
   },
   {
-    path: 'edit-complaint',
+    path: 'edit-complaint/:referenceNumber',
     loadChildren: () => import('./pages/edit-complaint/edit-complaint.module').then( m => m.EditComplaintPageModule)
   },
   {
@@ -67,13 +67,10 @@ const routes: Routes = [
     path: 'inspections',
     loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
-  
-  
   {
-    path: 'complete-inspection/:caseId',
+    path: 'complete-inspection',
     loadChildren: () => import('./pages/complete-inspection/complete-inspection.module').then( m => m.CompleteInspectionPageModule)
   },
-
   {
     path: 'location',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
@@ -206,7 +203,12 @@ const routes: Routes = [
   {
     path: 'update-location',
     loadChildren: () => import('./pages/update-location/update-location.module').then( m => m.UpdateLocationPageModule)
+  },
+  {
+    path: 'form',
+    loadChildren: () => import('./pages/form/form.module').then( m => m.FormPageModule)
   }
+
 
 
 ];

@@ -1,0 +1,48 @@
+<ion-accordion-group #accordionGroup>
+  <form [formGroup]="myForm">
+  <ion-accordion value="first">
+    <ion-item slot="header" color="light">
+      <ion-label>General</ion-label>
+    </ion-item>
+    <div slot="content" class="ion-padding">First Content</div>
+  </ion-accordion>
+
+  <ion-accordion value="second">
+    <ion-item slot="header" color="">
+      <ion-label>Verification of the Applicant</ion-label>
+    </ion-item>
+    <div slot="content" color="success">
+          <label for="contactPerson">Name:</label>
+          <ion-input id="contactPerson" formControlName="contactPerson"></ion-input>
+    </div>
+  </ion-accordion>
+
+  <ion-accordion value="third">
+    <ion-item slot="header" color="light">
+      <ion-label>Verification of the Premises Against submitted documentation</ion-label>
+    </ion-item>
+    <div slot="content" class="ion-padding">Third Content</div>
+  </ion-accordion>
+
+  <ion-accordion value="fourth">
+    <ion-item slot="header" color="light">
+      <ion-label>Verification of the Community Consultation Process</ion-label>
+    </ion-item>
+    <div slot="content" class="ion-padding">Fourth Content</div>
+  </ion-accordion>
+
+  <ion-accordion value="fifth">
+    <ion-item slot="header" color="light">
+      <ion-label>Photos</ion-label>
+    </ion-item>
+    <div slot="content" class="ion-padding">Fifth Content</div>
+  </ion-accordion>
+
+  <ion-accordion value="sixth">
+    <ion-item slot="header" color="light">
+      <ion-label>Recommendation</ion-label>
+    </ion-item>
+    <div slot="content" class="ion-padding"><p>Sixth Content</p></div>
+  </ion-accordion>
+</form>
+</ion-accordion-group>

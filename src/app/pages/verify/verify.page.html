@@ -1,7 +1,7 @@
 <ion-content>
   <div class="container">
     <p class="welcome">Verification</p>
-    <p class="emailOTP">Please, enter the OTP code sent to adum ***&#64;** com</p>
+    <p class="emailOTP">Please, enter the OTP code sent to {{myOtp}}</p>
 
     <div class="otp-inputs">
       <ion-input style="--highlight-color-valid: #822B23; --color: black;"#otpInput type="text" maxlength="1" [(ngModel)]="otp[0]" (keydown)="handleKeydown($event, 0)" (keyup)="focusNext($event, 1)" inputmode="numeric"></ion-input>

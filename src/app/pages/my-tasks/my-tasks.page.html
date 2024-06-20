@@ -14,6 +14,7 @@
     <ion-grid>
       <p class="quick-action">My Tasks</p>
       <p class="new">New</p>
+
       <div *ngFor="let task of collect">
       <ion-row>
         
@@ -22,7 +23,7 @@
           <div class="info">
             <span>{{task.status}}</span>
             <br>
-            <span>CaseID: <a [routerLink]="['/complete-inspection', task.caseId]">{{task.caseId}}</a></span>
+            <span>CaseID: {{task.caseId}}</span>
           </div>
           <div class="info-time">
             <span>Due: {{task.dueDate}}</span>

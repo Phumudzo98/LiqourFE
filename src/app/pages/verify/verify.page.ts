@@ -42,6 +42,8 @@ export class VerifyPage implements OnInit{
 
   sharedData: string='';
 
+  myOtp:any;
+
   ngOnInit() {
 
 
@@ -53,7 +55,7 @@ export class VerifyPage implements OnInit{
 
     this.sharedData = this.dataService.getData();
     
-    
+    this.myOtp=localStorage.getItem('otp');
    
   }
 
@@ -119,7 +121,7 @@ export class VerifyPage implements OnInit{
   public submitOTP(): void {
 
     console.log(localStorage.getItem('otp'));
-    this.enteredOtp = localStorage.getItem('otp') ?? '';
+    this.enteredOtp = this.otp.join('');
  
     this.auth.otp = this.enteredOtp; 
 

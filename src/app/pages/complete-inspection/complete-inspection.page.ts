@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, FormControlName, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { headersSecure } from 'src/app/util/service/const';
 import { StorageService } from 'src/app/util/service/storage.service';
 
 @Component({
@@ -16,16 +18,22 @@ export class CompleteInspectionPage implements OnInit {
   currentForm: string = 'landing';
   selectedRadioValue: string | null = null; // Initialize to null or the default value you want
 
-  
- 
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
- 
- 
-  completeReportForm:FormGroup;
 
+  completeReportForm: FormGroup;
+  caseId: any;
 
-  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController,private fb: FormBuilder,private storageService: StorageService) {
+  constructor(
+    private router: Router,
+    private eRef: ElementRef,
+    private alertController: AlertController,
+    private fb: FormBuilder,
+    private storageService: StorageService,
+    private aRoute: Router,
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {
     this.completeReportForm = this.fb.group({
       personContacted: ['', Validators.required],
       inspectionDate: ['', [Validators.required]],
@@ -47,78 +55,51 @@ export class CompleteInspectionPage implements OnInit {
       formServedAtPlaceOfWorship: ['', [Validators.required]],
       recommendationForRegistration: ['', Validators.required],
       comments: ['', Validators.required],
-      futurePreInspectionDate:['', Validators.required],
+      futurePreInspectionDate: ['', Validators.required],
       lease: ['', Validators.required],
-     premiseInLineWithPlan: ['', Validators.required],
-     premisesSuitedForCategory: ['', Validators.required],
-     abulutionFacilityWorking: ['', Validators.required],
+      premiseInLineWithPlan: ['', Validators.required],
+      premisesSuitedForCategory: ['', Validators.required],
+      abulutionFacilityWorking: ['', Validators.required],
       readyToCommenceWithBusiness: ['', Validators.required]
     });
-
-
-   
-    /*
-    equest body
-{
-  "currentOutletName": "string",
-  "willNameChange": "string",
-  "personContacted": "string",
-  "inspectionDate": "2024-06-19T13:31:02.037Z",
-  "latitude": 0,
-  "longitude": 0,
-  "appointmentSet": "string",
-  "personConsulted": "string",
-  "indicatedParticularPerson": "string",
-  "personFoundConfirmed": "string",
-  "rightToOccupy": "string",
-  "premisesInIndicatedAddress": "string",
-  "premiseInLineWithPlan": "string",
-  "premisesSuitedForCategory": "string",
-  "abulutionFacilityWorking": "string",
-  "readyToCommenceWithBusiness": "string",
-  "formServedToWardCommittee": "string",
-  "formServedToWardCouncillor": "string",
-  "wardCommitteReport": "string",
-  "communityConsulted": "string",
-  "educationalInstitutionWithin100m": "string",
-  "formServedAtEducationalInstitution": "string",
-  "placeOfWorshipWithin100m": "string",
-  "formServedAtPlaceOfWorship": "string",
-  "recommendationForRegistration": "string",
-  "comments": "string",
-  "futurePreInspectionDate": "2024-06-19T13:31:02.037Z",
-  "lease": "string"
-}
-    */
   }
-  
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.clearLocalStorageOnLoad();
     this.loadFormValues();
+    const url = "/api/general/get-inspection/";
+    this.route.paramMap.subscribe(param => {
+      this.caseId = param.get('caseId');
+      this.http.get<any>(url + this.caseId, { headers: headersSecure }).subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    });
   }
 
   onSubmit() {
-    
-      console.log(this.completeReportForm.value);
-      // You can perform other actions here, like sending the data to the backend
-    
+    console.log(this.completeReportForm.value);
+    // Perform other actions here, like sending the data to the backend
   }
 
   saveFormValues() {
     localStorage.setItem('completeReportForm', JSON.stringify(this.completeReportForm.value));
   }
+
   clearLocalStorageOnLoad() {
     localStorage.removeItem('completeReportForm');
   }
+
   loadFormValues() {
     const savedForm = localStorage.getItem('completeReportForm');
     if (savedForm) {
       this.completeReportForm.setValue(JSON.parse(savedForm));
     }
   }
-
-
 
   toggleForms(form: string) {
     this.currentForm = form;
@@ -155,7 +136,7 @@ export class CompleteInspectionPage implements OnInit {
   }
 
   navigateToBack() {
-    this.route.navigate(['complete-inspection']);
+    this.aRoute.navigate(['complete-inspection']);
   }
 
   async presentAlertConfirm(index: number) {
