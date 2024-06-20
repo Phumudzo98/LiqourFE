@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControlName, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { StorageService } from 'src/app/util/service/storage.service';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -13,36 +14,28 @@ export class CompleteInspectionPage implements OnInit {
   selectedOption: string = '';
   uploadedFiles: { name: string, size: number }[] = [];
   currentForm: string = 'landing';
+  selectedRadioValue: string | null = null; // Initialize to null or the default value you want
 
   
  
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
-  generalForm: FormGroup;
-  documentationForm:FormGroup;
-  communityForm:FormGroup;
-  recommendationForm:FormGroup;
-  applicantForm: FormGroup;
+ 
+ 
+  completeReportForm:FormGroup;
 
 
-
-  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController,private fb: FormBuilder) {
-    this.generalForm = this.fb.group({
+  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController,private fb: FormBuilder,private storageService: StorageService) {
+    this.completeReportForm = this.fb.group({
       personContacted: ['', Validators.required],
       inspectionDate: ['', [Validators.required]],
       latitude: ['', [Validators.required]],
-      longitude: ['', [Validators.required]]
-    });
-
-    this.applicantForm = this.fb.group({
+      longitude: ['', [Validators.required]],
       appointmentSet: ['', Validators.required],
       personConsulted: ['', [Validators.required]],
       indicatedParticularPerson: ['', [Validators.required]],
       personFoundConfirmed: ['', [Validators.required]],
       rightToOccupy: ['', [Validators.required]],
-    });
-
-    this.communityForm = this.fb.group({
       formServedToWardCommittee: ['', Validators.required],
       formServedToWardCouncillor: ['', [Validators.required]],
       wardCommitteReport: ['', [Validators.required]],
@@ -51,29 +44,19 @@ export class CompleteInspectionPage implements OnInit {
       premisesInIndicatedAddress: ['', [Validators.required]],
       formServedAtEducationalInstitution: ['', [Validators.required]],
       placeOfWorshipWithin100m: ['', [Validators.required]],
-      formServedAtPlaceOfWorship: ['', [Validators.required]]
-
-     
-    });
-
-    this.recommendationForm = this.fb.group({
+      formServedAtPlaceOfWorship: ['', [Validators.required]],
       recommendationForRegistration: ['', Validators.required],
-  comments: ['', Validators.required],
-  futurePreInspectionDate:['', Validators.required],
-  lease: ['', Validators.required]
+      comments: ['', Validators.required],
+      futurePreInspectionDate:['', Validators.required],
+      lease: ['', Validators.required],
+     premiseInLineWithPlan: ['', Validators.required],
+     premisesSuitedForCategory: ['', Validators.required],
+     abulutionFacilityWorking: ['', Validators.required],
+      readyToCommenceWithBusiness: ['', Validators.required]
     });
 
-    this.documentationForm = this.fb.group({
-      indicatedParticularPerson: ['', [Validators.required]],
-  personFoundConfirmed:['', Validators.required],
-  rightToOccupy:['', Validators.required],
-  premisesInIndicatedAddress:['', Validators.required],
-  premiseInLineWithPlan: ['', Validators.required],
-  premisesSuitedForCategory: ['', Validators.required],
-  abulutionFacilityWorking: ['', Validators.required],
-  readyToCommenceWithBusiness: ['', Validators.required]
-    })
 
+   
     /*
     equest body
 {
@@ -109,13 +92,37 @@ export class CompleteInspectionPage implements OnInit {
     */
   }
   
-  ngOnInit() {
- 
+
+  ngOnInit(): void {
+    this.clearLocalStorageOnLoad();
+    this.loadFormValues();
   }
+
+  onSubmit() {
+    
+      console.log(this.completeReportForm.value);
+      // You can perform other actions here, like sending the data to the backend
+    
+  }
+
+  saveFormValues() {
+    localStorage.setItem('completeReportForm', JSON.stringify(this.completeReportForm.value));
+  }
+  clearLocalStorageOnLoad() {
+    localStorage.removeItem('completeReportForm');
+  }
+  loadFormValues() {
+    const savedForm = localStorage.getItem('completeReportForm');
+    if (savedForm) {
+      this.completeReportForm.setValue(JSON.parse(savedForm));
+    }
+  }
+
 
 
   toggleForms(form: string) {
     this.currentForm = form;
+    this.saveFormValues();
   }
 
   triggerFileInput() {
