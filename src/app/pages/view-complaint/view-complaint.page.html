@@ -5,37 +5,35 @@
     </div>
 
   
-  <div class="">
+  <div *ngIf="collectObj">
   <ion-label class="label">ECP Number</ion-label>
-  <p class="info-time">ECLB001521</p>
+  <p class="info-time">{{collectObj.referenceNumber}}</p>
 
   <ion-label class="label">Outlet Name</ion-label>
-  <p class="info-time">Entabeni</p>
+  <p class="info-time">{{collectObj.outletName}}</p>
 
   <ion-label class="label">Address of Outlet</ion-label>
-  <p class="info-time">Residential</p>
+  <p class="info-time">{{collectObj.addressOfOutlet}}</p>
 
   <ion-label class="label">Region of Outlet</ion-label>
-  <p class="info-time">No 33 silver Oak</p>
+  <p class="info-time">{{collectObj.regionOfOutlet}}</p>
 
   <ion-label class="label">Area of Outlet</ion-label>
-  <p class="info-time">Algoa Park</p>
+  <p class="info-time">{{collectObj.areaOfOutlet}}</p>
 
   <ion-label class="label">Description of Complaint</ion-label>
   <p class="info-time">
-    Residential home is used a shebeen and the patrons are misbehaving and disturbing the peace of the community with loud music played
-  </p>
+    {{collectObj.descriptionOfComplaint}} </p>
 
   <ion-label class="label">Name of Complaint</ion-label>
-  <p class="info-time">Not provided</p>
+  <p class="info-time">{{collectObj.nameOfComplaint}}</p>
 
   <ion-label class="label">Contact Number</ion-label>
   <p class="info-time">
-    Caller indicated that the home owner is selling alcohol to the public without a liquor licens
-  </p>
+   {{collectObj.contactNumber}}</p>
   
   <ion-label class="label">Date of Complaint Logged</ion-label>
-  <p class="info-time">03/05/2024</p>
+  <p class="info-time">{{collectObj.dateComplaintLogged}}</p>
     </div>
 
 </ion-content>

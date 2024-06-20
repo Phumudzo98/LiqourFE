@@ -290,25 +290,25 @@
       <img src="assets/Images/Back Icon.svg"  class="back-Arrow"(click)="toggleForms('landing')">
       <h1 class="header-text">General</h1>
     </div>
-      
+      <form [formGroup]="generalForm" >
         <ion-label>Person Contact</ion-label>
         <ion-item>
-        <ion-input placeholder="Enter Person Name"></ion-input>
+        <ion-input placeholder="Enter Person Name" formControlName="personContacted"></ion-input>
         </ion-item>
         <ion-label position="floating">Inspection Date</ion-label>
         <ion-item>
-        <ion-input placeholder="Enter Inspection Date"></ion-input>
+        <ion-input placeholder="Enter Inspection Date" formControlNam="inspectionDate"></ion-input>
         </ion-item>
     
         <ion-label position="floating">Latitude Of Outlet (South)</ion-label>
         <ion-item>
-        <ion-input placeholder="Enter Latitude"></ion-input>
+        <ion-input placeholder="Enter Latitude" formControlName="latitude"></ion-input>
         </ion-item>
     
       
         <ion-label position="floating">Longitude of Outlet (East)</ion-label>
         <ion-item>
-        <ion-input placeholder="Enter Longitude"></ion-input>
+        <ion-input placeholder="Enter Longitude" formControlName="longitue"></ion-input>
       </ion-item>
     
     
@@ -317,6 +317,7 @@
       <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
       Save
     </ion-button>
+  </form>
   
   </div>
 
@@ -330,6 +331,8 @@
     </div>
    
     <ion-card class="upload2">
+
+      <form>
       
       <span>(a) Does the applicant have a right to occupy the premises ?</span>
       <ion-card-title class="general-name">
@@ -337,19 +340,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_a" name="choice_a" value="">
+                <input type="radio" id="yes_a" name="choice_a" value="1" formControlName="appointmentSet">
                 <label for="yes_a">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_a" name="choice_a" value="">
+                <input type="radio" id="no_a" name="choice_a" value="2" formControlName="appointmentSet">
                 <label for="no_a">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_a" name="choice_a" value="">
+                <input type="radio" id="na_a" name="choice_a" value="3" formControlName="appointmentSet">
                 <label for="na_a">N/A</label>
               </div>
             </ion-col>
@@ -363,19 +366,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_b" name="choice_b" value="">
+                <input type="radio" id="yes_b" name="choice_b" value="1" formControlName="personConsulted">
                 <label for="yes_b">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_b" name="choice_b" value="">
+                <input type="radio" id="no_b" name="choice_b" value="2" formControlName="personConsulted">
                 <label for="no_b">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_b" name="choice_b" value="">
+                <input type="radio" id="na_b" name="choice_b" value="3" formControlName="personConsulted">
                 <label for="na_b">N/A</label>
               </div>
             </ion-col>
@@ -516,6 +519,7 @@
         <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
         Save
       </ion-button>
+      </form>
     </ion-card>      
   
   </div>
