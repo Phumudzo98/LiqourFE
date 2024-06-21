@@ -132,14 +132,23 @@
     display: block;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
+    margin-bottom: 2px;
   }
   
   .dropdown-content ion-item:hover {
-    font-weight: 600;
+    font-weight: 500;
   }
   
   .dropdown-content.show {
     display: block;
   }
+  .dropdown-content a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 14px;
+    
+  }
+
+  
   
   
