@@ -1,4 +1,4 @@
-<app-menu-header></app-menu-header>
+<app-menu-header *ngIf="!loading"></app-menu-header>
 <!-- Loader that will be displayed while loading -->
 <div *ngIf="loading" class="loader-container">
   <div class="loader"></div>
@@ -12,7 +12,7 @@
 
     <!-- Main Content Section -->
   
-      <div class="header-container" >
+      <div class="header-container" *ngIf="!loading" >
         <img src="assets/Images/Back Icon.svg" (click)="navigateToBack()" class="back-Arrow">
       </div>
       <p class="quick-action" *ngIf="!loading">Navigate to Outlet</p>
@@ -52,4 +52,4 @@
 
   </div>
 </ion-content>
-<app-menu-footer></app-menu-footer>
+<app-menu-footer *ngIf="!loading"></app-menu-footer>
