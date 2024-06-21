@@ -86,7 +86,7 @@
   </div>
   
 
-  <div [hidden]="currentForm !== 'applicant'">
+  <div *ngIf="currentForm === 'applicant'">
     <div class="header-container">
       <img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="toggleForms('landing')">
       <h1 class="header-text">Applicant</h1>
@@ -287,10 +287,7 @@
     <hr>
 
 
-      <ion-button class="buttonClass" (click)="saveFormValues()">
-        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-        Save
-      </ion-button>
+     
     </ion-card>
   </div>
   
@@ -318,10 +315,7 @@
         <ion-item>
         <ion-input placeholder="Enter Longitude" formControlName="longitude"></ion-input>
       </ion-item>
-    <ion-button class="buttonClass">
-      <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-      Save
-    </ion-button>
+   
 
   
   </div>
@@ -518,12 +512,7 @@
       </ion-card-title>
       <hr>
   
-      <!-- Repeat similar blocks for other questions with appropriate formControlName -->
-      
-      <ion-button class="buttonClass" (click)="saveFormValues()">
-        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-        Save
-      </ion-button>
+   
     </ion-card>
   </div>
   
@@ -531,7 +520,7 @@
 
 
   <!--Community-->
-  <div [hidden]="currentForm !==  'community'">
+  <div *ngIf="currentForm === 'community'">
     <div class="header-container">
       <img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="toggleForms('landing')">
       <h1 class="header-text">Community</h1>
@@ -545,19 +534,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_a" name="choice_a" value="yes">
+                <input type="radio" id="yes_a" name="choice_a" value="1" formControlName="formServedToWardCommittee">
                 <label for="yes_a">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_a" name="choice_a" value="no">
+                <input type="radio" id="no_a" name="choice_a" value="2" formControlName="formServedToWardCommittee">
                 <label for="no_a">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_a" name="choice_a" value="na">
+                <input type="radio" id="na_a" name="choice_a" value="3" formControlName="formServedToWardCommittee">
                 <label for="na_a">N/A</label>
               </div>
             </ion-col>
@@ -574,19 +563,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_b" name="choice_b" value="yes">
+                <input type="radio" id="yes_b" name="choice_b" value="1" formControlName="formServedToWardCouncillor">
                 <label for="yes_b">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_b" name="choice_b" value="no">
+                <input type="radio" id="no_b" name="choice_b" value="2" formControlName="formServedToWardCouncillor">
                 <label for="no_b">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_b" name="choice_b" value="na">
+                <input type="radio" id="na_b" name="choice_b" value="3" formControlName="formServedToWardCouncillor">
                 <label for="na_b">N/A</label>
               </div>
             </ion-col>
@@ -603,19 +592,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_c" name="choice_c" value="yes">
+                <input type="radio" id="yes_c" name="choice_c" value="1" formControlName="wardCommitteReport">
                 <label for="yes_c">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_c" name="choice_c" value="no">
+                <input type="radio" id="no_c" name="choice_c" value="2" formControlName="wardCommitteReport">
                 <label for="no_c">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_c" name="choice_c" value="na">
+                <input type="radio" id="na_c" name="choice_c" value="3" formControlName="wardCommitteReport">
                 <label for="na_c">N/A</label>
               </div>
             </ion-col>
@@ -632,19 +621,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_d" name="choice_d" value="yes">
+                <input type="radio" id="yes_d" name="choice_d" value="1" formControlName="communityConsulted">
                 <label for="yes_d">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_d" name="choice_d" value="no">
+                <input type="radio" id="no_d" name="choice_d" value="2" formControlName="communityConsulted">
                 <label for="no_d">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_d" name="choice_d" value="na">
+                <input type="radio" id="na_d" name="choice_d" value="3" formControlName="communityConsulted">
                 <label for="na_d">N/A</label>
               </div>
             </ion-col>
@@ -661,19 +650,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_e" name="choice_e" value="yes">
+                <input type="radio" id="yes_e" name="choice_e" value="1" formControlName="educationalInstitutionWithin100m">
                 <label for="yes_e">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_e" name="choice_e" value="no">
+                <input type="radio" id="no_e" name="choice_e" value="2" formControlName="educationalInstitutionWithin100m">
                 <label for="no_e">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_e" name="choice_e" value="na">
+                <input type="radio" id="na_e" name="choice_e" value="3" formControlName="educationalInstitutionWithin100m">
                 <label for="na_e">N/A</label>
               </div>
             </ion-col>
@@ -690,19 +679,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_f" name="choice_f" value="yes">
+                <input type="radio" id="yes_f" name="choice_f" value="1" formControlName="formServedAtEducationalInstitution">
                 <label for="yes_f">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_f" name="choice_f" value="no">
+                <input type="radio" id="no_f" name="choice_f" value="2" formControlName="formServedAtEducationalInstitution">
                 <label for="no_f">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_f" name="choice_f" value="na">
+                <input type="radio" id="na_f" name="choice_f" value="3" formControlName="formServedAtEducationalInstitution">
                 <label for="na_f">N/A</label>
               </div>
             </ion-col>
@@ -719,19 +708,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_g" name="choice_g" value="yes">
+                <input type="radio" id="yes_g" name="choice_g" value="1" formControlName="placeOfWorshipWithin100m">
                 <label for="yes_g">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_g" name="choice_g" value="no">
+                <input type="radio" id="no_g" name="choice_g" value="2" formControlName="placeOfWorshipWithin100m">
                 <label for="no_g">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_g" name="choice_g" value="na">
+                <input type="radio" id="na_g" name="choice_g" value="3" formControlName="placeOfWorshipWithin100m">
                 <label for="na_g">N/A</label>
               </div>
             </ion-col>
@@ -748,19 +737,19 @@
                 <ion-row>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="yes_h" name="choice_h" value="yes">
+                            <input type="radio" id="yes_h" name="choice_h" value="1" formControlName="formServedAtPlaceOfWorship">
                             <label for="yes_h">Yes</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="no_h" name="choice_h" value="no">
+                            <input type="radio" id="no_h" name="choice_h" value="2" formControlName="formServedAtPlaceOfWorship">
                             <label for="no_h">No</label>
                         </div>
                     </ion-col>
                     <ion-col>
                         <div class="radios">
-                            <input type="radio" id="na_h" name="choice_h" value="na">
+                            <input type="radio" id="na_h" name="choice_h" value="3" formControlName="formServedAtPlaceOfWorship">
                             <label for="na_h">N/A</label>
                         </div>
                     </ion-col>
@@ -769,17 +758,14 @@
         </ion-card-title>
     </ion-card>
 
-    <ion-button class="buttonClass">
-        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-        Save
-    </ion-button>
+  
 </div>
 
 
   
   <!--Recomendation-->
 
-  <div [hidden]="currentForm !==  'recommendation'">
+  <div *ngIf="currentForm ==='recommendation'">
 
     <div class="header-container">
         <img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="toggleForms('landing')">
@@ -818,27 +804,16 @@
         <hr>
     </ion-card>
 
-    <!-- Latitude Of Outlet (South) -->
-    <ion-card class="upload2">
-        <span>Latitude Of Outlet (South)</span>
-        <ion-card-title class="general-name">
-            Latitude Of Outlet (South)
-        </ion-card-title>
-    </ion-card>
+    <ion-label position="floating">Inspection Date</ion-label>
+    <ion-item>
+    <ion-input placeholder="Enter Future Inspection Date" formControlName="futurePreInspectionDate"></ion-input>
+    </ion-item>
+    <ion-label position="floating">Comments</ion-label>
+    <ion-item>
+    <ion-input placeholder="Enter Comments" formControlName="comments"></ion-input>
+    </ion-item>
 
-    <!-- Longitude Of Outlet (East) -->
-    <ion-card class="upload2">
-        <span>Longitude of Outlet (East)</span>
-        <ion-card-title class="general-name">
-            Longitude of Outlet (East)
-        </ion-card-title>
-    </ion-card>
-
-    <!-- Save Button -->
-    <ion-button class="buttonClass" (click)="onSubmit()">
-        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-        Save
-    </ion-button>
+   
 
 </div>
 </form>
