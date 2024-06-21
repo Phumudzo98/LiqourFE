@@ -66,26 +66,11 @@ export class SigninPage implements OnInit {
     
 
     if (!host) {
-      console.log(this.getOpt());
+      this.getOpt();
       
-    } else {
-      
-     
+
     }
   }
-
-  // public submitOTP(): void {
-  //   this.auth.otp = this.loginForm.get('enteredOtp')?.value;
-  //   this.service.validateOTP(this.auth).subscribe({
-  //     next: (res: any) => {
-  //       this.helper.storeToken(res.message);
-  //       this.router.navigateByUrl('/inbox');
-  //     },
-  //     error: (error: any) => {
-  //       // Handle error
-  //     },
-  //   });
-  // }
 
   private getOpt(): void {
     this.auth.otp = this.loginForm.get('enteredOtp')?.value;
@@ -101,8 +86,8 @@ export class SigninPage implements OnInit {
        
         localStorage.setItem('username', this.email)
         localStorage.setItem('otp',this.getotp);
-        console.log(this.getotp)
-        this.router.navigate(['/verify']);
+        
+        this.router.navigateByUrl('/verify');
 
       },
       error: (error: any) => {
@@ -114,4 +99,6 @@ export class SigninPage implements OnInit {
   saveData() {
     this.dataService.setData(this.getotp);
   }
+
+  
 }

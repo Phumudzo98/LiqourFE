@@ -11,13 +11,11 @@ export class DataService {
 
   setData(data: any) {
     this.sharedData = JSON.stringify(data);
-    console.log(this.sharedData);
     
   }
 
   getData() {
     
-    console.log(this.sharedData);
     return this.sharedData;
     
   }
