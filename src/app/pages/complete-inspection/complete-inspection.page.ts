@@ -19,10 +19,6 @@ export class CompleteInspectionPage implements OnInit {
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
   generalForm: FormGroup;
-  documentationForm:FormGroup;
-  communityForm:FormGroup;
-  recommendationForm:FormGroup;
-  applicantForm: FormGroup;
 
 
 
@@ -34,79 +30,6 @@ export class CompleteInspectionPage implements OnInit {
       longitude: ['', [Validators.required]]
     });
 
-    this.applicantForm = this.fb.group({
-      appointmentSet: ['', Validators.required],
-      personConsulted: ['', [Validators.required]],
-      indicatedParticularPerson: ['', [Validators.required]],
-      personFoundConfirmed: ['', [Validators.required]],
-      rightToOccupy: ['', [Validators.required]],
-    });
-
-    this.communityForm = this.fb.group({
-      formServedToWardCommittee: ['', Validators.required],
-      formServedToWardCouncillor: ['', [Validators.required]],
-      wardCommitteReport: ['', [Validators.required]],
-      communityConsulted: ['', [Validators.required]],
-      educationalInstitutionWithin100m: ['', [Validators.required]],
-      premisesInIndicatedAddress: ['', [Validators.required]],
-      formServedAtEducationalInstitution: ['', [Validators.required]],
-      placeOfWorshipWithin100m: ['', [Validators.required]],
-      formServedAtPlaceOfWorship: ['', [Validators.required]]
-
-     
-    });
-
-    this.recommendationForm = this.fb.group({
-      recommendationForRegistration: ['', Validators.required],
-  comments: ['', Validators.required],
-  futurePreInspectionDate:['', Validators.required],
-  lease: ['', Validators.required]
-    });
-
-    this.documentationForm = this.fb.group({
-      indicatedParticularPerson: ['', [Validators.required]],
-  personFoundConfirmed:['', Validators.required],
-  rightToOccupy:['', Validators.required],
-  premisesInIndicatedAddress:['', Validators.required],
-  premiseInLineWithPlan: ['', Validators.required],
-  premisesSuitedForCategory: ['', Validators.required],
-  abulutionFacilityWorking: ['', Validators.required],
-  readyToCommenceWithBusiness: ['', Validators.required]
-    })
-
-    /*
-    equest body
-{
-  "currentOutletName": "string",
-  "willNameChange": "string",
-  "personContacted": "string",
-  "inspectionDate": "2024-06-19T13:31:02.037Z",
-  "latitude": 0,
-  "longitude": 0,
-  "appointmentSet": "string",
-  "personConsulted": "string",
-  "indicatedParticularPerson": "string",
-  "personFoundConfirmed": "string",
-  "rightToOccupy": "string",
-  "premisesInIndicatedAddress": "string",
-  "premiseInLineWithPlan": "string",
-  "premisesSuitedForCategory": "string",
-  "abulutionFacilityWorking": "string",
-  "readyToCommenceWithBusiness": "string",
-  "formServedToWardCommittee": "string",
-  "formServedToWardCouncillor": "string",
-  "wardCommitteReport": "string",
-  "communityConsulted": "string",
-  "educationalInstitutionWithin100m": "string",
-  "formServedAtEducationalInstitution": "string",
-  "placeOfWorshipWithin100m": "string",
-  "formServedAtPlaceOfWorship": "string",
-  "recommendationForRegistration": "string",
-  "comments": "string",
-  "futurePreInspectionDate": "2024-06-19T13:31:02.037Z",
-  "lease": "string"
-}
-    */
   }
   
   ngOnInit() {
