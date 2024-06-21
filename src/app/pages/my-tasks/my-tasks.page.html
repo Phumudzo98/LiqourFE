@@ -1,19 +1,20 @@
 
 
 
- <app-menu-header></app-menu-header>
+ <app-menu-header  *ngIf="!loading"></app-menu-header>
 <div *ngIf="loading" class="loader-container">
   <div class="loader"></div>
   <div class="loading-text">Loading...</div>
 </div>
 <ion-content >
-  <div class="header-container">
+  <div class="header-container"  *ngIf="!loading">
     <img src="assets/Images/Back Icon.svg" (click)="navigateToBack()" class="back-Arrow">
   </div>
-  <div class="dashboard-container">
+  <div class="dashboard-container"  *ngIf="!loading">
     <ion-grid>
       <p class="quick-action">My Tasks</p>
       <p class="new">New</p>
+
       <div *ngFor="let task of collect">
       <ion-row>
         
@@ -22,7 +23,7 @@
           <div class="info">
             <span>{{task.status}}</span>
             <br>
-            <span>CaseID: <a [routerLink]="['/complete-inspection', task.caseId]">{{task.caseId}}</a></span>
+            <span>CaseID: {{task.caseId}}</span>
           </div>
           <div class="info-time">
             <span>Due: {{task.dueDate}}</span>
@@ -37,5 +38,5 @@
    
   </div>
 </ion-content>
-  <app-menu-footer></app-menu-footer>
+  <app-menu-footer *ngIf="!loading"></app-menu-footer>
 

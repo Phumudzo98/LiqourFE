@@ -10,7 +10,7 @@ export class DataService {
   constructor() { }
 
   setData(data: any) {
-    this.sharedData = data;
+    this.sharedData = JSON.stringify(data);
     console.log(this.sharedData);
     
   }

@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-edit-complaint',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class EditComplaintPage implements OnInit {
 
-  constructor(private route: Router, private eRef: ElementRef) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private aRoute: Router, private eRef: ElementRef) {}
 
   reference: string = "ECLB001520";
   description: string = "Caller complained that the person is selling alcohol to the public without a liquor license.";
@@ -21,12 +23,39 @@ export class EditComplaintPage implements OnInit {
   comment: string = "";
   history: string = "";
  
+  referenceNo:any;
+  collectObj:any;
 
   ngOnInit() {
 
-   
+    this.route.paramMap.subscribe(param => {
+
+      this.referenceNo = param.get('referenceNumber');
+
+      let url = "/api/general/get-complain/"+this.referenceNo;
+      
+      this.http.get<any>(url,{headers: headersSecure}).subscribe(response => {
+        console.log(response)
+        
+        //this.collectObj=response;
+        
+        this.reference=response.referenceNumber;
+        //this.description=response.;
+        this.strAddress=response.address;
+        this.offOutlet=response.offendingOutlet;
+        this.town=response.town;
+        this.districMunicipalty=response.districtName
+        this.localMunicipality=response.localMunicipality
+        this.comment=response.comment;
+        this.history=response.commentHistory;
+
+
+      }, error => {
+        console.log(error)
+      });
+    });
   }
   navigateToBack() {
-    this.route.navigate(['complaints']);
+    this.aRoute.navigate(['complaints']);
   }
 }

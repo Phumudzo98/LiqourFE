@@ -36,6 +36,8 @@ export class SigninPage implements OnInit {
 
   ngOnInit() {}
 
+  email:string=''
+
   public login(): void {
     //console.log('Form Value:', this.loginForm.value);
 
@@ -44,30 +46,30 @@ export class SigninPage implements OnInit {
       return;
     }
 
-    let email = this.loginForm.get('email')?.value;
+    this.email = this.loginForm.get('email')?.value;
     let password = this.loginForm.get('password')?.value;
 
     
 
-    if (!email) {
+    if (!this.email) {
       console.error('Email is undefined or empty');
       return;
     }
 
     
 
-    this.auth.username =email; 
+    this.auth.username =this.email; 
     const encodedPassword = encodeURIComponent(password);
 
     let host = this.helper.getHost();
 
-    console.log(this.getOpt());
+    
 
     if (!host) {
-      
-      this.router.navigate(['/verify']);
-    } else {
       console.log(this.getOpt());
+      
+    } else {
+      
      
     }
   }
@@ -94,11 +96,13 @@ export class SigninPage implements OnInit {
         this.otp = res.message;
         this.getotp=res.message;
 
-        console.log(this.getotp)
+        
         this.saveData();
        
-        localStorage.setItem('username', 'Takalani.Mukwevho')
+        localStorage.setItem('username', this.email)
         localStorage.setItem('otp',this.getotp);
+        console.log(this.getotp)
+        this.router.navigate(['/verify']);
 
       },
       error: (error: any) => {
