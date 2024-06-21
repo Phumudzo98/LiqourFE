@@ -11,31 +11,27 @@ import { headers, headersSecure } from 'src/app/util/service/const';
 })
 export class ComplaintsPage implements OnInit {
 
-  dropdownVisible: { [user: string]: boolean } = {};
+  dropdownVisible: { [key: string]: boolean } = {};
   collect: any[] = [];
 
-  constructor(private route: Router, private eRef: ElementRef, private http:HttpClient) {}
+  constructor(private route: Router, private eRef: ElementRef, private http: HttpClient) {}
 
   ngOnInit() {
-    
+    let url = "/api/general/get-complaints";
 
-      let url="/api/general/get-complaints"
-
-      this.http.get<any>(url,{headers: headersSecure}).subscribe(response=>{
-        console.log(response);
-        this.collect=response;
-      },
-    error=>
-    {
+    this.http.get<any>(url, { headers: headersSecure }).subscribe(response => {
+      console.log(response);
+      this.collect = response;
+    },
+    error => {
       console.log(error);
-      
-    })
-
+    });
   }
 
-  toggleDropdown(event: Event, user: string) {
+  toggleDropdown(event: Event, referenceNumber: string) {
     event.stopPropagation();
-    this.dropdownVisible[user] = !this.dropdownVisible[user];
+    this.dropdownVisible = {};  // Reset all dropdowns
+    this.dropdownVisible[referenceNumber] = !this.dropdownVisible[referenceNumber]; // Toggle only the clicked dropdown
   }
 
   navigateToView() {
@@ -45,16 +41,16 @@ export class ComplaintsPage implements OnInit {
   navigateToBack() {
     this.route.navigate(['dashboard']);
   }
-  
+
   navigateToEdit() {
     this.route.navigate(['edit-complaint']);
   }
 
   @HostListener('document:click', ['$event'])
   clickout(event: Event) {
-    Object.keys(this.dropdownVisible).forEach(user => {
-      if (this.dropdownVisible[user] && !this.eRef.nativeElement.querySelector('.label').contains(event.target)) {
-        this.dropdownVisible[user] = false;
+    Object.keys(this.dropdownVisible).forEach(referenceNumber => {
+      if (this.dropdownVisible[referenceNumber] && !this.eRef.nativeElement.querySelector('.header-content').contains(event.target)) {
+        this.dropdownVisible[referenceNumber] = false;
       }
     });
   }
