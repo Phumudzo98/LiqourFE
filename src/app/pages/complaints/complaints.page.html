@@ -15,20 +15,17 @@
     <ng-container *ngFor="let user of collect">
       <div class="header-content">
         <ion-label class="label">{{ user.outletName }}</ion-label>
-        <ion-img src="../../../assets/Images/dots.svg" class="vector" (click)="toggleDropdown($event, user)"></ion-img>
-        <div class="dropdown-content" [class.show]="dropdownVisible[user]">
+        <ion-img src="../../../assets/Images/dots.svg" class="vector" (click)="toggleDropdown($event, user.referenceNumber)"></ion-img>
+        <div class="dropdown-content" [class.show]="dropdownVisible[user.referenceNumber]">
           <ion-item><a [routerLink]="['/view-complaint', user.referenceNumber]">View</a></ion-item>
           <ion-item><a [routerLink]="['/edit-complaint', user.referenceNumber]">Edit</a></ion-item>
         </div>
       </div>
-      
-        <p class="">Complaint: {{ user.descriptionOfComplaint }}</p>
-        <p class="">Reference Number: {{ user.referenceNumber }}</p>
-        <p class="">Date: {{ user.dateComplaintLogged }}</p>
-        <p class="">Time: {{ user.dateComplaintLogged }}</p>
-      
+      <p class="">Complaint: {{ user.descriptionOfComplaint }}</p>
+      <p class="">Reference Number: {{ user.referenceNumber }}</p>
+      <p class="">Date: {{ user.dateComplaintLogged }}</p>
+      <p class="">Time: {{ user.dateComplaintLogged }}</p>
     </ng-container>
   </div>
 </ion-content>
 <app-menu-footer></app-menu-footer>
-
