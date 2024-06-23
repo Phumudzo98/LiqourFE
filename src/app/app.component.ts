@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 
 @Component({
   selector: 'app-root',
@@ -10,22 +11,51 @@ import { MenuController } from '@ionic/angular';
 export class AppComponent {
   currentUrl!: string;
   isSideMenu1: boolean = true; // Set this based on your condition
-  constructor(private menu: MenuController,private router: Router) {
+  activeItem: string = '';
+
+  constructor(
+    private menu: MenuController,
+    private router: Router,
+    private platform: Platform,
+    private screenOrientation: ScreenOrientation
+  ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.urlAfterRedirects;
-        
       }
     });
+    this.initializeApp();
   }
-
 
   toggleMenu() {
     this.openCorrectMenu();
   }
-   
+
   private openCorrectMenu() {
-    if (this.currentUrl.includes('/dashboard') || this.currentUrl.includes('/upload-image') || this.currentUrl.includes('/recommendations') || this.currentUrl.includes('/thank-you') || this.currentUrl.includes('/notifications')|| this.currentUrl.includes('/special-event')|| this.currentUrl.includes('/navigate-to-outlet')|| this.currentUrl.includes('/photos')|| this.currentUrl.includes('/addresses')|| this.currentUrl.includes('/view-outlet')|| this.currentUrl.includes('/location')|| this.currentUrl.includes('/complete-inspection')|| this.currentUrl.includes('/inspections')|| this.currentUrl.includes('/update-gis')|| this.currentUrl.includes('/my-tasks')|| this.currentUrl.includes('/edit-complaint2')|| this.currentUrl.includes('/business-conduct')|| this.currentUrl.includes('/verify')|| this.currentUrl.includes('/edit-complaint')|| this.currentUrl.includes('/complaints')|| this.currentUrl.includes('/view-complaint')|| this.currentUrl.includes('/help')) {
+    if (
+      this.currentUrl.includes('/dashboard') ||
+      this.currentUrl.includes('/upload-image') ||
+      this.currentUrl.includes('/recommendations') ||
+      this.currentUrl.includes('/thank-you') ||
+      this.currentUrl.includes('/notifications') ||
+      this.currentUrl.includes('/special-event') ||
+      this.currentUrl.includes('/navigate-to-outlet') ||
+      this.currentUrl.includes('/photos') ||
+      this.currentUrl.includes('/addresses') ||
+      this.currentUrl.includes('/view-outlet') ||
+      this.currentUrl.includes('/location') ||
+      this.currentUrl.includes('/complete-inspection') ||
+      this.currentUrl.includes('/inspections') ||
+      this.currentUrl.includes('/update-gis') ||
+      this.currentUrl.includes('/my-tasks') ||
+      this.currentUrl.includes('/edit-complaint2') ||
+      this.currentUrl.includes('/business-conduct') ||
+      this.currentUrl.includes('/verify') ||
+      this.currentUrl.includes('/edit-complaint') ||
+      this.currentUrl.includes('/complaints') ||
+      this.currentUrl.includes('/view-complaint') ||
+      this.currentUrl.includes('/help')
+    ) {
       this.menu.enable(false, 'another-menu');
       this.menu.enable(true, 'main-menu');
       this.menu.open('main-menu');
@@ -49,12 +79,18 @@ export class AppComponent {
 
     this.router.navigateByUrl('/' + id); // Navigate to the clicked route
   }
-  
-  activeItem: string = '';
 
- 
   setActiveItem(item: string) {
     this.activeItem = item;
     console.log('Active Item:', this.activeItem);
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      // Lock the orientation to portrait
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT)
+        .then(() => console.log('Orientation locked'))
+        .catch(error => console.log('Error locking orientation:', error));
+    });
   }
 }

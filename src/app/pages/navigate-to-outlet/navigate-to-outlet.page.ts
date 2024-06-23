@@ -18,7 +18,7 @@ export class NavigateToOutletPage implements OnInit {
 
   ngOnInit() {
     let url = "/api/outlet"
-    this.http.get<any[]>(url + "/get-outlets", { headers: headersSecure }).subscribe(response => {
+    this.http.get<any[]>("https://system.eclb.co.za/eclb1/api/get-outlets", { headers: headersSecure }).subscribe(response => {
         const large = response;
         this.specific = large;
 

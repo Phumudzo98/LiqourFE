@@ -32,7 +32,7 @@ export class EditComplaintPage implements OnInit {
 
       this.referenceNo = param.get('referenceNumber');
 
-      let url = "/api/general/get-complain/"+this.referenceNo;
+      let url = "https://system.eclb.co.za/eclb1/api/general/get-complain/"+this.referenceNo;
       
       this.http.get<any>(url,{headers: headersSecure}).subscribe(response => {
         console.log(response)

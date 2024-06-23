@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { AuthService } from './auth.service';
 import { Auth } from './Auth';
 import { headers } from './const';
 
@@ -11,23 +10,23 @@ import { headers } from './const';
 export class OtpServiceService {
 
   private apiUrl = "/api/auth";
-    constructor(private httpClient: HttpClient, private auth: Auth) { }
+  constructor(private httpClient: HttpClient, private auth: Auth) { }
 
-    
-    public getOneTimePin(auth:Auth): Observable<any> {
-      
-        return this.httpClient.post<any>(`${this.apiUrl}/get-otp`,auth,{ headers: headers }).pipe(
-            catchError((error) => {
-                return throwError(() => error);
-            })
-        )
-    }
+  public getOneTimePin(auth2: any): Observable<any> {
+    return this.httpClient.post<any>("https://system.eclb.co.za/eclb1/api/auth/get-otp", auth2, { headers: headers }).pipe(
+      catchError((error) => {
+        console.error('Error occurred while getting OTP:', error); 
+        return throwError(() => error);
+      })
+    );
+  }
 
-    public validateOTP(auth:Auth): Observable<any> {
-        return this.httpClient.post<any>(`${this.apiUrl}/validate-otp`,auth,{ headers: headers }).pipe(
-            catchError((error) => {
-                return throwError(() => error);
-            })
-        )
-    }
+  public validateOTP(auth2:any): Observable<any> {
+    return this.httpClient.post<any>("https://system.eclb.co.za/eclb1/api/auth/validate-otp", auth2, { headers: headers }).pipe(
+      catchError((error) => {
+        console.error('Error occurred while validating OTP:', error); 
+        return throwError(() => error);
+      })
+    );
+  }
 }

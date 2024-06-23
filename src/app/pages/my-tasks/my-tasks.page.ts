@@ -17,7 +17,7 @@ export class MyTasksPage implements OnInit {
   ngOnInit() {
     let url = "/api/general/get-inbox";
 
-    this.http.get<any[]>(url, { headers: headersSecure }).subscribe(
+    this.http.get<any[]>("https://system.eclb.co.za/eclb1/api/general/get-inbox", { headers: headersSecure }).subscribe(
       response => {
         console.log(response);
         this.collect = response;

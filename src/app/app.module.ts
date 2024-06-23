@@ -12,7 +12,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // 
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpRequestInterceptor } from './util/service/interceptor';
-
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 
 @NgModule({
   declarations: [
@@ -36,6 +36,7 @@ import { HttpRequestInterceptor } from './util/service/interceptor';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ModalController ,// Add ModalController to the providers array
+    ScreenOrientation,
     MenuController, { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
