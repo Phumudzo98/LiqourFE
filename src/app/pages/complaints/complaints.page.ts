@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { headers, headersSecure } from 'src/app/util/service/const';
+import { headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-complaints',
@@ -13,19 +13,24 @@ export class ComplaintsPage implements OnInit {
 
   dropdownVisible: { [key: string]: boolean } = {};
   collect: any[] = [];
+  Loading: boolean = true; // Loading flag
 
   constructor(private route: Router, private eRef: ElementRef, private http: HttpClient) {}
 
   ngOnInit() {
     let url = "/api/general/get-complaints";
 
-    this.http.get<any>(url, { headers: headersSecure }).subscribe(response => {
-      console.log(response);
-      this.collect = response;
-    },
-    error => {
-      console.log(error);
-    });
+    this.http.get<any>(url, { headers: headersSecure }).subscribe(
+      response => {
+        console.log(response);
+        this.collect = response;
+        this.Loading = false; // Hide loading indicator
+      },
+      error => {
+        console.log(error);
+        this.Loading = false; // Hide loading indicator
+      }
+    );
   }
 
   toggleDropdown(event: Event, referenceNumber: string) {
