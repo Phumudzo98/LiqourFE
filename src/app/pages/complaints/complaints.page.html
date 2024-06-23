@@ -10,30 +10,30 @@
   <div class="dashboard-container"  *ngIf="!Loading">
     <p class="quick-action">Complaints</p>
     
-    <ion-item class="search-item"  *ngIf="!Loading">
-      <ion-input name="search" placeholder="Search Complaints" class="search-input">
+    <ion-item class="search-item">
+      <ion-input 
+        name="search" 
+        placeholder="Search Complaints" 
+        class="search-input"
+        [(ngModel)]="searchTerm" 
+        (ionInput)="filterComplaints()">
         <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
       </ion-input>
     </ion-item>
     
-    
-    
-    <!-- Content -->
-    <ng-container *ngIf="!Loading">
-      <ng-container *ngFor="let user of collect">
-        <div class="header-content">
-          <ion-label class="label">{{ user.outletName }}</ion-label>
-          <ion-img src="../../../assets/Images/dots.svg" class="vector" (click)="toggleDropdown($event, user.referenceNumber)"></ion-img>
-          <div class="dropdown-content" [class.show]="dropdownVisible[user.referenceNumber]">
-            <ion-item><a [routerLink]="['/view-complaint', user.referenceNumber]">View</a></ion-item>
-            <ion-item><a [routerLink]="['/edit-complaint', user.referenceNumber]">Edit</a></ion-item>
-          </div>
+    <ng-container *ngFor="let user of filteredCollect">
+      <div class="header-content">
+        <ion-label class="label">{{ user.outletName }}</ion-label>
+        <ion-img src="../../../assets/Images/dots.svg" class="vector" (click)="toggleDropdown($event, user.referenceNumber)"></ion-img>
+        <div class="dropdown-content" [class.show]="dropdownVisible[user.referenceNumber]">
+          <ion-item><a [routerLink]="['/view-complaint', user.referenceNumber]">View</a></ion-item>
+          <ion-item><a [routerLink]="['/edit-complaint', user.referenceNumber]">Edit</a></ion-item>
         </div>
-        <p class="">Complaint: {{ user.descriptionOfComplaint }}</p>
-        <p class="">Reference Number: {{ user.referenceNumber }}</p>
-        <p class="">Date: {{ user.dateComplaintLogged }}</p>
-        <p class="">Time: {{ user.dateComplaintLogged }}</p>
-      </ng-container>
+      </div>
+      <p>Complaint: {{ user.descriptionOfComplaint }}</p>
+      <p>Reference Number: {{ user.referenceNumber }}</p>
+      <p>Date: {{ user.dateComplaintLogged }}</p>
+      <p>Time: {{ user.dateComplaintLogged }}</p>
     </ng-container>
   </div>
 </ion-content>
