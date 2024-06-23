@@ -58,6 +58,7 @@ export class ComplaintsPage implements OnInit {
     });
   }
 
+  //Searching for a Complaint
   filterComplaints() {
     const term = this.searchTerm.toLowerCase();
     this.filteredCollect = this.collect.filter(complaint => 
