@@ -1,18 +1,27 @@
-<app-menu-header></app-menu-header>
+<app-menu-header  *ngIf="!Loading"></app-menu-header>
+<div *ngIf="Loading" class="loader-container">
+  <div class="loader"></div>
+  <div class="loading-text">Loading...</div>
+</div>
 <ion-content>
-  <div class="header-container">
+  <div class="header-container"  *ngIf="!Loading">
     <img src="assets/Images/Back Icon.svg" (click)="navigateToBack()" class="back-Arrow">
   </div>
-  <div class="dashboard-container">
+  <div class="dashboard-container"  *ngIf="!Loading">
     <p class="quick-action">Complaints</p>
     
     <ion-item class="search-item">
-      <ion-input name="search" placeholder="Search Complaints" class="search-input">
+      <ion-input 
+        name="search" 
+        placeholder="Search Complaints" 
+        class="search-input"
+        [(ngModel)]="searchTerm" 
+        (ionInput)="filterComplaints()">
         <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
       </ion-input>
     </ion-item>
     
-    <ng-container *ngFor="let user of collect">
+    <ng-container *ngFor="let user of filteredCollect">
       <div class="header-content">
         <ion-label class="label">{{ user.outletName }}</ion-label>
         <ion-img src="../../../assets/Images/dots.svg" class="vector" (click)="toggleDropdown($event, user.referenceNumber)"></ion-img>
@@ -21,11 +30,11 @@
           <ion-item><a [routerLink]="['/edit-complaint', user.referenceNumber]">Edit</a></ion-item>
         </div>
       </div>
-      <p class="">Complaint: {{ user.descriptionOfComplaint }}</p>
-      <p class="">Reference Number: {{ user.referenceNumber }}</p>
-      <p class="">Date: {{ user.dateComplaintLogged }}</p>
-      <p class="">Time: {{ user.dateComplaintLogged }}</p>
+      <p>Complaint: {{ user.descriptionOfComplaint }}</p>
+      <p>Reference Number: {{ user.referenceNumber }}</p>
+      <p>Date: {{ user.dateComplaintLogged }}</p>
+      <p>Time: {{ user.dateComplaintLogged }}</p>
     </ng-container>
   </div>
 </ion-content>
-<app-menu-footer></app-menu-footer>
+<app-menu-footer  *ngIf="!Loading"></app-menu-footer>

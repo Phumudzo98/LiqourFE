@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { headers, headersSecure } from 'src/app/util/service/const';
+import { headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-complaints',
@@ -13,6 +13,9 @@ export class ComplaintsPage implements OnInit {
 
   dropdownVisible: { [key: string]: boolean } = {};
   collect: any[] = [];
+  filteredCollect: any[] = [];
+  searchTerm: string = '';
+  Loading: boolean = true; // Loading flag
 
   constructor(private route: Router, private eRef: ElementRef, private http: HttpClient) {}
 
@@ -22,6 +25,7 @@ export class ComplaintsPage implements OnInit {
     this.http.get<any>(url, { headers: headersSecure }).subscribe(response => {
       console.log(response);
       this.collect = response;
+      this.filteredCollect = response;
     },
     error => {
       console.log(error);
@@ -53,5 +57,12 @@ export class ComplaintsPage implements OnInit {
         this.dropdownVisible[referenceNumber] = false;
       }
     });
+  }
+
+  filterComplaints() {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredCollect = this.collect.filter(complaint => 
+      complaint.outletName.toLowerCase().startsWith(term)
+    );
   }
 }
