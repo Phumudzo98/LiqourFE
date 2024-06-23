@@ -37,6 +37,7 @@ export class SigninPage implements OnInit {
   ngOnInit() {}
 
   email:string=''
+  password:string=''
 
   public login(): void {
     //console.log('Form Value:', this.loginForm.value);
@@ -47,45 +48,45 @@ export class SigninPage implements OnInit {
     }
 
     this.email = this.loginForm.get('email')?.value;
-    let password = this.loginForm.get('password')?.value;
+    this.password = this.loginForm.get('password')?.value;
 
-    
 
     if (!this.email) {
       console.error('Email is undefined or empty');
       return;
     }
 
-    
-
     this.auth.username =this.email; 
-    const encodedPassword = encodeURIComponent(password);
+    const encodedPassword = encodeURIComponent(this.password);
 
     let host = this.helper.getHost();
-
+    localStorage.clear()
+    console.log("Start")
+    this.getOpt();
+    console.log("Finish")
     
-
-    if (!host) {
-      this.getOpt();
-      
-
-    }
   }
 
   private getOpt(): void {
-    this.auth.otp = this.loginForm.get('enteredOtp')?.value;
-    this.service.getOneTimePin(this.auth).subscribe({
+    //this.auth.otp = this.loginForm.get('enteredOtp')?.value;
+
+    const auth2={
+      "username": this.email,
+      "otp": this.loginForm.get('enteredOtp')?.value
+    }
+
+    this.service.getOneTimePin(auth2).subscribe({
       next: (res: any) => {
         let message = new Message();
         message.message = 'We have sent OTP to your email';
         this.otp = res.message;
         this.getotp=res.message;
-
-        
+       
         this.saveData();
        
         localStorage.setItem('username', this.email)
         localStorage.setItem('otp',this.getotp);
+        console.log(this.getotp);
         
         this.router.navigateByUrl('/verify');
 

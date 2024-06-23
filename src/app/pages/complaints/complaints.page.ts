@@ -17,7 +17,7 @@ export class ComplaintsPage implements OnInit {
   constructor(private route: Router, private eRef: ElementRef, private http: HttpClient) {}
 
   ngOnInit() {
-    let url = "/api/general/get-complaints";
+    let url = "https://system.eclb.co.za/eclb1/api/general/get-complaints";
 
     this.http.get<any>(url, { headers: headersSecure }).subscribe(response => {
       console.log(response);
