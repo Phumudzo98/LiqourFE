@@ -208,89 +208,16 @@ ion-input{
   }
 
   
-  .upload {
+  .upload3{
     margin: 20px;
     padding: 20px;
     text-align: center;
     width: calc(100% - 40px);
-    height: calc(100% - 220px);
-   // height: 300px;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: none;
-  }
-  
-  .no-photo-text {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  
-  .image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3%;
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 10px;
-  }
-  
-  .uploaded-photo {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-  }
-  
-  .single-uploaded-photo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+    height: 400px;
 
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #fff;
-    min-width: 160px;
-    border: 1px solid #000;
-    border-radius: 4px;
-    z-index: 1000;
-    margin-right: 10px;
-    margin-top: 10%;
-  }
-  
-  .dropdown-content ion-item {
-    text-decoration: none;
-    display: block;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-  }
-  
-  .dropdown-content ion-item:hover {
-    font-weight: 600;
-  }
-  
-  .dropdown-content.show {
-    display: block;
-  }
-  .upload {
-    margin: 20px;
-    padding: 20px;
-    text-align: center;
-    width: calc(100% - 40px);
-    height: calc(100% - 220px);
    // height: 300px;
     overflow-y: auto;
     position: relative;
-    box-shadow: none;
+   
   }
   
