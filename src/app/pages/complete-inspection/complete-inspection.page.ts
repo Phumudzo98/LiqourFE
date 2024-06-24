@@ -319,7 +319,7 @@ async showOptions(imageUrl: string) {
     const modal = await this.modalController.create({
       component: ViewImagePage,
       componentProps: { image },
-      backdropDismiss: true // This enables clicking outside the modal to dismiss it
+      backdropDismiss: true 
     });
     return await modal.present();
   }
