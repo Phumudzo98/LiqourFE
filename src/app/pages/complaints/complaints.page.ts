@@ -32,9 +32,11 @@ export class ComplaintsPage implements OnInit {
       console.log(response);
       this.collect = response;
       this.filteredCollect = response;
+      this.Loading = false; // Set loading to false when data is fetched
     },
     error => {
       console.log(error);
+      this.Loading = false; // Set loading to false even if there is an error
     });
   }
 
@@ -65,6 +67,7 @@ export class ComplaintsPage implements OnInit {
     });
   }
 
+  // Searching for a Complaint
   filterComplaints() {
     const term = this.searchTerm.toLowerCase();
     this.filteredCollect = this.collect.filter(complaint => 
