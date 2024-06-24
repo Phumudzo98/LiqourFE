@@ -68,7 +68,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
   {
-    path: 'complete-inspection',
+    path: 'complete-inspection/:caseId',
     loadChildren: () => import('./pages/complete-inspection/complete-inspection.module').then( m => m.CompleteInspectionPageModule)
   },
   {

@@ -26,6 +26,7 @@ export class CompleteInspectionPage implements OnInit {
 
   completeReportForm: FormGroup;
   caseId: any;
+  caseNo:any;
   imageSources: string[] = [];
 
 
@@ -75,27 +76,42 @@ export class CompleteInspectionPage implements OnInit {
       recommendation: ['', Validators.required],
     });
   }
-
+  
   ngOnInit() {
-    this.clearLocalStorageOnLoad();
-    this.loadFormValues();
-    const url = "/api/general/get-inspection/";
+
     this.route.paramMap.subscribe(param => {
-      this.caseId = param.get('caseId');
-      this.http.get<any>(url + this.caseId, { headers: headersSecure }).subscribe(
-        response => {
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+
+      this.caseNo = param.get('caseId');
+
+      //let url = "https://system.eclb.co.za/eclb2/api/general/get-complain/"+this.referenceNo;
+
+      console.log(this.caseNo);
+    
     });
   }
 
   onSubmit() {
     console.log(this.completeReportForm.value);
     // Perform other actions here, like sending the data to the backend
+
+    let token = localStorage.getItem("userToken") 
+    const newHeader={
+      "Authorization":"Bearer "+token, 
+      "Accept":"*/*"
+    }
+
+    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/"+this.caseNo
+
+    this.http.post(url,JSON.stringify(this.completeReportForm.value), {headers: newHeader}).subscribe(response=>{
+      console.log(response);
+      
+    }, error=>{
+      console.log(error);
+      
+    })
+
+
+
   }
 
   saveFormValues() {

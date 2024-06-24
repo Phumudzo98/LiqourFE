@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,6 +8,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./inspections.page.scss'],
 })
 export class InspectionsPage implements OnInit {
+ 
+
+  constructor(private route: Router, private http: HttpClient) { }
+
+  collect:any[]=[];
+
+  ngOnInit() { 
+
+    
+
+    let token = localStorage.getItem("userToken") 
+    const newHeader={
+      "Authorization":"Bearer "+token, 
+      "Accept":"*/*"
+    }
+
+    let url = "https://system.eclb.co.za/eclb2/api/general/get-inbox"
+
+    this.http.get<any[]>(url,{headers:newHeader}).subscribe(response=>
+      {
+        console.log(response);
+        this.collect=response;
+        
+      }, error=>
+        {
+          console.log(error);
+          
+        }
+    )
+
+  }
+
+  navigateToBack() {
+    this.route.navigate(['dashboard']);
+  }
+
+  filterOutlets() {
+    return this.outlets.filter(outlet =>
+      outlet.header.toLowerCase().startsWith(this.searchTerm.toLowerCase())
+    );
+  }
+
   searchTerm: string = '';
   outlets = [
     {
@@ -41,17 +84,4 @@ export class InspectionsPage implements OnInit {
     },
   ];
 
-  constructor(private route: Router) { }
-
-  ngOnInit() { }
-
-  navigateToBack() {
-    this.route.navigate(['dashboard']);
-  }
-
-  filterOutlets() {
-    return this.outlets.filter(outlet =>
-      outlet.header.toLowerCase().startsWith(this.searchTerm.toLowerCase())
-    );
-  }
 }
