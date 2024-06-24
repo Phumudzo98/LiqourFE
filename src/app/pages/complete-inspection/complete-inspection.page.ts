@@ -46,6 +46,9 @@ export class CompleteInspectionPage implements OnInit {
       personContacted: ['', Validators.required],
       inspectionDate: ['', [Validators.required]],
       latitude: ['', [Validators.required]],
+      interestInLiquorTrade: ['', [Validators.required]],
+      issuedComplience: ['', [Validators.required]],
+      complaintsReceived: ['', [Validators.required]],
       longitude: ['', [Validators.required]],
       appointmentSet: ['', Validators.required],
       personConsulted: ['', [Validators.required]],
@@ -68,7 +71,8 @@ export class CompleteInspectionPage implements OnInit {
       premiseInLineWithPlan: ['', Validators.required],
       premisesSuitedForCategory: ['', Validators.required],
       abulutionFacilityWorking: ['', Validators.required],
-      readyToCommenceWithBusiness: ['', Validators.required]
+      readyToCommenceWithBusiness: ['', Validators.required],
+      recommendation: ['', Validators.required],
     });
   }
 
