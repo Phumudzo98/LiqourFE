@@ -32,9 +32,15 @@ export class EditComplaintPage implements OnInit {
 
       this.referenceNo = param.get('referenceNumber');
 
-      let url = "https://system.eclb.co.za/eclb1/api/general/get-complain/"+this.referenceNo;
+      let url = "https://system.eclb.co.za/eclb2/api/general/get-complain/"+this.referenceNo;
+
+      let token = localStorage.getItem("userToken") 
+    const newHeader={
+      "Authorization":"Bearer "+token, 
+      "Accept":"*/*"
+    }
       
-      this.http.get<any>(url,{headers: headersSecure}).subscribe(response => {
+      this.http.get<any>(url,{headers: newHeader}).subscribe(response => {
         console.log(response)
         
         //this.collectObj=response;

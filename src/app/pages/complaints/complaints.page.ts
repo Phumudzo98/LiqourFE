@@ -20,15 +20,23 @@ export class ComplaintsPage implements OnInit {
   constructor(private route: Router, private eRef: ElementRef, private http: HttpClient) {}
 
   ngOnInit() {
-    let url = "https://system.eclb.co.za/eclb1/api/general/get-complaints";
+    let url = "https://system.eclb.co.za/eclb2/api/general/get-complaints";
 
-    this.http.get<any>(url, { headers: headersSecure }).subscribe(response => {
+    let token = localStorage.getItem("userToken") 
+    const newHeader={
+      "Authorization":"Bearer "+token, 
+      "Accept":"*/*"
+    }
+
+    this.http.get<any>(url, { headers: newHeader }).subscribe(response => {
       console.log(response);
       this.collect = response;
       this.filteredCollect = response;
+      this.Loading = false; // Set loading to false when data is fetched
     },
     error => {
       console.log(error);
+      this.Loading = false; // Set loading to false even if there is an error
     });
   }
 
@@ -59,7 +67,7 @@ export class ComplaintsPage implements OnInit {
     });
   }
 
-  //Searching for a Complaint
+  // Searching for a Complaint
   filterComplaints() {
     const term = this.searchTerm.toLowerCase();
     this.filteredCollect = this.collect.filter(complaint => 
