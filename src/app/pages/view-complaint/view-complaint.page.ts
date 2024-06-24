@@ -21,11 +21,17 @@ export class ViewComplaintPage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(param => {
 
+      let token = localStorage.getItem("userToken") 
+    const newHeader={
+      "Authorization":"Bearer "+token, 
+      "Accept":"*/*"
+    }
+
       this.referenceNo = param.get('referenceNumber');
 
-      let url = "/api/general/get-complaint-details/"+this.referenceNo;
+      let url = "https://system.eclb.co.za/eclb2/api/general/get-complaint-details/"+this.referenceNo;
       
-      this.http.get<any>(url,{headers: headersSecure}).subscribe(response => {
+      this.http.get<any>(url,{headers: newHeader}).subscribe(response => {
         console.log(response)
         this.collect=response;
 
