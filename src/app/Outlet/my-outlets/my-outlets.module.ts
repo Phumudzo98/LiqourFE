@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { MyOutletsPageRoutingModule } from './my-outlets-routing.module';
 
 import { MyOutletsPage } from './my-outlets.page';
-
+import { OutletMenuFooterPageModule } from 'src/app/outletHeaderFooter/outlet-menu-footer/outlet-menu-footer.module';
+import { OutlethaederPageModule } from 'src/app/outletHeaderFooter/outlethaeder/outlethaeder.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MyOutletsPageRoutingModule
+    MyOutletsPageRoutingModule,
+    OutletMenuFooterPageModule,
+    OutlethaederPageModule
   ],
   declarations: [MyOutletsPage]
 })
