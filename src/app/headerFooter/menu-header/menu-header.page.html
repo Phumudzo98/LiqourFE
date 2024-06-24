@@ -1,15 +1,18 @@
-
-
-  <ion-toolbar>
-    <ion-buttons slot="end">
+<ion-toolbar>
+  <div class="flex">
+    <div class="header-container" *ngIf="!isDashboard">
+      <img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="toDashboard()">
+    </div>
+    <ion-buttons slot="end" class="right-align">
       <ion-button>
         <p class="paraAlign">
-          <a  class="profile-link">
+          <a class="profile-link">
             Aduma Richards
             <img src="assets/Images/Profile.svg" class="profile-img">
           </a>
         </p>
       </ion-button>
     </ion-buttons>
-    
-  </ion-toolbar>
+  </div>
+</ion-toolbar>
+

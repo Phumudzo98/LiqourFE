@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-header',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-header.page.scss'],
 })
 export class MenuHeaderPage implements OnInit {
+  isDashboard: boolean = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.isDashboard = this.router.url === '/dashboard';
+  }
+
+  toDashboard()
+  {
+    this.router.navigate(['dashboard']);
   }
 
 }
+

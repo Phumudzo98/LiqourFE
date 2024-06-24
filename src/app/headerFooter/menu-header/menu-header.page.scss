@@ -44,4 +44,18 @@ a{
     border-radius: 50%;
     margin-bottom: 5px;
   }
-  
+  .flex {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+  }
+
+  .back-Arrow{
+    width: 40px; 
+    height: 40px;
+    margin-top:25px;
+    margin-left: 45%;
+  }
+  .right-align {
+    margin-left: auto; 
+  }
