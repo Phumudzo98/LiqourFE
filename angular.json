@@ -76,10 +76,12 @@
             "production": {
               "buildTarget": "app:build:production"
               
+              
             },
             "development": {
               "buildTarget": "app:build:development"
-             
+              
+              
               
             },
             "ci": {

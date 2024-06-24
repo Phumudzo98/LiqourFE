@@ -1,7 +1,7 @@
 {
     "/api":
     {
-        "target":"https://system.eclb.co.za/eclb",
+        "target":"https://system.eclb.co.za/eclb1",
         "secure": false,
         "changeOrigin": true,
         "logLevel":"debug"

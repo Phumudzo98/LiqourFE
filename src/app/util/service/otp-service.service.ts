@@ -13,16 +13,16 @@ export class OtpServiceService {
   constructor(private httpClient: HttpClient, private auth: Auth) { }
 
   public getOneTimePin(auth2: any): Observable<any> {
-    return this.httpClient.post<any>("https://system.eclb.co.za/eclb1/api/auth/get-otp", auth2, { headers: headers }).pipe(
+    return this.httpClient.post<any>("https://system.eclb.co.za/eclb2/api/auth/get-otp", auth2, { headers: headers }).pipe(
       catchError((error) => {
-        console.error('Error occurred while getting OTP:', error); 
+        console.error('Error occurred while getting OTP:', JSON.stringify(error)); 
         return throwError(() => error);
       })
     );
   }
 
   public validateOTP(auth2:any): Observable<any> {
-    return this.httpClient.post<any>("https://system.eclb.co.za/eclb1/api/auth/validate-otp", auth2, { headers: headers }).pipe(
+    return this.httpClient.post<any>("https://system.eclb.co.za/eclb2/api/auth/validate-otp", auth2, { headers: headers }).pipe(
       catchError((error) => {
         console.error('Error occurred while validating OTP:', error); 
         return throwError(() => error);
