@@ -7,11 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./inspections.page.scss'],
 })
 export class InspectionsPage implements OnInit {
-
-  constructor(private route:Router) { }
-
-  ngOnInit() {
-  }
+  searchTerm: string = '';
   outlets = [
     {
       imgSrc: '../../../assets/Images/kwa coca.jpeg',
@@ -25,8 +21,6 @@ export class InspectionsPage implements OnInit {
       details: 'ECP08500/03020/OO <br>On & Off Consumption',
       iconSrc: '../../../assets/Images/Group 88.svg',
     },
- 
-
     {
       imgSrc: '../../../assets/Images/viva.jpeg',
       header: 'VIVAS TAVERN',
@@ -39,18 +33,25 @@ export class InspectionsPage implements OnInit {
       details: 'ECP08517/03033/OO <br>On & Off Consumption',
       iconSrc: '../../../assets/Images/Group 88.svg',
     },
-   
     {
       imgSrc: '../../../assets/Images/burguer nn.jpeg',
       header: 'THE BURGER INN',
       details: 'ECP00852/90454/ON <br>On Consumption',
       iconSrc: '../../../assets/Images/Group 88.svg',
     },
-    
   ];
+
+  constructor(private route: Router) { }
+
+  ngOnInit() { }
 
   navigateToBack() {
     this.route.navigate(['dashboard']);
   }
 
+  filterOutlets() {
+    return this.outlets.filter(outlet =>
+      outlet.header.toLowerCase().startsWith(this.searchTerm.toLowerCase())
+    );
+  }
 }
