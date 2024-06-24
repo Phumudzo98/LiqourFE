@@ -6,6 +6,11 @@
     <h1 class="header-text">Photos</h1>
   </div>
 
+  <ion-item>
+    <ion-select class="custom-input" placeholder="Select outlet">
+    </ion-select>
+  </ion-item>
+
   <ion-card class="upload">
     <ng-container *ngIf="imageSources.length > 0; else noPhoto">
       <ng-container *ngIf="imageSources.length === 1; else multiplePhotos">
