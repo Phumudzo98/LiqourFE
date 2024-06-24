@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { headersSecure } from 'src/app/util/service/const';
+import { headers, headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-my-tasks',
@@ -16,8 +16,13 @@ export class MyTasksPage implements OnInit {
 
   ngOnInit() {
     let url = "/api/general/get-inbox";
+    let token = localStorage.getItem("userToken") 
+    const newHeader={
+      "Authorization":"Bearer "+token, 
+      "Accept":"*/*"
+    }
 
-    this.http.get<any[]>("https://system.eclb.co.za/eclb1/api/general/get-inbox", { headers: headersSecure }).subscribe(
+    this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/general/get-inbox", { headers: newHeader }).subscribe(
       response => {
         console.log(response);
         this.collect = response;
