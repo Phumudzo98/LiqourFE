@@ -64,7 +64,7 @@ export class CompleteInspectionPage implements OnInit {
       formServedAtEducationalInstitution: ['', [Validators.required]],
       placeOfWorshipWithin100m: ['', [Validators.required]],
       formServedAtPlaceOfWorship: ['', [Validators.required]],
-      recommendationForRegistration: ['', Validators.required],
+      //recommendationForRegistration: ['', Validators.required],
       comments: ['', Validators.required],
       futurePreInspectionDate: ['', Validators.required],
       lease: ['', Validators.required],
@@ -94,7 +94,8 @@ export class CompleteInspectionPage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.completeReportForm.value);
+    console.log(typeof this.completeReportForm.value);
+    console.log(this.completeReportForm.value)
     // Perform other actions here, like sending the data to the backend
   }
 
