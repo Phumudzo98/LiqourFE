@@ -9,12 +9,12 @@ import { headers, headersSecure } from 'src/app/util/service/const';
   styleUrls: ['./navigate-to-outlet.page.scss'],
 })
 export class NavigateToOutletPage implements OnInit {
-
-  constructor(private route: Router, private http: HttpClient) { }
-
   outlets: any[] = [];
   specific: any = '';
   loading: boolean = true; // Add loading state
+  searchQuery: string = ''; // Add search query property
+
+  constructor(private route: Router, private http: HttpClient) { }
 
   ngOnInit() {
     let url = "/api/outlet"
@@ -61,6 +61,12 @@ export class NavigateToOutletPage implements OnInit {
         console.log(error);
         this.loading = false; // Hide spinner if there's an error
       }
+    );
+  }
+
+  filteredOutlets() {
+    return this.outlets.filter(outlet =>
+      outlet.header.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 

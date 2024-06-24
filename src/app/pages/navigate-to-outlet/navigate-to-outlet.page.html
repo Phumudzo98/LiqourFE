@@ -8,21 +8,19 @@
   <div class="dashboard-container">
 
     <!-- Spinner Section -->
-    
 
     <!-- Main Content Section -->
-  
-    
-      <p class="quick-action" *ngIf="!loading">Navigate to Outlet</p>
 
-      <ion-item class="search-item" *ngIf="!loading">
-        <ion-input name="search" placeholder="Search Outlets" class="search-input">
-          <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
-        </ion-input>
-      </ion-item>
+    <p class="quick-action" *ngIf="!loading">Navigate to Outlet</p>
+
+    <ion-item class="search-item" *ngIf="!loading">
+      <ion-input [(ngModel)]="searchQuery" placeholder="Search Outlets" class="search-input">
+        <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
+      </ion-input>
+    </ion-item>
 
     <div *ngIf="!loading">
-      <ion-card *ngFor="let outlet of outlets">
+      <ion-card *ngFor="let outlet of filteredOutlets()">
         <ion-grid class="top">
           <ion-row>
             <ion-col>
@@ -41,13 +39,11 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-      
         <ion-button [routerLink]="['/location']" class="buttonClass">
           Navigate to Location
         </ion-button>
       </ion-card>
     </div>
-
   </div>
 </ion-content>
 <app-menu-footer *ngIf="!loading"></app-menu-footer>
