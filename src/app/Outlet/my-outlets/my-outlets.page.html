@@ -1,3 +1,5 @@
+<app-outlethaeder></app-outlethaeder>
+
 <ion-toolbar>
   <div class="header-img">
     <ion-title class="outlet-header">My Outlets</ion-title>
@@ -5,7 +7,7 @@
   </div>
 </ion-toolbar>
 
-<ion-content [fullscreen]="true">
+<ion-content >
   <ion-card *ngFor="let outlet of outlets">
     <ion-grid class="top">
       <ion-row>
@@ -31,3 +33,4 @@
     </ion-button>
   </ion-card>
 </ion-content>
+<app-outlet-menu-footer></app-outlet-menu-footer>
