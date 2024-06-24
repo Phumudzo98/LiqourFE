@@ -60,13 +60,12 @@ select {
     border-radius: 2px;
     box-shadow: none;
     display: flex;
-    flex-direction: column; /* Ensures children are stacked vertically */
-    align-items: center; /* Horizontally centers the children */
-    justify-content: center; /* Vertically centers the children */
-    text-align: center; /* Centers the text inside elements */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
     padding: 30px;
     font-family: 'Inter',sans-serif;
-
 }
 .upload-image {
   margin: 20px;
