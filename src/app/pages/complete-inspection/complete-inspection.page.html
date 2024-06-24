@@ -836,7 +836,7 @@
     
   <!--Upload-->
 
-  <ion-card class="upload-image">
+  <ion-card class="upload3">
     <ng-container *ngIf="imageSources.length > 0; else noPhoto">
       <ng-container *ngIf="imageSources.length === 1; else multiplePhotos">
         <img [src]="imageSources[0]" alt="Uploaded Photo" class="single-uploaded-photo" (click)="toggleDropdown($event, 0)">
