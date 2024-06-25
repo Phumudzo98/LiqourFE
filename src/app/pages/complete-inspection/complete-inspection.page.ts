@@ -29,6 +29,7 @@ export class CompleteInspectionPage implements OnInit {
   caseId: any;
   caseNo: any;
   imageSources: string[] = [];
+  
   inspectionReport:any;
  reportDoc:any;
   noticeDoc:any;
@@ -44,6 +45,7 @@ export class CompleteInspectionPage implements OnInit {
     private route: ActivatedRoute,
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
+
   ) {
     this.completeReportForm = this.fb.group({
       personContacted: ['', Validators.required],
@@ -67,7 +69,6 @@ export class CompleteInspectionPage implements OnInit {
       formServedAtEducationalInstitution: ['', [Validators.required]],
       placeOfWorshipWithin100m: ['', [Validators.required]],
       formServedAtPlaceOfWorship: ['', [Validators.required]],
-      recommendationForRegistration: ['', Validators.required],
       comments: ['', Validators.required],
       futurePreInspectionDate: ['', Validators.required],
       lease: ['', Validators.required],
@@ -103,18 +104,18 @@ export class CompleteInspectionPage implements OnInit {
     if (this.noticeDoc)
       formData.append('notice', this.noticeDoc.file);
     
-    
-
-    let token = localStorage.getItem("userToken")
-    const newHeader = {
-      "Authorization": "Bearer " + token,
-      "Accept": "*/*"
+    let token = localStorage.getItem("userToken") 
+    const newHeader={
+      "Authorization":"Bearer "+token, 
+      "Accept":"*/*"
     }
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
 
     this.http.post(url,formData, {headers: newHeader}).subscribe(response=>{
       console.log(response);
+
+      this.router.navigate(['/thank-you'])
     }, error => {
       console.log(error);
     })
