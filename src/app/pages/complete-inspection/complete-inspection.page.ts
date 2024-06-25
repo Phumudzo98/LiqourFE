@@ -30,7 +30,7 @@ export class CompleteInspectionPage implements OnInit {
   caseNo: any;
   imageSources: string[] = [];
   inspectionReport:any;
-  reportDoc:any;
+ reportDoc:any;
   noticeDoc:any;
 
   constructor(
@@ -76,6 +76,8 @@ export class CompleteInspectionPage implements OnInit {
       abulutionFacilityWorking: ['', Validators.required],
       readyToCommenceWithBusiness: ['', Validators.required],
       recommendation: ['', Validators.required],
+      reportDoc:['', Validators.required],
+      noticeDoc:['', Validators.required]
     });
   }
 
