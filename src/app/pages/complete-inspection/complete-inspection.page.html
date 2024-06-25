@@ -77,7 +77,7 @@
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload</span>
       <span>DOCX or PDF</span>
-      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;" [(ngModel)]="reportDoc">
     </ion-card>
   
     <div *ngFor="let file of uploadedFiles; let i = index">
@@ -826,7 +826,7 @@
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload</span>
       <span>DOCX or PDF</span>
-      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;" [(ngModel)]="noticeDoc">
     </ion-card>
     
     <div *ngFor="let file of uploadedFiles; let i = index">
