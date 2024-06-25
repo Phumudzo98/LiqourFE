@@ -820,6 +820,26 @@
     <ion-input placeholder="Enter Comments" formControlName="comments"></ion-input>
     </ion-item>
 
+
+    <!--Upload Docs-->
+    <ion-card class="upload" (click)="triggerFileInput()" *ngIf="inputVisible">
+      <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
+      <span>Click to upload</span>
+      <span>DOCX or PDF</span>
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
+    </ion-card>
+    
+    <div *ngFor="let file of uploadedFiles; let i = index">
+      <ion-card class="upload2">
+        <div class="header-content2">
+          <ion-card-title>{{ file.name }}</ion-card-title>
+          <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirm(i)" class=""></ion-img>
+        </div>
+        <span>{{ (file.size / 1024).toFixed(2) }} KB</span>
+      </ion-card>
+    </div>
+    
+
    
 
 </div>

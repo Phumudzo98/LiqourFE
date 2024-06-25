@@ -237,11 +237,11 @@ input[type="radio"]:checked {
 }
 
 .custom-select {
-  --padding-end: 1.0em; /* Adjust this value as needed */
+  --padding-end: 1.0em; 
 }
 
 .custom-select::part(text) {
-  padding-right: calc(var(--padding-end) + 1em); /* Adjust as needed */
+  padding-right: calc(var(--padding-end) + 1em); 
 }
 
 .custom-select::part(icon) {

@@ -20,15 +20,15 @@ export class CompleteInspectionPage implements OnInit {
   uploadedFiles: { name: string, size: number }[] = [];
   currentForm: string = 'landing';
   selectedRadioValue: string | null = null; // Initialize to null or the default value you want
+  inputVisible: boolean = true; // Add this property
 
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
 
   completeReportForm: FormGroup;
   caseId: any;
-  caseNo:any;
+  caseNo: any;
   imageSources: string[] = [];
-
 
   constructor(
     private router: Router,
@@ -40,8 +40,7 @@ export class CompleteInspectionPage implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private actionSheetController: ActionSheetController,
-      private modalController: ModalController,
-
+    private modalController: ModalController,
   ) {
     this.completeReportForm = this.fb.group({
       personContacted: ['', Validators.required],
@@ -52,7 +51,7 @@ export class CompleteInspectionPage implements OnInit {
       complaintsReceived: ['', [Validators.required]],
       longitude: ['', [Validators.required]],
       appointmentSet: ['', Validators.required],
-      personConsulted: ['', [Validators.required]],
+      personConsulted: ['', Validators.required],
       indicatedParticularPerson: ['', [Validators.required]],
       personFoundConfirmed: ['', [Validators.required]],
       rightToOccupy: ['', [Validators.required]],
@@ -76,15 +75,11 @@ export class CompleteInspectionPage implements OnInit {
       recommendation: ['', Validators.required],
     });
   }
-  
+
   ngOnInit() {
-
     this.route.paramMap.subscribe(param => {
-
       this.caseNo = param.get('caseId');
-
       console.log(this.caseNo);
-    
     });
   }
 
@@ -93,62 +88,55 @@ export class CompleteInspectionPage implements OnInit {
     // Perform other actions here, like sending the data to the backend
 
     let formValues = {
-      "inspection":{
-      personContacted: this.completeReportForm.get('personContacted')?.value,
-      inspectionDate: this.completeReportForm.get('inspectionDate')?.value,
-      latitude: this.completeReportForm.get('latitude')?.value,
-      interestInLiquorTrade: this.completeReportForm.get('interestInLiquorTrade')?.value,
-      issuedComplience: this.completeReportForm.get('issuedComplience')?.value,
-      complaintsReceived: this.completeReportForm.get('complaintsReceived')?.value,
-      longitude: this.completeReportForm.get('longitude')?.value,
-      appointmentSet: this.completeReportForm.get('appointmentSet')?.value,
-      personConsulted: this.completeReportForm.get('personConsulted')?.value,
-      indicatedParticularPerson: this.completeReportForm.get('indicatedParticularPerson')?.value,
-      personFoundConfirmed: this.completeReportForm.get('personFoundConfirmed')?.value,
-      rightToOccupy: this.completeReportForm.get('rightToOccupy')?.value,
-      formServedToWardCommittee: this.completeReportForm.get('formServedToWardCommittee')?.value,
-      formServedToWardCouncillor: this.completeReportForm.get('formServedToWardCouncillor')?.value,
-      wardCommitteReport: this.completeReportForm.get('wardCommitteReport')?.value,
-      communityConsulted: this.completeReportForm.get('communityConsulted')?.value,
-      educationalInstitutionWithin100m: this.completeReportForm.get('educationalInstitutionWithin100m')?.value,
-      premisesInIndicatedAddress: this.completeReportForm.get('premisesInIndicatedAddress')?.value,
-      formServedAtEducationalInstitution: this.completeReportForm.get('formServedAtEducationalInstitution')?.value,
-      placeOfWorshipWithin100m: this.completeReportForm.get('placeOfWorshipWithin100m')?.value,
-      formServedAtPlaceOfWorship: this.completeReportForm.get('formServedAtPlaceOfWorship')?.value,
-      recommendationForRegistration: this.completeReportForm.get('recommendationForRegistration')?.value,
-      comments: this.completeReportForm.get('comments')?.value,
-      futurePreInspectionDate: this.completeReportForm.get('futurePreInspectionDate')?.value,
-      lease: this.completeReportForm.get('lease')?.value,
-      premiseInLineWithPlan: this.completeReportForm.get('premiseInLineWithPlan')?.value,
-      premisesSuitedForCategory: this.completeReportForm.get('premisesSuitedForCategory')?.value,
-      abulutionFacilityWorking: this.completeReportForm.get('abulutionFacilityWorking')?.value,
-      readyToCommenceWithBusiness: this.completeReportForm.get('readyToCommenceWithBusiness')?.value,
-      recommendation: this.completeReportForm.get('recommendation')?.value
-    },
-    "report":"",
-    "notice":""
-
+      "inspection": {
+        personContacted: this.completeReportForm.get('personContacted')?.value,
+        inspectionDate: this.completeReportForm.get('inspectionDate')?.value,
+        latitude: this.completeReportForm.get('latitude')?.value,
+        interestInLiquorTrade: this.completeReportForm.get('interestInLiquorTrade')?.value,
+        issuedComplience: this.completeReportForm.get('issuedComplience')?.value,
+        complaintsReceived: this.completeReportForm.get('complaintsReceived')?.value,
+        longitude: this.completeReportForm.get('longitude')?.value,
+        appointmentSet: this.completeReportForm.get('appointmentSet')?.value,
+        personConsulted: this.completeReportForm.get('personConsulted')?.value,
+        indicatedParticularPerson: this.completeReportForm.get('indicatedParticularPerson')?.value,
+        personFoundConfirmed: this.completeReportForm.get('personFoundConfirmed')?.value,
+        rightToOccupy: this.completeReportForm.get('rightToOccupy')?.value,
+        formServedToWardCommittee: this.completeReportForm.get('formServedToWardCommittee')?.value,
+        formServedToWardCouncillor: this.completeReportForm.get('formServedToWardCouncillor')?.value,
+        wardCommitteReport: this.completeReportForm.get('wardCommitteReport')?.value,
+        communityConsulted: this.completeReportForm.get('communityConsulted')?.value,
+        educationalInstitutionWithin100m: this.completeReportForm.get('educationalInstitutionWithin100m')?.value,
+        premisesInIndicatedAddress: this.completeReportForm.get('premisesInIndicatedAddress')?.value,
+        formServedAtEducationalInstitution: this.completeReportForm.get('formServedAtEducationalInstitution')?.value,
+        placeOfWorshipWithin100m: this.completeReportForm.get('placeOfWorshipWithin100m')?.value,
+        formServedAtPlaceOfWorship: this.completeReportForm.get('formServedAtPlaceOfWorship')?.value,
+        recommendationForRegistration: this.completeReportForm.get('recommendationForRegistration')?.value,
+        comments: this.completeReportForm.get('comments')?.value,
+        futurePreInspectionDate: this.completeReportForm.get('futurePreInspectionDate')?.value,
+        lease: this.completeReportForm.get('lease')?.value,
+        premiseInLineWithPlan: this.completeReportForm.get('premiseInLineWithPlan')?.value,
+        premisesSuitedForCategory: this.completeReportForm.get('premisesSuitedForCategory')?.value,
+        abulutionFacilityWorking: this.completeReportForm.get('abulutionFacilityWorking')?.value,
+        readyToCommenceWithBusiness: this.completeReportForm.get('readyToCommenceWithBusiness')?.value,
+        recommendation: this.completeReportForm.get('recommendation')?.value
+      },
+      "report": "",
+      "notice": ""
     };
-    
 
-    let token = localStorage.getItem("userToken") 
-    const newHeader={
-      "Authorization":"Bearer "+token, 
-      "Accept":"*/*"
+    let token = localStorage.getItem("userToken")
+    const newHeader = {
+      "Authorization": "Bearer " + token,
+      "Accept": "*/*"
     }
 
-    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/"+this.caseNo
+    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
 
-    this.http.post(url,formValues, {headers: newHeader}).subscribe(response=>{
+    this.http.post(url, formValues, { headers: newHeader }).subscribe(response => {
       console.log(response);
-      
-    }, error=>{
+    }, error => {
       console.log(error);
-      
     })
-
-
-
   }
 
   saveFormValues() {
@@ -182,6 +170,7 @@ export class CompleteInspectionPage implements OnInit {
         await this.presentFileExistsAlert();
       } else {
         this.uploadedFiles.push({ name: file.name, size: file.size });
+        this.inputVisible = false; // Hide the input
       }
     }
   }
@@ -231,6 +220,9 @@ export class CompleteInspectionPage implements OnInit {
 
   deleteItem(index: number) {
     this.uploadedFiles.splice(index, 1);
+    if (this.uploadedFiles.length === 0) {
+      this.inputVisible = true; // Show the input if all files are deleted
+    }
   }
 
   async presentActionSheet() {
@@ -273,8 +265,8 @@ export class CompleteInspectionPage implements OnInit {
     }
   }
 
-dropdownVisible: { [index: string]: boolean } = {};
-toggleDropdown(event: Event, index: number) {
+  dropdownVisible: { [index: string]: boolean } = {};
+  toggleDropdown(event: Event, index: number) {
     event.stopPropagation();
     this.dropdownVisible[index] = !this.dropdownVisible[index];
   }
@@ -287,11 +279,12 @@ toggleDropdown(event: Event, index: number) {
       }
     });
   }
+
   async deleteImage(imageUrl: string) {
     const alert = await this.createDeleteAlert(imageUrl);
     await alert.present();
   }
-  
+
   private async createDeleteAlert(imageUrl: string) {
     return this.alertController.create({
       header: 'Confirm Delete',
@@ -317,7 +310,7 @@ toggleDropdown(event: Event, index: number) {
       ]
     });
   }
-  
+
   private removeImage(imageUrl: string) {
     const index = this.imageSources.indexOf(imageUrl);
     if (index !== -1) {
@@ -325,48 +318,43 @@ toggleDropdown(event: Event, index: number) {
       this.dropdownVisible[index] = false;
     }
   }
-  
 
-  
-async showOptions(imageUrl: string) {
-  const alert = await this.alertController.create({
-    header: 'Options',
-    message: 'Choose an action for this image:',
-    buttons: [
-      {
-        text: 'View',
-        handler: () => {
-          // Handle view action
-          console.log('View clicked for:', imageUrl);
+  async showOptions(imageUrl: string) {
+    const alert = await this.alertController.create({
+      header: 'Options',
+      message: 'Choose an action for this image:',
+      buttons: [
+        {
+          text: 'View',
+          handler: () => {
+            // Handle view action
+            console.log('View clicked for:', imageUrl);
+          }
+        },
+        {
+          text: 'Delete',
+          cssClass: 'danger',
+          handler: () => {
+            // Handle delete action
+            console.log('Delete clicked for:', imageUrl);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            // Handle cancel action
+            console.log('Cancel clicked');
+          }
         }
-      },
-      {
-        text: 'Delete',
-        cssClass: 'danger',
-        handler: () => {
-          // Handle delete action
-          console.log('Delete clicked for:', imageUrl);
-        }
-      },
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {
-          // Handle cancel action
-          console.log('Cancel clicked');
-        }
-      }
-    ]
-  });
+      ]
+    });
 
-  await alert.present();
-}
-
+    await alert.present();
+  }
 
   viewImageUrl: string | null = null;
-
- 
 
   async viewImage(image: string) {
     const modal = await this.modalController.create({
@@ -376,7 +364,6 @@ async showOptions(imageUrl: string) {
     });
     return await modal.present();
   }
-
 
   async dismissModal() {
     this.viewImageUrl = null;
