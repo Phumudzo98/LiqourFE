@@ -29,7 +29,7 @@ export class CompleteInspectionPage implements OnInit {
   caseId: any;
   caseNo: any;
   imageSources: string[] = [];
-  
+
   inspectionReport:any;
   reportDoc:any;
   noticeDoc:any;
