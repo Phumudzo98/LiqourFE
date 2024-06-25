@@ -1,7 +1,13 @@
-<app-menu-header></app-menu-header>
+<app-menu-header *ngIf="!Loading"></app-menu-header>
 
-<ion-content>
-  <div class="dashboard-container" >
+<div class="loader-container" *ngIf="Loading">
+  <div class="loader"></div>
+  <div class="loading-text">Loading...</div>
+</div>
+
+<ion-content *ngIf="!Loading">
+ 
+  <div class="dashboard-container">
     <p class="quick-action">Complaints</p>
     
     <ion-item class="search-item">
@@ -31,4 +37,5 @@
     </ng-container>
   </div>
 </ion-content>
-<app-menu-footer ></app-menu-footer>
+
+<app-menu-footer *ngIf="!Loading"></app-menu-footer>

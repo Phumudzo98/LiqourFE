@@ -7,9 +7,13 @@
   </div>
 
   <ion-item>
-    <ion-select class="custom-input" placeholder="Select outlet">
+    <ion-select class="custom-select" placeholder="Select outlet">
+      <ion-select-option value="outlet1">Outlet 1</ion-select-option>
+      <ion-select-option value="outlet2">Outlet 2</ion-select-option>
+      <ion-select-option value="outlet3">Outlet 3</ion-select-option>
     </ion-select>
   </ion-item>
+  
 
   <ion-card class="upload">
     <ng-container *ngIf="imageSources.length > 0; else noPhoto">

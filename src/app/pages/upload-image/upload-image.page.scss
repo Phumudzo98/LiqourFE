@@ -186,4 +186,13 @@ ion-label{
   font-size: 12px !important;
 }
 
-  
+.custom-select {
+  --padding-end: 1%;
+  --padding-start: 1%;
+}
+
+.custom-select::part(icon) {
+  margin-left: 240px; /* Pushes the icon to the right */
+  //margin-right: 16px; /* Adjust the right margin as needed */
+}
+
