@@ -43,7 +43,7 @@ export class CompleteInspectionPage implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private actionSheetController: ActionSheetController,
-      private modalController: ModalController,
+    private modalController: ModalController,
 
   ) {
     this.completeReportForm = this.fb.group({
@@ -68,7 +68,6 @@ export class CompleteInspectionPage implements OnInit {
       formServedAtEducationalInstitution: ['', [Validators.required]],
       placeOfWorshipWithin100m: ['', [Validators.required]],
       formServedAtPlaceOfWorship: ['', [Validators.required]],
-      recommendationForRegistration: ['', Validators.required],
       comments: ['', Validators.required],
       futurePreInspectionDate: ['', Validators.required],
       lease: ['', Validators.required],
@@ -106,8 +105,6 @@ export class CompleteInspectionPage implements OnInit {
     if (this.noticeDoc)
       formData.append('notice', this.noticeDoc.file);
     
-    
-
     let token = localStorage.getItem("userToken") 
     const newHeader={
       "Authorization":"Bearer "+token, 
@@ -118,6 +115,8 @@ export class CompleteInspectionPage implements OnInit {
 
     this.http.post(url,formData, {headers: newHeader}).subscribe(response=>{
       console.log(response);
+
+      this.router.navigate(['/thank-you'])
       
     }, error=>{
       console.log(error);
