@@ -1,16 +1,15 @@
 <app-menu-header></app-menu-header>
 <ion-content>
   <div class="dashboard-container">
- 
     <p class="quick-action">Inspection</p>
     
     <ion-item class="search-item">
-      <ion-input name="search" placeholder="Search Outlets" [(ngModel)]="searchTerm" class="search-input">
+      <ion-input name="search" placeholder="Search Outlets" [(ngModel)]="searchTerm" (ngModelChange)="filterOutlets()" class="search-input">
         <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
       </ion-input>
     </ion-item>
 
-    <ion-card *ngFor="let outlet of collect">
+    <ion-card *ngFor="let outlet of filteredOutlets">
       <ion-grid class="top">
         <ion-row>
           <ion-col>
@@ -30,8 +29,8 @@
         </ion-row>
       </ion-grid>
       
-      <ion-button class="buttonClass">
-        <a [routerLink]="['/complete-inspection', outlet.caseId]">Complete Inspection</a>
+      <ion-button class="buttonClass" [routerLink]="['/complete-inspection', outlet.caseId]">
+        Complete Inspection
       </ion-button>
       
     </ion-card>
