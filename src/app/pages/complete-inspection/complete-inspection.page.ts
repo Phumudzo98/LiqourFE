@@ -29,6 +29,9 @@ export class CompleteInspectionPage implements OnInit {
   caseId: any;
   caseNo: any;
   imageSources: string[] = [];
+  inspectionReport:any;
+  reportDoc:any;
+  noticeDoc:any;
 
   constructor(
     private router: Router,
@@ -82,47 +85,23 @@ export class CompleteInspectionPage implements OnInit {
       console.log(this.caseNo);
     });
   }
+  
 
   onSubmit() {
     console.log(this.completeReportForm.value);
     // Perform other actions here, like sending the data to the backend
+    this.inspectionReport=Object.assign(this.inspectionReport,this.completeReportForm.value);
 
-    let formValues = {
-      "inspection": {
-        personContacted: this.completeReportForm.get('personContacted')?.value,
-        inspectionDate: this.completeReportForm.get('inspectionDate')?.value,
-        latitude: this.completeReportForm.get('latitude')?.value,
-        interestInLiquorTrade: this.completeReportForm.get('interestInLiquorTrade')?.value,
-        issuedComplience: this.completeReportForm.get('issuedComplience')?.value,
-        complaintsReceived: this.completeReportForm.get('complaintsReceived')?.value,
-        longitude: this.completeReportForm.get('longitude')?.value,
-        appointmentSet: this.completeReportForm.get('appointmentSet')?.value,
-        personConsulted: this.completeReportForm.get('personConsulted')?.value,
-        indicatedParticularPerson: this.completeReportForm.get('indicatedParticularPerson')?.value,
-        personFoundConfirmed: this.completeReportForm.get('personFoundConfirmed')?.value,
-        rightToOccupy: this.completeReportForm.get('rightToOccupy')?.value,
-        formServedToWardCommittee: this.completeReportForm.get('formServedToWardCommittee')?.value,
-        formServedToWardCouncillor: this.completeReportForm.get('formServedToWardCouncillor')?.value,
-        wardCommitteReport: this.completeReportForm.get('wardCommitteReport')?.value,
-        communityConsulted: this.completeReportForm.get('communityConsulted')?.value,
-        educationalInstitutionWithin100m: this.completeReportForm.get('educationalInstitutionWithin100m')?.value,
-        premisesInIndicatedAddress: this.completeReportForm.get('premisesInIndicatedAddress')?.value,
-        formServedAtEducationalInstitution: this.completeReportForm.get('formServedAtEducationalInstitution')?.value,
-        placeOfWorshipWithin100m: this.completeReportForm.get('placeOfWorshipWithin100m')?.value,
-        formServedAtPlaceOfWorship: this.completeReportForm.get('formServedAtPlaceOfWorship')?.value,
-        recommendationForRegistration: this.completeReportForm.get('recommendationForRegistration')?.value,
-        comments: this.completeReportForm.get('comments')?.value,
-        futurePreInspectionDate: this.completeReportForm.get('futurePreInspectionDate')?.value,
-        lease: this.completeReportForm.get('lease')?.value,
-        premiseInLineWithPlan: this.completeReportForm.get('premiseInLineWithPlan')?.value,
-        premisesSuitedForCategory: this.completeReportForm.get('premisesSuitedForCategory')?.value,
-        abulutionFacilityWorking: this.completeReportForm.get('abulutionFacilityWorking')?.value,
-        readyToCommenceWithBusiness: this.completeReportForm.get('readyToCommenceWithBusiness')?.value,
-        recommendation: this.completeReportForm.get('recommendation')?.value
-      },
-      "report": "",
-      "notice": ""
-    };
+    const formData = new FormData();
+    formData.append('inspection',new Blob([JSON.stringify(this.inspectionReport)],{ type: 'application/json' }))
+    
+    if (this.reportDoc)
+      formData.append('report', this.reportDoc.file);
+
+    if (this.noticeDoc)
+      formData.append('notice', this.noticeDoc.file);
+    
+    
 
     let token = localStorage.getItem("userToken")
     const newHeader = {
@@ -132,7 +111,7 @@ export class CompleteInspectionPage implements OnInit {
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
 
-    this.http.post(url, formValues, { headers: newHeader }).subscribe(response => {
+    this.http.post(url,formData, {headers: newHeader}).subscribe(response=>{
       console.log(response);
     }, error => {
       console.log(error);
@@ -221,7 +200,7 @@ export class CompleteInspectionPage implements OnInit {
   deleteItem(index: number) {
     this.uploadedFiles.splice(index, 1);
     if (this.uploadedFiles.length === 0) {
-      this.inputVisible = true; // Show the input if all files are deleted
+      this.inputVisible = true; 
     }
   }
 
