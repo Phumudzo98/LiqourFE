@@ -20,18 +20,19 @@ export class CompleteInspectionPage implements OnInit {
   uploadedFiles: { name: string, size: number }[] = [];
   currentForm: string = 'landing';
   selectedRadioValue: string | null = null; // Initialize to null or the default value you want
+  inputVisible: boolean = true; // Add this property
 
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
 
   completeReportForm: FormGroup;
   caseId: any;
-  caseNo:any;
+  caseNo: any;
   imageSources: string[] = [];
+  
   inspectionReport:any;
   reportDoc:any;
   noticeDoc:any;
-
 
   constructor(
     private router: Router,
@@ -55,7 +56,7 @@ export class CompleteInspectionPage implements OnInit {
       complaintsReceived: ['', [Validators.required]],
       longitude: ['', [Validators.required]],
       appointmentSet: ['', Validators.required],
-      personConsulted: ['', [Validators.required]],
+      personConsulted: ['', Validators.required],
       indicatedParticularPerson: ['', [Validators.required]],
       personFoundConfirmed: ['', [Validators.required]],
       rightToOccupy: ['', [Validators.required]],
@@ -78,15 +79,11 @@ export class CompleteInspectionPage implements OnInit {
       recommendation: ['', Validators.required],
     });
   }
-  
+
   ngOnInit() {
-
     this.route.paramMap.subscribe(param => {
-
       this.caseNo = param.get('caseId');
-
       console.log(this.caseNo);
-    
     });
   }
   
@@ -111,20 +108,15 @@ export class CompleteInspectionPage implements OnInit {
       "Accept":"*/*"
     }
 
-    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/"+this.caseNo
+    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
 
     this.http.post(url,formData, {headers: newHeader}).subscribe(response=>{
       console.log(response);
 
       this.router.navigate(['/thank-you'])
-      
-    }, error=>{
+    }, error => {
       console.log(error);
-      
     })
-
-
-
   }
 
   saveFormValues() {
@@ -158,6 +150,7 @@ export class CompleteInspectionPage implements OnInit {
         await this.presentFileExistsAlert();
       } else {
         this.uploadedFiles.push({ name: file.name, size: file.size });
+        this.inputVisible = false; // Hide the input
       }
     }
   }
@@ -207,6 +200,9 @@ export class CompleteInspectionPage implements OnInit {
 
   deleteItem(index: number) {
     this.uploadedFiles.splice(index, 1);
+    if (this.uploadedFiles.length === 0) {
+      this.inputVisible = true; 
+    }
   }
 
   async presentActionSheet() {
@@ -249,8 +245,8 @@ export class CompleteInspectionPage implements OnInit {
     }
   }
 
-dropdownVisible: { [index: string]: boolean } = {};
-toggleDropdown(event: Event, index: number) {
+  dropdownVisible: { [index: string]: boolean } = {};
+  toggleDropdown(event: Event, index: number) {
     event.stopPropagation();
     this.dropdownVisible[index] = !this.dropdownVisible[index];
   }
@@ -263,11 +259,12 @@ toggleDropdown(event: Event, index: number) {
       }
     });
   }
+
   async deleteImage(imageUrl: string) {
     const alert = await this.createDeleteAlert(imageUrl);
     await alert.present();
   }
-  
+
   private async createDeleteAlert(imageUrl: string) {
     return this.alertController.create({
       header: 'Confirm Delete',
@@ -293,7 +290,7 @@ toggleDropdown(event: Event, index: number) {
       ]
     });
   }
-  
+
   private removeImage(imageUrl: string) {
     const index = this.imageSources.indexOf(imageUrl);
     if (index !== -1) {
@@ -301,48 +298,43 @@ toggleDropdown(event: Event, index: number) {
       this.dropdownVisible[index] = false;
     }
   }
-  
 
-  
-async showOptions(imageUrl: string) {
-  const alert = await this.alertController.create({
-    header: 'Options',
-    message: 'Choose an action for this image:',
-    buttons: [
-      {
-        text: 'View',
-        handler: () => {
-          // Handle view action
-          console.log('View clicked for:', imageUrl);
+  async showOptions(imageUrl: string) {
+    const alert = await this.alertController.create({
+      header: 'Options',
+      message: 'Choose an action for this image:',
+      buttons: [
+        {
+          text: 'View',
+          handler: () => {
+            // Handle view action
+            console.log('View clicked for:', imageUrl);
+          }
+        },
+        {
+          text: 'Delete',
+          cssClass: 'danger',
+          handler: () => {
+            // Handle delete action
+            console.log('Delete clicked for:', imageUrl);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            // Handle cancel action
+            console.log('Cancel clicked');
+          }
         }
-      },
-      {
-        text: 'Delete',
-        cssClass: 'danger',
-        handler: () => {
-          // Handle delete action
-          console.log('Delete clicked for:', imageUrl);
-        }
-      },
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {
-          // Handle cancel action
-          console.log('Cancel clicked');
-        }
-      }
-    ]
-  });
+      ]
+    });
 
-  await alert.present();
-}
-
+    await alert.present();
+  }
 
   viewImageUrl: string | null = null;
-
- 
 
   async viewImage(image: string) {
     const modal = await this.modalController.create({
@@ -352,7 +344,6 @@ async showOptions(imageUrl: string) {
     });
     return await modal.present();
   }
-
 
   async dismissModal() {
     this.viewImageUrl = null;
