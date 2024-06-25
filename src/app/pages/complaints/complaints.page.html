@@ -1,13 +1,13 @@
-<app-menu-header  *ngIf="!Loading"></app-menu-header>
-<div class="loader-container">
+<app-menu-header *ngIf="!Loading"></app-menu-header>
+
+<div class="loader-container" *ngIf="Loading">
   <div class="loader"></div>
   <div class="loading-text">Loading...</div>
 </div>
-<ion-content>
-  <div class="header-container"  *ngIf="!Loading">
-    <img src="assets/Images/Back Icon.svg" (click)="navigateToBack()" class="back-Arrow">
-  </div>
-  <div class="dashboard-container" >
+
+<ion-content *ngIf="!Loading">
+ 
+  <div class="dashboard-container">
     <p class="quick-action">Complaints</p>
     
     <ion-item class="search-item">
@@ -37,4 +37,5 @@
     </ng-container>
   </div>
 </ion-content>
-<app-menu-footer ></app-menu-footer>
+
+<app-menu-footer *ngIf="!Loading"></app-menu-footer>
