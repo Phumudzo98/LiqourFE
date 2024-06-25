@@ -236,6 +236,19 @@ input[type="radio"]:checked {
   margin-right: 20px;
 }
 
+.custom-select {
+  --padding-end: 1.0em; /* Adjust this value as needed */
+}
+
+.custom-select::part(text) {
+  padding-right: calc(var(--padding-end) + 1em); /* Adjust as needed */
+}
+
+.custom-select::part(icon) {
+  position: absolute;
+  right: 0.0em;
+}
+
 
 
   

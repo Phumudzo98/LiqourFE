@@ -187,12 +187,17 @@ ion-label{
 }
 
 .custom-select {
-  --padding-end: 1%;
-  --padding-start: 1%;
+  --padding-end: 1.5em; /* Adjust this value as needed */
+}
+
+.custom-select::part(text) {
+  padding-right: calc(var(--padding-end) + 1em); /* Adjust as needed */
 }
 
 .custom-select::part(icon) {
-  margin-left: 240px; /* Pushes the icon to the right */
-  //margin-right: 16px; /* Adjust the right margin as needed */
+  position: absolute;
+  right: 0.0em;
 }
+
+
 
