@@ -1,5 +1,3 @@
-
-
 <ion-content >
   <form [formGroup]="completeReportForm">
   <div *ngIf="currentForm === 'landing'">
@@ -77,10 +75,18 @@
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload</span>
       <span>DOCX or PDF</span>
-      <input type="file" #fileInput accept=".docx, .pdf" style="display: none;">
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
     </ion-card>
   
-    
+    <div *ngFor="let file of reportFiles; let i = index">
+      <ion-card class="upload2">
+        <div class="header-content2">
+          <ion-card-title>{{ file.name }}</ion-card-title>
+          <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirm(i)" class=""></ion-img>
+        </div>
+        <span>{{ (file.size / 1024).toFixed(2) }} KB</span>
+      </ion-card>
+    </div>
   
   </div>
   
@@ -126,19 +132,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_person" name="consultedOrFound" value="1" formControlName="consultedOrFound">
+                <input type="radio" id="yes_person" name="personConsulted" value="1" formControlName="consultedOrFound">
                 <label for="yes_person">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_person" name="consultedOrFound" value="2" formControlName="consultedOrFound">
+                <input type="radio" id="no_person" name="personConsulted" value="2" formControlName="consultedOrFound">
                 <label for="no_person">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_person" name="consultedOrFound" value="3" formControlName="consultedOrFound">
+                <input type="radio" id="na_person" name="personConsulted" value="3" formControlName="consultedOrFound">
                 <label for="na_person">N/A</label>
               </div>
             </ion-col>
@@ -156,19 +162,19 @@
         <ion-row>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="yes_indicated" name="applicantIndicatedPersonAtPremises" value="1" formControlName="applicantIndicatedPersonAtPremises">
+              <input type="radio" id="yes_indicated" name="indicatedParticularPerson" value="1" formControlName="applicantIndicatedPersonAtPremises">
               <label for="yes_indicated">Yes</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="no_indicated" name="applicantIndicatedPersonAtPremises" value="2" formControlName="applicantIndicatedPersonAtPremises">
+              <input type="radio" id="no_indicated" name="indicatedParticularPerson" value="2" formControlName="applicantIndicatedPersonAtPremises">
               <label for="no_indicated">No</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="na_indicated" name="applicantIndicatedPersonAtPremisesFF" value="3" formControlName="applicantIndicatedPersonAtPremises">
+              <input type="radio" id="na_indicated" name="indicatedParticularPerson" value="3" formControlName="applicantIndicatedPersonAtPremises">
               <label for="na_indicated">N/A</label>
             </div>
           </ion-col>
@@ -183,19 +189,19 @@
         <ion-row>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="yes_confirm" name="canPersonBeFound" value="1" formControlName="canPersonBeFound">
+              <input type="radio" id="yes_confirm" name="personFoundConfirmed" value="1" formControlName="canPersonBeFound">
               <label for="yes_confirm">Yes</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="no_confirm" name="canPersonBeFound" value="2" formControlName="canPersonBeFound">
+              <input type="radio" id="no_confirm" name="personFoundConfirmed" value="2" formControlName="canPersonBeFound">
               <label for="no_confirm">No</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="na_confirm" name="canPersonBeFound" value="3" formControlName="canPersonBeFound">
+              <input type="radio" id="na_confirm" name="personFoundConfirmed" value="3" formControlName="canPersonBeFound">
               <label for="na_confirm">N/A</label>
             </div>
           </ion-col>
@@ -813,18 +819,24 @@
     </ion-item>
 
 
-    <!--Upload Docs-->
-    <ion-card class="upload" (click)="triggerFileInput()" *ngIf="inputVisible">
+    <!--Upload Docs-->   <ion-card class="upload" (click)="triggerFileInput()">
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload</span>
       <span>DOCX or PDF</span>
-      <input type="file" #fileInput  accept=".docx, .pdf" style="display: none;">
+      <input type="file" #fileInput (change)="onFileSelectedRecommendation($event)" accept=".docx, .pdf" style="display: none;">
     </ion-card>
   
+    <ion-card *ngIf="noticeFiles.length > 0" class="upload2">
+      <div class="header-content2">
+        <ion-card-title>{{ noticeFiles[0].name }}</ion-card-title>
+        <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirmNotice(0)" class=""></ion-img>
+      </div>
+      <span>{{ (noticeFiles[0].size / 1024).toFixed(2) }} KB</span>
+    </ion-card>
+    <ion-card *ngIf="noticeFiles.length === 0" class="upload2">
+      <span>No file uploaded</span>
+    </ion-card>
     
-
-   
-
 </div>
 
 
