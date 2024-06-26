@@ -10,6 +10,7 @@
     </ion-item>
 
     <ion-card *ngFor="let outlet of filteredOutlets">
+      <div *ngIf="outlet.action == 'Complete Report'">
       <ion-grid class="top">
         <ion-row>
           <ion-col>
@@ -32,7 +33,7 @@
       <ion-button class="buttonClass" [routerLink]="['/complete-inspection', outlet.caseId]">
         Complete Inspection
       </ion-button>
-      
+      </div>
     </ion-card>
   </div>
 </ion-content>
