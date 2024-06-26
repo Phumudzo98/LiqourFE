@@ -23,7 +23,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       switchMap((token: any) => {
         
         let tokenString = token.toString();
-        console.log(tokenString);
+        //console.log(tokenString);
         
         
         if (Object.keys(tokenString).length > 0) {

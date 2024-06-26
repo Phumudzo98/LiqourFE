@@ -19,7 +19,7 @@
     </ion-item>
     <ion-label >Complaint Status</ion-label>
     <ion-item>
-      <ion-select class="custom-input custom-select" placeholder="Complaint Status">
+      <ion-select class="custom-input custom-select" placeholder="Complaint Status" [(ngModel)]="status">
         <ion-select-option value="inspector1">Open</ion-select-option>
         <ion-select-option value="inspector2">In Progress</ion-select-option>
         <ion-select-option value="inspector3">Cancelled</ion-select-option>
@@ -50,13 +50,10 @@
     </ion-item>
     <ion-label >Relevant Inspector</ion-label>
 
-    <ion-item>
-      <ion-select class="custom-input custom-select" placeholder="Relevant Inspector">
-        <ion-select-option value="inspector1">Eric Mata</ion-select-option>
-        <ion-select-option value="inspector2">Lulamile Timana</ion-select-option>
-        <ion-select-option value="inspector3">Xoliswa Sibeko</ion-select-option>
-        <ion-select-option value="inspector4">Vuyo Mfula</ion-select-option>
-        <ion-select-option value="inspector5">Mkangeli Mtimkulu</ion-select-option>
+    <ion-item >
+      <ion-select class="custom-input custom-select" placeholder="Relevant Inspector" [(ngModel)]="selectedInspector">
+        <ion-select-option *ngFor="let inspector of inspectors" value={{inspector.userId}}>{{inspector.username}}</ion-select-option>
+        
         <!-- Add more options as needed -->
       </ion-select>
     </ion-item>
@@ -72,8 +69,8 @@
     </ion-item>
 
     <div class="button-container">
-      <ion-button class="buttonClass">
-        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      <ion-button (click)="updateComplaint()" class="buttonClass"  >
+        <img  slot="start" class="image"  src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
         Save
       </ion-button>
     </div>
