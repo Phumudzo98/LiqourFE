@@ -17,8 +17,7 @@ import { ViewImagePage } from '../view-image/view-image.page';
 export class CompleteInspectionPage implements OnInit {
 
   selectedOption: string = '';
-  uploadedFiles: { name: string, size: number, file: File }[] = [];
-  uploadedFiles1: { name: string, size: number, file: File }[] = [];
+  uploadedFiles: { name: string, size: number }[] = [];
   currentForm: string = 'landing';
   selectedRadioValue: string | null = null; // Initialize to null or the default value you want
   inputVisible: boolean = true; // Add this property
@@ -99,15 +98,12 @@ export class CompleteInspectionPage implements OnInit {
 
     const formData = new FormData();
     formData.append('inspection',new Blob([JSON.stringify(this.inspectionReport)],{ type: 'application/json' }))
-
-    const firstFile = this.uploadedFiles[0].file;
-    const firstFile1 = this.uploadedFiles1[0].file;
+    
     if (this.reportDoc)
-      
-      formData.append('report', firstFile, firstFile.name );
+      formData.append('report', this.reportDoc.file);
 
     if (this.noticeDoc)
-      formData.append('notice', firstFile1, firstFile1.name);
+      formData.append('notice', this.noticeDoc.file);
     
     let token = localStorage.getItem("userToken") 
     const newHeader={
@@ -156,28 +152,13 @@ export class CompleteInspectionPage implements OnInit {
       if (this.isFileUploaded(file.name)) {
         await this.presentFileExistsAlert();
       } else {
-        this.uploadedFiles.push({ name: file.name, size: file.size, file: file });
-        this.inputVisible = false; // Hide the input
-      }
-    }
-  }
-
-  async onFileSelected1(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      if (this.isFileUploaded(file.name)) {
-        await this.presentFileExistsAlert();
-      } else {
-        this.uploadedFiles1.push({ name: file.name, size: file.size, file: file });
+        this.uploadedFiles.push({ name: file.name, size: file.size });
         this.inputVisible = false; // Hide the input
       }
     }
   }
 
   isFileUploaded(fileName: string): boolean {
-    return this.uploadedFiles.some(file => file.name === fileName);
-  }
-  isFileUploaded1(fileName: string): boolean {
     return this.uploadedFiles.some(file => file.name === fileName);
   }
 
