@@ -1,5 +1,3 @@
-
-
 <ion-content >
   <form [formGroup]="completeReportForm">
   <div *ngIf="currentForm === 'landing'">
@@ -80,7 +78,7 @@
       <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
     </ion-card>
   
-    <div *ngFor="let file of uploadedFiles; let i = index">
+    <div *ngFor="let file of reportFiles; let i = index">
       <ion-card class="upload2">
         <div class="header-content2">
           <ion-card-title>{{ file.name }}</ion-card-title>
@@ -821,27 +819,24 @@
     </ion-item>
 
 
-    <!--Upload Docs-->
-    <ion-card class="upload" (click)="triggerFileInput()" *ngIf="inputVisible">
+    <!--Upload Docs-->   <ion-card class="upload" (click)="triggerFileInput()">
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload</span>
       <span>DOCX or PDF</span>
-      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
+      <input type="file" #fileInput (change)="onFileSelectedRecommendation($event)" accept=".docx, .pdf" style="display: none;">
+    </ion-card>
+  
+    <ion-card *ngIf="noticeFiles.length > 0" class="upload2">
+      <div class="header-content2">
+        <ion-card-title>{{ noticeFiles[0].name }}</ion-card-title>
+        <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirmNotice(0)" class=""></ion-img>
+      </div>
+      <span>{{ (noticeFiles[0].size / 1024).toFixed(2) }} KB</span>
+    </ion-card>
+    <ion-card *ngIf="noticeFiles.length === 0" class="upload2">
+      <span>No file uploaded</span>
     </ion-card>
     
-    <div *ngFor="let file of uploadedFiles; let i = index">
-      <ion-card class="upload2">
-        <div class="header-content2">
-          <ion-card-title>{{ file.name }}</ion-card-title>
-          <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirm(i)" class=""></ion-img>
-        </div>
-        <span>{{ (file.size / 1024).toFixed(2) }} KB</span>
-      </ion-card>
-    </div>
-    
-
-   
-
 </div>
 
 

@@ -17,10 +17,11 @@ import { ViewImagePage } from '../view-image/view-image.page';
 export class CompleteInspectionPage implements OnInit {
 
   selectedOption: string = '';
-  uploadedFiles: { name: string, size: number }[] = [];
+  reportFiles: { name: string, size: number }[] = [];
+  noticeFiles: { name: string, size: number }[] = [];
   currentForm: string = 'landing';
-  selectedRadioValue: string | null = null; // Initialize to null or the default value you want
-  inputVisible: boolean = true; // Add this property
+  selectedRadioValue: string | null = null; 
+  inputVisible: boolean = true; 
 
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
@@ -108,7 +109,7 @@ export class CompleteInspectionPage implements OnInit {
     let token = localStorage.getItem("userToken") 
     const newHeader={
       "Authorization":"Bearer "+token, 
-      "Accept":"*/*"
+      "Accept":"/"
     }
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
@@ -152,14 +153,14 @@ export class CompleteInspectionPage implements OnInit {
       if (this.isFileUploaded(file.name)) {
         await this.presentFileExistsAlert();
       } else {
-        this.uploadedFiles.push({ name: file.name, size: file.size });
-        this.inputVisible = false; // Hide the input
+        this.reportFiles.push({ name: file.name, size: file.size });
+        this.inputVisible = false; 
       }
     }
   }
 
   isFileUploaded(fileName: string): boolean {
-    return this.uploadedFiles.some(file => file.name === fileName);
+    return this.reportFiles.some(file => file.name === fileName);
   }
 
   async presentFileExistsAlert() {
@@ -202,8 +203,63 @@ export class CompleteInspectionPage implements OnInit {
   }
 
   deleteItem(index: number) {
-    this.uploadedFiles.splice(index, 1);
-    if (this.uploadedFiles.length === 0) {
+    this.reportFiles.splice(index, 1);
+    if (this.reportFiles.length === 0) {
+      this.inputVisible = true; 
+    }
+  }
+
+  // File
+
+  
+  async onFileSelectedRecommendation(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      if (this.noticeFiles.length > 0) {
+        this.noticeFiles.splice(0, 1, { name: file.name, size: file.size });
+      } else {
+        this.noticeFiles.push({ name: file.name, size: file.size });
+      }
+      this.inputVisible = false; 
+    }
+  }
+
+  isFileUploadedNotice(fileName: string): boolean {
+    return this.noticeFiles.some(file => file.name === fileName);
+  }
+
+ 
+
+
+
+  async presentAlertConfirmNotice(index: number) {
+    const alert = await this.alertController.create({
+      header: 'Confirm Deletion',
+      message: 'Are you sure you want to delete this document?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteItemNotice(index);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        },
+      ]
+    });
+
+    await alert.present();
+  }
+
+  deleteItemNotice(index: number) {
+    this.noticeFiles.splice(index, 1);
+    if (this.noticeFiles.length === 0) {
       this.inputVisible = true; 
     }
   }
