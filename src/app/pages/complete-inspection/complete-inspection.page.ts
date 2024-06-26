@@ -93,24 +93,29 @@ export class CompleteInspectionPage implements OnInit {
   
 
   onSubmit() {
-    console.log(this.completeReportForm.value);
-    // Perform other actions here, like sending the data to the backend
-    this.inspectionReport=Object.assign(this.inspectionReport,this.completeReportForm.value);
-
-    const formData = new FormData();
-    formData.append('inspection',new Blob([JSON.stringify(this.inspectionReport)],{ type: 'application/json' }))
     
-    if (this.reportDoc)
-      formData.append('report', this.reportDoc.file);
-
-    if (this.noticeDoc)
-      formData.append('notice', this.noticeDoc.file);
     
     let token = localStorage.getItem("userToken") 
     const newHeader={
       "Authorization":"Bearer "+token, 
       "Accept":"/"
     }
+
+
+    //initialization of the variable
+    this.inspectionReport = this.inspectionReport || {};
+
+    this.inspectionReport=Object.assign(this.inspectionReport,this.completeReportForm.value);
+
+    const formData = new FormData();
+    formData.append('inspection',new Blob([JSON.stringify(this.inspectionReport)],{ type: 'application/json' }))
+    
+      this.reportDoc=this.reportFiles[0]
+      formData.append('report', this.reportDoc.file);
+
+      this.noticeDoc=this.reportFiles[0]
+      formData.append('notice', this.noticeDoc.file);
+    
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
 
