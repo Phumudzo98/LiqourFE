@@ -29,7 +29,6 @@ export class CompleteInspectionPage implements OnInit {
   caseId: any;
   caseNo: any;
   imageSources: string[] = [];
-
   inspectionReport:any;
   reportDoc:any;
   noticeDoc:any;
@@ -45,42 +44,41 @@ export class CompleteInspectionPage implements OnInit {
     private route: ActivatedRoute,
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
-
   ) {
     this.completeReportForm = this.fb.group({
-      contactPerson: ['', Validators.required],
-      inspectionDate: ['', Validators.required],
+      personContacted: ['', Validators.required],
+      inspectionDate: ['', [Validators.required]],
+      latitude: ['', [Validators.required]],
+      interestInLiquorTrade: ['', [Validators.required]],
+      issuedComplience: ['', [Validators.required]],
+      complaintsReceived: ['', [Validators.required]],
+      longitude: ['', [Validators.required]],
       appointmentSet: ['', Validators.required],
-      consultedOrFound: ['', Validators.required],
-      applicantIndicatedPersonAtPremises: ['', Validators.required],
-      canPersonBeFound: ['', Validators.required],
-      interestInLiquorTrade: ['', Validators.required],
-      issuedCompliance: ['', Validators.required],
-      complaintsReceived: ['', Validators.required],
-      rightToOccupy: ['', Validators.required],
-      leaseAttached: ['', Validators.required],
-      situatedInRightAddress: ['', Validators.required],
-      inLineWithSubmittedApplication: ['', Validators.required],
-      premisesSuitable: ['', Validators.required],
-      latitude: ['', Validators.required],
-      longitude: ['', Validators.required],
-      ablutionFacilityInOrder: ['', Validators.required],
-      readyForBusiness: ['', Validators.required],
-      formServedToCorrectWardCommittee: ['', Validators.required],
-      confirmedByCouncillor: ['', Validators.required],
-      wardCommitteeReport: ['', Validators.required],
-      communityConsultation: ['', Validators.required],
-      educationalInstitution: ['', Validators.required],
-      formServedAtEducationInstitution: ['', Validators.required],
-      placeOfWorship: ['', Validators.required],
-      formServedAtPlaceOfWorship: ['', Validators.required],
+      personConsulted: ['', Validators.required],
+      indicatedParticularPerson: ['', [Validators.required]],
+      personFoundConfirmed: ['', [Validators.required]],
+      rightToOccupy: ['', [Validators.required]],
+      formServedToWardCommittee: ['', Validators.required],
+      formServedToWardCouncillor: ['', [Validators.required]],
+      wardCommitteReport: ['', [Validators.required]],
+      communityConsulted: ['', [Validators.required]],
+      educationalInstitutionWithin100m: ['', [Validators.required]],
+      premisesInIndicatedAddress: ['', [Validators.required]],
+      formServedAtEducationalInstitution: ['', [Validators.required]],
+      placeOfWorshipWithin100m: ['', [Validators.required]],
+      formServedAtPlaceOfWorship: ['', [Validators.required]],
+      recommendationForRegistration: ['', Validators.required],
+      comments: ['', Validators.required],
+      futurePreInspectionDate: ['', Validators.required],
+      lease: ['', Validators.required],
+      premiseInLineWithPlan: ['', Validators.required],
+      premisesSuitedForCategory: ['', Validators.required],
+      abulutionFacilityWorking: ['', Validators.required],
+      readyToCommenceWithBusiness: ['', Validators.required],
       recommendation: ['', Validators.required],
-      futureInspectionDate: ['', Validators.required],
-      comments: ['', Validators.required]
+      reportDoc:['', Validators.required],
+      noticeDoc:['', Validators.required]
     });
-    
-      
-    
   }
 
   ngOnInit() {
@@ -105,18 +103,18 @@ export class CompleteInspectionPage implements OnInit {
     if (this.noticeDoc)
       formData.append('notice', this.noticeDoc.file);
     
-    let token = localStorage.getItem("userToken") 
-    const newHeader={
-      "Authorization":"Bearer "+token, 
-      "Accept":"*/*"
+    
+
+    let token = localStorage.getItem("userToken")
+    const newHeader = {
+      "Authorization": "Bearer " + token,
+      "Accept": "*/*"
     }
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
 
     this.http.post(url,formData, {headers: newHeader}).subscribe(response=>{
       console.log(response);
-
-      this.router.navigate(['/thank-you'])
     }, error => {
       console.log(error);
     })
