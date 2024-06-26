@@ -150,27 +150,18 @@ export class CompleteInspectionPage implements OnInit {
   async onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      if (this.isFileUploaded(file.name)) {
-        await this.presentFileExistsAlert();
+      if (this.reportFiles.length > 0) {
+        this.reportFiles.splice(0, 1, { name: file.name, size: file.size });
       } else {
         this.reportFiles.push({ name: file.name, size: file.size });
-        this.inputVisible = false; 
       }
+      this.inputVisible = false; 
     }
+  
   }
 
   isFileUploaded(fileName: string): boolean {
     return this.reportFiles.some(file => file.name === fileName);
-  }
-
-  async presentFileExistsAlert() {
-    const alert = await this.alertController.create({
-      header: 'Error',
-      message: 'Document already uploaded.',
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
   navigateToBack() {
