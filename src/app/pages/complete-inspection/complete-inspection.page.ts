@@ -111,10 +111,10 @@ export class CompleteInspectionPage implements OnInit {
     formData.append('inspection',new Blob([JSON.stringify(this.inspectionReport)],{ type: 'application/json' }))
     
       this.reportDoc=this.reportFiles[0]
-      formData.append('report', this.reportDoc.file);
+      formData.append('report', this.reportDoc);
 
       this.noticeDoc=this.reportFiles[0]
-      formData.append('notice', this.noticeDoc.file);
+      formData.append('notice', this.noticeDoc);
     
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
