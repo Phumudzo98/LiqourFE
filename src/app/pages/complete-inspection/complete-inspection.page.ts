@@ -17,7 +17,8 @@ import { ViewImagePage } from '../view-image/view-image.page';
 export class CompleteInspectionPage implements OnInit {
 
   selectedOption: string = '';
-  uploadedFiles: { name: string, size: number }[] = [];
+  uploadedFiles: { name: string, size: number, file: File }[] = [];
+  uploadedFiles1: { name: string, size: number, file: File }[] = [];
   currentForm: string = 'landing';
   selectedRadioValue: string | null = null; // Initialize to null or the default value you want
   inputVisible: boolean = true; // Add this property
@@ -49,38 +50,38 @@ export class CompleteInspectionPage implements OnInit {
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
-      inspectionDate: ['', [Validators.required]],
+      inspectionDate: ['', Validators.required],
       appointmentSet: ['', Validators.required],
-      consultedOrFound:['', Validators.required],
-      applicantIndicatedPersonAtPremises:['', Validators.required],
-      canPersonBeFound:['', Validators.required],
-      interestInLiquorTrade:['', Validators.required],
-      issuedComplience:['', Validators.required],
-      complaintsReceived:['', Validators.required],
-      rightToOccupy:['', Validators.required],
-      leaseAttached:['', Validators.required],
-      situatedInRightAddress:['', Validators.required],
-      inLineWithSubmittedApplication:['', Validators.required],
-      premisesSuitable:['', Validators.required],
-      latitude: ['', [Validators.required]],
-      longitude: ['', [Validators.required]],
-      ablutionFacilityInOrder:['', Validators.required],
-      readyForBusiness:['', Validators.required],
-      formServedToCorrectWardCommittee:['', Validators.required],
-      confirmedByCouncillor:['', Validators.required],
-      wardCommiteeReport:['', Validators.required],
-      communityConsultation:['', Validators.required],
-      educationalInstitution:['', Validators.required],
-      formServedAtEducationInstitution:['', Validators.required],
-      placeOfWorship:['', Validators.required],
-      formServedAtPlaceOfWorship:['', Validators.required],
-      recommendation:['', Validators.required],
-      futureInspectionDate:['', Validators.required],
-      comments:['', Validators.required]
-
-      
-      
+      consultedOrFound: ['', Validators.required],
+      applicantIndicatedPersonAtPremises: ['', Validators.required],
+      canPersonBeFound: ['', Validators.required],
+      interestInLiquorTrade: ['', Validators.required],
+      issuedCompliance: ['', Validators.required],
+      complaintsReceived: ['', Validators.required],
+      rightToOccupy: ['', Validators.required],
+      leaseAttached: ['', Validators.required],
+      situatedInRightAddress: ['', Validators.required],
+      inLineWithSubmittedApplication: ['', Validators.required],
+      premisesSuitable: ['', Validators.required],
+      latitude: ['', Validators.required],
+      longitude: ['', Validators.required],
+      ablutionFacilityInOrder: ['', Validators.required],
+      readyForBusiness: ['', Validators.required],
+      formServedToCorrectWardCommittee: ['', Validators.required],
+      confirmedByCouncillor: ['', Validators.required],
+      wardCommitteeReport: ['', Validators.required],
+      communityConsultation: ['', Validators.required],
+      educationalInstitution: ['', Validators.required],
+      formServedAtEducationInstitution: ['', Validators.required],
+      placeOfWorship: ['', Validators.required],
+      formServedAtPlaceOfWorship: ['', Validators.required],
+      recommendation: ['', Validators.required],
+      futureInspectionDate: ['', Validators.required],
+      comments: ['', Validators.required]
     });
+    
+      
+    
   }
 
   ngOnInit() {
@@ -98,12 +99,15 @@ export class CompleteInspectionPage implements OnInit {
 
     const formData = new FormData();
     formData.append('inspection',new Blob([JSON.stringify(this.inspectionReport)],{ type: 'application/json' }))
-    
+
+    const firstFile = this.uploadedFiles[0].file;
+    const firstFile1 = this.uploadedFiles1[0].file;
     if (this.reportDoc)
-      formData.append('report', this.reportDoc.file);
+      
+      formData.append('report', firstFile, firstFile.name );
 
     if (this.noticeDoc)
-      formData.append('notice', this.noticeDoc.file);
+      formData.append('notice', firstFile1, firstFile1.name);
     
     let token = localStorage.getItem("userToken") 
     const newHeader={
@@ -152,13 +156,28 @@ export class CompleteInspectionPage implements OnInit {
       if (this.isFileUploaded(file.name)) {
         await this.presentFileExistsAlert();
       } else {
-        this.uploadedFiles.push({ name: file.name, size: file.size });
+        this.uploadedFiles.push({ name: file.name, size: file.size, file: file });
+        this.inputVisible = false; // Hide the input
+      }
+    }
+  }
+
+  async onFileSelected1(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      if (this.isFileUploaded(file.name)) {
+        await this.presentFileExistsAlert();
+      } else {
+        this.uploadedFiles1.push({ name: file.name, size: file.size, file: file });
         this.inputVisible = false; // Hide the input
       }
     }
   }
 
   isFileUploaded(fileName: string): boolean {
+    return this.uploadedFiles.some(file => file.name === fileName);
+  }
+  isFileUploaded1(fileName: string): boolean {
     return this.uploadedFiles.some(file => file.name === fileName);
   }
 

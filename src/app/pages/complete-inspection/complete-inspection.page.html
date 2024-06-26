@@ -77,7 +77,7 @@
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload</span>
       <span>DOCX or PDF</span>
-      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;" [(ngModel)]="reportDoc">
+      <input type="file" #fileInput (change)="onFileSelected1($event)" accept=".docx, .pdf" style="display: none;">
     </ion-card>
   
     <div *ngFor="let file of uploadedFiles; let i = index">
@@ -134,19 +134,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_person" name="personConsulted" value="1" formControlName="personConsulted">
+                <input type="radio" id="yes_person" name="personConsulted" value="1" formControlName="consultedOrFound">
                 <label for="yes_person">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_person" name="personConsulted" value="2" formControlName="personConsulted">
+                <input type="radio" id="no_person" name="personConsulted" value="2" formControlName="consultedOrFound">
                 <label for="no_person">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_person" name="personConsulted" value="3" formControlName="personConsulted">
+                <input type="radio" id="na_person" name="personConsulted" value="3" formControlName="consultedOrFound">
                 <label for="na_person">N/A</label>
               </div>
             </ion-col>
@@ -164,19 +164,19 @@
         <ion-row>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="yes_indicated" name="indicatedParticularPerson" value="1" formControlName="indicatedParticularPerson">
+              <input type="radio" id="yes_indicated" name="indicatedParticularPerson" value="1" formControlName="applicantIndicatedPersonAtPremises">
               <label for="yes_indicated">Yes</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="no_indicated" name="indicatedParticularPerson" value="2" formControlName="indicatedParticularPerson">
+              <input type="radio" id="no_indicated" name="indicatedParticularPerson" value="2" formControlName="applicantIndicatedPersonAtPremises">
               <label for="no_indicated">No</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="na_indicated" name="indicatedParticularPerson" value="3" formControlName="indicatedParticularPerson">
+              <input type="radio" id="na_indicated" name="indicatedParticularPerson" value="3" formControlName="applicantIndicatedPersonAtPremises">
               <label for="na_indicated">N/A</label>
             </div>
           </ion-col>
@@ -197,13 +197,13 @@
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="no_confirm" name="personFoundConfirmed" value="2" formControlName="personFoundConfirmed">
+              <input type="radio" id="no_confirm" name="personFoundConfirmed" value="2" formControlName="canPersonBeFound">
               <label for="no_confirm">No</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="na_confirm" name="personFoundConfirmed" value="3" formControlName="personFoundConfirmed">
+              <input type="radio" id="na_confirm" name="personFoundConfirmed" value="3" formControlName="canPersonBeFound">
               <label for="na_confirm">N/A</label>
             </div>
           </ion-col>
@@ -245,19 +245,19 @@
         <ion-row>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="yes_compliance" name="issuedComplience" value="1" formControlName="issuedComplience">
+              <input type="radio" id="yes_compliance" name="issuedComplience" value="1" formControlName="issuedCompliance">
               <label for="yes_compliance">Yes</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="no_compliance" name="issuedComplience" value="2"formControlName="issuedComplience">
+              <input type="radio" id="no_compliance" name="issuedComplience" value="2"formControlName="issuedCompliance">
               <label for="no_compliance">No</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="na_compliance" name="issuedComplience" value="3"formControlName="issuedComplience">
+              <input type="radio" id="na_compliance" name="issuedComplience" value="3"formControlName="issuedCompliance">
               <label for="na_compliance">N/A</label>
             </div>
           </ion-col>
@@ -307,7 +307,7 @@
     
         <ion-label>Person Contact</ion-label>
         <ion-item>
-        <ion-input placeholder="Enter Person Name" formControlName="personContacted"></ion-input>
+        <ion-input placeholder="Enter Person Name" formControlName="contactPerson"></ion-input>
         </ion-item>
         <ion-label position="floating">Inspection Date</ion-label>
         <ion-item>
@@ -365,19 +365,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_b" name="lease" value="1" formControlName="lease">
+                <input type="radio" id="yes_b" name="lease" value="1" formControlName="leaseAttached">
                 <label for="yes_b">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_b" name="lease" value="2" formControlName="lease">
+                <input type="radio" id="no_b" name="lease" value="2" formControlName="leaseAttached">
                 <label for="no_b">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_b" name="lease" value="3" formControlName="lease">
+                <input type="radio" id="na_b" name="lease" value="3" formControlName="leaseAttached">
                 <label for="na_b">N/A</label>
               </div>
             </ion-col>
@@ -392,13 +392,13 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_c" name="premisesInIndicatedAddress" value="1" formControlName="premisesInIndicatedAddress">
+                <input type="radio" id="yes_c" name="premisesInIndicatedAddress" value="1" formControlName="situatedInRightAddress">
                 <label for="yes_c">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_c" name="premisesInIndicatedAddress" value="2" formControlName="premisesInIndicatedAddress">
+                <input type="radio" id="no_c" name="premisesInIndicatedAddress" value="2" formControlName="situatedInRightAddress">
                 <label for="no_c">No</label>
               </div>
             </ion-col>
@@ -413,19 +413,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_d" name="premiseInLineWithPlan" value="1" formControlName="premiseInLineWithPlan">
+                <input type="radio" id="yes_d" name="premiseInLineWithPlan" value="1" formControlName="inLineWithSubmittedApplication">
                 <label for="yes_d">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_d" name="premiseInLineWithPlan" value="2" formControlName="premiseInLineWithPlan">
+                <input type="radio" id="no_d" name="premiseInLineWithPlan" value="2" formControlName="inLineWithSubmittedApplication">
                 <label for="no_d">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_d" name="premiseInLineWithPlan" value="3" formControlName="premiseInLineWithPlan">
+                <input type="radio" id="na_d" name="premiseInLineWithPlan" value="3" formControlName="inLineWithSubmittedApplication">
                 <label for="na_d">N/A</label>
               </div>
             </ion-col>
@@ -440,19 +440,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_e" name="premisesSuitedForCategory" value="1" formControlName="premisesSuitedForCategory">
+                <input type="radio" id="yes_e" name="premisesSuitedForCategory" value="1" formControlName="premisesSuitable">
                 <label for="yes_e">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_e" name="premisesSuitedForCategory" value="2" formControlName="premisesSuitedForCategory">
+                <input type="radio" id="no_e" name="premisesSuitedForCategory" value="2" formControlName="premisesSuitable">
                 <label for="no_e">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_e" name="premisesSuitedForCategory" value="3" formControlName="premisesSuitedForCategory">
+                <input type="radio" id="na_e" name="premisesSuitedForCategory" value="3" formControlName="premisesSuitable">
                 <label for="na_e">N/A</label>
               </div>
             </ion-col>
@@ -467,19 +467,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_f" name="abulutionFacilityWorking" value="1" formControlName="abulutionFacilityWorking">
+                <input type="radio" id="yes_f" name="abulutionFacilityWorking" value="1" formControlName="ablutionFacilityInOrder">
                 <label for="yes_f">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_f" name="abulutionFacilityWorking" value="2" formControlName="abulutionFacilityWorking">
+                <input type="radio" id="no_f" name="abulutionFacilityWorking" value="2" formControlName="ablutionFacilityInOrder">
                 <label for="no_f">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_f" name="abulutionFacilityWorking" value="3" formControlName="abulutionFacilityWorking">
+                <input type="radio" id="na_f" name="abulutionFacilityWorking" value="3" formControlName="ablutionFacilityInOrder">
                 <label for="na_f">N/A</label>
               </div>
             </ion-col>
@@ -494,19 +494,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_g" name="readyToCommenceWithBusiness" value="1" formControlName="readyToCommenceWithBusiness">
+                <input type="radio" id="yes_g" name="readyToCommenceWithBusiness" value="1" formControlName="readyForBusiness">
                 <label for="yes_g">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_g" name="readyToCommenceWithBusiness" value="2" formControlName="readyToCommenceWithBusiness">
+                <input type="radio" id="no_g" name="readyToCommenceWithBusiness" value="2" formControlName="readyForBusiness">
                 <label for="no_g">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_g" name="readyToCommenceWithBusiness" value="3" formControlName="readyToCommenceWithBusiness">
+                <input type="radio" id="na_g" name="readyToCommenceWithBusiness" value="3" formControlName="readyForBusiness">
                 <label for="na_g">N/A</label>
               </div>
             </ion-col>
@@ -537,19 +537,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_a" name="formServedToWardCommittee" value="1" formControlName="formServedToWardCommittee">
+                <input type="radio" id="yes_a" name="formServedToWardCommittee" value="1" formControlName="formServedToCorrectWardCommittee">
                 <label for="yes_a">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_a" name="formServedToWardCommittee" value="2" formControlName="formServedToWardCommittee">
+                <input type="radio" id="no_a" name="formServedToWardCommittee" value="2" formControlName="formServedToCorrectWardCommittee">
                 <label for="no_a">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_a" name="formServedToWardCommittee" value="3" formControlName="formServedToWardCommittee">
+                <input type="radio" id="na_a" name="formServedToWardCommittee" value="3" formControlName="formServedToCorrectWardCommittee">
                 <label for="na_a">N/A</label>
               </div>
             </ion-col>
@@ -566,19 +566,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_b" name="formServedToWardCouncillor" value="1" formControlName="formServedToWardCouncillor">
+                <input type="radio" id="yes_b" name="formServedToWardCouncillor" value="1" formControlName="confirmedByCouncillor">
                 <label for="yes_b">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_b" name="formServedToWardCouncillor" value="2" formControlName="formServedToWardCouncillor">
+                <input type="radio" id="no_b" name="formServedToWardCouncillor" value="2" formControlName="confirmedByCouncillor">
                 <label for="no_b">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_b" name="formServedToWardCouncillor" value="3" formControlName="formServedToWardCouncillor">
+                <input type="radio" id="na_b" name="formServedToWardCouncillor" value="3" formControlName="confirmedByCouncillor">
                 <label for="na_b">N/A</label>
               </div>
             </ion-col>
@@ -595,19 +595,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_c" name="wardCommitteReport" value="1" formControlName="wardCommitteReport">
+                <input type="radio" id="yes_c" name="wardCommitteReport" value="1" formControlName="wardCommitteeReport">
                 <label for="yes_c">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_c" name="wardCommitteReport" value="2" formControlName="wardCommitteReport">
+                <input type="radio" id="no_c" name="wardCommitteReport" value="2" formControlName="wardCommitteeReport">
                 <label for="no_c">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_c" name="wardCommitteReport" value="3" formControlName="wardCommitteReport">
+                <input type="radio" id="na_c" name="wardCommitteReport" value="3" formControlName="wardCommitteeReport">
                 <label for="na_c">N/A</label>
               </div>
             </ion-col>
@@ -624,19 +624,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_d" name="communityConsulted" value="1" formControlName="communityConsulted">
+                <input type="radio" id="yes_d" name="communityConsulted" value="1" formControlName="communityConsultation">
                 <label for="yes_d">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_d" name="communityConsulted" value="2" formControlName="communityConsulted">
+                <input type="radio" id="no_d" name="communityConsulted" value="2" formControlName="communityConsultation">
                 <label for="no_d">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_d" name="communityConsulted" value="3" formControlName="communityConsulted">
+                <input type="radio" id="na_d" name="communityConsulted" value="3" formControlName="communityConsultation">
                 <label for="na_d">N/A</label>
               </div>
             </ion-col>
@@ -653,19 +653,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_e" name="educationalInstitutionWithin100m" value="1" formControlName="educationalInstitutionWithin100m">
+                <input type="radio" id="yes_e" name="educationalInstitutionWithin100m" value="1" formControlName="educationalInstitution">
                 <label for="yes_e">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_e" name="educationalInstitutionWithin100m" value="2" formControlName="educationalInstitutionWithin100m">
+                <input type="radio" id="no_e" name="educationalInstitutionWithin100m" value="2" formControlName="educationalInstitution">
                 <label for="no_e">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_e" name="educationalInstitutionWithin100m" value="3" formControlName="educationalInstitutionWithin100m">
+                <input type="radio" id="na_e" name="educationalInstitutionWithin100m" value="3" formControlName="educationalInstitution">
                 <label for="na_e">N/A</label>
               </div>
             </ion-col>
@@ -682,19 +682,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_f" name="formServedAtEducationalInstitution" value="1" formControlName="formServedAtEducationalInstitution">
+                <input type="radio" id="yes_f" name="formServedAtEducationalInstitution" value="1" formControlName="formServedAtEducationInstitution">
                 <label for="yes_f">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_f" name="formServedAtEducationalInstitution" value="2" formControlName="formServedAtEducationalInstitution">
+                <input type="radio" id="no_f" name="formServedAtEducationalInstitution" value="2" formControlName="formServedAtEducationInstitution">
                 <label for="no_f">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_f" name="formServedAtEducationalInstitution" value="3" formControlName="formServedAtEducationalInstitution">
+                <input type="radio" id="na_f" name="formServedAtEducationalInstitution" value="3" formControlName="formServedAtEducationInstitution">
                 <label for="na_f">N/A</label>
               </div>
             </ion-col>
@@ -711,19 +711,19 @@
           <ion-row>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="yes_g" name="placeOfWorshipWithin100m" value="1" formControlName="placeOfWorshipWithin100m">
+                <input type="radio" id="yes_g" name="placeOfWorshipWithin100m" value="1" formControlName="placeOfWorship">
                 <label for="yes_g">Yes</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="no_g" name="placeOfWorshipWithin100m" value="2" formControlName="placeOfWorshipWithin100m">
+                <input type="radio" id="no_g" name="placeOfWorshipWithin100m" value="2" formControlName="placeOfWorship">
                 <label for="no_g">No</label>
               </div>
             </ion-col>
             <ion-col>
               <div class="radios">
-                <input type="radio" id="na_g" name="placeOfWorshipWithin100m" value="3" formControlName="placeOfWorshipWithin100m">
+                <input type="radio" id="na_g" name="placeOfWorshipWithin100m" value="3" formControlName="placeOfWorship">
                 <label for="na_g">N/A</label>
               </div>
             </ion-col>
@@ -813,7 +813,7 @@
 
     <ion-label position="floating">Inspection Date</ion-label>
     <ion-item>
-    <ion-input placeholder="Enter Future Inspection Date" formControlName="futurePreInspectionDate"></ion-input>
+    <ion-input placeholder="Enter Future Inspection Date" formControlName="futureInspectionDate"></ion-input>
     </ion-item>
     <ion-label position="floating">Comments</ion-label>
     <ion-item>
@@ -826,7 +826,7 @@
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload</span>
       <span>DOCX or PDF</span>
-      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;" [(ngModel)]="noticeDoc">
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
     </ion-card>
     
     <div *ngFor="let file of uploadedFiles; let i = index">
