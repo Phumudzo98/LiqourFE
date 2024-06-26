@@ -110,16 +110,18 @@ export class CompleteInspectionPage implements OnInit {
     const formData = new FormData();
     formData.append('inspection',new Blob([JSON.stringify(this.inspectionReport)],{ type: 'application/json' }))
     
-      this.reportDoc=this.reportFiles[0]
-      formData.append('report', this.reportDoc.file);
+      //this.reportDoc=this.reportFiles[0]
+      if(this.report)
+      formData.append('report', this.report);
 
       this.noticeDoc=this.reportFiles[0]
-      formData.append('notice', this.noticeDoc.file);
+      if(this.notice)
+      formData.append('notice', this.notice);
     
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
 
-    this.http.post(url,formData, {headers: newHeader}).subscribe(response=>{
+    this.http.post(url,formData).subscribe(response=>{
       console.log(response);
 
       this.router.navigate(['/thank-you'])
@@ -152,14 +154,16 @@ export class CompleteInspectionPage implements OnInit {
     this.fileInput.nativeElement.click();
   }
 
+  report!:File;
   async onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      if (this.reportFiles.length > 0) {
+      this.report = file;
+    /*  if (this.reportFiles.length > 0) {
         this.reportFiles.splice(0, 1, { name: file.name, size: file.size });
       } else {
         this.reportFiles.push({ name: file.name, size: file.size });
-      }
+      }*/
       this.inputVisible = false; 
     }
   
@@ -207,15 +211,16 @@ export class CompleteInspectionPage implements OnInit {
 
   // File
 
-  
+  notice!:File;
   async onFileSelectedRecommendation(event: any) {
     const file = event.target.files[0];
     if (file) {
-      if (this.noticeFiles.length > 0) {
+      this.notice = file;
+     /* if (this.noticeFiles.length > 0) {
         this.noticeFiles.splice(0, 1, { name: file.name, size: file.size });
       } else {
         this.noticeFiles.push({ name: file.name, size: file.size });
-      }
+      }*/
       this.inputVisible = false; 
     }
   }
