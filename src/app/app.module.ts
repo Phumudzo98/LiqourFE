@@ -13,26 +13,26 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpRequestInterceptor } from './util/service/interceptor';
 import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
-import { NgxSpinner } from 'ngx-spinner';
 import { NgClass } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // Add other components here
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot({
-      animated: false // Disable Ionic animations
+      animated: false 
     }),
     AppRoutingModule,
     ViewImagePageModule,
     NoopAnimationsModule,
     IonicStorageModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
     
   ],
   providers: [
