@@ -14,12 +14,15 @@
       </div>
       <hr>
 
-      <div class="header-content" [ngClass]="{'completed': isGeneralFormValid()}">
+      <div class="header-content">
+        <!--
+        <ion-img *ngIf="isGeneralFormValid()" src="../../../assets/Images/Step Symboltick.svg"></ion-img>
+        <ion-img *ngIf="!isGeneralFormValid()" src="../../../assets/Images/Step Symbol.svg"></ion-img>-->
         <ion-card-title (click)="toggleForms('general')">
           General
         </ion-card-title>
-        <ion-img src="../../../assets/Images/Dot.svg" class="vector"></ion-img>
       </div>
+      
       <hr>
       <div class="header-content">
         <ion-card-title (click)="toggleForms('applicant')">
