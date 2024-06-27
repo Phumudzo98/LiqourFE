@@ -371,3 +371,22 @@ ion-label{
   margin-left: 15px !important;
   font-size: 12px !important;
 }
+.custom-input {
+  background-color: white;
+}
+
+
+.custom-input::placeholder {
+  color: rgba(0, 0, 0, 0.5); /* Optional: Adjust placeholder text color for better contrast */
+}
+
+
+::ng-deep .datepickerTwo {
+  background:lightblue;
+  border-radius: 4px;
+}
+
+::ng-deep .datepickerTwo .mat-calendar-body-today:not(.mat-calendar-body-selected){
+  border-color:darkblue;
+}
+
