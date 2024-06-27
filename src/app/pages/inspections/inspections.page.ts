@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-inspections',
@@ -12,9 +13,10 @@ export class InspectionsPage implements OnInit {
   filteredOutlets: any[] = [];
   searchTerm: string = '';
 
-  constructor(private route: Router, private http: HttpClient) {}
+  constructor(private route: Router, private http: HttpClient,private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
+    this.spinner.show();
     const token = localStorage.getItem("userToken");
     const newHeader = new HttpHeaders({
       "Authorization": "Bearer " + token,
@@ -28,9 +30,11 @@ export class InspectionsPage implements OnInit {
         console.log(response);
         this.collect = response;
         this.filteredOutlets = this.collect; // Initialize filteredOutlets
+        this.spinner.hide();
       },
       error => {
         console.log(error);
+        this.spinner.hide();
       }
     );
   }
