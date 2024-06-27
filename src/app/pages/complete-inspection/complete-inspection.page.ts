@@ -8,6 +8,8 @@ import { StorageService } from 'src/app/util/service/storage.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { ViewImagePage } from '../view-image/view-image.page';
+import { environment } from 'src/environments/environment.prod';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -30,7 +32,8 @@ export class CompleteInspectionPage implements OnInit {
   caseId: any;
   caseNo: any;
   imageSources: string[] = [];
-
+  private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
+ 
   inspectionReport:any;
   reportDoc:any;
   noticeDoc:any;
@@ -56,7 +59,7 @@ export class CompleteInspectionPage implements OnInit {
       applicantIndicatedPersonAtPremises: ['', Validators.required],
       canPersonBeFound: ['', Validators.required],
       interestInLiquorTrade: ['', Validators.required],
-      issuedCompliance: ['', Validators.required],
+      issuedComplience: ['', Validators.required],
       complaintsReceived: ['', Validators.required],
       rightToOccupy: ['', Validators.required],
       leaseAttached: ['', Validators.required],
@@ -89,6 +92,8 @@ export class CompleteInspectionPage implements OnInit {
       this.caseNo = param.get('caseId');
       console.log(this.caseNo);
     });
+
+    this.getCurrentPosition();
   }
   
 
@@ -111,10 +116,10 @@ export class CompleteInspectionPage implements OnInit {
     formData.append('inspection',new Blob([JSON.stringify(this.inspectionReport)],{ type: 'application/json' }))
     
       this.reportDoc=this.reportFiles[0]
-      formData.append('report', this.reportDoc);
+      formData.append('report', this.report);
 
       this.noticeDoc=this.reportFiles[0]
-      formData.append('notice', this.noticeDoc);
+      formData.append('notice', this.notice);
     
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
@@ -157,6 +162,8 @@ export class CompleteInspectionPage implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.report = file;
+      console.log(file);
+      
     /*  if (this.reportFiles.length > 0) {
         this.reportFiles.splice(0, 1, { name: file.name, size: file.size });
       } else {
@@ -407,4 +414,29 @@ export class CompleteInspectionPage implements OnInit {
     this.viewImageUrl = null;
     await this.modalController.dismiss();
   }
+
+  latitude?:number;
+  longitude?:number;
+
+  async getCurrentPosition() {
+    try {
+      const coordinates = await Geolocation.getCurrentPosition();
+      this.latitude = coordinates.coords.latitude;
+      this.longitude = coordinates.coords.longitude;
+
+      console.log(this.latitude);
+      console.log(this.longitude);
+
+      this.completeReportForm.patchValue({
+        latitude: this.latitude,
+        longitude: this.longitude
+      })
+
+      //this.getAddressFromCoordinates(this.latitude, this.longitude);
+      
+    } catch (err) {
+      console.error('Error getting location', err);
+    }
+  }
+
 }

@@ -244,19 +244,19 @@
         <ion-row>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="yes_compliance" name="issuedCompliance" value="1" formControlName="issuedCompliance">
+              <input type="radio" id="yes_compliance" name="issuedComplience" value="1" formControlName="issuedComplience">
               <label for="yes_compliance">Yes</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="no_compliance" name="issuedCompliance" value="2"formControlName="issuedCompliance">
+              <input type="radio" id="no_compliance" name="issuedComplience" value="2"formControlName="issuedComplience">
               <label for="no_compliance">No</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" id="na_compliance" name="issuedCompliance" value="3"formControlName="issuedCompliance">
+              <input type="radio" id="na_compliance" name="issuedComplience" value="3"formControlName="issuedComplience">
               <label for="na_compliance">N/A</label>
             </div>
           </ion-col>
@@ -310,7 +310,7 @@
         </ion-item>
         <ion-label position="floating">Inspection Date</ion-label>
         <ion-item>
-        <ion-input placeholder="Enter Inspection Date" formControlName="inspectionDate"></ion-input>
+        <ion-input type="date" placeholder="Enter Inspection Date" formControlName="inspectionDate"></ion-input>
         </ion-item>
     
         <ion-label position="floating">Latitude Of Outlet (South)</ion-label>
@@ -321,6 +321,9 @@
         <ion-item>
         <ion-input placeholder="Enter Longitude" formControlName="longitude"></ion-input>
       </ion-item>
+      <div class="">
+        <ion-button (click)="getCurrentPosition()" class="">Allow location access</ion-button>
+      </div>
   </div>
 
   <!--Documentation-->
@@ -812,7 +815,7 @@
 
     <ion-label position="floating">Inspection Date</ion-label>
     <ion-item>
-    <ion-input placeholder="Enter Future Inspection Date" formControlName="futureInspectionDate"></ion-input>
+    <ion-input type="date" placeholder="Enter Future Inspection Date" formControlName="futureInspectionDate"></ion-input>
     </ion-item>
     <ion-label position="floating">Comments</ion-label>
     <ion-item>
