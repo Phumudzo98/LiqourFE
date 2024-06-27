@@ -33,6 +33,7 @@ import { NgClass } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     
+    
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
