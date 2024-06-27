@@ -32,7 +32,8 @@ import { NgClass } from '@angular/common';
     NoopAnimationsModule,
     IonicStorageModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule.forRoot()
     
   ],
   providers: [

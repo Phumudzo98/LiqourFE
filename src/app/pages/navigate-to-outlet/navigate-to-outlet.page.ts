@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { headers, headersSecure } from 'src/app/util/service/const';
 
 @Component({
@@ -14,9 +15,10 @@ export class NavigateToOutletPage implements OnInit {
   loading: boolean = true; // Add loading state
   searchQuery: string = ''; // Add search query property
 
-  constructor(private route: Router, private http: HttpClient) { }
+  constructor(private route: Router, private http: HttpClient,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     let url = "/api/outlet"
     this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/outlet/get-outlets", { headers: headersSecure }).subscribe(response => {
         const large = response;
@@ -55,11 +57,11 @@ export class NavigateToOutletPage implements OnInit {
           },
         ];
 
-        this.loading = false; // Hide spinner after data is loaded
+        this.spinner.hide();
       },
       error => {
         console.log(error);
-        this.loading = false; // Hide spinner if there's an error
+        this.spinner.hide();
       }
     );
   }

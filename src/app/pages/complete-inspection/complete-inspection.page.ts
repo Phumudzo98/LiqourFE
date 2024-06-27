@@ -118,7 +118,8 @@ export class CompleteInspectionPage implements OnInit {
 
     this.http.post(url, formData).subscribe(response => {
       console.log(response);
-      this.router.navigate(['/thank-you']);
+      this.router.navigate(['/thank-you'])
+      
     }, error => {
       console.log(error);
     });

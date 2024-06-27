@@ -1,11 +1,14 @@
-<app-menu-header *ngIf="!Loading"></app-menu-header>
+<app-menu-header></app-menu-header>
 
-<div class="loader-container" *ngIf="Loading">
-  <div class="loader"></div>
-  <div class="loading-text">Loading...</div>
-</div>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-clip-rotate-pulse">
+  <p style="color:white;font-size: 20px;text-align: center;">Please wait...</p>
+</ngx-spinner>
 
-<ion-content *ngIf="!Loading">
+<ion-content >
  
   <div class="dashboard-container">
     <p class="quick-action">Complaints</p>
@@ -38,4 +41,4 @@
   </div>
 </ion-content>
 
-<app-menu-footer *ngIf="!Loading"></app-menu-footer>
+<app-menu-footer ></app-menu-footer>
