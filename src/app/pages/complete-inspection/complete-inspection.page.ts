@@ -423,4 +423,36 @@ export class CompleteInspectionPage implements OnInit {
       console.error('Error getting location', err);
     }
   }
+
+  dummyData = {
+    contactPerson: "John Doe",
+    inspectionDate: "2024-05-03T08:00",
+    appointmentSet: "1",
+    consultedOrFound: "2",
+    applicantIndicatedPersonAtPremises: "1",
+    canPersonBeFound: "1",
+    interestInLiquorTrade: "1",
+    issuedComplience: "1",
+    complaintsReceived: "2",
+    rightToOccupy: "1",
+    leaseAttached: "1",
+    situatedInRightAddress: "1",
+    inLineWithSubmittedApplication: "1",
+    premisesSuitable: "1",
+    ablutionFacilityInOrder: "1",
+    readyForBusiness: "1",
+    formServedToCorrectWardCommittee: "1",
+    confirmedByCouncillor: "1",
+    wardCommiteeReport: "1",
+    communityConsultation: "1",
+    educationalInstitution: "1",
+    formServedAtEducationInstitution: "1",
+    placeOfWorship: "1",
+    formServedAtPlaceOfWorship: "1",
+    recommendation: "1",
+    futureInspectionDate: "2024-06-03T08:00",
+    comments: "Everything seems to be in order.",
+    latitude: "40.7128", 
+    longitude: "-74.0060", 
+  };
 }
