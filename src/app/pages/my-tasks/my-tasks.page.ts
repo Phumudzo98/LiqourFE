@@ -24,6 +24,8 @@ export class MyTasksPage implements OnInit {
       "Accept":"*/*"
     }
 
+  
+
     this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/general/get-inbox", { headers: newHeader }).subscribe(
       response => {
         console.log(response);
@@ -42,4 +44,26 @@ export class MyTasksPage implements OnInit {
   navigateToBack() {
     this.route.navigate(['dashboard']);
   }
+
+  navigateToTask(action: any, caseId:any)
+    {
+      
+      switch (action) {
+        case 'Attach and / or Verify WC Report':
+          this.route.navigate(['']);
+          break;
+        case 'Pre-Registration Inspection':
+          this.route.navigate(['']);
+          break;
+        case 'Complete Report':
+          this.route.navigate([`/complete-inspection/${caseId}`]);
+          break;
+        case 'Verify Application':
+          this.route.navigate(['']);
+          break;
+
+      }
+    }
+
+    
 }

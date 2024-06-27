@@ -14,7 +14,7 @@
       <p class="quick-action">My Tasks</p>
       <p class="new">New</p>
 
-      <div *ngFor="let task of collect">
+      <div *ngFor="let task of collect" (click)="navigateToTask(task.action, task.caseId)">
         <ion-row>
           <ion-col class="center-content" offset="0.2">   
             <p class="col-header">{{task.outletName}}</p>
@@ -26,7 +26,7 @@
             <div class="info-time">
               <span>Due: {{task.dueDate}}</span>
               <br>
-              <span>Time: {{task.dueDate}}</span>
+              <span>Action: {{task.action}}</span>
             </div>
           </ion-col>
         </ion-row>

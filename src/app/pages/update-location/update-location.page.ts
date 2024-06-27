@@ -4,6 +4,8 @@ import { AlertController } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { headers, headersSecure } from 'src/app/util/service/const';
 
 
 @Component({
@@ -15,8 +17,8 @@ export class UpdateLocationPage implements OnInit {
 
   private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
 
-  latitude?: number;
-  longitude?:number;
+  latitude?:any;
+  longitude?:any;
 
   lat?:number;
   lon?:number;  
@@ -32,7 +34,7 @@ export class UpdateLocationPage implements OnInit {
   fileInput!: ElementRef<HTMLInputElement>;
 
 
-  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController, private formBuilder: FormBuilder) {
+  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController, private formBuilder: FormBuilder, private http: HttpClient) {
     this.gisReportForm = this.formBuilder.group({
       latitude: ['', Validators.required],
       longitude: ['', Validators.required],
@@ -130,5 +132,29 @@ export class UpdateLocationPage implements OnInit {
 
   deleteItem(index: number) {
     this.uploadedFiles.splice(index, 1);
+  }
+
+  formData=new FormData();
+
+  onSubmit()
+  {
+
+    let url="https://system.eclb.co.za/eclb2/api/general/save-gis-report"
+
+
+    this.formData.append('outletId','23456')
+    this.formData.append('longitude',this.longitude)
+    this.formData.append('latitude', this.latitude)
+
+
+    this.http.post(url,this.formData, {headers: headersSecure}).subscribe(response=>{
+      console.log(response);
+      
+    },error=>
+    {
+      console.log(error);
+      
+    })
+
   }
 }
