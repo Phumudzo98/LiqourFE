@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { environment } from 'src/environments/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-update-location',
@@ -11,12 +13,15 @@ import { environment } from 'src/environments/environment';
 })
 export class UpdateLocationPage implements OnInit {
 
+  private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
 
   latitude?: number;
   longitude?:number;
 
   lat?:number;
-  lon?:number;
+  lon?:number;  
+  gisReportForm: FormGroup;
+
 
   
   selectedOption: string = '';
@@ -26,7 +31,16 @@ export class UpdateLocationPage implements OnInit {
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController) {}
+
+  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController, private formBuilder: FormBuilder) {
+    this.gisReportForm = this.formBuilder.group({
+      latitude: ['', Validators.required],
+      longitude: ['', Validators.required],
+      schoolIn100m: ['', Validators.required],
+      churchIn100m: ['', Validators.required],
+      wardBoundriesIn100m: ['', Validators.required],
+    })
+  }
 
   ngOnInit() {
   }

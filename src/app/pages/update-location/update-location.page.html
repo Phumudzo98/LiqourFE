@@ -1,25 +1,14 @@
 
 
 <ion-content>
-<div>
-
   <div class="header-container">
     <a><img src="assets/Images/Back Icon.svg" class="back-Arrow" routerLink="/update-gis"></a>
     <h1 class="header-text" style="color: black;">Update gis</h1>
   </div>
 
-  <ion-label >Latitude of Outlet (South)</ion-label>
-    <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Latitude"[(ngModel)]="latitude"></ion-input>
-    </ion-item>
-    <ion-label>Longitude of Outlet (East)</ion-label>
-    <ion-item>
-      <ion-input class="custom-input" type="text" placeholder="Longitude" [(ngModel)]="longitude"></ion-input>
-    </ion-item>
-
-    <p (click)="getCurrentPosition()" class="phone"><a>Use phone GPS</a></p>
-    
   <span class="inspection-report">Update GIS report</span>
+
+  <form [formGroup]="gisReportForm">
   <ion-card class="upload" (click)="triggerFileInput()">
     <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
     <span>Click to upload GIS Report</span>
@@ -27,24 +16,85 @@
     <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
   </ion-card>
 
-  <div *ngFor="let file of uploadedFiles; let i = index">
-    <ion-card class="upload2">
-      <div class="header-content2">
-        <ion-card-title>{{ file.name }}</ion-card-title>
-        <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirm(i)" class=""></ion-img>
-      </div>
-      <span>{{ (file.size / 1024).toFixed(2) }} KB</span>
-    </ion-card>
-  </div>
 
+
+  <ion-label >Latitude of Outlet (South)</ion-label>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Latitude" formControlName="latitude"></ion-input>
+    </ion-item>
+    <ion-label>Longitude of Outlet (East)</ion-label>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Longitude" formControlName="longitude"></ion-input>
+    </ion-item>
+
+    <p (click)="getCurrentPosition()" class="phone"><a>Use my location</a></p>
+
+    <ion-card class="upload2">
+    <span>(a) Is there a school in 100m radius</span>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="radios">
+            <input type="radio"  name="schoolIn100m"  formControlName="schoolIn100m" value="1">
+            <label for="yes_a">Yes</label>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <div class="radios">
+            <input type="radio"  name="schoolIn100m" formControlName="schoolIn100m" value="2">
+            <label for="yes_a">No</label>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <hr>
+
+    <span>(b) Is there a church in 100m radius</span>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="radios">
+            <input type="radio"  name="churchIn100m" formControlName="churchIn100m" value="1">
+            <label for="yes_a">Yes</label>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <div class="radios">
+            <input type="radio"  name="churchIn100m" formControlName="churchIn100m" value="2">
+            <label for="yes_a">No</label>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <hr>
+
+    <span>(c) Is there ward boundaries in 100m radius</span>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="radios">
+            <input type="radio" id="yes_a" name="wardBoundriesIn100m" formControlName="wardBoundriesIn100m" value="1">
+            <label for="yes_a">Yes</label>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <div class="radios">
+            <input type="radio" id="yes_a" name="wardBoundriesIn100m" formControlName="wardBoundriesIn100m" value="2">
+            <label for="yes_a">No</label>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <hr>
+  </ion-card>      
   <ion-button class="buttonClass">
     <img slot="start" class="image"src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
     Save
   </ion-button>
-
-
-
-</div>
+</form>
 </ion-content>
 
 
