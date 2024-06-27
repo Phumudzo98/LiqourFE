@@ -54,6 +54,10 @@ export class UpdateLocationPage implements OnInit {
       this.longitude=this.lon;
       this.latitude=this.lat;
 
+      this.gisReportForm.patchValue({
+        latitude: this.latitude,
+        longitude: this.longitude
+      });
       //this.getAddressFromCoordinates(this.latitude, this.longitude);
       
     } catch (err) {
