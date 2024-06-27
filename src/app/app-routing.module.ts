@@ -207,14 +207,13 @@ const routes: Routes = [
   {
     path: 'form',
     loadChildren: () => import('./pages/form/form.module').then( m => m.FormPageModule)
-  }
-
-
-
+  },
+  {
+    path: 'complete-gis-report',
+    loadChildren: () => import('./pages/complete-gis-report/complete-gis-report.module').then( m => m.CompleteGisReportPageModule)
+  },
 ];
     
-
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
