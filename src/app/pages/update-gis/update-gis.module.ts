@@ -9,7 +9,7 @@ import { UpdateGisPageRoutingModule } from './update-gis-routing.module';
 import { UpdateGisPage } from './update-gis.page';
 import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +17,8 @@ import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-head
     IonicModule,
     UpdateGisPageRoutingModule,
     MenuFooterPageModule,
-    MenuHeaderPageModule
+    MenuHeaderPageModule,
+    NgxSpinnerModule.forRoot() // Import NgxSpinnerModule here
   ],
   declarations: [UpdateGisPage]
 })
