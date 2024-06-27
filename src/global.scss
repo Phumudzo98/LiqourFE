@@ -1,35 +1,3 @@
-
-@use '@angular/material' as mat;
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-
-@include mat.core();
-
-// Define the theme object.
-$app-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  ),
-  density: (
-    scale: 0,
-  )
-));
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-:root {
-  @include mat.all-component-themes($app-theme);
-}
-
-// Comment out the line below if you want to use the pre-defined typography utility classes.
-// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
-// @include mat.typography-hierarchy($app-theme);
-
-// Comment out the line below if you want to use the deprecated `color` inputs.
-// @include mat.color-variants-backwards-compatibility($app-theme);
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
@@ -46,10 +14,7 @@ $app-theme: mat.define-theme((
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-
-
 /* Import ngx-spinner animation styles */
-@import "../node_modules/ngx-spinner/animations/ball-clip-rotate-pulse.css";
 
 
 @font-face{
@@ -76,7 +41,6 @@ ion-item::part(native) {
   box-shadow: none !important;
 }
 
-
 /* Container styling */
 .container {
   display: flex;
@@ -99,12 +63,7 @@ ion-input {
   --highlight-background: transparent;
   font-family: 'Inter', sans-serif; 
   padding-right: 15px !important;
-
-
 }
-
-
-
 
 ion-select {
   margin-top: 10px;
@@ -119,8 +78,6 @@ ion-select {
   --ion-color-select-background: transparent !important; /* Set the background to transparent */
   --ion-color-select-text: #000000; /* Set the text color if needed */
 }
-
-
 
 ion-content {
   --background: #ffffff;
@@ -145,152 +102,162 @@ ion-app {
     --border-radius: 2px; 
     text-transform: none; 
     font-family: 'Inter', sans-serif; 
+}
 
-  }
+ion-content {
+    font-family: 'Inter', sans-serif;
+}
 
-  ion-content{
-    font-family: 'Inter', sans-serif;   }
+.font-weight {
+    font-weight: 700;
+}
 
-    .font-weight{
-      font-weight: 700;
-    }
-    .info-time {
-      color: rgba(154, 154, 154, 0.9); 
-      font-size: 15px;
-      font-weight: 400;
-      margin-bottom: 10px;
-    }
+.info-time {
+    color: rgba(154, 154, 154, 0.9); 
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
 
-    .quick-action{
-      font-weight: 700;
-      font-size: 20px;
-      font-family: 'Inter', sans-serif; 
-      color:#822B23;
-      margin-top: 15px;
-      margin-left: 6px;
-  }
-    
- 
-    .quick-action{
-      font-weight: 700;
-      font-size: 18px;
-      font-family: 'Inter', sans-serif; 
-      color:#822B23;
-      margin-top: 15px;
-      
-  }
-  .dashboard-container{
+.quick-action {
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif; 
+    color: #822B23;
+    margin-top: 15px;
+    margin-left: 6px;
+}
+
+.quick-action {
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif; 
+    color: #822B23;
+    margin-top: 15px;
+}
+
+.dashboard-container {
     padding: 10px;
     margin-top: 10px;
 }
+
 .vector {
-  width: 12px;
-  height: 12px;
+    width: 12px;
+    height: 12px;
 }
+
 .card {
-  font-size: 14px;
-  font-weight: 400;
-  color: #4A5568;
-  font-family: 'Inter', sans-serif;
-  padding: 15px;
-}
-.flex{
-  display: flex;
+    font-size: 14px;
+    font-weight: 400;
+    color: #4A5568;
+    font-family: 'Inter', sans-serif;
+    padding: 15px;
 }
 
-.action{
-  float: inline-end !important;}
+.flex {
+    display: flex;
+}
 
-
-
+.action {
+    float: inline-end !important;
+}
 
 input[type="radio"] {
-  background-color: #fff;
-  width: 20px;
-  height: 20px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 1px solid #000;
-  border-radius: 50%;
-  padding: 2px;
-  margin-right: 10px; 
-  
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #000;
+    border-radius: 50%;
+    padding: 2px;
+    margin-right: 10px; 
 }
 
 input[type="radio"]:checked {
-  background-color: #fff;
-  width: 20px;
-  height: 20px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 7px solid #CFAA35;
-  border-radius: 50%;
-  padding: 2px;
-  margin-right: 10px; 
-}
-.outlet-header{
-  font-size: 16px;
-  font-weight: 900; 
-  color: #474A56;
-  font-family: 'Inter', sans-serif;
-}
-.header-img{
-  display:flex;
-}
-.img{
-  margin-right: 5%;
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 7px solid #CFAA35;
+    border-radius: 50%;
+    padding: 2px;
+    margin-right: 10px; 
 }
 
-.correspondence-paragraph
-{
-  font-weight: bold;
-  font-size: 14px;
-  color: #474A56;
+.outlet-header {
+    font-size: 16px;
+    font-weight: 900; 
+    color: #474A56;
+    font-family: 'Inter', sans-serif;
 }
-.time-frame{
-  color: #8A8A8A;
-  margin-top: 5px;
+
+.header-img {
+    display: flex;
 }
-.outlet-subheader{
-  font-size: 14px;
-  font-weight: 900; 
-  color: #474A56;
-  font-family: 'Inter';
+
+.img {
+    margin-right: 5%;
 }
-.detail-header{
-  color:#2A2A2A;
-  font-size: 18px;
-  margin-bottom: 10px;
+
+.correspondence-paragraph {
+    font-weight: bold;
+    font-size: 14px;
+    color: #474A56;
+}
+
+.time-frame {
+    color: #8A8A8A;
+    margin-top: 5px;
+}
+
+.outlet-subheader {
+    font-size: 14px;
+    font-weight: 900; 
+    color: #474A56;
+    font-family: 'Inter';
+}
+
+.detail-header {
+    color: #2A2A2A;
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .add-ticket-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
 .add-ticket-icon {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin-right: 20px;
 }
 
 .custom-select {
-  --padding-end: 1.0em; 
+    --padding-end: 1.0em; 
 }
 
 .custom-select::part(text) {
-  padding-right: calc(var(--padding-end) + 1em); 
+    padding-right: calc(var(--padding-end) + 1em); 
 }
 
 .custom-select::part(icon) {
-  position: absolute;
-  right: 0.0em;
+    position: absolute;
+    right: 0.0em;
 }
 
+html, body {
+    height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
