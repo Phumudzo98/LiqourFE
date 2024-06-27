@@ -8,13 +8,15 @@ import { EditComplaintPageRoutingModule } from './edit-complaint-routing.module'
 
 import { EditComplaintPage } from './edit-complaint.page';
 import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
+import { NgxSpinnerModule } from 'ngx-spinner';``
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     EditComplaintPageRoutingModule,
-    MenuFooterPageModule
+    MenuFooterPageModule,
+    NgxSpinnerModule.forRoot()
   ],
   declarations: [EditComplaintPage]
 })

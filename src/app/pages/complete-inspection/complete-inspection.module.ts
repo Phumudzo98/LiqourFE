@@ -7,8 +7,10 @@ import { NgxSpinner } from 'ngx-spinner';
 import { CompleteInspectionPageRoutingModule } from './complete-inspection-routing.module';
 
 
+
 import { CompleteInspectionPage } from './complete-inspection.page';
 import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
+import { NgxSpinnerModule } from 'ngx-spinner';``
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +19,7 @@ import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-foot
     CompleteInspectionPageRoutingModule,
     MenuFooterPageModule,
     ReactiveFormsModule,
-    
+    NgxSpinnerModule
   ],
   declarations: [CompleteInspectionPage]
 })
