@@ -15,6 +15,7 @@ import { HttpRequestInterceptor } from './util/service/interceptor';
 import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 import { NgxSpinner } from 'ngx-spinner';
 import { NgClass } from '@angular/common';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { NgClass } from '@angular/common';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ModalController ,// Add ModalController to the providers array
     ScreenOrientation,
-    MenuController, { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }
+    MenuController, { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }, provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
