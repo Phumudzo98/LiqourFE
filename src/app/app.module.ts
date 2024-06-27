@@ -19,13 +19,13 @@ import { NgClass } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
-    // Add other components here
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot({
-      animated: false // Disable Ionic animations
+      animated: false 
     }),
     AppRoutingModule,
     ViewImagePageModule,
