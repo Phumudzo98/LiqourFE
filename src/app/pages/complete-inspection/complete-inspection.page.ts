@@ -9,6 +9,7 @@ import { ActionSheetController, ModalController } from '@ionic/angular';
 import { ViewImagePage } from '../view-image/view-image.page';
 import { environment } from 'src/environments/environment.prod';
 import { Geolocation } from '@capacitor/geolocation';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -46,7 +47,8 @@ export class CompleteInspectionPage implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private actionSheetController: ActionSheetController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private spinner: NgxSpinnerService
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
@@ -98,6 +100,7 @@ export class CompleteInspectionPage implements OnInit {
   }
 
   onSubmit() {
+    this.spinner.show();
     let token = localStorage.getItem("userToken");
     const newHeader = {
       "Authorization": "Bearer " + token,
@@ -120,10 +123,12 @@ export class CompleteInspectionPage implements OnInit {
 
     this.http.post(url, formData).subscribe(response => {
       console.log(response);
+      this.spinner.hide();
       this.router.navigate(['/thank-you'])
       
     }, error => {
       console.log(error);
+      this.spinner.hide();
     });
   }
 

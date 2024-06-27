@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { headers, headersSecure } from 'src/app/util/service/const';
 
 @Component({
@@ -10,7 +11,7 @@ import { headers, headersSecure } from 'src/app/util/service/const';
 })
 export class EditComplaintPage implements OnInit {
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private aRoute: Router, private eRef: ElementRef) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private aRoute: Router, private eRef: ElementRef,private spinner: NgxSpinnerService) {}
 
   reference: string = "";
   description: string = "";
@@ -92,6 +93,7 @@ export class EditComplaintPage implements OnInit {
 
   updateComplaint()
   {
+    this.spinner.show();
     let token = localStorage.getItem("userToken") 
     const newHeader={
       "Authorization":"Bearer "+token, 
@@ -115,11 +117,11 @@ export class EditComplaintPage implements OnInit {
     this.http.put(url,form, {headers: newHeader}).subscribe(response=>
       {
         console.log(response);
-        
+        this.spinner.hide();
       },error=>
         {
           console.log(error);
-          
+          this.spinner.hide();
         }
     )
   }

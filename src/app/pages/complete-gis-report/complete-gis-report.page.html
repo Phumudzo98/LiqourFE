@@ -1,0 +1,151 @@
+<ion-content >
+  <form [formGroup]="gisReportForm">
+  <div *ngIf="currentForm === 'landing'">
+    <div class="header-container">
+      <a  class="back-Arrow"><img src="assets/Images/Back Icon.svg"></a>
+      <h1 class="header-text">Complete GIS Report</h1>
+    </div>
+    <ion-card>
+      <div class="header-content">
+        <ion-card-title (click)="toggleForms('uploads')">
+          Upload GIS report
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/Dot.svg" class="vector"></ion-img>
+      </div>
+      <hr>
+      <div class="header-content">
+        <ion-card-title (click)="toggleForms('fillin')">
+          Complete GIS Report
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/Dot.svg" class="vector"></ion-img>
+      </div>
+      <hr>
+       <ion-button class="buttonClass2" (click)="onSubmit()">
+        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text" >
+        Save
+      </ion-button>
+    </ion-card>
+  </div>
+
+  <div *ngIf="currentForm === 'uploads'">
+
+    <div class="header-container">
+      <a><img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="toggleForms('landing')"></a>
+      <h1 class="header-text" style="color: black;">GIS Reports</h1>
+    </div>
+  
+    <span class="inspection-report">Inspection report</span>
+    <ion-card class="upload" (click)="triggerFileInput()">
+      <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
+      <span>Click to upload</span>
+      <span>DOCX or PDF</span>
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;" >
+    </ion-card>
+  
+    <ion-card *ngIf="reportFiles.length > 0" class="upload2">
+      <div class="header-content2">
+        <ion-card-title>{{ reportFiles[0].name }}</ion-card-title>
+        <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirm(0)" class=""></ion-img>
+      </div>
+      <span>{{ (reportFiles[0].size / 1024).toFixed(2) }} KB</span>
+    </ion-card>
+    <ion-card *ngIf="reportFiles.length === 0" class="upload2">
+      <span>No file uploaded</span>
+    </ion-card>
+  
+  </div>
+  
+
+  <div *ngIf="currentForm === 'fillin'">
+    <div class="header-container">
+      <img src="assets/Images/Back Icon.svg" class="back-Arrow" (click)="toggleForms('landing')">
+      <h1 class="header-text">Complete GIS Report</h1>
+    </div>
+
+    <ion-label >Latitude of Outlet (South)</ion-label>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Latitude" formControlName="latitude"></ion-input>
+    </ion-item>
+    <ion-label>Longitude of Outlet (East)</ion-label>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Longitude" formControlName="longitude"></ion-input>
+    </ion-item>
+
+    <p (click)="getCurrentPosition()" class="phone"><a>Use my location</a></p>
+
+  
+    <ion-card class="upload2">
+  
+      <span>(a) Is there school in 100m radius</span>
+      <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes_appt" name="schoolIn100m" value="1" formControlName="schoolIn100m">
+                <label for="yes_appt">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no_appt" name="schoolIn100m" value="2" formControlName="schoolIn100m">
+                <label for="no_appt">No</label>
+              </div>
+            </ion-col>
+            
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+      <hr>
+  
+      <span>(b)Is there church in 100m radius</span>
+      <ion-card-title class="general-name">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="yes_person" name="churchIn100m" value="1" formControlName="churchIn100m">
+                <label for="yes_person">Yes</label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="radios">
+                <input type="radio" id="no_person" name="churchIn100m" value="2" formControlName="churchIn100m">
+                <label for="no_person">No</label>
+              </div>
+            </ion-col>
+          
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+      <hr>
+  
+
+    <span>(c) Are there ward boundaries in 100m radius</span>
+    <ion-card-title class="general-name">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="radios">
+              <input type="radio" id="yes_indicated" name="wardBoundriesIn100m" value="1" formControlName="wardBoundriesIn100m">
+              <label for="yes_indicated">Yes</label>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="radios">
+              <input type="radio" id="no_indicated" name="wardBoundriesIn100m" value="2" formControlName="wardBoundriesIn100m">
+              <label for="no_indicated">No</label>
+            </div>
+          </ion-col>
+      
+        </ion-row>
+      </ion-grid>
+    </ion-card-title>
+    <hr>
+
+    <hr>
+    </ion-card>
+  </div>
+  
+ </form>
+</ion-content>

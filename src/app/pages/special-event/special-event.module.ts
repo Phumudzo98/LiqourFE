@@ -9,6 +9,7 @@ import { SpecialEventPageRoutingModule } from './special-event-routing.module';
 import { SpecialEventPage } from './special-event.page';
 import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
 import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,8 @@ import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-foot
     IonicModule,
     SpecialEventPageRoutingModule,
     MenuFooterPageModule,
-    MenuHeaderPageModule
+    MenuHeaderPageModule,
+    NgxSpinnerModule
   ],
   declarations: [SpecialEventPage]
 })
