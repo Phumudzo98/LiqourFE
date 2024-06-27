@@ -33,7 +33,7 @@ import { NgClass } from '@angular/common';
     IonicStorageModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    NgxSpinnerModule.forRoot()
+    
     
   ],
   providers: [
