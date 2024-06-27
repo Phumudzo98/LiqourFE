@@ -111,10 +111,10 @@ export class CompleteInspectionPage implements OnInit {
     formData.append('inspection', new Blob([JSON.stringify(this.inspectionReport)], { type: 'application/json' }));
 
     this.reportDoc = this.reportFiles[0];
-    formData.append('report', this.reportDoc);
+    formData.append('report', this.report);
 
     this.noticeDoc = this.noticeFiles[0];
-    formData.append('notice', this.noticeDoc);
+    formData.append('notice', this.notice);
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
 
@@ -155,14 +155,12 @@ export class CompleteInspectionPage implements OnInit {
   async onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.report = file;
-      console.log(file);
-      
-    /*  if (this.reportFiles.length > 0) {
+      this.report = file; 
+       if (this.reportFiles.length > 0) {
         this.reportFiles.splice(0, 1, { name: file.name, size: file.size });
       } else {
         this.reportFiles.push({ name: file.name, size: file.size });
-      }*/
+      }
       this.inputVisible = false; 
     }
   }
@@ -212,11 +210,11 @@ export class CompleteInspectionPage implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.notice = file;
-     /* if (this.noticeFiles.length > 0) {
+      if (this.noticeFiles.length > 0) {
         this.noticeFiles.splice(0, 1, { name: file.name, size: file.size });
       } else {
         this.noticeFiles.push({ name: file.name, size: file.size });
-      }*/
+      }
       this.inputVisible = false; 
     }
   }
