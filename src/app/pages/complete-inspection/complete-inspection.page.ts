@@ -57,7 +57,7 @@ export class CompleteInspectionPage implements OnInit {
       appointmentSet: ['', Validators.required],
       consultedOrFound: ['', Validators.required],
       applicantIndicatedPersonAtPremises: ['', Validators.required],
-      canPersonBeFound: ['', Validators.required],
+      canPersonBeFound: [Validators.required],
       interestInLiquorTrade: ['', Validators.required],
       issuedComplience: ['', Validators.required],
       complaintsReceived: ['', Validators.required],
@@ -72,7 +72,7 @@ export class CompleteInspectionPage implements OnInit {
       readyForBusiness: ['', Validators.required],
       formServedToCorrectWardCommittee: ['', Validators.required],
       confirmedByCouncillor: ['', Validators.required],
-      wardCommitteeReport: ['', Validators.required],
+      wardCommiteeReport: ['', Validators.required],
       communityConsultation: ['', Validators.required],
       educationalInstitution: ['', Validators.required],
       formServedAtEducationInstitution: ['', Validators.required],
@@ -80,7 +80,7 @@ export class CompleteInspectionPage implements OnInit {
       formServedAtPlaceOfWorship: ['', Validators.required],
       recommendation: ['', Validators.required],
       futureInspectionDate: ['', Validators.required],
-      comments: ['', Validators.required]
+      comments: ['']
     });
     
       
@@ -94,6 +94,8 @@ export class CompleteInspectionPage implements OnInit {
     });
 
     this.getCurrentPosition();
+
+    this.completeReportForm.patchValue(this.dummyData)
   }
   
 
@@ -162,13 +164,11 @@ export class CompleteInspectionPage implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.report = file;
-      console.log(file);
-      
-    /*  if (this.reportFiles.length > 0) {
+      if (this.reportFiles.length > 0) {
         this.reportFiles.splice(0, 1, { name: file.name, size: file.size });
       } else {
         this.reportFiles.push({ name: file.name, size: file.size });
-      }*/
+      }
       this.inputVisible = false; 
     }
   
@@ -221,11 +221,11 @@ export class CompleteInspectionPage implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.notice = file;
-     /* if (this.noticeFiles.length > 0) {
+     if (this.noticeFiles.length > 0) {
         this.noticeFiles.splice(0, 1, { name: file.name, size: file.size });
       } else {
         this.noticeFiles.push({ name: file.name, size: file.size });
-      }*/
+      }
       this.inputVisible = false; 
     }
   }
@@ -234,6 +234,37 @@ export class CompleteInspectionPage implements OnInit {
     return this.noticeFiles.some(file => file.name === fileName);
   }
 
+  dummyData = {
+    contactPerson: "John Doe",
+    inspectionDate: "2024-05-03T08:00",
+    appointmentSet: "1",
+    consultedOrFound: "2",
+    applicantIndicatedPersonAtPremises: "1",
+    canPersonBeFound: "1",
+    interestInLiquorTrade: "1",
+    issuedComplience: "1",
+    complaintsReceived: "2",
+    rightToOccupy: "1",
+    leaseAttached: "1",
+    situatedInRightAddress: "1",
+    inLineWithSubmittedApplication: "1",
+    premisesSuitable: "1",
+    ablutionFacilityInOrder: "1",
+    readyForBusiness: "1",
+    formServedToCorrectWardCommittee: "1",
+    confirmedByCouncillor: "1",
+    wardCommiteeReport: "1",
+    communityConsultation: "1",
+    educationalInstitution: "1",
+    formServedAtEducationInstitution: "1",
+    placeOfWorship: "1",
+    formServedAtPlaceOfWorship: "1",
+    recommendation: "1",
+    futureInspectionDate: "2024-06-03T08:00",
+    comments: "Everything seems to be in order.",
+    latitude: "40.7128", 
+    longitude: "-74.0060", 
+  };
  
 
 
