@@ -9,6 +9,7 @@ import { NavigateToOutletPageRoutingModule } from './navigate-to-outlet-routing.
 import { NavigateToOutletPage } from './navigate-to-outlet.page';
 import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,8 @@ import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-head
     IonicModule,
     NavigateToOutletPageRoutingModule,
     MenuFooterPageModule,
-    MenuHeaderPageModule
+    MenuHeaderPageModule,
+    NgxSpinnerModule.forRoot() // Import NgxSpinnerModule here
   ],
   declarations: [NavigateToOutletPage]
 })

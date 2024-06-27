@@ -9,6 +9,7 @@ import { MyTasksPageRoutingModule } from './my-tasks-routing.module';
 import { MyTasksPage } from './my-tasks.page';
 import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
 import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,8 @@ import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-foot
     IonicModule,
     MyTasksPageRoutingModule,
     MenuFooterPageModule,
-    MenuHeaderPageModule
+    MenuHeaderPageModule,
+    NgxSpinnerModule.forRoot() // Import NgxSpinnerModule here
   ],
   declarations: [MyTasksPage]
 })

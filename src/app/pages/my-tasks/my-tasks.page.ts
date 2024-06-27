@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { headers, headersSecure } from 'src/app/util/service/const';
 
 @Component({
@@ -12,9 +13,10 @@ export class MyTasksPage implements OnInit {
   collect: any[] = [];
   loading: boolean = true; // Add loading state
 
-  constructor(private route: Router, private http: HttpClient) { }
+  constructor(private route: Router, private http: HttpClient,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     let url = "/api/general/get-inbox";
     let token = localStorage.getItem("userToken") 
     const newHeader={
@@ -26,11 +28,13 @@ export class MyTasksPage implements OnInit {
       response => {
         console.log(response);
         this.collect = response;
-        this.loading = false; // Hide loader after data is loaded
+        
+        this.spinner.hide();
       },
       error => {
         console.log(error);
-        this.loading = false; // Hide loader if there's an error
+      
+        this.spinner.hide();
       }
     );
   }

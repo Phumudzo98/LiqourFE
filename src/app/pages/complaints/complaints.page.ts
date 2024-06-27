@@ -3,7 +3,7 @@ import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { headersSecure } from 'src/app/util/service/const';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-complaints',
   templateUrl: './complaints.page.html',
@@ -17,9 +17,11 @@ export class ComplaintsPage implements OnInit {
   searchTerm: string = '';
   Loading: boolean = true; // Loading flag
 
-  constructor(private route: Router, private eRef: ElementRef, private http: HttpClient) {}
+  constructor(private route: Router, private eRef: ElementRef, private http: HttpClient,private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
+
+    this.spinner.show();
     let url = "https://system.eclb.co.za/eclb2/api/general/get-complaints";
 
     let token = localStorage.getItem("userToken") 
@@ -32,11 +34,11 @@ export class ComplaintsPage implements OnInit {
       console.log(response);
       this.collect = response;
       this.filteredCollect = response;
-      this.Loading = false; // Set loading to false when data is fetched
+      this.spinner.hide();
     },
     error => {
       console.log(error);
-      this.Loading = false; // Set loading to false even if there is an error
+      this.spinner.hide();
     });
   }
 

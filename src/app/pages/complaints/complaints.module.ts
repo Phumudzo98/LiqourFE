@@ -9,6 +9,7 @@ import { ComplaintsPageRoutingModule } from './complaints-routing.module';
 import { ComplaintsPage } from './complaints.page';
 import { MenuHeaderPageModule } from 'src/app/headerFooter/menu-header/menu-header.module';
 import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,8 @@ import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-foot
     IonicModule,
     ComplaintsPageRoutingModule,
     MenuFooterPageModule,
-    MenuHeaderPageModule
+    MenuHeaderPageModule,
+    NgxSpinnerModule.forRoot()
   ],
   declarations: [ComplaintsPage]
 })

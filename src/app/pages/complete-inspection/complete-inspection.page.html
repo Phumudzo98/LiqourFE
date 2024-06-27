@@ -14,7 +14,7 @@
       </div>
       <hr>
 
-      <div class="header-content">
+      <div class="header-content" [ngClass]="{'completed': isGeneralFormValid()}">
         <ion-card-title (click)="toggleForms('general')">
           General
         </ion-card-title>

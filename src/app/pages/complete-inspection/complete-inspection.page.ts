@@ -3,7 +3,6 @@ import { Component, ElementRef, OnInit, ViewChild, HostListener } from '@angular
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
-import { headersSecure } from 'src/app/util/service/const';
 import { StorageService } from 'src/app/util/service/storage.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ActionSheetController, ModalController } from '@ionic/angular';
@@ -17,7 +16,6 @@ import { Geolocation } from '@capacitor/geolocation';
   styleUrls: ['./complete-inspection.page.scss'],
 })
 export class CompleteInspectionPage implements OnInit {
-
   selectedOption: string = '';
   reportFiles: { name: string, size: number }[] = [];
   noticeFiles: { name: string, size: number }[] = [];
@@ -33,10 +31,10 @@ export class CompleteInspectionPage implements OnInit {
   caseNo: any;
   imageSources: string[] = [];
   private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
- 
-  inspectionReport:any;
-  reportDoc:any;
-  noticeDoc:any;
+
+  inspectionReport: any;
+  reportDoc: any;
+  noticeDoc: any;
 
   constructor(
     private router: Router,
@@ -48,8 +46,7 @@ export class CompleteInspectionPage implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private actionSheetController: ActionSheetController,
-    private modalController: ModalController,
-
+    private modalController: ModalController
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
@@ -82,9 +79,6 @@ export class CompleteInspectionPage implements OnInit {
       futureInspectionDate: ['', Validators.required],
       comments: ['', Validators.required]
     });
-    
-      
-    
   }
 
   ngOnInit() {
@@ -95,42 +89,40 @@ export class CompleteInspectionPage implements OnInit {
 
     this.getCurrentPosition();
   }
-  
+
+  isGeneralFormValid(): boolean {
+    const generalFields = ['contactPerson', 'inspectionDate', 'latitude', 'longitude'];
+    return generalFields.every(field => this.completeReportForm.get(field)?.valid);
+  }
 
   onSubmit() {
-    
-    
-    let token = localStorage.getItem("userToken") 
-    const newHeader={
-      "Authorization":"Bearer "+token, 
-      "Accept":"/"
-    }
+    let token = localStorage.getItem("userToken");
+    const newHeader = {
+      "Authorization": "Bearer " + token,
+      "Accept": "/"
+    };
 
-
-    //initialization of the variable
     this.inspectionReport = this.inspectionReport || {};
-
-    this.inspectionReport=Object.assign(this.inspectionReport,this.completeReportForm.value);
+    this.inspectionReport = Object.assign(this.inspectionReport, this.completeReportForm.value);
 
     const formData = new FormData();
-    formData.append('inspection',new Blob([JSON.stringify(this.inspectionReport)],{ type: 'application/json' }))
-    
-      this.reportDoc=this.reportFiles[0]
-      formData.append('report', this.report);
+    formData.append('inspection', new Blob([JSON.stringify(this.inspectionReport)], { type: 'application/json' }));
 
-      this.noticeDoc=this.reportFiles[0]
-      formData.append('notice', this.notice);
-    
+    this.reportDoc = this.reportFiles[0];
+    formData.append('report', this.reportDoc);
 
-    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo
+    this.noticeDoc = this.noticeFiles[0];
+    formData.append('notice', this.noticeDoc);
 
-    this.http.post(url,formData).subscribe(response=>{
+    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
+
+    this.http.post(url, formData).subscribe(response => {
       console.log(response);
       this.router.navigate(['/thank-you'])
       
     }, error => {
       console.log(error);
-    })
+    });
   }
 
   saveFormValues() {
@@ -157,21 +149,13 @@ export class CompleteInspectionPage implements OnInit {
     this.fileInput.nativeElement.click();
   }
 
-  report!:File;
+  report!: File;
   async onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.report = file;
-      console.log(file);
-      
-    /*  if (this.reportFiles.length > 0) {
-        this.reportFiles.splice(0, 1, { name: file.name, size: file.size });
-      } else {
-        this.reportFiles.push({ name: file.name, size: file.size });
-      }*/
-      this.inputVisible = false; 
+      this.inputVisible = false;
     }
-  
   }
 
   isFileUploaded(fileName: string): boolean {
@@ -210,33 +194,22 @@ export class CompleteInspectionPage implements OnInit {
   deleteItem(index: number) {
     this.reportFiles.splice(index, 1);
     if (this.reportFiles.length === 0) {
-      this.inputVisible = true; 
+      this.inputVisible = true;
     }
   }
 
-  // File
-
-  notice!:File;
+  notice!: File;
   async onFileSelectedRecommendation(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.notice = file;
-     /* if (this.noticeFiles.length > 0) {
-        this.noticeFiles.splice(0, 1, { name: file.name, size: file.size });
-      } else {
-        this.noticeFiles.push({ name: file.name, size: file.size });
-      }*/
-      this.inputVisible = false; 
+      this.inputVisible = false;
     }
   }
 
   isFileUploadedNotice(fileName: string): boolean {
     return this.noticeFiles.some(file => file.name === fileName);
   }
-
- 
-
-
 
   async presentAlertConfirmNotice(index: number) {
     const alert = await this.alertController.create({
@@ -266,7 +239,7 @@ export class CompleteInspectionPage implements OnInit {
   deleteItemNotice(index: number) {
     this.noticeFiles.splice(index, 1);
     if (this.noticeFiles.length === 0) {
-      this.inputVisible = true; 
+      this.inputVisible = true;
     }
   }
 
@@ -372,7 +345,6 @@ export class CompleteInspectionPage implements OnInit {
         {
           text: 'View',
           handler: () => {
-            // Handle view action
             console.log('View clicked for:', imageUrl);
           }
         },
@@ -380,7 +352,6 @@ export class CompleteInspectionPage implements OnInit {
           text: 'Delete',
           cssClass: 'danger',
           handler: () => {
-            // Handle delete action
             console.log('Delete clicked for:', imageUrl);
           }
         },
@@ -389,7 +360,6 @@ export class CompleteInspectionPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            // Handle cancel action
             console.log('Cancel clicked');
           }
         }
@@ -405,7 +375,7 @@ export class CompleteInspectionPage implements OnInit {
     const modal = await this.modalController.create({
       component: ViewImagePage,
       componentProps: { image },
-      backdropDismiss: true // This enables clicking outside the modal to dismiss it
+      backdropDismiss: true
     });
     return await modal.present();
   }
@@ -415,8 +385,8 @@ export class CompleteInspectionPage implements OnInit {
     await this.modalController.dismiss();
   }
 
-  latitude?:number;
-  longitude?:number;
+  latitude?: number;
+  longitude?: number;
 
   async getCurrentPosition() {
     try {
@@ -430,13 +400,9 @@ export class CompleteInspectionPage implements OnInit {
       this.completeReportForm.patchValue({
         latitude: this.latitude,
         longitude: this.longitude
-      })
-
-      //this.getAddressFromCoordinates(this.latitude, this.longitude);
-      
+      });
     } catch (err) {
       console.error('Error getting location', err);
     }
   }
-
 }
