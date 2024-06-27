@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner'; // Import NgxSpinnerService
+import { headersSecure } from 'src/app/util/service/const';
 
 @Component({
   selector: 'app-update-gis',
@@ -13,7 +15,10 @@ export class UpdateGisPage implements OnInit {
   outlets: any[] = [];
   filteredOutlets: any[] = [];
 
-  constructor(private route: Router, private spinner: NgxSpinnerService) { } // Inject NgxSpinnerService
+  
+
+  url:string="https://system.eclb.co.za/eclb2//api/general/save-gis"
+  constructor(private route: Router, private spinner: NgxSpinnerService, private http: HttpClient) { } // Inject NgxSpinnerService
 
   ngOnInit() {
     this.fetchData(); // Call fetchData on component initialization
