@@ -2,8 +2,9 @@
     display: flex;
     align-items: center;
     padding-top: 5%;
-    padding-left: 10%;
-    margin-bottom: 1%;
+    padding-left: 20%;
+    
+    margin-top: 75%;
   }
   
   .header-text {
@@ -20,71 +21,8 @@
     font-size: 13px;
   }
 
-  .inline-paragraph
-  {
-    
-    color: #8B939F ;
-    padding-right: 1%;
-    font-size: 13px;
-    padding-left: 2px;
-    margin-left: 8%;
-    font-family: 'Inter', sans-serif;
-    width: 90%;
-  }
+  
 
-  .paragraph
-  {
-    
-    margin-top: 0%;
-    padding-right: 1%;
-    font-size: 90%;
-    padding-left: 2px;
-    margin-left: 8%;
-    margin-right: 0%;
-    font-family: 'Inter', sans-serif;
-  }
+  
 
-  .paragraph2
-  {
-    margin-top: 0%;
-    padding-right: 1%;
-    font-size: 120%;
-    padding-left: 2px;
-    margin-left: 8%;
-    margin-right: 0%;
-    
-    font-weight: bold;
-    padding-top: 1px;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .para-container
-  {
-    border: #f2f2f3 solid 0.5px;
-    margin-left: 8%;
-    border-radius: 6px;
-    background-color: #f2f2f3;
-    padding-left: 3%;
-    width:90%;
-    font-size: 70%;
-    font-family: 'Inter', sans-serif;
-    height: auto;
-    margin-bottom: 75%;
-  }
-
-  .buttonClass1 {
-    --background:white;
-    --color: #822B23;
-    width: calc(100% - 30px);
-    height: 50px;
-    margin-top: 15px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-left: 14px;
-    border: 1px solid #822B23;
-    border-radius: 8px; 
-    --border-radius: 2px; 
-    text-transform: none; 
-    font-family: 'Inter', sans-serif; 
-
-  }
+  
