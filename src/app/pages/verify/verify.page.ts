@@ -136,7 +136,7 @@ export class VerifyPage implements OnInit{
         
         this.router.navigate(['/dashboard']);
 
-        console.log(this.helper.setToken(res.message))
+        this.helper.setToken(res.message)
 
        
       }, error: (error: any) => {

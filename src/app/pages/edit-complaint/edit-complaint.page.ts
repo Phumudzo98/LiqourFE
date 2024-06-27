@@ -12,14 +12,14 @@ export class EditComplaintPage implements OnInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private aRoute: Router, private eRef: ElementRef) {}
 
-  reference: string = "ECLB001520";
-  description: string = "Caller complained that the person is selling alcohol to the public without a liquor license.";
-  strAddress: string = "559 N.U. 1";
+  reference: string = "";
+  description: string = "";
+  strAddress: string = "";
   inspectors: any[] = [];
   offOutlet: string = "";
-  districMunicipalty: string = "Mdantsane";
-  localMunicipality: string = "ECLB000000000";
-  town: string = "East London";
+  districMunicipalty: string = "";
+  localMunicipality: string = "";
+  town: string = "";
   comment: string = "";
   history: string = "";
   selectedInspector:any;
