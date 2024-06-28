@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
+import * as jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -44,4 +45,6 @@ export class HelperService {
   getHost(): any {
     // Implementation for getHost()
   }
+
+ 
 }

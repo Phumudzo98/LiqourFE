@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { headers, headersSecure } from 'src/app/util/service/const';
+import { HelperService } from 'src/app/util/service/helper.service';
+//import jwt_decode from "jwt-decode";
+
 
 @Component({
   selector: 'app-my-tasks',
@@ -12,8 +15,9 @@ import { headers, headersSecure } from 'src/app/util/service/const';
 export class MyTasksPage implements OnInit {
   collect: any[] = [];
   loading: boolean = true; // Add loading state
-
-  constructor(private route: Router, private http: HttpClient,private spinner: NgxSpinnerService) { }
+  decodedToken:any;
+  tok:any;
+  constructor(private route: Router, private http: HttpClient,private spinner: NgxSpinnerService, private helper: HelperService) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -24,8 +28,14 @@ export class MyTasksPage implements OnInit {
       "Accept":"*/*"
     }
 
-  
+    this.tok=localStorage.getItem('uToken');
+    this.decodedToken=JSON.parse(this.tok);
 
+    
+    //this.decodedToken=jwt_decode(this.decodedToken)
+
+    
+    
     this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/general/get-inbox", { headers: newHeader }).subscribe(
       response => {
         console.log(response);

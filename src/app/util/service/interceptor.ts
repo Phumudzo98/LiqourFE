@@ -24,6 +24,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         
         let tokenString = token.toString();
         //console.log(tokenString);
+
+        localStorage.setItem('uToken',tokenString)
         
         
         if (Object.keys(tokenString).length > 0) {
