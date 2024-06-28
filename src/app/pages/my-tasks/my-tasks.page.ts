@@ -61,6 +61,8 @@ export class MyTasksPage implements OnInit {
         case 'Verify Application':
           this.route.navigate(['']);
           break;
+        case 'Complete GIS Report':
+          this.route.navigate([`/complete-gis-report/${caseId}`])
 
       }
     }

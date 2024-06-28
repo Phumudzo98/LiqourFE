@@ -30,10 +30,10 @@
         </ion-col>
         <ion-col size="6">
           <!--Header-->
-          <span class="detail-header font-weight">{{ outlet.header }}</span>
+          <span class="detail-header font-weight">{{ outlet.outletName }}</span>
           <br>
           <!--Details-->
-          <span class="info-time" [innerHTML]="outlet.details"></span>
+          <span class="info-time" [innerHTML]="outlet.ecpNumber"></span>
           <br>
         </ion-col>
         <ion-col class="centered-col">
@@ -42,9 +42,10 @@
       </ion-row>
     </ion-grid>
 
-    <ion-button class="buttonClass" routerLink="/update-location">
+    <ion-button class="buttonClass" [routerLink]="['/complete-gis-report', outlet.caseId]">
       Update details
     </ion-button>
+    
   </ion-card>
 </div>
 </ion-content>
