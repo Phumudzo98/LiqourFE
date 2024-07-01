@@ -4,7 +4,11 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { headers, headersSecure } from 'src/app/util/service/const';
 import { HelperService } from 'src/app/util/service/helper.service';
-//import jwt_decode from "jwt-decode";
+//import * as jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
+
+
+
 
 
 @Component({
@@ -16,6 +20,7 @@ export class MyTasksPage implements OnInit {
   collect: any[] = [];
   loading: boolean = true; // Add loading state
   decodedToken:any;
+  role:any;
   tok:any;
   constructor(private route: Router, private http: HttpClient,private spinner: NgxSpinnerService, private helper: HelperService) { }
 
@@ -32,14 +37,25 @@ export class MyTasksPage implements OnInit {
     this.decodedToken=JSON.parse(this.tok);
 
     
-    //this.decodedToken=jwt_decode(this.decodedToken)
+    this.decodedToken=jwtDecode(this.decodedToken)
+    console.log(this.decodedToken.scope);
+    this.role=this.decodedToken.scope;
+    
 
     
     
     this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/general/get-inbox", { headers: newHeader }).subscribe(
       response => {
         console.log(response);
-        this.collect = response;
+
+        if(this.role==='INSPECTOR')
+          {
+            this.collect = response.filter(item => item.action === 'Complete Inspection');
+          }
+          else{
+            this.collect = response;
+          }
+        
         
         this.spinner.hide();
       },

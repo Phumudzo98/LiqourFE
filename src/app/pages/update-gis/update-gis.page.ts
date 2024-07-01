@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner'; // Import NgxSpinnerService
 import { headersSecure } from 'src/app/util/service/const';
 
+
 @Component({
   selector: 'app-update-gis',
   templateUrl: './update-gis.page.html',
@@ -50,12 +51,10 @@ export class UpdateGisPage implements OnInit {
 
     // Simulating asynchronous data fetching (replace with actual HTTP request)
     setTimeout(() => {
-      this.outlets = [
-       
-      ];
-
+      
+      this.spinner.hide();
       this.filteredOutlets = this.outlets; // Assign data to filteredOutlets
-      this.spinner.hide(); // Hide spinner after data fetch
+       // Hide spinner after data fetch
     }, 2000); // Simulate 2 seconds delay (replace with actual data fetch logic)
   }
 

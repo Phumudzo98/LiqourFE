@@ -27,10 +27,11 @@ export class InspectionsPage implements OnInit {
 
     this.http.get<any[]>(url, { headers: newHeader }).subscribe(
       response => {
+        this.spinner.hide();
         console.log(response);
         this.collect = response;
         this.filteredOutlets = this.collect; // Initialize filteredOutlets
-        this.spinner.hide();
+        
       },
       error => {
         console.log(error);
