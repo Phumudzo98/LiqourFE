@@ -8,7 +8,7 @@ import { NgxSpinner } from 'ngx-spinner';
 import { CompleteGisReportPageRoutingModule } from './complete-gis-report-routing.module';
 
 import { CompleteGisReportPage } from './complete-gis-report.page';
-
+import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-footer.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +16,7 @@ import { CompleteGisReportPage } from './complete-gis-report.page';
     IonicModule,
     CompleteGisReportPageRoutingModule,
     ReactiveFormsModule,
+    MenuFooterPageModule
   ],
   declarations: [CompleteGisReportPage]
 })
