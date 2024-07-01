@@ -209,7 +209,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/form/form.module').then( m => m.FormPageModule)
   },
   {
-    path: 'complete-gis-report',
+    path: 'complete-gis-report/:caseId',
     loadChildren: () => import('./pages/complete-gis-report/complete-gis-report.module').then( m => m.CompleteGisReportPageModule)
   },
 ];

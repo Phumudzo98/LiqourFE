@@ -12,16 +12,37 @@ import { headersSecure } from 'src/app/util/service/const';
 export class UpdateGisPage implements OnInit {
 
   searchTerm: string = '';
-  outlets: any[] = [];
+  
   filteredOutlets: any[] = [];
+
+  outlets:any[]=[];
 
   
 
   url:string="https://system.eclb.co.za/eclb2//api/general/save-gis"
-  constructor(private route: Router, private spinner: NgxSpinnerService, private http: HttpClient) { } // Inject NgxSpinnerService
+  constructor(private route: Router, private spinner: NgxSpinnerService, private http: HttpClient) { }
+   // Inject NgxSpinnerService
+
+  url2="https://system.eclb.co.za/eclb2/api/general/get-inbox";
+
 
   ngOnInit() {
     this.fetchData(); // Call fetchData on component initialization
+
+
+    this.http.get(this.url2,{headers: headersSecure}).subscribe( (response: any)=>
+      {
+        console.log(response);
+
+        this.outlets=response;
+        this.filteredOutlets = this.outlets;
+        
+      },error=>
+        {
+          console.log(error);
+          
+        }
+    )
   }
 
   fetchData() {
@@ -30,36 +51,7 @@ export class UpdateGisPage implements OnInit {
     // Simulating asynchronous data fetching (replace with actual HTTP request)
     setTimeout(() => {
       this.outlets = [
-        {
-          imgSrc: '../../../assets/Images/kwa coca.jpeg',
-          header: 'Kwa Coca Tavern',
-          details: 'ECP08498/03017/OO <br>On & Off Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
-        {
-          imgSrc: '../../../assets/Images/pllas.jpeg',
-          header: 'POLLAS TAVERN',
-          details: 'ECP08500/03020/OO <br>On & Off Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
-        {
-          imgSrc: '../../../assets/Images/viva.jpeg',
-          header: 'VIVAS TAVERN',
-          details: 'ECP08507/90454/OO <br>On & Off Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
-        {
-          imgSrc: '../../../assets/Images/shakis.jpeg',
-          header: 'SAKHIS TAVERN',
-          details: 'ECP08517/03033/OO <br>On & Off Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
-        {
-          imgSrc: '../../../assets/Images/burguer nn.jpeg',
-          header: 'THE BURGER INN',
-          details: 'ECP00852/90454/ON <br>On Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
+       
       ];
 
       this.filteredOutlets = this.outlets; // Assign data to filteredOutlets
@@ -69,7 +61,7 @@ export class UpdateGisPage implements OnInit {
 
   filterOutlets() {
     const term = this.searchTerm.toLowerCase();
-    this.filteredOutlets = this.outlets.filter(outlet => 
+    this.filteredOutlets = this.outlets.filter((outlet) => 
       outlet.header.toLowerCase().startsWith(term)
     );
   }

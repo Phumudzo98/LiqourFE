@@ -2,7 +2,7 @@
   <form [formGroup]="gisReportForm">
   <div *ngIf="currentForm === 'landing'">
     <div class="header-container">
-      <a  class="back-Arrow"><img src="assets/Images/Back Icon.svg"></a>
+      <a  [routerLink]="['/update-gis']" class="back-Arrow"><img src="assets/Images/Back Icon.svg"></a>
       <h1 class="header-text">Complete GIS Report</h1>
     </div>
     <ion-card>

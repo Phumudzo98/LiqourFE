@@ -34,7 +34,7 @@ export class CompleteGisReportPage implements OnInit {
   imageSources: string[] = [];
   private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
 
-  inspectionReport: any;
+  gisReport: any;
   reportDoc: any;
   noticeDoc: any;
 
@@ -80,19 +80,19 @@ export class CompleteGisReportPage implements OnInit {
       "Accept": "/"
     };
 
-    this.inspectionReport = this.inspectionReport || {};
-    this.inspectionReport = Object.assign(this.inspectionReport, this.gisReportForm.value);
+    this.gisReport = this.gisReport || {};
+    this.gisReport = Object.assign(this.gisReport, this.gisReportForm.value);
 
     const formData = new FormData();
-    formData.append('inspection', new Blob([JSON.stringify(this.inspectionReport)], { type: 'application/json' }));
+    formData.append('gisreport', new Blob([JSON.stringify(this.gisReport)], { type: 'application/json' }));
 
     this.reportDoc = this.reportFiles[0];
+
     formData.append('report', this.report);
+    
 
-    this.noticeDoc = this.noticeFiles[0];
-    formData.append('notice', this.notice);
 
-    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
+    let url = "https://system.eclb.co.za/eclb2/api/general/save-gis-report/"+this.caseNo;
 
     this.http.post(url, formData).subscribe(response => {
       console.log(response);
@@ -183,28 +183,12 @@ export class CompleteGisReportPage implements OnInit {
     }
   }
 
-  notice!: File;
-  async onFileSelectedRecommendation(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.notice = file;
-      if (this.noticeFiles.length > 0) {
-        this.noticeFiles.splice(0, 1, { name: file.name, size: file.size });
-      } else {
-        this.noticeFiles.push({ name: file.name, size: file.size });
-      }
-      this.inputVisible = false; 
-    }
-  }
 
   isFileUploadedNotice(fileName: string): boolean {
     return this.noticeFiles.some(file => file.name === fileName);
   }
 
  
-
-
-
   async presentAlertConfirmNotice(index: number) {
     const alert = await this.alertController.create({
       header: 'Confirm Deletion',
@@ -236,9 +220,6 @@ export class CompleteGisReportPage implements OnInit {
       this.inputVisible = true;
     }
   }
-
- 
-
 
 
   latitude?: number;
