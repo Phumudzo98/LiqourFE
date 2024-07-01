@@ -137,7 +137,8 @@ export class VerifyPage implements OnInit{
         this.router.navigate(['/dashboard']);
 
         this.helper.setToken(res.message)
-
+        console.log(res.message);
+        localStorage.setItem('userToken',res.message);
        
       }, error: (error: any) => {
         
