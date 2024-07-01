@@ -54,7 +54,8 @@ export class AppComponent {
       this.currentUrl.includes('/edit-complaint') ||
       this.currentUrl.includes('/complaints') ||
       this.currentUrl.includes('/view-complaint') ||
-      this.currentUrl.includes('/help')
+      this.currentUrl.includes('/help') ||
+      this.currentUrl.includes('/complete-gis-report')
     ) {
       this.menu.enable(false, 'another-menu');
       this.menu.enable(true, 'main-menu');
