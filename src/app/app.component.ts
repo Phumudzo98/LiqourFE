@@ -94,4 +94,8 @@ export class AppComponent {
         .catch(error => console.log('Error locking orientation:', error));
     });
   }
+  logout() {
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('uToken');
+  }
 }

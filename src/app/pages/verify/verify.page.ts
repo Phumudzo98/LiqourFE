@@ -5,6 +5,7 @@ import { Auth } from 'src/app/util/service/Auth';
 import { HelperService } from 'src/app/util/service/helper.service';
 import { OtpServiceService } from 'src/app/util/service/otp-service.service';
 import { DataService } from 'src/app/util/service/data.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -35,8 +36,8 @@ export class VerifyPage implements OnInit{
     private activatedRoute: ActivatedRoute,
     private auth: Auth,
     private helper:HelperService,
-    private service: OtpServiceService
-   
+    private service: OtpServiceService,
+    private spinner: NgxSpinnerService
     
   ) {}
 
@@ -119,39 +120,46 @@ export class VerifyPage implements OnInit{
   
 
   public submitOTP(): void {
-
+    this.spinner.show();
     console.log(localStorage.getItem('otp'));
     this.enteredOtp = this.otp.join('');
- 
-    this.auth.otp = this.enteredOtp; 
-
+  
+    this.auth.otp = this.enteredOtp;
+  
     let username = localStorage.getItem('username');
-    
-
     this.auth.username = (username !== null && username !== undefined) ? username.toString() : '';
-
+  
     this.service.validateOTP(this.auth).subscribe({
-      next: (res:any) => {
-        //this.spinner.hide();
-        
+      next: (res: any) => {
         this.router.navigate(['/dashboard']);
-
-        this.helper.setToken(res.message)
+        this.helper.setToken(res.message);
+        localStorage.setItem('userToken', res.message);
         this.helper.setSimpToken(res.message);
-
-       
-      }, error: (error: any) => {
-        
-        /*Swal.fire({position: 'center',
-        icon: 'error',
-        text: message.message,
-        title: message.success,
-        showConfirmButton: false,
-        timer: 5000})*/
-        //this.spinner.hide()
+  
+        // Hide spinner after 2 seconds
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 2000);
+      },
+      error: (error: any) => {
+        // Handle error
+        console.error('Error validating OTP:', error);
+        // Hide spinner immediately on error
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 2000);
+        /*Swal.fire({
+          position: 'center',
+          icon: 'error',
+          text: message.message,
+          title: message.success,
+          showConfirmButton: false,
+          timer: 5000
+        });*/
       }
-    })
+    });
   }
+  
 
   
 

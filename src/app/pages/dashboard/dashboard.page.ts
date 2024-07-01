@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HelperService } from 'src/app/util/service/helper.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,13 +9,15 @@ import { Router } from '@angular/router';
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router,private helper: HelperService) { }
 
   private currentIndex: number = 0;
   private slides: HTMLElement[] = []; 
   private dots: HTMLElement[] = [];
 
    ngOnInit() {
+   
+
     this.slides = Array.from(document.querySelectorAll('.slide')) as HTMLElement[];
     this.dots = Array.from(document.querySelectorAll('.dot')) as HTMLElement[];
     this.startSlideShow();
