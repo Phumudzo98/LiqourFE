@@ -7,15 +7,12 @@ import { OtpServiceService } from 'src/app/util/service/otp-service.service';
 import { DataService } from 'src/app/util/service/data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-
-
-
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.page.html',
   styleUrls: ['./verify.page.scss'],
 })
-export class VerifyPage implements OnInit{
+export class VerifyPage implements OnInit {
   otp: string[] = ['', '', '', ''];
   email: string = ''; // Add the email property
 
@@ -23,11 +20,7 @@ export class VerifyPage implements OnInit{
   alertType!: string;
   alertMessage!: string;
   showAlert!: boolean;
-  enteredOtp: string=''; 
-  
-
-  
-
+  enteredOtp: string = '';
 
   constructor(
     private loadingCtrl: LoadingController,
@@ -35,29 +28,23 @@ export class VerifyPage implements OnInit{
     private dataService: DataService,
     private activatedRoute: ActivatedRoute,
     private auth: Auth,
-    private helper:HelperService,
+    private helper: HelperService,
     private service: OtpServiceService,
     private spinner: NgxSpinnerService
-    
   ) {}
 
-  sharedData: string='';
+  sharedData: string = '';
 
-  myOtp:any;
+  myOtp: any;
 
   ngOnInit() {
-
-
-
     // Read email from query parameters
     this.activatedRoute.queryParams.subscribe(params => {
       this.email = params['email'];
     });
 
     this.sharedData = this.dataService.getData();
-    
-    this.myOtp=localStorage.getItem('otp');
-   
+    this.myOtp = localStorage.getItem('otp');
   }
 
   handleKeydown(event: KeyboardEvent, currentIndex: number) {
@@ -74,8 +61,6 @@ export class VerifyPage implements OnInit{
       }
     }
   }
-
-  
 
   focusNext(event: KeyboardEvent, nextIndex: number) {
     const input = event.target as HTMLInputElement;
@@ -95,8 +80,6 @@ export class VerifyPage implements OnInit{
     await loading.present();
   }
 
-  
-
   showAlertMessage(type: string, message: string) {
     this.alertType = type;
     this.alertMessage = message;
@@ -104,7 +87,7 @@ export class VerifyPage implements OnInit{
 
     setTimeout(() => {
       this.showAlert = false;
-    }, 2000); // Disable the message after 2 seconds
+    }, 3000); // Disable the message after 3 seconds
   }
 
   resetOTP() {
@@ -117,50 +100,35 @@ export class VerifyPage implements OnInit{
     input.color = 'black';
   }
 
-  
-
   public submitOTP(): void {
     this.spinner.show();
     console.log(localStorage.getItem('otp'));
     this.enteredOtp = this.otp.join('');
-  
+
     this.auth.otp = this.enteredOtp;
-  
+
     let username = localStorage.getItem('username');
     this.auth.username = (username !== null && username !== undefined) ? username.toString() : '';
-  
+
     this.service.validateOTP(this.auth).subscribe({
       next: (res: any) => {
-        this.router.navigate(['/dashboard']);
         this.helper.setToken(res.message);
         localStorage.setItem('userToken', res.message);
-  
-        // Hide spinner after 2 seconds
+
         setTimeout(() => {
           this.spinner.hide();
+          this.router.navigate(['/dashboard']);
         }, 2000);
       },
       error: (error: any) => {
-        // Handle error
         console.error('Error validating OTP:', error);
-        // Hide spinner immediately on error
+
         setTimeout(() => {
           this.spinner.hide();
+          let errorMessage = 'Invalid OTP';
+          this.showAlertMessage('error', errorMessage);
         }, 2000);
-        /*Swal.fire({
-          position: 'center',
-          icon: 'error',
-          text: message.message,
-          title: message.success,
-          showConfirmButton: false,
-          timer: 5000
-        });*/
       }
     });
   }
-  
-
-  
-
-
 }
