@@ -14,6 +14,7 @@ export class HelperService {
       await Preferences.set({
         key: 'authToken',
         value: JSON.stringify(token),
+        
       });
       console.log('Token set successfully');
     } catch (error) {
@@ -44,6 +45,15 @@ export class HelperService {
 
   getHost(): any {
     // Implementation for getHost()
+  }
+
+  setSimpToken(token:any)
+  {
+
+    
+    localStorage.setItem('uToken',token)
+    console.log(token);
+    
   }
 
  

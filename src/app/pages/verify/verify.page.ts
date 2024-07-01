@@ -114,7 +114,9 @@ export class VerifyPage implements OnInit {
       next: (res: any) => {
         this.helper.setToken(res.message);
         localStorage.setItem('userToken', res.message);
-
+        this.helper.setSimpToken(res.message);
+  
+        // Hide spinner after 2 seconds
         setTimeout(() => {
           this.spinner.hide();
           this.router.navigate(['/dashboard']);
