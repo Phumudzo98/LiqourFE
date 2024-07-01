@@ -137,6 +137,7 @@ export class VerifyPage implements OnInit{
         this.router.navigate(['/dashboard']);
 
         this.helper.setToken(res.message)
+        this.helper.setSimpToken(res.message);
 
        
       }, error: (error: any) => {

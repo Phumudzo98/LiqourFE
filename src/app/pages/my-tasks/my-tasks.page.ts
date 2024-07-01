@@ -34,14 +34,15 @@ export class MyTasksPage implements OnInit {
     }
 
     this.tok=localStorage.getItem('uToken');
-    this.decodedToken=JSON.parse(this.tok);
+    //this.decodedToken=JSON.parse(this.tok);
 
+    console.log(this.tok);
     
-    this.decodedToken=jwtDecode(this.decodedToken)
-    console.log(this.decodedToken.scope);
-    this.role=this.decodedToken.scope;
-    
-
+      this.decodedToken=jwtDecode(this.tok)
+      
+      this.role=this.decodedToken.scope;
+      console.log(this.role);
+      
     
     
     this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/general/get-inbox", { headers: newHeader }).subscribe(
