@@ -8,13 +8,14 @@ import { VerifyPageRoutingModule } from './verify-routing.module';
 
 import { VerifyPage } from './verify.page';
 import { RouterModule } from '@angular/router';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    VerifyPageRoutingModule
+    VerifyPageRoutingModule,
+    NgxSpinnerModule.forRoot()
    
   ],
   declarations: [VerifyPage]

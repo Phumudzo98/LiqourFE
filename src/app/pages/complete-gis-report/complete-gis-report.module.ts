@@ -17,7 +17,7 @@ import { MenuFooterPageModule } from 'src/app/headerFooter/menu-footer/menu-foot
     CompleteGisReportPageRoutingModule,
     ReactiveFormsModule,
     MenuFooterPageModule,
-    NgxSpinnerModule
+    NgxSpinnerModule.forRoot()
   ],
   declarations: [CompleteGisReportPage]
 })

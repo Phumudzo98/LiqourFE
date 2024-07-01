@@ -16,12 +16,8 @@ export class DashboardPage implements OnInit {
   private dots: HTMLElement[] = [];
 
    ngOnInit() {
-    let token = localStorage.getItem("userToken") 
-    const newHeader={
-      "Authorization":"Bearer "+token, 
-      "Accept":"*/*"
-    }
-    
+   
+
     this.slides = Array.from(document.querySelectorAll('.slide')) as HTMLElement[];
     this.dots = Array.from(document.querySelectorAll('.dot')) as HTMLElement[];
     this.startSlideShow();
