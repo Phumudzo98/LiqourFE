@@ -1,23 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
 import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
+import { NetworkService } from './util/service/network.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  styleUrls: ['app.component.scss',],
 })
 export class AppComponent {
   currentUrl!: string;
   isSideMenu1: boolean = true; // Set this based on your condition
   activeItem: string = '';
-
+  isOnline: boolean = true;
+  private subscriptions: Subscription[] = [];
   constructor(
     private menu: MenuController,
     private router: Router,
     private platform: Platform,
-    private screenOrientation: ScreenOrientation
+    private screenOrientation: ScreenOrientation,
+    private networkService: NetworkService,
+    private renderer: Renderer2
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -97,5 +102,35 @@ export class AppComponent {
   logout() {
     localStorage.removeItem('userToken');
     localStorage.removeItem('uToken');
+  }
+
+  ngOnInit() {
+    this.subscriptions.push(
+      this.networkService.isOnline$.subscribe(status => {
+        this.isOnline = status;
+        if (!this.isOnline) {
+          this.showAlert();
+        }
+      })
+    );
+
+    this.renderer.listen('document', 'click', (event: Event) => {
+      if (!this.isOnline) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        this.showAlert();
+      }
+    });
+  }
+
+  showAlert() {
+    const alertElement = document.querySelector('.network-alert');
+    if (alertElement) {
+      alertElement.setAttribute('style', 'display: flex');
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }
