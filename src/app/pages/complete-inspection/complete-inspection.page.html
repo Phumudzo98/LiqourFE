@@ -7,10 +7,12 @@
     </div>
     <ion-card>
       <div class="header-content">
+        <ion-img *ngIf="reportDoc != ''" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="reportDoc == ''" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
         <ion-card-title (click)="toggleForms('reports')">
           Inspection report
         </ion-card-title>
-        <ion-img src="../../../assets/Images/Dot.svg" class="vector"></ion-img>
+        <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
       </div>
       <hr>
 
@@ -63,6 +65,7 @@
       <div class="header-content">
         <ion-img *ngIf="isRecommendationFormValid() && noticeDoc!== ''" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
         <ion-img *ngIf="!isRecommendationFormValid() && noticeDoc === ''" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+        
         <ion-card-title (click)="toggleForms('recommendation')">
           Recommendation
         </ion-card-title>

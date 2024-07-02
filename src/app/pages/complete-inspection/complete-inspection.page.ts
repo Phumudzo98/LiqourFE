@@ -92,6 +92,7 @@ export class CompleteInspectionPage implements OnInit {
     this.getCurrentPosition();
 
     this.completeReportForm.patchValue(this.dummyData)
+
   }
 
   
