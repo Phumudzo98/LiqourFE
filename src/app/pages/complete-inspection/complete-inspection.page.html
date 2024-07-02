@@ -35,8 +35,8 @@
       </div>
       <hr>
       <div class="header-content">
-        <ion-img *ngIf="isDocumentationFormValid()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
-        <ion-img *ngIf="!isDocumentationFormValid()" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+        <ion-img *ngIf="isDocumentationFormValid() " src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="!isDocumentationFormValid() " src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
 
         <ion-card-title (click)="toggleForms('document')">
           Verification of the Premises Against Submitted Documentation
@@ -61,8 +61,9 @@
       </div>
       <hr>
       <div class="header-content">
-        <ion-img *ngIf="isRecommendationFormValid() && noticeDoc!== ''" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
-        <ion-img *ngIf="!isRecommendationFormValid() && noticeDoc === ''" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+        <ion-img *ngIf="isRecommendationFormValid() "  src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="!isRecommendationFormValid() "src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+
         <ion-card-title (click)="toggleForms('recommendation')">
           Recommendation
         </ion-card-title>

@@ -118,10 +118,13 @@ export class CompleteInspectionPage implements OnInit {
     return communityFields.every(field => this.completeReportForm.get(field)?.valid);
   }
 
-   //Documentation Valid
+   //RecommendationValid
    isRecommendationFormValid(): boolean {
     const recommendationFields = ['recommendation', 'futureInspectionDate', 'comments'];
-    return recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
+    const areFieldsValid = recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
+    const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
+    
+    return areFieldsValid && areNoticeFilesPresent;
   }
  
 
