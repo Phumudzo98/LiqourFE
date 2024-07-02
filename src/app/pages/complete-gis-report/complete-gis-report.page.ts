@@ -70,7 +70,18 @@ export class CompleteGisReportPage implements OnInit {
 
   }
 
- 
+  //GISReport 
+  isGisReport(){
+    const areReportFilesPresent = this.reportFiles && this.reportFiles.length > 0;
+    return areReportFilesPresent;
+  }
+    //Gis Form Valid
+    isGisFormValid(): boolean {
+      const gisFormFields = ['latitude', 'latitude', 'schoolIn100m','churchIn100m','wardBoundriesIn100m'];
+      const areFieldsValid = gisFormFields.every(field => this.gisReportForm.get(field)?.valid);
+      return areFieldsValid;
+    }
+
 
   onSubmit() {
     this.spinner.show();

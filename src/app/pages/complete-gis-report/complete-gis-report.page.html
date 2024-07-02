@@ -14,17 +14,24 @@
     </div>
     <ion-card>
       <div class="header-content">
-        <ion-card-title (click)="toggleForms('uploads')">
+        <ion-img *ngIf="isGisReport()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="!isGisReport()" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+
+        <ion-card-title (click)="toggleForms('uploads')" [class.red-text]="isGisReport()">
           Upload GIS report
         </ion-card-title>
-        <ion-img src="../../../assets/Images/Dot.svg" class="vector"></ion-img>
+        <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
       </div>
-      <hr>
+      <ion-img src="../../../assets/Images/Step Trail.svg" class="step"></ion-img>
+    
       <div class="header-content">
-        <ion-card-title (click)="toggleForms('fillin')">
+        <ion-img *ngIf="isGisFormValid()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="!isGisFormValid()" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+
+        <ion-card-title (click)="toggleForms('fillin')" [class.red-text]="isGisFormValid()">
           Complete GIS Report
         </ion-card-title>
-        <ion-img src="../../../assets/Images/Dot.svg" class="vector"></ion-img>
+        <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
       </div>
       <hr>
        <ion-button class="buttonClass2" (click)="onSubmit()">
@@ -41,7 +48,7 @@
       <h1 class="header-text" style="color: black;">GIS Reports</h1>
     </div>
   
-    <span class="inspection-report">Inspection report</span>
+    <span class="inspection-report">GIS report</span>
     <ion-card class="upload" (click)="triggerFileInput()">
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload</span>
