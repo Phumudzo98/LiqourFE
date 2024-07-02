@@ -112,6 +112,14 @@ export class VerifyPage implements OnInit {
 
     this.service.validateOTP(this.auth).subscribe({
       next: (res: any) => {
+        if(this.auth.username=="financial")
+          {
+            this.router.navigate(['/outlet-dashboard']);
+          }
+          else{
+            this.router.navigate(['/dashboard']);
+          }
+       
         this.helper.setToken(res.message);
         localStorage.setItem('userToken', res.message);
         this.helper.setSimpToken(res.message);
