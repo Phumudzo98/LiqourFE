@@ -92,6 +92,7 @@ export class CompleteInspectionPage implements OnInit {
     this.getCurrentPosition();
 
     this.completeReportForm.patchValue(this.dummyData)
+
   }
 
   
@@ -124,6 +125,12 @@ export class CompleteInspectionPage implements OnInit {
     const areFieldsValid = recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
     const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
     return areFieldsValid && areNoticeFilesPresent;
+  }
+
+  //InspectionReport 
+  isInspectionReport(){
+    const areReportFilesPresent = this.reportFiles && this.reportFiles.length > 0;
+    return areReportFilesPresent;
   }
  
 
