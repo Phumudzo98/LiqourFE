@@ -1,45 +1,69 @@
+// complaints.page.ts
+import { Component, HostListener, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
-import { headersSecure } from 'src/app/util/service/const';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
+import { CommunicationService } from 'src/app/util/service/shared/communication.service';
+
 @Component({
   selector: 'app-complaints',
   templateUrl: './complaints.page.html',
   styleUrls: ['./complaints.page.scss'],
 })
-export class ComplaintsPage implements OnInit {
+export class ComplaintsPage implements OnInit, OnDestroy {
 
   dropdownVisible: { [key: string]: boolean } = {};
   collect: any[] = [];
   filteredCollect: any[] = [];
   searchTerm: string = '';
-  Loading: boolean = true; // Loading flag
+  loading: boolean = true; // Loading flag
+  private subscription: Subscription;
 
-  constructor(private route: Router, private eRef: ElementRef, private http: HttpClient,private spinner: NgxSpinnerService) {}
+  constructor(
+    private route: Router,
+    private eRef: ElementRef,
+    private http: HttpClient,
+    private spinner: NgxSpinnerService,
+    private communicationService: CommunicationService // Fixed injection
+  ) {
+    this.subscription = this.route.events.subscribe(event => {
+      if (event instanceof NavigationEnd && event.urlAfterRedirects === '/complaints') {
+        this.fetchComplaints();
+      }
+    });
+  }
 
   ngOnInit() {
-
-    this.spinner.show();
-    let url = "https://system.eclb.co.za/eclb2/api/general/get-complaints";
-
-    let token = localStorage.getItem("userToken") 
-    const newHeader={
-      "Authorization":"Bearer "+token, 
-      "Accept":"*/*"
-    }
-
-    this.http.get<any>(url, { headers: newHeader }).subscribe(response => {
-      console.log(response);
-      this.collect = response;
-      this.filteredCollect = response;
-      this.spinner.hide();
-    },
-    error => {
-      console.log(error);
-      this.spinner.hide();
+    this.fetchComplaints();
+    this.communicationService.navigateToDashboard$.subscribe(() => {
+      this.navigateToBack();
     });
+  }
+
+  fetchComplaints() {
+    this.spinner.show();
+    const url = "https://system.eclb.co.za/eclb2/api/general/get-complaints";
+    const token = localStorage.getItem("userToken");
+    const newHeader = {
+      "Authorization": "Bearer " + token,
+      "Accept": "*/*"
+    };
+
+    this.http.get<any>(url, { headers: newHeader }).subscribe(
+      response => {
+        console.log(response);
+        this.collect = response;
+        this.filteredCollect = response;
+        this.spinner.hide();
+        this.loading = false;
+      },
+      error => {
+        console.log(error);
+        this.spinner.hide();
+        this.loading = false;
+      }
+    );
   }
 
   toggleDropdown(event: Event, referenceNumber: string) {
@@ -53,7 +77,11 @@ export class ComplaintsPage implements OnInit {
   }
 
   navigateToBack() {
-    this.route.navigate(['dashboard']);
+    this.resetPage(); // Clear the page data in the background
+
+    setTimeout(() => {
+      this.route.navigate(['dashboard']); // Navigate to dashboard after a delay
+    }, 0); // Delay of 0 milliseconds (0 second)
   }
 
   navigateToEdit() {
@@ -72,8 +100,22 @@ export class ComplaintsPage implements OnInit {
   // Searching for a Complaint
   filterComplaints() {
     const term = this.searchTerm.toLowerCase();
-    this.filteredCollect = this.collect.filter(complaint => 
+    this.filteredCollect = this.collect.filter(complaint =>
       complaint.outletName.toLowerCase().startsWith(term)
     );
+  }
+
+  resetPage() {
+    this.collect = [];
+    this.filteredCollect = [];
+    this.searchTerm = '';
+    this.loading = true;
+  }
+
+  ngOnDestroy() {
+    this.resetPage(); // Clear the page data when the component is destroyed
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
