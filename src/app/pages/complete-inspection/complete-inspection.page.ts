@@ -94,10 +94,36 @@ export class CompleteInspectionPage implements OnInit {
     this.completeReportForm.patchValue(this.dummyData)
   }
 
+  
+  //General Valid
   isGeneralFormValid(): boolean {
     const generalFields = ['contactPerson', 'inspectionDate', 'latitude', 'longitude'];
     return generalFields.every(field => this.completeReportForm.get(field)?.valid);
   }
+  //Applicant Valid
+  isApplicantFormValid(): boolean {
+    const applicantFields = ['appointmentSet', 'consultedOrFound', 'applicantIndicatedPersonAtPremises', 'canPersonBeFound', 'interestInLiquorTrade','issuedComplience', 'complaintsReceived'];
+    return applicantFields.every(field => this.completeReportForm.get(field)?.valid);
+  }
+
+  //Documentation Valid
+  isDocumentationFormValid(): boolean {
+    const documentationFields = ['rightToOccupy', 'leaseAttached', 'situatedInRightAddress', 'inLineWithSubmittedApplication', 'premisesSuitable','ablutionFacilityInOrder', 'readyForBusiness'];
+    return documentationFields.every(field => this.completeReportForm.get(field)?.valid);
+  }
+
+  //Documentation Valid
+  isCommunityFormValid(): boolean {
+    const communityFields = ['formServedToCorrectWardCommittee', 'confirmedByCouncillor', 'wardCommiteeReport', 'communityConsultation', 'educationalInstitution','formServedAtEducationInstitution', 'placeOfWorship', 'formServedAtPlaceOfWorship'];
+    return communityFields.every(field => this.completeReportForm.get(field)?.valid);
+  }
+
+   //Documentation Valid
+   isRecommendationFormValid(): boolean {
+    const recommendationFields = ['recommendation', 'futureInspectionDate', 'comments'];
+    return recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
+  }
+ 
 
   onSubmit() {
     this.spinner.show();
