@@ -18,8 +18,9 @@
     </div>
 
     <ion-button class="buttonClass" (click)="submitOTP()">Verify</ion-button>
-    <div *ngIf="showAlert" class="alert" [ngClass]="alertType">
-      {{ alertMessage }}
-    </div>
+    
   </div>
+  <div *ngIf="showAlert" [ngClass]="alertType === 'success' ? 'alert alert-success' : 'alert alert-danger'">
+    {{ alertMessage }}
+</div>
 </ion-content>

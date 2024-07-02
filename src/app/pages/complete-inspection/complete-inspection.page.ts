@@ -92,12 +92,47 @@ export class CompleteInspectionPage implements OnInit {
     this.getCurrentPosition();
 
     this.completeReportForm.patchValue(this.dummyData)
+
   }
 
+  
+  //General Valid
   isGeneralFormValid(): boolean {
     const generalFields = ['contactPerson', 'inspectionDate', 'latitude', 'longitude'];
     return generalFields.every(field => this.completeReportForm.get(field)?.valid);
   }
+  //Applicant Valid
+  isApplicantFormValid(): boolean {
+    const applicantFields = ['appointmentSet', 'consultedOrFound', 'applicantIndicatedPersonAtPremises', 'canPersonBeFound', 'interestInLiquorTrade','issuedComplience', 'complaintsReceived'];
+    return applicantFields.every(field => this.completeReportForm.get(field)?.valid);
+  }
+
+  //Documentation Valid
+  isDocumentationFormValid(): boolean {
+    const documentationFields = ['rightToOccupy', 'leaseAttached', 'situatedInRightAddress', 'inLineWithSubmittedApplication', 'premisesSuitable','ablutionFacilityInOrder', 'readyForBusiness'];
+    return documentationFields.every(field => this.completeReportForm.get(field)?.valid);
+  }
+
+  //Documentation Valid
+  isCommunityFormValid(): boolean {
+    const communityFields = ['formServedToCorrectWardCommittee', 'confirmedByCouncillor', 'wardCommiteeReport', 'communityConsultation', 'educationalInstitution','formServedAtEducationInstitution', 'placeOfWorship', 'formServedAtPlaceOfWorship'];
+    return communityFields.every(field => this.completeReportForm.get(field)?.valid);
+  }
+
+   //Recommendation Valid
+   isRecommendationFormValid(): boolean {
+    const recommendationFields = ['recommendation', 'futureInspectionDate', 'comments'];
+    const areFieldsValid = recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
+    const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
+    return areFieldsValid && areNoticeFilesPresent;
+  }
+
+  //InspectionReport 
+  isInspectionReport(){
+    const areReportFilesPresent = this.reportFiles && this.reportFiles.length > 0;
+    return areReportFilesPresent;
+  }
+ 
 
   onSubmit() {
     this.spinner.show();

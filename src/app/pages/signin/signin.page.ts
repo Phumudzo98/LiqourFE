@@ -17,6 +17,9 @@ export class SigninPage implements OnInit {
   loginForm: FormGroup;
   otp: any;
   getotp: string = '';
+  alertType!: string;
+  alertMessage!: string;
+  showAlert!: boolean;
 
   constructor(
     private router: Router,
@@ -57,7 +60,7 @@ export class SigninPage implements OnInit {
 
     // Show spinner when login button is clicked
     this.spinner.show();
-
+   
     // Simulate OTP retrieval delay
     setTimeout(() => {
       this.getOpt();
@@ -86,18 +89,34 @@ export class SigninPage implements OnInit {
         setTimeout(() => {
           this.spinner.hide();
           this.router.navigateByUrl('/verify');
+          this.loginForm.reset();
         }, 2000); // Hide spinner after 2 seconds
       },
       error: (error: any) => {
         console.error('Error fetching OTP:', error);
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 2000); // Hide spinner after 2 seconds
+        
+           this.spinner.hide();
+        let errorMessage = 'Invalid email.';
+        if (error.status === 0) {
+          errorMessage = 'Network error. Please check your internet connection.';
+        }
+        this.showAlertMessage('error', errorMessage);
       },
     });
   }
 
   saveData() {
     this.dataService.setData(this.getotp);
+  }
+
+
+  showAlertMessage(type: string, message: string) {
+    this.alertType = type;
+    this.alertMessage = message;
+    this.showAlert = true;
+
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000); //disable the message after 2 seconds 
   }
 }
