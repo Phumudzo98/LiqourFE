@@ -6,6 +6,8 @@ import { HelperService } from 'src/app/util/service/helper.service';
 import { OtpServiceService } from 'src/app/util/service/otp-service.service';
 import { DataService } from 'src/app/util/service/data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Storage } from '@ionic/storage-angular';
+//import { Network } from '@capacitor/network';
 
 @Component({
   selector: 'app-verify',
@@ -127,7 +129,7 @@ export class VerifyPage implements OnInit {
         // Hide spinner after 2 seconds
         setTimeout(() => {
           this.spinner.hide();
-          this.router.navigate(['/dashboard']);
+          //this.router.navigate(['/dashboard']);
         }, 2000);
       },
       error: (error: any) => {

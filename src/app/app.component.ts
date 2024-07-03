@@ -3,25 +3,29 @@ import { NavigationEnd, Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
 import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 import { NetworkService } from './util/service/network.service';
+import { OfflineService } from 'src/app/util/service/services/offline.service';
 import { Subscription } from 'rxjs';
+import { Network } from '@capacitor/network'; // Import Network
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss',],
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
   currentUrl!: string;
-  isSideMenu1: boolean = true; // Set this based on your condition
+  isSideMenu1: boolean = true;
   activeItem: string = '';
   isOnline: boolean = true;
   private subscriptions: Subscription[] = [];
+  
   constructor(
     private menu: MenuController,
     private router: Router,
     private platform: Platform,
     private screenOrientation: ScreenOrientation,
     private networkService: NetworkService,
+    private offlineService: OfflineService, // Inject OfflineService
     private renderer: Renderer2
   ) {
     this.router.events.subscribe((event) => {
@@ -83,7 +87,7 @@ export class AppComponent {
       item.classList.add('active-item');
     }
 
-    this.router.navigateByUrl('/' + id); // Navigate to the clicked route
+    this.router.navigateByUrl('/' + id);
   }
 
   setActiveItem(item: string) {
@@ -97,8 +101,16 @@ export class AppComponent {
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT)
         .then(() => console.log('Orientation locked'))
         .catch(error => console.log('Error locking orientation:', error));
+
+      // Network status listener
+      Network.addListener('networkStatusChange', (status) => {
+        if (status.connected) {
+          this.offlineService.checkNetworkStatus();
+        }
+      });
     });
   }
+
   logout() {
     localStorage.removeItem('userToken');
     localStorage.removeItem('uToken');
