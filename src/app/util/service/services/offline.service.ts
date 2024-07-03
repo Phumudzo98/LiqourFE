@@ -35,7 +35,6 @@ export class OfflineService{
     try {
       const response = await this.http.post("https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/"+this.caseNo, report).toPromise();
       await this.storage.remove('report');
-      console.log("Hello");
       return response;
       
     } catch (error) {
@@ -50,7 +49,6 @@ export class OfflineService{
       const report = await this.storage.get('report');
       if (report) {
         await this.sendReport(report);
-        console.log("Hello");
         
       }
     }
