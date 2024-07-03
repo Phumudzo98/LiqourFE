@@ -104,33 +104,4 @@ export class AppComponent {
     localStorage.removeItem('uToken');
   }
 
-  ngOnInit() {
-    this.subscriptions.push(
-      this.networkService.isOnline$.subscribe(status => {
-        this.isOnline = status;
-        if (!this.isOnline) {
-          this.showAlert();
-        }
-      })
-    );
-
-    this.renderer.listen('document', 'click', (event: Event) => {
-      if (!this.isOnline) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        this.showAlert();
-      }
-    });
-  }
-
-  showAlert() {
-    const alertElement = document.querySelector('.network-alert');
-    if (alertElement) {
-      alertElement.setAttribute('style', 'display: flex');
-    }
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
 }
