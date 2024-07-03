@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,9 +11,7 @@ import { ViewImagePage } from '../view-image/view-image.page';
 import { environment } from 'src/environments/environment.prod';
 import { Geolocation } from '@capacitor/geolocation';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { OfflineService } from 'src/app/util/Offline.service';
-import { Platform } from '@ionic/angular';
-import { Network } from '@capacitor/network';
+import { OfflineService } from 'src/app/util/service/services/offline.service';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -34,7 +33,7 @@ export class CompleteInspectionPage implements OnInit {
   caseId: any;
   caseNo: any;
   imageSources: string[] = [];
-  private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
+  private geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}";
 
   inspectionReport: any;
   reportDoc: any;
@@ -52,8 +51,7 @@ export class CompleteInspectionPage implements OnInit {
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
     private spinner: NgxSpinnerService,
-    private offlineService: OfflineService,
-    private platform: Platform
+    private offlineService: OfflineService
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
@@ -86,15 +84,6 @@ export class CompleteInspectionPage implements OnInit {
       futureInspectionDate: ['', Validators.required],
       comments: ['']
     });
-
-    this.platform.ready().then(() => {
-      Network.addListener('networkStatusChange', (status) => {
-        if (status.connected) {
-          this.offlineService.checkNetworkStatus();
-          console
-        }
-      });
-    });
   }
 
   ngOnInit() {
@@ -105,12 +94,9 @@ export class CompleteInspectionPage implements OnInit {
 
     this.getCurrentPosition();
 
-    this.loadFormValues();
-   // this.completeReportForm.patchValue(this.dummyData)
+    this.completeReportForm.patchValue(this.dummyData)
 
   }
-
-  
 
   
   //General Valid
@@ -151,7 +137,7 @@ export class CompleteInspectionPage implements OnInit {
   }
  
 
-  onSubmit() {
+  async onSubmit() {
     this.spinner.show();
     let token = localStorage.getItem("userToken");
     const newHeader = {
@@ -171,6 +157,8 @@ export class CompleteInspectionPage implements OnInit {
     this.noticeDoc = this.noticeFiles[0];
     formData.append('notice', this.notice);
 
+    this.offlineService.saveReport(this.formDataToObject(formData), this.caseNo);
+
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
 
     this.http.post(url, formData).subscribe(response => {
@@ -181,72 +169,33 @@ export class CompleteInspectionPage implements OnInit {
     }, error => {
       console.log(error);
       this.spinner.hide();
+      this.offlineService.checkNetworkStatus()
     });
-  
-   
-  }
-  async onSave() {
-    const formData = this.completeReportForm.value;
-    await this.offlineService.saveReport(formData);
-    this.offlineService.checkNetworkStatus();
-    console.log(formData)
   }
 
-  saveFormValues() {
-    const formData = {
-      ...this.completeReportForm.value,
-      imageSources: this.imageSources,
-      reportFiles: this.reportFiles,
-      noticeFiles: this.noticeFiles
-    };
-    localStorage.setItem('completeReportFormData', JSON.stringify(formData));
+  formDataToObject(formData: FormData): any {
+    const obj: any = {};
+    formData.forEach((value, key) => {
+      obj[key] = value;
+    });
+    return obj;
   }
   
+
+  saveFormValues() {
+    localStorage.setItem('completeReportForm', JSON.stringify(this.completeReportForm.value));
+  }
+
   clearLocalStorageOnLoad() {
     localStorage.removeItem('completeReportForm');
   }
 
   loadFormValues() {
-    const savedFormData = localStorage.getItem('completeReportFormData');
-    if (savedFormData) {
-      const formData = JSON.parse(savedFormData);
-      this.completeReportForm.setValue({
-        contactPerson: formData.contactPerson || '',
-        inspectionDate: formData.inspectionDate || '',
-        appointmentSet: formData.appointmentSet || '',
-        consultedOrFound: formData.consultedOrFound || '',
-        applicantIndicatedPersonAtPremises: formData.applicantIndicatedPersonAtPremises || '',
-        canPersonBeFound: formData.canPersonBeFound || '',
-        interestInLiquorTrade: formData.interestInLiquorTrade || '',
-        issuedComplience: formData.issuedComplience || '',
-        complaintsReceived: formData.complaintsReceived || '',
-        rightToOccupy: formData.rightToOccupy || '',
-        leaseAttached: formData.leaseAttached || '',
-        situatedInRightAddress: formData.situatedInRightAddress || '',
-        inLineWithSubmittedApplication: formData.inLineWithSubmittedApplication || '',
-        premisesSuitable: formData.premisesSuitable || '',
-        ablutionFacilityInOrder: formData.ablutionFacilityInOrder || '',
-        readyForBusiness: formData.readyForBusiness || '',
-        formServedToCorrectWardCommittee: formData.formServedToCorrectWardCommittee || '',
-        confirmedByCouncillor: formData.confirmedByCouncillor || '',
-        wardCommiteeReport: formData.wardCommiteeReport || '',
-        communityConsultation: formData.communityConsultation || '',
-        educationalInstitution: formData.educationalInstitution || '',
-        formServedAtEducationInstitution: formData.formServedAtEducationInstitution || '',
-        placeOfWorship: formData.placeOfWorship || '',
-        formServedAtPlaceOfWorship: formData.formServedAtPlaceOfWorship || '',
-        recommendation: formData.recommendation || '',
-        futureInspectionDate: formData.futureInspectionDate || '',
-        comments: formData.comments || '',
-        latitude: formData.latitude || '',
-        longitude: formData.longitude || ''
-      });
-      this.imageSources = formData.imageSources || [];
-      this.reportFiles = formData.reportFiles || [];
-      this.noticeFiles = formData.noticeFiles || [];
+    const savedForm = localStorage.getItem('completeReportForm');
+    if (savedForm) {
+      this.completeReportForm.setValue(JSON.parse(savedForm));
     }
   }
-  
 
   toggleForms(form: string) {
     this.currentForm = form;
@@ -528,8 +477,6 @@ export class CompleteInspectionPage implements OnInit {
     }
   }
 
-  /*
-
   dummyData = {
     contactPerson: "John Doe",
     inspectionDate: "2024-05-03T08:00",
@@ -560,5 +507,5 @@ export class CompleteInspectionPage implements OnInit {
     comments: "Everything seems to be in order.",
     latitude: "40.7128", 
     longitude: "-74.0060", 
-  };*/
+  };
 }
