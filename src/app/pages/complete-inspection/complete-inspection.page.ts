@@ -91,6 +91,7 @@ export class CompleteInspectionPage implements OnInit {
       Network.addListener('networkStatusChange', (status) => {
         if (status.connected) {
           this.offlineService.checkNetworkStatus();
+          console
         }
       });
     });

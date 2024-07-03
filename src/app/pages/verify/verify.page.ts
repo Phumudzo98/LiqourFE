@@ -6,6 +6,8 @@ import { HelperService } from 'src/app/util/service/helper.service';
 import { OtpServiceService } from 'src/app/util/service/otp-service.service';
 import { DataService } from 'src/app/util/service/data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Storage } from '@ionic/storage-angular';
+//import { Network } from '@capacitor/network';
 
 @Component({
   selector: 'app-verify',
