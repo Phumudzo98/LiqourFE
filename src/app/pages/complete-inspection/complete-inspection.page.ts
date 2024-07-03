@@ -10,6 +10,7 @@ import { ViewImagePage } from '../view-image/view-image.page';
 import { environment } from 'src/environments/environment.prod';
 import { Geolocation } from '@capacitor/geolocation';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { OfflineService } from 'src/app/util/service/services/offline.service';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -48,7 +49,8 @@ export class CompleteInspectionPage implements OnInit {
     private route: ActivatedRoute,
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private offlineService: OfflineService
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
@@ -134,7 +136,7 @@ export class CompleteInspectionPage implements OnInit {
   }
  
 
-  onSubmit() {
+  async onSubmit() {
     this.spinner.show();
     let token = localStorage.getItem("userToken");
     const newHeader = {
@@ -154,6 +156,8 @@ export class CompleteInspectionPage implements OnInit {
     this.noticeDoc = this.noticeFiles[0];
     formData.append('notice', this.notice);
 
+    this.offlineService.saveReport(this.formDataToObject(formData), this.caseNo);
+
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
 
     this.http.post(url, formData).subscribe(response => {
@@ -164,8 +168,18 @@ export class CompleteInspectionPage implements OnInit {
     }, error => {
       console.log(error);
       this.spinner.hide();
+      this.offlineService.checkNetworkStatus()
     });
   }
+
+  formDataToObject(formData: FormData): any {
+    const obj: any = {};
+    formData.forEach((value, key) => {
+      obj[key] = value;
+    });
+    return obj;
+  }
+  
 
   saveFormValues() {
     localStorage.setItem('completeReportForm', JSON.stringify(this.completeReportForm.value));
