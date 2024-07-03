@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Platform } from '@ionic/angular'; // Import Platform from Ionic
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { NetworkService } from 'src/app/util/service/network.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-network-alert',
@@ -39,7 +39,7 @@ import { NetworkService } from 'src/app/util/service/network.service';
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-     width:80%;
+      width: 80%;
       text-align: center;
     }
     .card-header {
@@ -58,7 +58,7 @@ import { NetworkService } from 'src/app/util/service/network.service';
       font-size: 1em;
       border: none;
       border-radius: 5px;
-      background-color:#822B23;
+      background-color: #822B23;
       color: white;
       cursor: pointer;
       padding-left: 41%;
@@ -70,32 +70,54 @@ import { NetworkService } from 'src/app/util/service/network.service';
     }
   `]
 })
-export class NetworkAlertComponent implements OnInit {
+export class NetworkAlertComponent implements OnInit, OnDestroy {
   isOnline: boolean = true;
-  private subscriptions: Subscription[] = [];
-  alertVisible: boolean = true; // Control visibility of the alert
-  constructor(private networkService: NetworkService) {}
+  alertVisible: boolean = true;
+  private networkStatusSubscription: Subscription = new Subscription();
+  private routerSubscription: Subscription = new Subscription();
+
+  constructor(
+    private platform: Platform,
+    private networkService: NetworkService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.subscriptions.push(
-      this.networkService.isOnline$.subscribe(status => {
-        this.isOnline = status;
-      })
-    );
+    this.routerSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.updateAlertVisibility(event.url);
+      }
+    });
+
+    this.networkStatusSubscription = this.networkService.isOnline$.subscribe(status => {
+      this.isOnline = status;
+      this.updateAlertVisibility(this.router.url);
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.networkStatusSubscription) {
+      this.networkStatusSubscription.unsubscribe();
+    }
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
   dismissAlert() {
     this.alertVisible = false;
-    if (!navigator.onLine) {
-      setTimeout(() => {
-        if (!navigator.onLine) {
-          this.alertVisible = true;
-        }
-      }, 1000); // 1 seconds delay before rechecking network status
-    }
+    setTimeout(() => {
+      if (!navigator.onLine) {
+        this.alertVisible = true;
+      }
+    }, 400); // 0.4 second delay before rechecking network status
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  private updateAlertVisibility(url: string) {
+    // Keep the alert visible based on the network status and the current URL
+    const isExcludedRoute = url.includes('/inspection') ||
+                            url.includes('/dashboard') ||
+                            /^\/complete-inspection\/\d+$/.test(url);
+    this.alertVisible = !this.isOnline && !isExcludedRoute;
   }
 }

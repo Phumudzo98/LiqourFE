@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { NgxSpinner } from 'ngx-spinner';
 import { CompleteInspectionPageRoutingModule } from './complete-inspection-routing.module';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 
 
@@ -19,7 +20,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';``
     CompleteInspectionPageRoutingModule,
     MenuFooterPageModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    IonicStorageModule
   ],
   declarations: [CompleteInspectionPage]
 })

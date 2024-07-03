@@ -5,11 +5,15 @@ import { BehaviorSubject, Observable, fromEvent, map } from 'rxjs';
   providedIn: 'root'
 })
 export class NetworkService {
-  private onlineStatus = new BehaviorSubject<boolean>(navigator.onLine);
-  isOnline$ = this.onlineStatus.asObservable();
+  private isOnline = new BehaviorSubject<boolean>(navigator.onLine);
+  isOnline$ = this.isOnline.asObservable();
 
   constructor() {
-    fromEvent(window, 'online').pipe(map(() => true)).subscribe(this.onlineStatus);
-    fromEvent(window, 'offline').pipe(map(() => false)).subscribe(this.onlineStatus);
+    window.addEventListener('online', () => this.updateNetworkStatus());
+    window.addEventListener('offline', () => this.updateNetworkStatus());
+  }
+
+  private updateNetworkStatus() {
+    this.isOnline.next(navigator.onLine);
   }
 }
