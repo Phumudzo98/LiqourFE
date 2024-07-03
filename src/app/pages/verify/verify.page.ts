@@ -127,7 +127,7 @@ export class VerifyPage implements OnInit {
         // Hide spinner after 2 seconds
         setTimeout(() => {
           this.spinner.hide();
-          this.router.navigate(['/dashboard']);
+          //this.router.navigate(['/dashboard']);
         }, 2000);
       },
       error: (error: any) => {
