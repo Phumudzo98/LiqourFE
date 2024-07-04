@@ -17,7 +17,7 @@ export class AlertService {
 
     if (isLoggedOut || isSignInOrVerification) {
       localStorage.setItem('pendingAlert', JSON.stringify({ header, message }));
-      return; // Do not show alert if the user is logged out or on signin/verification page
+      return; 
     }
 
     const alert = await this.alertController.create({

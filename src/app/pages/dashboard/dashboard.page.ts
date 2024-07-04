@@ -12,7 +12,6 @@ import { AlertService } from 'src/app/util/service/services/alert.service';
 })
 export class DashboardPage implements OnInit {
 
-  private alertSubscription!: Subscription;
   
   constructor(private route: Router,private helper: HelperService, private alertService: AlertService) { }
 
@@ -26,15 +25,9 @@ export class DashboardPage implements OnInit {
     this.slides = Array.from(document.querySelectorAll('.slide')) as HTMLElement[];
     this.dots = Array.from(document.querySelectorAll('.dot')) as HTMLElement[];
     this.startSlideShow();
-
-   
   }
 
-  ngOnDestroy() {
-    if (this.alertSubscription) {
-      this.alertSubscription.unsubscribe();
-    }
-  }
+
 
 
   private startSlideShow() {
