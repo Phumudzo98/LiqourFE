@@ -7,50 +7,60 @@ import { Router } from '@angular/router';
   styleUrls: ['./outlet-dashboard.page.scss'],
 })
 export class OutletDashboardPage implements OnInit {
-
-  constructor(private route: Router) { }
-
   private currentIndex: number = 0;
-  private slides: HTMLElement[] = []; 
+  private slides: HTMLElement[] = [];
   private dots: HTMLElement[] = [];
 
-   ngOnInit() {
+  constructor(private route: Router) {}
+
+  ngOnInit() {
     this.slides = Array.from(document.querySelectorAll('.slide')) as HTMLElement[];
     this.dots = Array.from(document.querySelectorAll('.dot')) as HTMLElement[];
     this.startSlideShow();
+    this.initializeDotClickEvents();
   }
-
 
   private startSlideShow() {
     if (this.slides.length === 0) return;
 
     setInterval(() => {
-      this.slides[this.currentIndex].classList.remove('visible');
-      this.dots[this.currentIndex].classList.remove('active');
-      this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-      this.slides[this.currentIndex].classList.add('visible');
-      this.dots[this.currentIndex].classList.add('active');
+      this.showSlide((this.currentIndex + 1) % this.slides.length);
     }, 3000);
   }
 
-
-  navigateToCorrespondence(){
-    this.route.navigate(['correspondence'])
+  private showSlide(index: number) {
+    this.slides[this.currentIndex].classList.remove('visible');
+    this.dots[this.currentIndex].classList.remove('active');
+    this.currentIndex = index;
+    this.slides[this.currentIndex].classList.add('visible');
+    this.dots[this.currentIndex].classList.add('active');
   }
 
-  navigateToUploadDocuments(){
-    this.route.navigate(['upload-documents'])
+  private initializeDotClickEvents() {
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        this.showSlide(index);
+      });
+    });
   }
 
-  navigateToOutlets(){
-    this.route.navigate(['my-outlets'])
+  navigateToCorrespondence() {
+    this.route.navigate(['correspondence']);
   }
 
-  navigateToPayments(){
-    this.route.navigate(['payment-history'])
-  }
-  navigateToLocation(){
-    this.route.navigate(['update-outlet-location'])
+  navigateToUploadDocuments() {
+    this.route.navigate(['upload-documents']);
   }
 
+  navigateToOutlets() {
+    this.route.navigate(['my-outlets']);
+  }
+
+  navigateToPayments() {
+    this.route.navigate(['payment-history']);
+  }
+
+  navigateToLocation() {
+    this.route.navigate(['update-outlet-location']);
+  }
 }
