@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { Subscription } from 'rxjs';
+import { Subscription, interval } from 'rxjs';
 import { NetworkService } from 'src/app/util/service/network.service';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -84,6 +84,7 @@ export class NetworkAlertComponent implements OnInit, OnDestroy {
   alertVisible: boolean = true;
   private networkStatusSubscription: Subscription = new Subscription();
   private routerSubscription: Subscription = new Subscription();
+  private dismissedRoutes: Set<string> = new Set<string>(); // Track dismissed routes
 
   constructor(
     private platform: Platform,
@@ -92,19 +93,21 @@ export class NetworkAlertComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // Subscribe to router events to update alert visibility on navigation
     this.routerSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateAlertVisibility(event.url);
       }
     });
 
-    this.networkStatusSubscription = this.networkService.isOnline$.subscribe(status => {
-      this.isOnline = status;
-      this.updateAlertVisibility(this.router.url);
+    // Check network status periodically
+    this.networkStatusSubscription = interval(400).subscribe(() => {
+      this.checkNetworkStatus();
     });
   }
 
   ngOnDestroy() {
+    // Unsubscribe from subscriptions to avoid memory leaks
     if (this.networkStatusSubscription) {
       this.networkStatusSubscription.unsubscribe();
     }
@@ -114,18 +117,36 @@ export class NetworkAlertComponent implements OnInit, OnDestroy {
   }
 
   dismissAlert() {
-    this.alertVisible = false;
-    setTimeout(() => {
-      if (!navigator.onLine) {
-        this.alertVisible = true;
+    // Dismiss alert for the current route
+    const currentUrl = this.router.url;
+    if (this.isExcludedRoute(currentUrl)) {
+      if (currentUrl.includes('/inspection') || /^\/complete-inspection\/\d+$/.test(currentUrl)) {
+        this.dismissedRoutes.add(currentUrl); // Permanent dismissal for /inspection and /complete-inspection/{caseNumber} routes
       }
-    }, 400); // 0.4 second delay before rechecking network status
+      this.alertVisible = false;
+    } else {
+      this.alertVisible = false;
+    }
   }
+  
 
   private updateAlertVisibility(url: string) {
-    const isExcludedRoute = url.includes('/inspection') ||
-                            //url.includes('/dashboard') ||
-                            /^\/complete-inspection\/\d+$/.test(url);
-    this.alertVisible = !this.isOnline && !isExcludedRoute;
+    // Update alert visibility based on network status and dismissed routes
+    if (this.dismissedRoutes.has(url)) {
+      this.alertVisible = false; // Hide alert if route is dismissed
+    } else {
+      this.alertVisible = !this.isOnline; // Show alert if network is offline
+    }
+  }
+
+  private checkNetworkStatus() {
+    // Check network status and update alert visibility
+    this.isOnline = navigator.onLine;
+    this.updateAlertVisibility(this.router.url);
+  }
+
+  private isExcludedRoute(url: string): boolean {
+    return url.includes('/inspection') ||
+           /^\/complete-inspection\/\d+$/.test(url);
   }
 }
