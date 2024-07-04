@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 import { Network } from '@capacitor/network';
 import { BehaviorSubject } from 'rxjs';
+import { AlertService } from './alert.service';
+
 
 
 @Injectable({
@@ -12,7 +14,7 @@ export class OfflineService {
   private storageInitialized = false;
   private networkStatus = new BehaviorSubject<boolean>(true);
 
-  constructor(private storage: Storage, private http: HttpClient) {
+  constructor(private storage: Storage, private http: HttpClient,private alertService: AlertService) {
     this.init();
     this.monitorNetworkStatus();
   }
@@ -94,6 +96,7 @@ export class OfflineService {
       this.http.post(`https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/${caseNo}`, formData).subscribe(
         response => {
           console.log('Report sent successfully', response);
+          this.alertService.showAlert('Success', 'Report sent successfully.');
           this.clearStoredReport();
         },
         error => {
