@@ -7,32 +7,41 @@ import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-network-alert',
   template: `
-    <div *ngIf="!isOnline && alertVisible" class="network-alert">
-      <div class="card">
-        <div class="card-header">
-          Connect to a Network
-        </div>
-        <div class="card-content">
-          To use the app, turn on mobile data or connect to Wi-Fi.
-        </div>
-        <div class="card-actions">
-          <button (click)="dismissAlert()">OK</button>
+    <div *ngIf="!isOnline && alertVisible" class="network-alert-overlay">
+      <div class="network-alert">
+        <div class="card">
+          <div class="card-header">
+            Connect to a Network
+          </div>
+          <div class="card-content">
+            To use the app, turn on mobile data or connect to Wi-Fi.
+          </div>
+          <div class="card-actions">
+            <button (click)="dismissAlert()">OK</button>
+          </div>
         </div>
       </div>
     </div>
   `,
   styles: [`
-    .network-alert {
+    .network-alert-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 1000;
-      height: 100vh;
+      pointer-events: none;
+    }
+    .network-alert {
+      pointer-events: all;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .card {
       background-color: white;
@@ -114,9 +123,8 @@ export class NetworkAlertComponent implements OnInit, OnDestroy {
   }
 
   private updateAlertVisibility(url: string) {
-    // Keep the alert visible based on the network status and the current URL
     const isExcludedRoute = url.includes('/inspection') ||
-                            url.includes('/dashboard') ||
+                            //url.includes('/dashboard') ||
                             /^\/complete-inspection\/\d+$/.test(url);
     this.alertVisible = !this.isOnline && !isExcludedRoute;
   }

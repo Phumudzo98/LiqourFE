@@ -105,7 +105,7 @@ export class AppComponent {
       // Network status listener
       Network.addListener('networkStatusChange', (status) => {
         if (status.connected) {
-          this.offlineService.checkNetworkStatus();
+          
         }
       });
     });

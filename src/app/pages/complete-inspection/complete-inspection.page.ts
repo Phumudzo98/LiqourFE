@@ -25,6 +25,7 @@ export class CompleteInspectionPage implements OnInit {
   currentForm: string = 'landing';
   selectedRadioValue: string | null = null; 
   inputVisible: boolean = true; 
+  isNetworkConnected: boolean = true; // Flag to track network status
 
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
@@ -96,8 +97,15 @@ export class CompleteInspectionPage implements OnInit {
 
     this.completeReportForm.patchValue(this.dummyData)
 
+    
   }
+  
 
+
+  
+  
+  
+  
   
   //General Valid
   isGeneralFormValid(): boolean {
@@ -157,22 +165,39 @@ export class CompleteInspectionPage implements OnInit {
     this.noticeDoc = this.noticeFiles[0];
     formData.append('notice', this.notice);
 
-    this.offlineService.saveReport(this.formDataToObject(formData), this.caseNo);
+     await this.offlineService.saveReport(formData, this.caseNo).then(
+      () => {
+        // Handle successful response
+        console.log('Report saved successfully');
+      },
+      (error) => {
+        // Handle error response
+        console.error('Error saving report', error);
+      }
+    );
+  
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
 
     this.http.post(url, formData).subscribe(response => {
       console.log(response);
       this.spinner.hide();
+    
       this.router.navigate(['/thank-you'])
       
     }, error => {
       console.log(error);
       this.spinner.hide();
-      this.offlineService.checkNetworkStatus()
+    
     });
   }
+  
 
+  resendDataIfNeeded() {
+    if (this.isNetworkConnected && this.completeReportForm.valid) {
+      this.onSubmit();
+    }
+  }
   formDataToObject(formData: FormData): any {
     const obj: any = {};
     formData.forEach((value, key) => {
