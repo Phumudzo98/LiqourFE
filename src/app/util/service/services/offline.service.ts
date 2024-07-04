@@ -96,7 +96,7 @@ export class OfflineService {
       this.http.post(`https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/${caseNo}`, formData).subscribe(
         response => {
           console.log('Report sent successfully', response);
-          this.alertService.showAlert('Success', 'Report sent successfully.');
+          this.alertService.showAlert('Success', 'Inspection Complete.');
           this.clearStoredReport();
         },
         error => {

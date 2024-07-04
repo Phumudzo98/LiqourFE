@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HelperService } from 'src/app/util/service/helper.service';
-<<<<<<< HEAD
-=======
 
 import { Subscription } from 'rxjs';
 import { AlertService } from 'src/app/util/service/services/alert.service';
->>>>>>> c9d1ceb703900fe3435504f6e3b1bc3032776b36
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +12,8 @@ import { AlertService } from 'src/app/util/service/services/alert.service';
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private route: Router,private helper: HelperService) { }
+  
+  constructor(private route: Router,private helper: HelperService, private alertService: AlertService) { }
 
   private currentIndex: number = 0;
   private slides: HTMLElement[] = []; 
@@ -27,18 +25,9 @@ export class DashboardPage implements OnInit {
     this.slides = Array.from(document.querySelectorAll('.slide')) as HTMLElement[];
     this.dots = Array.from(document.querySelectorAll('.dot')) as HTMLElement[];
     this.startSlideShow();
-<<<<<<< HEAD
-=======
-
-   
   }
 
-  ngOnDestroy() {
-    if (this.alertSubscription) {
-      this.alertSubscription.unsubscribe();
-    }
->>>>>>> c9d1ceb703900fe3435504f6e3b1bc3032776b36
-  }
+
 
 
   private startSlideShow() {
