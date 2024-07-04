@@ -48,8 +48,7 @@ export class OfflineService{
     if (status.connected) {
       const report = await this.storage.get('report');
       if (report) {
-        await this.sendReport(report);
-        
+        await this.sendReport(report); 
       }
     }
   }
