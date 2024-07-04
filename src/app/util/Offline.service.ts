@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { HttpClient } from '@angular/common/http';
 import { Network } from '@capacitor/network';
-import { AlertService } from './service/alert.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfflineService {
   private storageInitialized = false;
+  private reportSent = false; // Flag to track if report has been successfully sent
 
-  constructor(private storage: Storage, 
-    private http: HttpClient,
-    private alertService: AlertService) {
+  constructor(private storage: Storage, private http: HttpClient) {
     this.init();
   }
 
@@ -32,7 +30,7 @@ export class OfflineService {
     try {
       const response = await this.http.post('https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/', report).toPromise();
       await this.storage.remove('report');
-      this.alertService.showAlert('Report sent successfully');
+      this.reportSent = true; // Update flag when report is successfully sent
       return response;
     } catch (error) {
       console.error('Failed to send report:', error);
@@ -42,13 +40,16 @@ export class OfflineService {
   
   async checkNetworkStatus() {
     const status = await Network.getStatus();
-    if (status.connected) {
+    if (status.connected && !this.reportSent) { // Check if connected and report not yet sent
       const report = await this.storage.get('report');
       if (report) {
         await this.sendReport(report);
       }
       console.log(status);
-
     }
+  }
+
+  isReportSent(): boolean {
+    return this.reportSent;
   }
 }
