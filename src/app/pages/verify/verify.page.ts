@@ -7,6 +7,7 @@ import { OtpServiceService } from 'src/app/util/service/otp-service.service';
 import { DataService } from 'src/app/util/service/data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Storage } from '@ionic/storage-angular';
+import { AlertService } from 'src/app/util/service/services/alert.service';
 //import { Network } from '@capacitor/network';
 
 @Component({
@@ -32,7 +33,8 @@ export class VerifyPage implements OnInit {
     private auth: Auth,
     private helper: HelperService,
     private service: OtpServiceService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private alertService: AlertService
   ) {}
 
   sharedData: string = '';
@@ -119,6 +121,7 @@ export class VerifyPage implements OnInit {
             this.router.navigate(['/outlet-dashboard']);
           }
           else{
+            localStorage.removeItem('isLoggedOut'); // User is now logged in
             this.router.navigate(['/dashboard']);
           }
        
