@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ViewImagePageModule } from './pages/view-image/view-image.module';
-import { MenuController } from '@ionic/angular';  // Import MenuControlle
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // Import this
+import { MenuController } from '@ionic/angular'; 
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'; 
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpRequestInterceptor } from './util/service/interceptor';

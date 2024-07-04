@@ -192,6 +192,7 @@ export class CompleteInspectionPage implements OnInit {
     });
   }
   
+  
 
   resendDataIfNeeded() {
     if (this.isNetworkConnected && this.completeReportForm.valid) {
