@@ -13,7 +13,7 @@ export class AlertService {
     const currentRoute = this.router.url;
 
     // Check if the user is on the signin or verification page
-    const isSignInOrVerification = currentRoute.includes('/signin') || currentRoute.includes('/verify');
+    const isSignInOrVerification = currentRoute.includes('/signin') || currentRoute.includes('/verify')||currentRoute.includes('/thank-you');
 
     if (isLoggedOut || isSignInOrVerification) {
       localStorage.setItem('pendingAlert', JSON.stringify({ header, message }));

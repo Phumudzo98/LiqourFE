@@ -165,17 +165,6 @@ export class CompleteInspectionPage implements OnInit {
     this.noticeDoc = this.noticeFiles[0];
     formData.append('notice', this.notice);
 
-     await this.offlineService.saveReport(formData, this.caseNo).then(
-      () => {
-        // Handle successful response
-        console.log('Report saved successfully');
-      },
-      (error) => {
-        // Handle error response
-        console.error('Error saving report', error);
-      }
-    );
-  
 
     let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
 
@@ -188,6 +177,17 @@ export class CompleteInspectionPage implements OnInit {
     }, error => {
       console.log(error);
       this.spinner.hide();
+    
+       this.offlineService.saveReport(formData, this.caseNo).then(
+        () => {
+          // Handle successful response
+          console.log('Report saved successfully');
+        },
+        (error) => {
+          // Handle error response
+          console.error('Error saving report', error);
+        }
+      );
     
     });
   }
