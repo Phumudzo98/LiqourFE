@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { HttpClient } from '@angular/common/http';
 import { Network } from '@capacitor/network';
+import { AlertService } from './service/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,9 @@ import { Network } from '@capacitor/network';
 export class OfflineService {
   private storageInitialized = false;
 
-  constructor(private storage: Storage, private http: HttpClient) {
+  constructor(private storage: Storage, 
+    private http: HttpClient,
+    private alertService: AlertService) {
     this.init();
   }
 
@@ -29,6 +32,7 @@ export class OfflineService {
     try {
       const response = await this.http.post('https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/', report).toPromise();
       await this.storage.remove('report');
+      this.alertService.showAlert('Report sent successfully');
       return response;
     } catch (error) {
       console.error('Failed to send report:', error);
