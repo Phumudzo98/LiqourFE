@@ -1,0 +1,30 @@
+
+
+<ion-content [fullscreen]="true">
+  <div class="header-container">
+    <img src="assets/Images/Back Icon.svg" class="back-Arrow" routerLink="/update-outlet-location">
+    <h1 class="header-text">Update Outlet Location</h1>
+  </div>
+
+  <div>
+    <form [formGroup]="addressForm">
+    <ion-label >Address</ion-label>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Type address..." formControlName="address"></ion-input>
+    </ion-item>
+    <ion-label>Latitude</ion-label>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Latitude" formControlName="latitude"></ion-input>
+    </ion-item>
+    <ion-label >Longitude</ion-label>
+    <ion-item>
+      <ion-input class="custom-input" type="text" placeholder="Longitude" formControlName="longitude"></ion-input>
+    </ion-item>
+
+    <ion-button class="buttonClass2">
+      <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
+      Save
+    </ion-button>
+  </form>
+  </div>
+</ion-content>

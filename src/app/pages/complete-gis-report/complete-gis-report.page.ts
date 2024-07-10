@@ -57,6 +57,7 @@ export class CompleteGisReportPage implements OnInit {
       schoolIn100m: ['', Validators.required],
       churchIn100m: ['', Validators.required],
       wardBoundriesIn100m: ['', Validators.required],
+      councilorContacted: ['', Validators.required]
     })
   }
 
