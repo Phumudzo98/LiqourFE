@@ -167,6 +167,10 @@ ion-input{
     width: 20px;
     height: 20px;
   }
+  ion-radio {
+    --color: black;
+    --color-checked: #CFAA35;
+  }
   .buttonClass2 {
     --background: #822B23;
     --color: #fff;
