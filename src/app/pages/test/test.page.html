@@ -1,0 +1,26 @@
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+  <span>(a) Was an appointment set with the applicant for inspection on this day?</span>
+  <ion-card-title class="general-name">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-radio-group formControlName="appointmentSet">
+            <div class="radios">
+              <ion-radio id="yes_appt" value="1"></ion-radio>
+              <label for="yes_appt">Yes</label>
+            </div>
+            <div class="radios">
+              <ion-radio id="no_appt" value="2"></ion-radio>
+              <label for="no_appt">No</label>
+            </div>
+            <div class="radios">
+              <ion-radio id="na_appt" value="3"></ion-radio>
+              <label for="na_appt">N/A</label>
+            </div>
+          </ion-radio-group>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-title>
+  <ion-button type="submit" [disabled]="!appointmentForm.valid">Submit</ion-button>
+</form>

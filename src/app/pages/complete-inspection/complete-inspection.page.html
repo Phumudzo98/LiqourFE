@@ -127,22 +127,22 @@
       <span>(a) Was an appointment set with the applicant for inspection on this day?</span>
       <ion-card-title class="general-name">
         <ion-grid>
-          <ion-row>
-            <ion-col>
+          <ion-row class="horizontal-radios">
+            <ion-col size="auto">
               <div class="radios">
-                <input type="radio" id="yes_appt" name="appointmentSet" value="1" formControlName="appointmentSet">
+                <ion-radio id="yes_appt" value="1" formControlName="appointmentSet"></ion-radio>
                 <label for="yes_appt">Yes</label>
               </div>
             </ion-col>
-            <ion-col>
+            <ion-col size="auto">
               <div class="radios">
-                <input type="radio" id="no_appt" name="appointmentSet" value="2" formControlName="appointmentSet">
+                <ion-radio id="no_appt" value="2" formControlName="appointmentSet"></ion-radio>
                 <label for="no_appt">No</label>
               </div>
             </ion-col>
-            <ion-col>
+            <ion-col size="auto">
               <div class="radios">
-                <input type="radio" id="na_appt" name="appointmentSet" value="3" formControlName="appointmentSet">
+                <ion-radio id="na_appt" value="3" formControlName="appointmentSet"></ion-radio>
                 <label for="na_appt">N/A</label>
               </div>
             </ion-col>
@@ -150,6 +150,7 @@
         </ion-grid>
       </ion-card-title>
       <hr>
+
   
       <span>(b) Is the person found or consulted at the premises the applicant in this matter?</span>
       <ion-card-title class="general-name">
