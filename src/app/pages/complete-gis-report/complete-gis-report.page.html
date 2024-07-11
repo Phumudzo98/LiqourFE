@@ -89,7 +89,7 @@
   
     <ion-card class="upload2">
   
-      <span>(a) Is there school in 100m radius</span>
+      <span>(a) Is there a school within 100m radius?</span>
       <ion-card-title class="general-name">
         <ion-grid>
           <ion-row>
@@ -111,7 +111,7 @@
       </ion-card-title>
       <hr>
   
-      <span>(b)Is there church in 100m radius</span>
+      <span>(b) Is there a place of worship within 100m radius?</span>
       <ion-card-title class="general-name">
         <ion-grid>
           <ion-row>
@@ -134,7 +134,7 @@
       <hr>
   
 
-    <span>(c) Are there ward boundaries in 100m radius</span>
+    <span>(c) Is the premises within the correct ward?</span>
     <ion-card-title class="general-name">
       <ion-grid>
         <ion-row>
@@ -155,6 +155,28 @@
       </ion-grid>
     </ion-card-title>
     <hr>
+
+    
+    <span>(d) Is the correct ward councilor contacted?</span>
+    <ion-card-title class="general-name">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="radios">
+              <input type="radio" id="yes_indicated" name="councilorContacted" value="1" formControlName="councilorContacted">
+              <label for="yes_indicated">Yes</label>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="radios">
+              <input type="radio" id="no_indicated" name="councilorContacted" value="2" formControlName="councilorContacted">
+              <label for="no_indicated">No</label>
+            </div>
+          </ion-col>
+      
+        </ion-row>
+      </ion-grid>
+    </ion-card-title>
 
     <hr>
     </ion-card>
