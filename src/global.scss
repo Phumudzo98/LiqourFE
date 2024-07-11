@@ -262,8 +262,17 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.have-account{
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 23.5%;
+    margin-bottom: 60px;
+    margin-top: 2%;
+  }
 
-/* For the cursor color */
-::ng-deep ion-input input {
-    caret-color: #822B23 !important;
+  .link{
+    color: #822B23;
+    font-weight: 600;
+    cursor: pointer;
   }

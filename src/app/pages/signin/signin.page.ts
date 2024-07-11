@@ -119,4 +119,12 @@ export class SigninPage implements OnInit {
       this.showAlert = false;
     }, 3000); //disable the message after 2 seconds 
   }
+  toRegister()
+  {
+   this.router.navigate(["register-user"])
+  }
+  toPassword()
+  {
+    this.router.navigate(["forgot-password"])
+  }
 }
