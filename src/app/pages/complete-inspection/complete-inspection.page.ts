@@ -85,6 +85,8 @@ export class CompleteInspectionPage implements OnInit {
       futureInspectionDate: ['', Validators.required],
       comments: ['']
     });
+
+  
   }
 
   ngOnInit() {
