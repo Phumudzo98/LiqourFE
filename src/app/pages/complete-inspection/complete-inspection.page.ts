@@ -233,6 +233,20 @@ export class CompleteInspectionPage implements OnInit {
   triggerFileInput() {
     this.fileInput.nativeElement.click();
   }
+  selectFileReport(): void {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = ".docx, .pdf"; // Adjust as needed for file types
+    fileInput.onchange = (event: Event) => this.onFileSelected(event);
+    fileInput.click();
+  }
+  selectFileNotice(): void {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = ".docx, .pdf"; // Adjust as needed for file types
+    fileInput.onchange = (event: Event) => this.onFileSelectedRecommendation(event);
+    fileInput.click();
+  }
 
   report!: File;
   async onFileSelected(event: any) {

@@ -262,3 +262,8 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+/* For the cursor color */
+::ng-deep ion-input input {
+    caret-color: #822B23 !important;
+  }
