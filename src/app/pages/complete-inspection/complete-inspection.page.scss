@@ -409,4 +409,27 @@ ion-label{
   width: 25px;
   height: 25px;
 }
+/* Remove hover effect from ion-item and its children */
+ion-item:hover, ion-item:hover ion-label, ion-item:hover ion-radio {
+  --background-hover: none !important;
+  --border-color-hover: transparent !important;
+  --color-hover: inherit !important;
+}
+
+.radios ion-item {
+  display: flex; /* Use flexbox to align items */
+  align-items: center; /* Align items vertically */
+  margin-bottom: 10px; /* Adjust vertical spacing between items */
+}
+
+.radios ion-radio {
+  margin-right: 10px; /* Adjust horizontal spacing between radio button and label */
+}
+.move-label {
+  margin-left: 3px;
+}
+.move-radio {
+  margin-right: 3px;
+}
+
 

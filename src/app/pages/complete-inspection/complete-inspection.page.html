@@ -128,29 +128,34 @@
       <ion-card-title class="general-name">
         <ion-grid>
           <ion-row class="horizontal-radios">
-            <ion-col>
-              <div class="radios">
-                <ion-radio id="yes_appt" value="1" name="appointmentSet" formControlName="appointmentSet"></ion-radio>
-                <label for="yes_appt">Yes</label>
-              </div>
-            </ion-col>
             <ion-col >
-              <div class="radios">
-                <ion-radio id="no_appt" value="2" name="appointmentSet" formControlName="appointmentSet"></ion-radio>
-                <label for="no_appt">No</label>
-              </div>
-            </ion-col>
-            <ion-col >
-              <div class="radios">
-                <ion-radio id="na_appt" value="3"  name="appointmentSet"formControlName="appointmentSet"></ion-radio>
-                <label for="na_appt">N/A</label>
-              </div>
+              <ion-radio-group formControlName="appointmentSet">
+                <ion-row class="horizontal-radios">
+                  <ion-col >
+                    <div class="radios">
+                      <ion-radio id="yes_appt" class="move-radio" name="appointmentSet" value="1"></ion-radio>
+                      <ion-label for="yes_appt">Yes</ion-label>
+                    </div>
+                  </ion-col>
+                  <ion-col >
+                    <div class="radios">
+                      <ion-radio id="no_appt" class="move-radio" name="appointmentSet" value="2"></ion-radio>
+                      <ion-label for="no_appt">No</ion-label>
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="radios">
+                      <ion-radio id="na_appt" class="move-radio" name="appointmentSet" value="3"></ion-radio>
+                      <ion-label for="na_appt">N/A</ion-label>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-radio-group>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-title>
       <hr>
-
   
       <span>(b) Is the person found or consulted at the premises the applicant in this matter?</span>
       <ion-card-title class="general-name">
