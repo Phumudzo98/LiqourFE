@@ -97,7 +97,7 @@ export class CompleteInspectionPage implements OnInit {
 
     this.getCurrentPosition();
 
-    
+  
 
     
   }
@@ -505,5 +505,13 @@ export class CompleteInspectionPage implements OnInit {
     }
   }
 
+
+
+  radioClicked(formControlName: string, value: string) {
+    this.completeReportForm.patchValue({
+      [formControlName]: value
+    });
+  }
+ 
   
 }
