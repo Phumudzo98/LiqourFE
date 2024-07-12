@@ -437,4 +437,20 @@ ion-item:hover, ion-item:hover ion-label, ion-item:hover ion-radio {
   margin-right: 3px;
 }
 
+.vertical-radios {
+  display: flex;
+  flex-direction: column;
+}
+
+.radioss {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px; /* Adjust the margin as needed for desired spacing */
+}
+
+.move-radio {
+  margin-right: 8px;
+}
+
+
 
