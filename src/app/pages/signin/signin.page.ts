@@ -58,13 +58,11 @@ export class SigninPage implements OnInit {
     this.auth.username = this.email;
     const encodedPassword = encodeURIComponent(this.password);
 
-    // Show spinner when login button is clicked
     this.spinner.show();
    
-    // Simulate OTP retrieval delay
     setTimeout(() => {
       this.getOpt();
-    }, 2000); // Simulating a 2-second delay before OTP retrieval
+    }, 2000); 
   }
 
   private getOpt(): void {
@@ -117,14 +115,22 @@ export class SigninPage implements OnInit {
 
     setTimeout(() => {
       this.showAlert = false;
-    }, 3000); //disable the message after 2 seconds 
+    }, 3000); 
   }
-  toRegister()
-  {
-   this.router.navigate(["register-user"])
+  toRegister() {
+    this.spinner.show(); 
+  
+    setTimeout(() => {
+      this.spinner.hide(); 
+      this.router.navigate(['register-user']);
+    }, 2000);
   }
-  toPassword()
-  {
-    this.router.navigate(["forgot-password"])
+  toPassword() {
+    this.spinner.show(); 
+  
+    setTimeout(() => {
+      this.spinner.hide(); 
+      this.router.navigate(['forgot-password']);
+    }, 2000);
   }
 }
