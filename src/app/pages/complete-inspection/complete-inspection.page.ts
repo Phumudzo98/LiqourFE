@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, PopoverController } from '@ionic/angular';
 import { StorageService } from 'src/app/util/service/storage.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ActionSheetController, ModalController } from '@ionic/angular';
@@ -26,7 +26,7 @@ export class CompleteInspectionPage implements OnInit {
   selectedRadioValue: string | null = null; 
   inputVisible: boolean = true; 
   isNetworkConnected: boolean = true; // Flag to track network status
-
+  dateFormatPlaceholder: string = "YYYY-MM-DD";
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
 
@@ -52,7 +52,8 @@ export class CompleteInspectionPage implements OnInit {
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
     private spinner: NgxSpinnerService,
-    private offlineService: OfflineService
+    private offlineService: OfflineService,
+    private popoverController: PopoverController
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
@@ -527,5 +528,24 @@ export class CompleteInspectionPage implements OnInit {
     });
   }
  
+  openDatetimePicker() {
+    const button = document.getElementById('open-datetime');
+    if (button) {
+      button.click();
+    }
+  }
+
+  dateChanged(event: any) {
+    const date = event.detail.value;
+    const input = document.getElementById('inspection-date-input') as HTMLInputElement;
+    if (input) {
+      input.value = date;
+    }
+    this.completeReportForm.get('futureInspectionDate')?.setValue(date);
+  }
+  closePopover() {
+    this.popoverController.dismiss();
+  }
+
   
 }

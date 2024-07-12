@@ -430,9 +430,7 @@ ion-item:hover, ion-item:hover ion-label, ion-item:hover ion-radio {
 .radios ion-radio {
   margin-right: 10px; /* Adjust horizontal spacing between radio button and label */
 }
-.move-label {
-  margin-left: 3px;
-}
+
 .move-radio {
   margin-right: 3px;
 }
@@ -452,5 +450,11 @@ ion-item:hover, ion-item:hover ion-label, ion-item:hover ion-radio {
   margin-right: 8px;
 }
 
+.small-input {
+  width: 150px; /* Adjust the width as needed */
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --inner-padding: 0;
+}
 
 

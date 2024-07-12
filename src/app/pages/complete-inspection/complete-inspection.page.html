@@ -1009,15 +1009,30 @@
         </ion-card-title>
     </ion-card>
 
-    <ion-label position="floating">Inspection Date</ion-label>
-    <ion-item>
-    <ion-input type="date" placeholder="Enter Future Inspection Date" formControlName="futureInspectionDate"></ion-input>
+    
+      <ion-label position="floating">Inspection Date</ion-label>
+      <ion-item>
+      <ion-input  placeholder="{{ dateFormatPlaceholder }}" id="inspection-date-input" formControlName="futureInspectionDate" class="small-input">
+        <ion-icon name="calendar" slot="end" (click)="openDatetimePicker()"></ion-icon>
+      </ion-input>
     </ion-item>
+    <ion-button id="open-datetime" fill="clear" style="display: none;"></ion-button>
+    <ion-popover trigger="open-datetime">
+      <ng-template>
+        <ion-content>
+          <ion-datetime
+            placeholder="Enter Future Inspection Date"
+            (ionChange)="dateChanged($event); closePopover()"
+          ></ion-datetime>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+
+
     <ion-label position="floating">Comments</ion-label>
     <ion-item>
     <ion-input placeholder="Enter Comments" formControlName="comments"></ion-input>
-    </ion-item>
-
+    </ion-item>    
 
     <!--Upload Docs-->  
      <ion-card class="upload" (click)="selectFileNotice()">
