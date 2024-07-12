@@ -1,0 +1,9 @@
+<ion-content>
+  <!-- Custom file input button -->
+  <ion-button expand="full" (click)="selectFile()">Choose File</ion-button>
+  
+  <!-- Display selected file name -->
+  <ion-item *ngIf="selectedFileName">
+    <ion-label>{{ selectedFileName }}</ion-label>
+  </ion-item>
+</ion-content>

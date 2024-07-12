@@ -159,13 +159,17 @@ ion-input{
     display: flex;
   }
   label{
-    margin-left: 10px;
+    margin-right: 10px;
   }
 
   ion-col input{
     color: #CFAA35;
     width: 20px;
     height: 20px;
+  }
+  ion-radio {
+    --color: black;
+    --color-checked: #CFAA35;
   }
   .buttonClass2 {
     --background: #822B23;
@@ -217,6 +221,9 @@ ion-input{
     margin-left: 15px !important;
     font-size: 12px !important;
   }
+
+ 
+  
 
   
   .upload3{
@@ -379,14 +386,10 @@ ion-select{
   padding-right: 15px !important;
 }
 
-ion-label{
-  margin-left: 15px !important;
-  font-size: 12px !important;
-}
+
 .custom-input {
   background-color: white;
 }
-
 
 .custom-input::placeholder {
   color: rgba(0, 0, 0, 0.5); /* Optional: Adjust placeholder text color for better contrast */
@@ -406,4 +409,47 @@ ion-label{
   width: 25px;
   height: 25px;
 }
+/* Remove hover effect from ion-item and its children */
+ion-item:hover, ion-item:hover ion-label, ion-item:hover ion-radio {
+  --background-hover: none !important;
+  --border-color-hover: transparent !important;
+  --color-hover: inherit !important;
+}
+
+.radios ion-item {
+  display: flex; /* Use flexbox to align items */
+  align-items: center; /* Align items vertically */
+  margin-bottom: 10px; /* Adjust vertical spacing between items */
+}
+
+.radios ion-radio {
+  margin-right: 10px; /* Adjust horizontal spacing between radio button and label */
+}
+
+.move-radio {
+  margin-right: 3px;
+}
+
+.vertical-radios {
+  display: flex;
+  flex-direction: column;
+}
+
+.radioss {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px; 
+}
+
+.move-radio {
+  margin-right: 8px;
+}
+
+.small-input {
+  width: 150px; /* Adjust the width as needed */
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --inner-padding: 0;
+}
+
 

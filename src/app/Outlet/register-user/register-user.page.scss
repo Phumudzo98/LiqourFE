@@ -2,10 +2,10 @@
 
 .welcome{
     color: #822B23;
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 700;
    margin-left: 15px;
-   margin-bottom: -5px;
+   margin-bottom: 5px;
    font-family: 'Inter', sans-serif; 
 
 }
@@ -18,23 +18,55 @@
     font-family: 'Inter', sans-serif; 
 }
 
-
-
 p a {
     color: #822B23;
     font-size: 14px;
     font-weight: 700;
-    cursor: pointer !important;
+    cursor: pointer;
     position: relative; 
-    float: inline-end;
-    margin-right: 5%;
+    top: -15px; 
 }
 .image{
 width: 100px;
 height: 100px;
 right: 50px;
-margin-left: 37%;
+margin-left: 35%;
+margin-top: 15% !important;
 }
+ion-input, ion-select {
+    font-size: 11px;
+    --padding-start: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    width: 100%;
+  }
+  
+  ion-select {
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 1px solid #858585;
+    border-radius: 2px;
+    height: 50px;
+    width: calc(100%) !important;
+    --highlight-background: transparent;
+    font-family: 'Inter', sans-serif;
+    padding-right: 15px !important;
+    
+  }
+  .have-account{
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 23.5%;
+    margin-bottom: 60px;
+    margin-top: 2%;
+  }
+
+  .link{
+    color: #822B23;
+    font-weight: 600;
+    cursor: pointer;
+  }
 
 ion-input
 {

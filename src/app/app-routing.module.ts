@@ -212,6 +212,28 @@ const routes: Routes = [
     path: 'complete-gis-report/:caseId',
     loadChildren: () => import('./pages/complete-gis-report/complete-gis-report.module').then( m => m.CompleteGisReportPageModule)
   },
+  {
+    path: 'update-address',
+    loadChildren: () => import('./Outlet/update-address/update-address.module').then( m => m.UpdateAddressPageModule)
+  },
+  {
+    path: 'test',
+    loadChildren: () => import('./pages/test/test.module').then( m => m.TestPageModule)
+  },  {
+    path: 'register-user',
+    loadChildren: () => import('./Outlet/register-user/register-user.module').then( m => m.RegisterUserPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./Outlet/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'email-verification',
+    loadChildren: () => import('./Outlet/email-verification/email-verification.module').then( m => m.EmailVerificationPageModule)
+  }
+
+
+
 ];
     
 @NgModule({

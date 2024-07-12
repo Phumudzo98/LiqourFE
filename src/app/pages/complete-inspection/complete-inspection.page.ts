@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, PopoverController } from '@ionic/angular';
 import { StorageService } from 'src/app/util/service/storage.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ActionSheetController, ModalController } from '@ionic/angular';
@@ -26,7 +26,7 @@ export class CompleteInspectionPage implements OnInit {
   selectedRadioValue: string | null = null; 
   inputVisible: boolean = true; 
   isNetworkConnected: boolean = true; // Flag to track network status
-
+  dateFormatPlaceholder: string = "YYYY-MM-DD";
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
 
@@ -52,7 +52,8 @@ export class CompleteInspectionPage implements OnInit {
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
     private spinner: NgxSpinnerService,
-    private offlineService: OfflineService
+    private offlineService: OfflineService,
+    private popoverController: PopoverController
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
@@ -85,6 +86,8 @@ export class CompleteInspectionPage implements OnInit {
       futureInspectionDate: ['', Validators.required],
       comments: ['']
     });
+
+  
   }
 
   ngOnInit() {
@@ -95,7 +98,7 @@ export class CompleteInspectionPage implements OnInit {
 
     this.getCurrentPosition();
 
-    //this.completeReportForm.patchValue(this.dummyData)
+  
 
     
   }
@@ -230,6 +233,20 @@ export class CompleteInspectionPage implements OnInit {
 
   triggerFileInput() {
     this.fileInput.nativeElement.click();
+  }
+  selectFileReport(): void {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = ".docx, .pdf"; // Adjust as needed for file types
+    fileInput.onchange = (event: Event) => this.onFileSelected(event);
+    fileInput.click();
+  }
+  selectFileNotice(): void {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = ".docx, .pdf"; // Adjust as needed for file types
+    fileInput.onchange = (event: Event) => this.onFileSelectedRecommendation(event);
+    fileInput.click();
   }
 
   report!: File;
@@ -503,35 +520,32 @@ export class CompleteInspectionPage implements OnInit {
     }
   }
 
-  // dummyData = {
-  //   contactPerson: "John Doe",
-  //   inspectionDate: "2024-05-03T08:00",
-  //   appointmentSet: "1",
-  //   consultedOrFound: "2",
-  //   applicantIndicatedPersonAtPremises: "1",
-  //   canPersonBeFound: "1",
-  //   interestInLiquorTrade: "1",
-  //   issuedComplience: "1",
-  //   complaintsReceived: "2",
-  //   rightToOccupy: "1",
-  //   leaseAttached: "1",
-  //   situatedInRightAddress: "1",
-  //   inLineWithSubmittedApplication: "1",
-  //   premisesSuitable: "1",
-  //   ablutionFacilityInOrder: "1",
-  //   readyForBusiness: "1",
-  //   formServedToCorrectWardCommittee: "1",
-  //   confirmedByCouncillor: "1",
-  //   wardCommiteeReport: "1",
-  //   communityConsultation: "1",
-  //   educationalInstitution: "1",
-  //   formServedAtEducationInstitution: "1",
-  //   placeOfWorship: "1",
-  //   formServedAtPlaceOfWorship: "1",
-  //   recommendation: "1",
-  //   futureInspectionDate: "2024-06-03T08:00",
-  //   comments: "Everything seems to be in order.",
-  //   latitude: "40.7128", 
-  //   longitude: "-74.0060", 
-  // };
+
+
+  radioClicked(formControlName: string, value: string) {
+    this.completeReportForm.patchValue({
+      [formControlName]: value
+    });
+  }
+ 
+  openDatetimePicker() {
+    const button = document.getElementById('open-datetime');
+    if (button) {
+      button.click();
+    }
+  }
+
+  dateChanged(event: any) {
+    const date = event.detail.value;
+    const input = document.getElementById('inspection-date-input') as HTMLInputElement;
+    if (input) {
+      input.value = date;
+    }
+    this.completeReportForm.get('futureInspectionDate')?.setValue(date);
+  }
+  closePopover() {
+    this.popoverController.dismiss();
+  }
+
+  
 }
