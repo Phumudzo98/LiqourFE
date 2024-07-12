@@ -120,7 +120,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss","node-modules/ngx-spinner/animation/ball-clip-rotate-pulse.css"],
+            "styles": ["src/global.scss", "src/theme/variables.scss"],
 
             "scripts": []
           },
