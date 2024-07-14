@@ -387,8 +387,22 @@
         </ion-item>
         <ion-label position="floating">Inspection Date</ion-label>
         <ion-item>
-        <ion-input type="date" placeholder="Enter Inspection Date" formControlName="inspectionDate"></ion-input>
+          <ion-input  placeholder="{{ dateFormatPlaceholder }}" id="inspection-date-input" formControlName="inspectionDate" class="small-input">
+        <ion-icon name="calendar" slot="end" (click)="openDatetimePicker()"></ion-icon>
+      </ion-input>
         </ion-item>
+        <ion-button id="open-datetime" fill="clear" style="display: none;"></ion-button>
+        <ion-popover trigger="open-datetime">
+         <ng-template>
+        <ion-content>
+          <ion-datetime
+            placeholder="Enter Inspection Date"
+            (ionChange)="dateChanged1($event); closePopover()"
+          ></ion-datetime>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+       
         <ion-label position="floating">Latitude Of Outlet (South)</ion-label>
         <ion-item>
         <ion-input placeholder="Enter Latitude" formControlName="latitude"></ion-input>
