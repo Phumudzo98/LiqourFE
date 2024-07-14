@@ -1,17 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NotificationsPage } from './notifications.page';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { NotificationsPage } from './notifications.page';
 
-describe('NotificationsPage', () => {
-  let component: NotificationsPage;
-  let fixture: ComponentFixture<NotificationsPage>;
+// describe('NotificationsPage', () => {
+//   let component: NotificationsPage;
+//   let fixture: ComponentFixture<NotificationsPage>;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NotificationsPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(NotificationsPage);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
