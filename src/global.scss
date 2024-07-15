@@ -276,3 +276,21 @@ body {
     font-weight: 600;
     cursor: pointer;
   }
+  .error-border {
+    border: 1px solid #f98f8f !important;
+  }
+
+  .alert
+  {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color:#f98f8f !important;
+  }
+  /*.error-placeholder ::placeholder {
+    color: red !important;
+  }*/
+
+  ion-select-option{
+    --color-checked: #CFAA35 !important;
+  }
+  
