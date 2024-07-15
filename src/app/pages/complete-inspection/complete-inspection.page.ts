@@ -543,6 +543,14 @@ export class CompleteInspectionPage implements OnInit {
     }
     this.completeReportForm.get('futureInspectionDate')?.setValue(date);
   }
+  dateChanged1(event: any) {
+    const date = event.detail.value;
+    const input = document.getElementById('inspection-date-input') as HTMLInputElement;
+    if (input) {
+      input.value = date;
+    }
+    this.completeReportForm.get('inspectionDate')?.setValue(date);
+  }
   closePopover() {
     this.popoverController.dismiss();
   }
