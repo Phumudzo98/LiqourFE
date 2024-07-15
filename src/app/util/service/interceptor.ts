@@ -14,16 +14,14 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     if (req.headers.get('skip')) {
       return next.handle(req);
     }
-
     
-    const storeService = this.injector.get(Storage);
+    //const storeService = this.injector.get(Storage);
     const tokenPromise = this.helper.getToken(); 
 
     return from(tokenPromise).pipe(
       switchMap((token: any) => {
         
         let tokenString = token.toString();
-        console.log(tokenString);
 
         localStorage.setItem('uToken',tokenString)
         
@@ -33,7 +31,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
           localStorage.setItem("userToken",tokenString)
         }
 
-        
         const request = req.clone({
           setHeaders: {
             Authorization: `Bearer ${tokenString}`

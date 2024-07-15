@@ -5,7 +5,7 @@ import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/n
 import { NetworkService } from './util/service/network.service';
 import { OfflineService } from 'src/app/util/service/services/offline.service';
 import { Subscription } from 'rxjs';
-import { Network } from '@capacitor/network'; // Import Network
+import { Network } from '@capacitor/network';
 
 @Component({
   selector: 'app-root',
