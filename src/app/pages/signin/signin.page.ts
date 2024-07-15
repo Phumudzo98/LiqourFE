@@ -54,18 +54,24 @@ export class SigninPage implements OnInit {
       console.error('Email is undefined or empty');
       return;
     }
-
-    this.auth.username = this.email;
-    const encodedPassword = encodeURIComponent(this.password);
+    else if(this.email.includes('@'))
+    {
+      alert("Not authorized")
+      return;
+    }
 
     this.spinner.show();
+    this.auth.username = this.email;
+   
    
     setTimeout(() => {
       this.getOpt();
     }, 2000); 
+
   }
 
   private getOpt(): void {
+
     const auth2 = {
       username: this.email,
       otp: this.loginForm.get('enteredOtp')?.value,
@@ -73,6 +79,8 @@ export class SigninPage implements OnInit {
 
     this.service.getOneTimePin(auth2).subscribe({
       next: (res: any) => {
+
+
         let message = new Message();
         message.message = 'We have sent OTP to your email';
         this.otp = res.message;
@@ -85,28 +93,31 @@ export class SigninPage implements OnInit {
 
         // Hide spinner after OTP retrieval
         setTimeout(() => {
+
           this.spinner.hide();
           this.router.navigateByUrl('/verify');
           this.loginForm.reset();
-        }, 2000); // Hide spinner after 2 seconds
+        }, 2000); 
       },
       error: (error: any) => {
+
         console.error('Error fetching OTP:', error);
         
-           this.spinner.hide();
+        this.spinner.hide();
+
         let errorMessage = 'Invalid email.';
+
         if (error.status === 0) {
           errorMessage = 'Network error. Please check your internet connection.';
         }
         this.showAlertMessage('error', errorMessage);
-      },
+      }
     });
   }
 
   saveData() {
     this.dataService.setData(this.getotp);
   }
-
 
   showAlertMessage(type: string, message: string) {
     this.alertType = type;
@@ -118,6 +129,7 @@ export class SigninPage implements OnInit {
     }, 3000); 
   }
   toRegister() {
+
     this.spinner.show(); 
   
     setTimeout(() => {
@@ -125,6 +137,7 @@ export class SigninPage implements OnInit {
       this.router.navigate(['register-user']);
     }, 2000);
   }
+
   toPassword() {
     this.spinner.show(); 
   
