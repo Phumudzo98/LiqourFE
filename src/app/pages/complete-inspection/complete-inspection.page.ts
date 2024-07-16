@@ -98,17 +98,8 @@ export class CompleteInspectionPage implements OnInit {
 
     this.getCurrentPosition();
 
-  
-
-    
   }
-  
 
-
-  
-  
-  
-  
   
   //General Valid
   isGeneralFormValid(): boolean {

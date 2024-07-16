@@ -7,7 +7,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { headers, headersSecure } from 'src/app/util/service/const';
 
-
 @Component({
   selector: 'app-update-location',
   templateUrl: './update-location.page.html',
@@ -17,22 +16,19 @@ export class UpdateLocationPage implements OnInit {
 
   private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
 
-  latitude?:any;
-  longitude?:any;
+  latitude?: any;
+  longitude?: any;
 
-  lat?:number;
-  lon?:number;  
+  lat?: number;
+  lon?: number;  
   gisReportForm: FormGroup;
 
-
-  
   selectedOption: string = '';
   uploadedFiles: { name: string, size: number }[] = [];
   currentForm: string = 'landing';
   
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
-
 
   constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController, private formBuilder: FormBuilder, private http: HttpClient) {
     this.gisReportForm = this.formBuilder.group({
@@ -41,7 +37,7 @@ export class UpdateLocationPage implements OnInit {
       schoolIn100m: ['', Validators.required],
       churchIn100m: ['', Validators.required],
       wardBoundriesIn100m: ['', Validators.required],
-    })
+    });
   }
 
   ngOnInit() {
@@ -49,25 +45,23 @@ export class UpdateLocationPage implements OnInit {
 
   async getCurrentPosition() {
     try {
-      const coordinates = await Geolocation.getCurrentPosition();
+      const coordinates = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
       this.lat = coordinates.coords.latitude;
       this.lon = coordinates.coords.longitude;
 
-      this.longitude=this.lon;
-      this.latitude=this.lat;
+      this.longitude = this.lon;
+      this.latitude = this.lat;
 
       this.gisReportForm.patchValue({
         latitude: this.latitude,
         longitude: this.longitude
       });
-      //this.getAddressFromCoordinates(this.latitude, this.longitude);
-      
+
     } catch (err) {
       console.error('Error getting location', err);
     }
   }
 
-  
   toggleForms(form: string) {
     this.currentForm = form;
   }
@@ -134,27 +128,19 @@ export class UpdateLocationPage implements OnInit {
     this.uploadedFiles.splice(index, 1);
   }
 
-  formData=new FormData();
+  formData = new FormData();
 
-  onSubmit()
-  {
+  onSubmit() {
+    let url = "https://system.eclb.co.za/eclb2/api/general/save-gis-report";
 
-    let url="https://system.eclb.co.za/eclb2/api/general/save-gis-report"
+    this.formData.append('outletId', '23456');
+    this.formData.append('longitude', this.longitude);
+    this.formData.append('latitude', this.latitude);
 
-
-    this.formData.append('outletId','23456')
-    this.formData.append('longitude',this.longitude)
-    this.formData.append('latitude', this.latitude)
-
-
-    this.http.post(url,this.formData, {headers: headersSecure}).subscribe(response=>{
+    this.http.post(url, this.formData, { headers: headersSecure }).subscribe(response => {
       console.log(response);
-      
-    },error=>
-    {
+    }, error => {
       console.log(error);
-      
-    })
-
+    });
   }
 }
