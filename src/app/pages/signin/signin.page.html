@@ -12,7 +12,7 @@
     <p class="welcome">Welcome</p>
     <p class="signin">Sign in</p>
     
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <form [formGroup]="loginForm">
       <ion-item>
         <ion-input formControlName="email" type="email" placeholder="Username"></ion-input>
       </ion-item>
@@ -24,15 +24,12 @@
     <p (click)="toPassword()"><a>Forgot password</a></p>
 
     
-      <ion-button class="buttonClass" type="submit">Log In</ion-button>
+      <ion-button class="buttonClass" type="submit"  (click)="login()">Log In</ion-button>
+
     </form>
-    <p class="have-account">
-      Don't have an account, <span class="link" (click)="toRegister()">Sign Up</span>
-    </p>
-    
-    <div *ngIf="showAlert" [ngClass]="alertType === 'success' ? 'alert alert-success' : 'alert alert-danger'">
-      {{ alertMessage }}
-  </div>
+    <p class="have-account">Don't have an account, <span class="link" (click)="toRegister()">Sign Up</span></p>
+
+   
   </div>
   
 </ion-content>

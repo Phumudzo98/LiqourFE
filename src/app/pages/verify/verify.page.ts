@@ -1,5 +1,5 @@
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { IonInput, LoadingController, ToastController } from '@ionic/angular';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { IonInput, LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Auth } from 'src/app/util/service/Auth';
 import { HelperService } from 'src/app/util/service/helper.service';
@@ -7,8 +7,6 @@ import { OtpServiceService } from 'src/app/util/service/otp-service.service';
 import { DataService } from 'src/app/util/service/data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Storage } from '@ionic/storage-angular';
-import { AlertService } from 'src/app/util/service/services/alert.service';
-//import { Network } from '@capacitor/network';
 
 @Component({
   selector: 'app-verify',
@@ -17,13 +15,15 @@ import { AlertService } from 'src/app/util/service/services/alert.service';
 })
 export class VerifyPage implements OnInit {
   otp: string[] = ['', '', '', ''];
-  email: string = ''; // Add the email property
-
+  email: string = '';
   @ViewChildren('otpInput') otpInputs!: QueryList<IonInput>;
   alertType!: string;
   alertMessage!: string;
   showAlert!: boolean;
   enteredOtp: string = '';
+  isFirstLogin: boolean = false;
+  sharedData: string='';
+  myOtp: any;
 
   constructor(
     private loadingCtrl: LoadingController,
@@ -34,17 +34,15 @@ export class VerifyPage implements OnInit {
     private helper: HelperService,
     private service: OtpServiceService,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService
+    private storage: Storage
   ) {}
 
-  sharedData: string = '';
+  async ngOnInit() {
+    await this.storage.create();
 
-  myOtp: any;
-
-  ngOnInit() {
-    // Read email from query parameters
     this.activatedRoute.queryParams.subscribe(params => {
       this.email = params['email'];
+      this.isFirstLogin = params['firstLogin'] === 'true';
     });
 
     this.sharedData = this.dataService.getData();
@@ -57,11 +55,11 @@ export class VerifyPage implements OnInit {
       if (this.otp[currentIndex] === '' && currentIndex > 0) {
         const prevInput = this.otpInputs.toArray()[currentIndex - 1];
         if (prevInput) {
-          this.otp[currentIndex - 1] = ''; // Clear the previous input
+          this.otp[currentIndex - 1] = '';
           prevInput.setFocus();
         }
       } else {
-        this.otp[currentIndex] = ''; // Clear the current input
+        this.otp[currentIndex] = '';
       }
     }
   }
@@ -79,7 +77,7 @@ export class VerifyPage implements OnInit {
   async presentLoading() {
     const loading = await this.loadingCtrl.create({
       message: 'Verifying OTP...',
-      spinner: 'circular'
+      spinner: 'circular',
     });
     await loading.present();
   }
@@ -91,59 +89,40 @@ export class VerifyPage implements OnInit {
 
     setTimeout(() => {
       this.showAlert = false;
-    }, 3000); // Disable the message after 3 seconds
+    }, 3000);
   }
 
-  resetOTP() {
-    this.otp = ['', '', '', ''];
-    this.otpInputs.first.setFocus(); // Focus the first input field
-  }
-
-  // Add this method to dynamically change the active state color
-  changeActiveColor(input: IonInput) {
-    input.color = 'black';
-  }
-
-  public submitOTP(): void {
+  public async submitOTP(): Promise<void> {
     this.spinner.show();
-    console.log(localStorage.getItem('otp'));
     this.enteredOtp = this.otp.join('');
-
     this.auth.otp = this.enteredOtp;
 
     let username = localStorage.getItem('username');
-    this.auth.username = (username !== null && username !== undefined) ? username.toString() : '';
+    this.auth.username = username ? username.toString() : '';
 
     this.service.validateOTP(this.auth).subscribe({
-      next: (res: any) => {
-        if(this.auth.username=="financial")
-          {
-            this.router.navigate(['/outlet-dashboard']);
-          }
-          else{
-            localStorage.removeItem('isLoggedOut'); // User is now logged in
-            this.router.navigate(['/dashboard']);
-          }
-       
+      next: async (res: any) => {
         this.helper.setToken(res.message);
         localStorage.setItem('userToken', res.message);
         this.helper.setSimpToken(res.message);
-  
-        // Hide spinner after 2 seconds
-        setTimeout(() => {
+
+        setTimeout(async () => {
           this.spinner.hide();
-          //this.router.navigate(['/dashboard']);
+          if (this.isFirstLogin) {
+            await this.router.navigate(['/pin-creation']);
+          } else {
+            await this.router.navigate(['/dashboard']);
+          }
         }, 2000);
       },
       error: (error: any) => {
         console.error('Error validating OTP:', error);
-
         setTimeout(() => {
           this.spinner.hide();
           let errorMessage = 'Invalid OTP';
           this.showAlertMessage('error', errorMessage);
         }, 2000);
-      }
+      },
     });
   }
 }

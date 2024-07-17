@@ -5,7 +5,10 @@ import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/n
 import { NetworkService } from './util/service/network.service';
 import { OfflineService } from 'src/app/util/service/services/offline.service';
 import { Subscription } from 'rxjs';
-import { Network } from '@capacitor/network';
+import { Network } from '@capacitor/network'; // Import Network
+import { SecureStorage } from '@ionic-native/secure-storage/ngx';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-root',
@@ -18,6 +21,7 @@ export class AppComponent {
   activeItem: string = '';
   isOnline: boolean = true;
   private subscriptions: Subscription[] = [];
+  alertController: any;
   
   constructor(
     private menu: MenuController,
@@ -25,8 +29,10 @@ export class AppComponent {
     private platform: Platform,
     private screenOrientation: ScreenOrientation,
     private networkService: NetworkService,
-    private offlineService: OfflineService, // Inject OfflineService
-    private renderer: Renderer2
+    private offlineService: OfflineService,
+    private renderer: Renderer2,
+    private storage: Storage
+    
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -41,39 +47,37 @@ export class AppComponent {
   }
 
   private openCorrectMenu() {
-    if (
-      this.currentUrl.includes('/dashboard') ||
-      this.currentUrl.includes('/upload-image') ||
-      this.currentUrl.includes('/recommendations') ||
-      this.currentUrl.includes('/thank-you') ||
-      this.currentUrl.includes('/notifications') ||
-      this.currentUrl.includes('/special-event') ||
-      this.currentUrl.includes('/navigate-to-outlet') ||
-      this.currentUrl.includes('/photos') ||
-      this.currentUrl.includes('/addresses') ||
-      this.currentUrl.includes('/view-outlet') ||
-      this.currentUrl.includes('/location') ||
-      this.currentUrl.includes('/complete-inspection') ||
-      this.currentUrl.includes('/inspections') ||
-      this.currentUrl.includes('/update-gis') ||
-      this.currentUrl.includes('/my-tasks') ||
-      this.currentUrl.includes('/edit-complaint2') ||
-      this.currentUrl.includes('/business-conduct') ||
-      this.currentUrl.includes('/verify') ||
-      this.currentUrl.includes('/edit-complaint') ||
-      this.currentUrl.includes('/complaints') ||
-      this.currentUrl.includes('/view-complaint') ||
-      this.currentUrl.includes('/help') ||
-      this.currentUrl.includes('/complete-gis-report')
-    ) {
-      this.menu.enable(false, 'another-menu');
-      this.menu.enable(true, 'main-menu');
-      this.menu.open('main-menu');
-    } else {
-      this.menu.enable(false, 'main-menu');
-      this.menu.enable(true, 'another-menu');
-      this.menu.open('another-menu');
-    }
+    const dashboardRoutes = [
+      '/dashboard',
+      '/upload-image',
+      '/recommendations',
+      '/thank-you',
+      '/notifications',
+      '/special-event',
+      '/navigate-to-outlet',
+      '/photos',
+      '/addresses',
+      '/view-outlet',
+      '/location',
+      '/complete-inspection',
+      '/inspections',
+      '/update-gis',
+      '/my-tasks',
+      '/edit-complaint2',
+      '/business-conduct',
+      '/verify',
+      '/edit-complaint',
+      '/complaints',
+      '/view-complaint',
+      '/help',
+      '/complete-gis-report'
+    ];
+
+    const isDashboardRoute = dashboardRoutes.some(route => this.currentUrl.includes(route));
+
+    this.menu.enable(!isDashboardRoute, 'another-menu');
+    this.menu.enable(isDashboardRoute, 'main-menu');
+    this.menu.open(isDashboardRoute ? 'main-menu' : 'another-menu');
   }
 
   addHoverEffect(id: string) {
@@ -104,8 +108,9 @@ export class AppComponent {
 
       // Network status listener
       Network.addListener('networkStatusChange', (status) => {
-        if (status.connected) {
-          
+        this.isOnline = status.connected;
+        if (!this.isOnline) {
+          this.showAlert();
         }
       });
     });
@@ -116,7 +121,10 @@ export class AppComponent {
     localStorage.removeItem('uToken');
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    await this.storage.create();
+    await this.promptForPin();
     this.subscriptions.push(
       this.networkService.isOnline$.subscribe(status => {
         this.isOnline = status;
@@ -144,5 +152,51 @@ export class AppComponent {
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  async promptForPin() {
+    const pin = await this.storage.get('userPin');
+
+    if (pin) {
+      const alert = await this.alertController.create({
+        header: 'Enter PIN',
+        inputs: [
+          {
+            name: 'pin',
+            type: 'password',
+            placeholder: 'Enter your PIN',
+            attributes: {
+              maxlength: 4,
+              inputmode: 'numeric',
+            },
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+              console.log('Confirm Cancel');
+            },
+          },
+          {
+            text: 'Confirm',
+            handler: async (data: { pin: any; }) => {
+              if (data.pin === pin) {
+                await this.router.navigate(['/dashboard']);
+              } else {
+                console.error('Invalid PIN');
+                await this.promptForPin(); // Prompt again if the PIN is incorrect
+              }
+            },
+          },
+        ],
+      });
+
+      await alert.present();
+    } else {
+      await this.router.navigate(['/signin']);
+    }
   }
 }
