@@ -13,7 +13,7 @@ export class InspectionsPage implements OnInit {
   filteredOutlets: any[] = [];
   searchTerm: string = '';
 
-  constructor(private route: Router, private http: HttpClient,private spinner: NgxSpinnerService) {}
+  constructor(private route: Router, private http: HttpClient, private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
     this.spinner.show();
@@ -31,11 +31,20 @@ export class InspectionsPage implements OnInit {
         console.log(response);
         this.collect = response;
         this.filteredOutlets = this.collect; // Initialize filteredOutlets
-        
+
+        // Store the data in localStorage
+        localStorage.setItem('inspectionsData', JSON.stringify(this.collect));
       },
       error => {
         console.log(error);
         this.spinner.hide();
+
+        // Retrieve data from localStorage if available
+        const offlineData = localStorage.getItem('inspectionsData');
+        if (offlineData) {
+          this.collect = JSON.parse(offlineData);
+          this.filteredOutlets = this.collect; // Initialize filteredOutlets
+        }
       }
     );
   }

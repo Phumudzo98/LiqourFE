@@ -17,7 +17,10 @@ import { NgClass } from '@angular/common';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NetworkService } from './util/service/network.service';
 import { NetworkAlertComponent } from './pages/components/network-alert/network-alert.component';
+import { SecureStorage } from '@ionic-native/secure-storage/ngx'; // Correct import
+import { Network } from '@awesome-cordova-plugins/network/ngx'; // Correct import
 
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +46,8 @@ import { NetworkAlertComponent } from './pages/components/network-alert/network-
     ModalController ,// Add ModalController to the providers array
     ScreenOrientation,
     NetworkService,
+  
+    FingerprintAIO,
     MenuController, { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }, provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
