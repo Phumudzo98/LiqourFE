@@ -18,10 +18,9 @@ describe('SigninPage', () => {
   let component: SigninPage;
   let fixture: ComponentFixture<SigninPage>;
   let otpService: jasmine.SpyObj<OtpServiceService>;
+  let log :jasmine.SpyObj<SigninPage>
 
   beforeEach(waitForAsync(() => {
-
-    const otpServiceSpy = jasmine.createSpyObj('OtpServiceService', ['getOneTimePin']);
 
     TestBed.configureTestingModule({
       declarations: [SigninPage],
@@ -37,7 +36,8 @@ describe('SigninPage', () => {
         OtpServiceService ,
         Auth,
         HelperService,
-        DataService
+        DataService,
+        SigninPage
       ],
     }).compileComponents();
 
@@ -62,23 +62,16 @@ describe('SigninPage', () => {
     expect(passwordContr).toBeTruthy()
     passwordContr?.setValue("yfdsdcgdg")
     expect(passwordContr?.value).toBeTruthy();
+
+    component.login()
+
+    expect(component.otp).toBeTruthy()
+    
   })
 
-  it('should call getOneTimePin and set a non-empty otp value', async () => {
-    
-    component.loginForm.setValue({ email: 'Zuko.Lizani', password: 'password' });
-    
-    spyOn(component, 'saveData');
-    
-    //otpServiceSpy.
+ 
 
-    component.login();
-
-    await fixture.whenStable();
-
-    //expect().toHaveBeenCalled(); 
-    //expect(component.getotp).not.toBe(''); 
-  });
+ 
 }
 
 
