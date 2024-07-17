@@ -13,8 +13,19 @@
     
     <form [formGroup]="registerForm">
       <ion-item>
-  <ion-input formControlName="fullName" placeholder="Full Name(s)"></ion-input>
-</ion-item>
+        <ion-input formControlName="fullName" placeholder="Full Name(s)"
+          [ngClass]="{
+            'error-border': register['fullName'].invalid && (register['fullName'].dirty || register['fullName'].touched),
+            'error-placeholder': register['fullName'].invalid && (register['fullName'].dirty || register['fullName'].touched)
+          }"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="register['fullName'].invalid && (register['fullName'].dirty || register['fullName'].touched)"
+        class="alert alert-danger">
+        <span *ngIf="register['fullName'].errors?.['required']" >Full Name is required</span>
+        <span *ngIf="!register['fullName'].errors?.['required'] && register['fullName'].errors?.['fullNameInvalidCharacters']">Full Name must only contain letters and spaces.</span>
+      </div>
 <!--
 <div
   *ngIf="register['fullName'].invalid && (register['fullName'].dirty || register['fullName'].touched)" >
@@ -25,28 +36,97 @@
  -->
 
       <ion-item>
-        <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
+        <ion-input formControlName="email" placeholder="Email"
+          [ngClass]="{
+            'error-border': register['email'].invalid && (register['email'].dirty || register['email'].touched),
+            'error-placeholder': register['email'].invalid && (register['email'].dirty || register['email'].touched)
+          }"
+        ></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-input formControlName="idNumber" placeholder="Id Number"></ion-input>
+      <div
+      *ngIf="register['email'].invalid && (register['email'].dirty || register['email'].touched)"
+      class="alert alert-danger">
+      <span *ngIf="register['email'].errors?.['required']" >Email is required</span>
+      <span *ngIf="register['email'].errors?.['email']" >Please enter valid email</span>
+    </div>
+  
+    <!--ID input and Validations-->
+        <ion-item>
+        <ion-input formControlName="idNumber" placeholder="Id Number"
+        maxlength="13"
+          [ngClass]="{
+            'error-border': register['idNumber'].invalid && (register['idNumber'].dirty || register['idNumber'].touched),
+            'error-placeholder': register['idNumber'].invalid && (register['idNumber'].dirty || register['idNumber'].touched)
+          }"
+        ></ion-input>
       </ion-item>
+      <div
+      *ngIf="register['idNumber'].invalid && (register['idNumber'].dirty || register['idNumber'].touched)"
+      class="alert alert-danger"
+    >
+      <span *ngIf="register['idNumber'].errors?.['required']">ID Number is required.</span>
+      <span *ngIf="!register['idNumber'].errors?.['required'] && register['idNumber'].errors?.['idNumberInvalidCharacters']">ID Number must only contain numbers.</span>
+      <span *ngIf="!register['idNumber'].errors?.['required']  && !register['idNumber'].errors?.['idNumberInvalidCharacters'] && register['idNumber'].errors?.['idNumberLength']">ID Number must be 13 digits long.</span>
+    </div>
+    
+        <!--Mobilenumber  input and Validations-->
+        <ion-item>
+          <ion-input formControlName="mobileNo" placeholder="Mobile Number"
+          maxlength="10"
+            [ngClass]="{
+              'error-border': register['mobileNo'].invalid && (register['mobileNo'].dirty || register['mobileNo'].touched),
+            }"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="register['mobileNo'].invalid && (register['mobileNo'].dirty || register['mobileNo'].touched)"
+          class="alert alert-danger">
+          <span *ngIf="register['mobileNo'].errors?.['required']">Mobile Number is required</span>
+          <span *ngIf="register['mobileNo'].errors?.['pattern']">Please enter valid Mobile Number</span>
+
+        </div>
+
       <ion-item>
-        <ion-input formControlName="mobileNo" placeholder="Mobile Number"></ion-input>
-      </ion-item>
-      
-      <ion-item>
-        <ion-select class="custom-input custom-select" placeholder="Gender" formControlName="gender">
+        <ion-select class="custom-input custom-select" placeholder="Gender" formControlName="gender" 
+        [ngClass]="{
+          'error-border': register['gender'].invalid && (register['gender'].dirty || register['gender'].touched)}">
           <ion-select-option value="male">Male</ion-select-option>
           <ion-select-option value="female">Female</ion-select-option>
         </ion-select>
       </ion-item>
+      <div
+      *ngIf="register['gender'].invalid && (register['gender'].dirty || register['gender'].touched)"
+      class="alert alert-danger">
+      <span *ngIf="register['gender'].errors?.['required']">Please select your gender</span>
+    </div>
+
+
       <ion-item>
-        <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+        <ion-input formControlName="password" type="password" placeholder="Password"
+        [ngClass]="{
+          'error-border': register['password'].invalid && (register['password'].dirty || register['password'].touched)}"
+        ></ion-input>
       </ion-item>
+      <div
+      *ngIf="register['password'].invalid && (register['password'].dirty || register['password'].touched)"
+      class="alert alert-danger">
+      <span *ngIf="register['gender'].errors?.['required']">Password is required</span>
+    </div>
       <ion-item>
-        <ion-input formControlName="confirmPassword" type="password" placeholder="Confirm Password"></ion-input>
+        <ion-input formControlName="confirmPassword" type="password" placeholder="Confirm Password"
+        [ngClass]="{
+          'error-border': register['confirmPassword'].invalid && (register['confirmPassword'].dirty || register['confirmPassword'].touched)}">
+        </ion-input>
       </ion-item>
-      <ion-button class="buttonClass" type="submit">Sign Up</ion-button>
+      <div
+      *ngIf="register['confirmPassword'].invalid && (register['confirmPassword'].dirty || register['confirmPassword'].touched)"
+      class="alert alert-danger">
+      <span *ngIf="register['confirmPassword'].errors?.['required']">Please confirm your password.</span>
+      <span *ngIf="register['confirmPassword'].errors?.['MustMatch']">Password does not match.</span>
+
+    </div>
+
+    <ion-button class="buttonClass" type="submit" [disabled]="!registerForm.valid" (click)="onSubmit()">Sign Up</ion-button>
     </form>
     <p class="have-account">Already have an account, <span class="link" (click)="toLogin()">Sign in</span></p>
   </div>

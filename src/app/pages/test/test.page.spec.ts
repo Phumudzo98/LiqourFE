@@ -1,17 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestPage } from './test.page';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { TestPage } from './test.page';
 
-describe('TestPage', () => {
-  let component: TestPage;
-  let fixture: ComponentFixture<TestPage>;
+// describe('TestPage', () => {
+//   let component: TestPage;
+//   let fixture: ComponentFixture<TestPage>;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(TestPage);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

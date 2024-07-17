@@ -49,11 +49,8 @@ export class HelperService {
 
   setSimpToken(token:any)
   {
-
-    
     localStorage.setItem('uToken',token)
     console.log(token);
-    
   }
 
  
