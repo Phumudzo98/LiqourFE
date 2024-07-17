@@ -13,7 +13,7 @@ export class RegisterUserPage implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router, private spinner: NgxSpinnerService) {
     this.registerForm = this.fb.group({
-      fullName: ['', Validators.required],
+      fullName: ['', [Validators.required, this.fullNameValidator]],
       email: ['', [Validators.required, Validators.email]],
       idNumber: ['', [Validators.required, this.idNumberValidator, this.idNumberLengthValidator]],
       mobileNo: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
@@ -79,6 +79,23 @@ export class RegisterUserPage implements OnInit {
   
       }
      }
+
+     //No special Characters on fullName
+              // Full Name Validator
+        fullNameValidator(control: AbstractControl): ValidationErrors | null {
+          const fullName = control.value;
+        const errors: ValidationErrors = {};
+
+        if (!/^[a-zA-Z\s]+$/.test(fullName)) {
+        errors['fullNameInvalidCharacters'] = true;
+        }
+        return Object.keys(errors).length ? errors : null;
+        }
+
+
+     
+
+
 
      //Submitting a form
      onSubmit()
