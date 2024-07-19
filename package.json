@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/pwa": "^18.0.6",
     "@angular/router": "^18.0.0",
+    "@awesome-cordova-plugins/network": "^6.8.0",
     "@awesome-cordova-plugins/screen-orientation": "^6.7.0",
     "@capacitor/android": "6.0.0",
     "@capacitor/app": "6.0.0",
@@ -34,6 +35,8 @@
     "@capacitor/network": "^6.0.1",
     "@capacitor/preferences": "^6.0.1",
     "@capacitor/status-bar": "6.0.0",
+    "@ionic-native/fingerprint-aio": "^5.36.0",
+    "@ionic-native/secure-storage": "^5.36.0",
     "@ionic/angular": "^7.7.3",
     "@ionic/pwa-elements": "^3.3.0",
     "@ionic/storage-angular": "^4.0.0",
@@ -41,10 +44,12 @@
     "android": "^0.0.8",
     "capacitor": "^0.5.6",
     "cordova-plugin-app-exit": "0.0.2",
+    "cordova-plugin-network-information": "3.0.0",
+    "cordova-plugin-secure-storage-echo": "5.1.1",
     "ionicons": "^7.0.0",
     "jwt-decode": "^4.0.0",
     "ngx-spinner": "^17.0.0",
-    "rxjs": "~7.8.0",
+    "rxjs": "^6.6.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
@@ -77,7 +82,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "karma-requirejs": "^1.1.0",
+    "karma-requirejs": "^0.1.0",
     "node-sass": "^9.0.0",
     "sass": "^1.77.6",
     "sass-loader": "^14.2.1",
@@ -88,7 +93,8 @@
     "plugins": {
       "cordova-sqlite-storage": {},
       "cordova-plugin-screen-orientation": {},
-      "cordova-plugin-app-exit": {}
+      "cordova-plugin-app-exit": {},
+      "cordova-plugin-secure-storage-echo": {}
     }
   }
 }

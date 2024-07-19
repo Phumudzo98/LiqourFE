@@ -219,7 +219,8 @@ const routes: Routes = [
   {
     path: 'test',
     loadChildren: () => import('./pages/test/test.module').then( m => m.TestPageModule)
-  },  {
+  },
+  {
     path: 'register-user',
     loadChildren: () => import('./Outlet/register-user/register-user.module').then( m => m.RegisterUserPageModule)
   },
@@ -230,10 +231,8 @@ const routes: Routes = [
   {
     path: 'email-verification',
     loadChildren: () => import('./Outlet/email-verification/email-verification.module').then( m => m.EmailVerificationPageModule)
-  }
-
-
-
+  },
+ 
 ];
     
 @NgModule({

@@ -24,8 +24,8 @@
         *ngIf="register['fullName'].invalid && (register['fullName'].dirty || register['fullName'].touched)"
         class="alert alert-danger">
         <span *ngIf="register['fullName'].errors?.['required']" >Full Name is required</span>
+        <span *ngIf="!register['fullName'].errors?.['required'] && register['fullName'].errors?.['fullNameInvalidCharacters']">Full Name must only contain letters and spaces.</span>
       </div>
-
 <!--
 <div
   *ngIf="register['fullName'].invalid && (register['fullName'].dirty || register['fullName'].touched)" >
@@ -53,6 +53,7 @@
     <!--ID input and Validations-->
         <ion-item>
         <ion-input formControlName="idNumber" placeholder="Id Number"
+        maxlength="13"
           [ngClass]="{
             'error-border': register['idNumber'].invalid && (register['idNumber'].dirty || register['idNumber'].touched),
             'error-placeholder': register['idNumber'].invalid && (register['idNumber'].dirty || register['idNumber'].touched)
@@ -71,6 +72,7 @@
         <!--Mobilenumber  input and Validations-->
         <ion-item>
           <ion-input formControlName="mobileNo" placeholder="Mobile Number"
+          maxlength="10"
             [ngClass]="{
               'error-border': register['mobileNo'].invalid && (register['mobileNo'].dirty || register['mobileNo'].touched),
             }"
