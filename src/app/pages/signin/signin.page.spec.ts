@@ -64,9 +64,10 @@ describe('SigninPage', () => {
     expect(passwordContr?.value).toBeTruthy();
 
     component.login()
+    otpService.getOneTimePin
 
     expect(component.otp).toBeTruthy()
-    
+
   })
 
  
