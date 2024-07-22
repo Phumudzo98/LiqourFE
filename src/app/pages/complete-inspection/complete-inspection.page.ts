@@ -494,29 +494,81 @@ export class CompleteInspectionPage implements OnInit {
   longitude?: number;
 
   async getCurrentPosition() {
+
+    const options: PositionOptions = {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    };
+
     try {
       const coordinates = await Geolocation.getCurrentPosition();
       this.latitude = coordinates.coords.latitude;
       this.longitude = coordinates.coords.longitude;
 
-      console.log(this.latitude);
-      console.log(this.longitude);
-
       this.completeReportForm.patchValue({
         latitude: this.latitude,
         longitude: this.longitude
       });
-    } catch (err) {
-      console.error('Error getting location', err);
+
+      this.saveLastKnownLocation(this.latitude, this.longitude);
+
+
+    } catch (error) {
+       if (error instanceof GeolocationPositionError) {
+        console.error('Error getting location', error);
+        // Check for specific error codes and handle them
+        if (error.code === 1) {
+          await this.presentAlert('Permission Denied', 'Location access was denied.');
+        } else if (error.code === 2) {
+          await this.presentAlert('Position Unavailable', 'Unable to determine location.');
+          this.loadLastKnownLocation();
+        } else if (error.code === 3) {
+          await this.presentAlert('Timeout', 'Location request timed out.');
+        } else {
+          await this.presentAlert('Error', 'An unexpected error occurred while getting location.');
+        }
+    } else{
+      console.error('An unknown error occurred', error);
     }
   }
+  
+}
 
+  saveLastKnownLocation(lat: number, lon: number) {
+    localStorage.setItem('lastKnownLatitude', lat.toString());
+    localStorage.setItem('lastKnownLongitude', lon.toString());
+  }
 
+  
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 
   radioClicked(formControlName: string, value: string) {
     this.completeReportForm.patchValue({
       [formControlName]: value
     });
+  }
+
+  loadLastKnownLocation() {
+    const lastLat = localStorage.getItem('lastKnownLatitude');
+    const lastLon = localStorage.getItem('lastKnownLongitude');
+
+    if (lastLat && lastLon) {
+      this.latitude = parseFloat(lastLat);
+      this.longitude = parseFloat(lastLon);
+      this.completeReportForm.patchValue({
+        latitude: this.latitude,
+        longitude: this.longitude
+      });
+    }
   }
  
   openDatetimePicker() {
