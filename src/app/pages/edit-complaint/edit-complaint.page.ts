@@ -36,7 +36,7 @@ export class EditComplaintPage implements OnInit {
     const newHeader={
       "Authorization":"Bearer "+token, 
       "Accept":"*/*"}
-    let urlForInspectors="https://system.eclb.co.za/eclb2/api/general/get-complaints-info";
+    let urlForInspectors="http://localhost:8081/api/general/get-complaints-info";
 
     this.http.get(urlForInspectors, { headers: newHeader }).subscribe(
       (response: any) => {
@@ -57,7 +57,7 @@ export class EditComplaintPage implements OnInit {
 
       this.referenceNo = param.get('referenceNumber');
 
-      let url = "https://system.eclb.co.za/eclb2/api/general/get-complain/"+this.referenceNo;
+      let url = "http://localhost:8081/api/general/get-complaint-details/"+this.referenceNo;
 
       
     const newHeader={
@@ -72,13 +72,15 @@ export class EditComplaintPage implements OnInit {
         
         this.reference=response.referenceNumber;
         //this.description=response.;
-        this.strAddress=response.address;
-        this.offOutlet=response.offendingOutlet;
-        this.town=response.town;
-        this.districMunicipalty=response.districtName
-        this.localMunicipality=response.localMunicipality
+        this.strAddress=response.addressOfOutlet;
+        this.offOutlet=response.outletName;
+        this.town=response.areaOfOutlet;
+        this.districMunicipalty=response.regionOfOutlet;
+        this.localMunicipality=response.localMunicipality;
         this.comment=response.comment;
         this.history=response.commentHistory;
+        this.description=response.descriptionOfComplaint;
+        
 
 
       }, error => {
@@ -113,7 +115,7 @@ export class EditComplaintPage implements OnInit {
         "status":this.status,
         "comments":[]
     }
-    let url ="https://system.eclb.co.za/eclb2/api/general/update-complain"
+    let url ="http://localhost:8081/api/general/update-complain"
     this.http.put(url,form, {headers: newHeader}).subscribe(response=>
       {
         console.log(response);

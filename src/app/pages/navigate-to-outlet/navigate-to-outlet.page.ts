@@ -24,6 +24,9 @@ export class NavigateToOutletPage implements OnInit {
         const large = response;
         this.specific = large;
 
+        console.log(large);
+        
+
         this.outlets = [
           {
             imgSrc: '../../../assets/Images/kwa coca.jpeg',

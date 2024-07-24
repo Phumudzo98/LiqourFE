@@ -55,6 +55,9 @@ export class ComplaintsPage implements OnInit, OnDestroy {
         console.log(response);
         this.collect = response;
         this.filteredCollect = response;
+      
+          this.filteredCollect.sort((a, b) => new Date(b.dateComplaintLogged).getTime() - new Date(a.dateComplaintLogged).getTime());
+          this.filteredCollect = this.filteredCollect || []
         this.spinner.hide();
         this.loading = false;
       },
