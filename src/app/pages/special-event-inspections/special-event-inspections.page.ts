@@ -151,7 +151,7 @@ export class SpecialEventInspectionsPage implements OnInit {
     }
     //Applicant Valid
     isApplicantFormValid(): boolean {
-      const applicantFields = ['appointmentSet', 'personConsulted', 'applicantIndicatedPersonAtPremises', 'personFoundConfirmed'];
+      const applicantFields = ['appointmentSet', 'personConsulted', 'indicatedParticularPerson', 'personFoundConfirmed'];
       return applicantFields.every(field => this.completeReportForm.get(field)?.valid);
     }
   
@@ -195,32 +195,20 @@ export class SpecialEventInspectionsPage implements OnInit {
         "Accept": "/"
       };
   
-      this.inspectionReport = this.inspectionReport || {};
-      this.inspectionReport = Object.assign(this.inspectionReport, this.completeReportForm.value);
+      
+      let url = "http://localhost:8081/eclb2/api/general/universal-complete-report/" + this.caseNo;
   
-      const formData = new FormData();
-      formData.append('inspection', new Blob([JSON.stringify(this.inspectionReport)], { type: 'application/json' }));
-  
-      this.reportDoc = this.reportFiles[0];
-      formData.append('report', this.report);
-  
-      this.noticeDoc = this.noticeFiles[0];
-      formData.append('notice', this.notice);
-  
-  
-      let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
-  
-      this.http.post(url, formData).subscribe(response => {
+      this.http.post(url, this.completeReportForm).subscribe(response => {
         console.log(response);
         this.spinner.hide();
-      
-        this.router.navigate(['/thank-you'])
+        console.log(this.completeReportForm);
+        this.router.navigate(['/thank-you']);
         
       }, error => {
         console.log(error);
         this.spinner.hide();
       
-         this.offlineService.saveReport(formData, this.caseNo).then(
+         this.offlineService.saveReport(this.completeReportForm.value, this.caseNo).then(
           () => {
             // Handle successful response
             console.log('Report saved successfully');
