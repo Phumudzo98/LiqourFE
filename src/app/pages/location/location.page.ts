@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Geolocation } from '@capacitor/geolocation';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,8 +12,8 @@ import { environment } from 'src/environments/environment';
 })
 export class LocationPage implements OnInit {
 
-  latitude?: number;
-  longitude?: number;
+  latitude: any;
+  longitude: any;
   showManualInput = false;
   input:string='';
   addresses: any[] = [];
@@ -28,19 +29,11 @@ export class LocationPage implements OnInit {
   private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
   fullAddress: string = '';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router: ActivatedRoute) { }
 
   async getCurrentPosition() {
     try {
-      const coordinates = await Geolocation.getCurrentPosition();
-      this.latitude = coordinates.coords.latitude;
-      this.longitude = coordinates.coords.longitude;
-
-      console.log(this.latitude);
-      console.log(this.longitude);
-
-      this.getAddressFromCoordinates(this.latitude, this.longitude);
-      
+  
       let url = `geo:${this.latitude},${this.longitude}?q=${this.latitude},${this.longitude}`
       window.open(url,'_system')
       
@@ -51,7 +44,19 @@ export class LocationPage implements OnInit {
    
   }
 
+  
+
   ngOnInit() {
+
+    this.router.paramMap.subscribe(param => {
+
+      this.latitude = param.get('latitude');
+      this.longitude = param.get('longitude');
+      
+      console.log(this.latitude+"  "+ this.longitude);
+      
+    });
+
   }
 
   toggleManualInput() {

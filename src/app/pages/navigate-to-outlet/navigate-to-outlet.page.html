@@ -43,7 +43,7 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-        <ion-button [routerLink]="['/location']" class="buttonClass">
+        <ion-button  [routerLink]="['/location', outlet.latitude, outlet.longitude]" class="buttonClass">
           Navigate to Location
         </ion-button>
       </ion-card>

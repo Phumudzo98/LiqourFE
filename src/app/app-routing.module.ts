@@ -72,7 +72,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/complete-inspection/complete-inspection.module').then( m => m.CompleteInspectionPageModule)
   },
   {
-    path: 'location',
+    path: 'location/:latitude/:longitude',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
   {

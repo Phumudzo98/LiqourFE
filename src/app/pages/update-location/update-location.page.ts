@@ -204,7 +204,7 @@ export class UpdateLocationPage implements OnInit {
   report = new CompleteGISReport();
 
   onSubmit() {
-    let url = "https://system.eclb.co.za/eclb2/api/general/save-gis-report";
+    let url = "http://localhost:8081/api/general/save-gis-report";
 
     // this.formData.append('outletId', '23456');
     // this.formData.append('longitude', this.longitude?.toString() || '');
