@@ -197,13 +197,13 @@ export class SpecialEventInspectionsPage implements OnInit {
       };
   
       
-      let url = "http://localhost:8081/eclb2/api/general/universal-complete-report/" + this.caseNo;
+      let url = "http://localhost:8081/api/general/universal-complete-report/" + this.caseNo;
   
-      this.http.post(url, this.completeReportForm).subscribe(response => {
+      this.http.post(url, this.completeReportForm.value).subscribe(response => {
         console.log(response);
         this.spinner.hide();
-        console.log(this.completeReportForm);
-        this.router.navigate(['/thank-you']);
+        console.log(this.completeReportForm.value);
+        this.router.navigate(['/thank-you-2']);
         
       }, error => {
         console.log(error);

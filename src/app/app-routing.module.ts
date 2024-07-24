@@ -197,7 +197,7 @@ const routes: Routes = [
     loadChildren: () => import('./outletHeaderFooter/outlethaeder/outlethaeder.module').then( m => m.OutlethaederPageModule)
   },
   {
-    path: 'special-event-inspections',
+    path: 'special-event-inspections/:caseId',
     loadChildren: () => import('./pages/special-event-inspections/special-event-inspections.module').then( m => m.SpecialEventInspectionsPageModule)
   },
   {
@@ -231,7 +231,11 @@ const routes: Routes = [
   {
     path: 'email-verification',
     loadChildren: () => import('./Outlet/email-verification/email-verification.module').then( m => m.EmailVerificationPageModule)
+  },  {
+    path: 'thank-you-2',
+    loadChildren: () => import('./pages/thank-you-2/thank-you-2.module').then( m => m.ThankYou2PageModule)
   },
+
  
 ];
     

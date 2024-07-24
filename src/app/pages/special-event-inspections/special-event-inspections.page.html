@@ -2,7 +2,7 @@
   <form [formGroup]="completeReportForm">
   <div *ngIf="currentForm === 'landing'">
     <div class="header-container">
-      <a [routerLink]="['/inspections']" class="back-Arrow"><img src="assets/Images/Back Icon.svg"></a>
+      <a [routerLink]="['/special-event']" class="back-Arrow"><img src="assets/Images/Back Icon.svg"></a>
       <h1 class="header-text">Special Event</h1>
     </div>
     <ion-card>
@@ -938,6 +938,7 @@
     <ion-content>
       <ion-datetime
         placeholder="Enter Inspection Date"
+        formControlName="futurePreInspectionDate"
         (ionChange)="dateChanged1($event); closePopover()"
       ></ion-datetime>
     </ion-content>
