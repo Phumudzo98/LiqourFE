@@ -43,7 +43,7 @@ export class ComplaintsPage implements OnInit, OnDestroy {
 
   fetchComplaints() {
     this.spinner.show();
-    const url = "https://system.eclb.co.za/eclb2/api/general/get-complaints";
+    const url = "http://localhost:8081/api/general/get-complaints";
     const token = localStorage.getItem("userToken");
     const newHeader = {
       "Authorization": "Bearer " + token,
