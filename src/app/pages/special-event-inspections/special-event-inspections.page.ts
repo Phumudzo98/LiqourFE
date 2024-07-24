@@ -93,6 +93,7 @@ export class SpecialEventInspectionsPage implements OnInit {
   inspectionDate: ['', Validators.required],
   latitude:['', Validators.required],
   longitude: ['', Validators.required],
+
   appointmentSet: ['', Validators.required],
   personConsulted: ['', Validators.required],
   indicatedParticularPerson:['', Validators.required],
@@ -157,7 +158,7 @@ export class SpecialEventInspectionsPage implements OnInit {
   
     //Documentation Valid
     isDocumentationFormValid(): boolean {
-      const documentationFields = ['rightToOccupy', 'premisesInIndicatedAddress', 'premisesSuitedForCategory', 'premiseInLineWithPlan', 'lease','ablutionFacilityInOrder', 'readyToCommenceWithBusiness'];
+      const documentationFields = ['rightToOccupy', 'premisesInIndicatedAddress', 'premisesSuitedForCategory', 'premiseInLineWithPlan', 'lease','abulutionFacilityWorking', 'readyToCommenceWithBusiness'];
       return documentationFields.every(field => this.completeReportForm.get(field)?.valid);
     }
   
@@ -179,7 +180,7 @@ export class SpecialEventInspectionsPage implements OnInit {
       const recommendationFields = ['recommendationForRegistration', 'comments', 'futurePreInspectionDate'];
       return recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
     }
-    
+
     //InspectionReport 
     isInspectionReport(){
       const areReportFilesPresent = this.reportFiles && this.reportFiles.length > 0;
