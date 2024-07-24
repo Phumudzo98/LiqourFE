@@ -201,7 +201,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/special-event-inspections/special-event-inspections.module').then( m => m.SpecialEventInspectionsPageModule)
   },
   {
-    path: 'update-location',
+    path: 'update-location/:caseId',
     loadChildren: () => import('./pages/update-location/update-location.module').then( m => m.UpdateLocationPageModule)
   },
   {

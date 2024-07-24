@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Geolocation, PositionOptions } from '@capacitor/geolocation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { headers, headersSecure } from 'src/app/util/service/const';
+import { CompleteGISReport } from 'src/app/util/service/model';
 
 @Component({
   selector: 'app-update-location',
@@ -29,7 +30,8 @@ export class UpdateLocationPage implements OnInit {
     private eRef: ElementRef,
     private alertController: AlertController,
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: ActivatedRoute
   ) {
     this.gisReportForm = this.formBuilder.group({
       latitude: ['', Validators.required],
@@ -40,8 +42,27 @@ export class UpdateLocationPage implements OnInit {
     });
   }
 
+  caseId:any
+
   ngOnInit() {
     this.loadLastKnownLocation();
+    
+    let token = localStorage.getItem("userToken") 
+    this.router.paramMap.subscribe(param => {
+
+      this.caseId = param.get('caseId');
+
+      console.log(this.caseId);
+      
+      
+    const newHeader={
+      "Authorization":"Bearer "+token, 
+      "Accept":"*/*"
+    }
+      
+      
+    });
+
   }
 
   async getCurrentPosition() {
@@ -180,15 +201,22 @@ export class UpdateLocationPage implements OnInit {
   }
 
   formData = new FormData();
+  report = new CompleteGISReport();
 
   onSubmit() {
     let url = "https://system.eclb.co.za/eclb2/api/general/save-gis-report";
 
-    this.formData.append('outletId', '23456');
-    this.formData.append('longitude', this.longitude?.toString() || '');
-    this.formData.append('latitude', this.latitude?.toString() || '');
+    // this.formData.append('outletId', '23456');
+    // this.formData.append('longitude', this.longitude?.toString() || '');
+    // this.formData.append('latitude', this.latitude?.toString() || '');
 
-    this.http.post(url, this.formData, { headers: headersSecure }).subscribe(response => {
+    this.report = Object.assign(this.report, this.gisReportForm.value);
+    const formData = new FormData();
+    formData.append('gisreport', new Blob([JSON.stringify(this.report)], { type: 'application/json' }));
+
+    
+    
+    this.http.post(url+this.caseId, formData, { headers: headersSecure }).subscribe(response => {
       console.log(response);
     }, error => {
       console.log(error);
