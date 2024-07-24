@@ -31,20 +31,8 @@ export class LocationPage implements OnInit {
 
   constructor(private http:HttpClient, private router: ActivatedRoute) { }
 
-  async getCurrentPosition() {
-    try {
-  
-      let url = `geo:${this.latitude},${this.longitude}?q=${this.latitude},${this.longitude}`
-      window.open(url,'_system')
-      
-      
-    } catch (err) {
-      console.error('Error getting location', err);
-    }
-   
-  }
 
-  
+
 
   ngOnInit() {
 
@@ -58,6 +46,23 @@ export class LocationPage implements OnInit {
     });
 
   }
+
+  async getCurrentPosition() {
+    try {
+  
+      let url = `geo:${this.latitude},${this.longitude}?q=${this.latitude},${this.longitude}`
+      //let url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+
+      window.open(url,'_system')
+      
+      
+    } catch (err) {
+      console.error('Error getting location', err);
+    }
+   
+  }
+
+  
 
   toggleManualInput() {
     this.showManualInput = !this.showManualInput;
