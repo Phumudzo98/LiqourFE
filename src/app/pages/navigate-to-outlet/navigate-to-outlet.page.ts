@@ -20,7 +20,7 @@ export class NavigateToOutletPage implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/outlet/get-outlets", { headers: headersSecure }).subscribe(response => {
+    this.http.get<any[]>("http://localhost:8081/api/outlet/get-outlets", { headers: headersSecure }).subscribe(response => {
         const large = response;
         this.specific = large;
 
@@ -30,6 +30,8 @@ export class NavigateToOutletPage implements OnInit {
         this.outlets = [
           {
             imgSrc: '../../../assets/Images/kwa coca.jpeg',
+            latitude: this.specific[5].latitude,
+            longitude: this.specific[5].longitude,
             header: this.specific[5].organisationName,
             details: this.specific[5].ecpNumber + " " + this.specific[5].licenseCategory,
             iconSrc: '../../../assets/Images/Group 88.svg',
@@ -39,24 +41,32 @@ export class NavigateToOutletPage implements OnInit {
             header: this.specific[6].organisationName,
             details: this.specific[6].ecpNumber + " " + this.specific[6].licenseCategory,
             iconSrc: '../../../assets/Images/Group 88.svg',
+            latitude: this.specific[6].latitude,
+            longitude: this.specific[6].longitude,
           },
           {
             imgSrc: '../../../assets/Images/viva.jpeg',
             header: this.specific[7].organisationName,
             details: this.specific[7].ecpNumber + " " + this.specific[7].licenseCategory,
             iconSrc: '../../../assets/Images/Group 88.svg',
+            latitude: this.specific[7].latitude,
+            longitude: this.specific[7].longitude,
           },
           {
             imgSrc: '../../../assets/Images/shakis.jpeg',
             header: this.specific[8].organisationName,
             details: this.specific[8].ecpNumber + " " + this.specific[8].licenseCategory,
             iconSrc: '../../../assets/Images/Group 88.svg',
+            latitude: this.specific[8].latitude,
+            longitude: this.specific[8].longitude,
           },
           {
             imgSrc: '../../../assets/Images/burguer nn.jpeg',
             header: this.specific[9].organisationName,
             details: this.specific[9].ecpNumber + " " + this.specific[9].licenseCategory,
             iconSrc: '../../../assets/Images/Group 88.svg',
+            latitude: this.specific[9].latitude,
+            longitude: this.specific[9].longitude,
           },
         ];
 

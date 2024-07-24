@@ -17,8 +17,8 @@ export class UpdateGisPage implements OnInit {
 
   outlets: any[] = [];
 
-  url: string = "https://system.eclb.co.za/eclb2//api/general/save-gis"
-  url2: string = "https://system.eclb.co.za/eclb2/api/general/get-inbox";
+  url: string = "http://localhost:8081/api/general/save-gis"
+  url2: string = "http://localhost:8081/api/general/get-inbox";
 
   constructor(private route: Router, private spinner: NgxSpinnerService, private http: HttpClient) { }
 
