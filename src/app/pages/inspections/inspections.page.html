@@ -15,32 +15,32 @@
         <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
       </ion-input>
     </ion-item>
-
-    <ion-card *ngFor="let outlet of filteredOutlets">
+    <ion-card *ngFor="let outlet of filteredOutlets" class="outlet-card">
       <div *ngIf="outlet.action == 'Complete Report'">
-      <ion-grid class="top">
-        <ion-row>
-          <ion-col>
-            <ion-img></ion-img>
-          </ion-col>
-          <ion-col size="6">
-            <!--Header-->
-            <span class="detail-header font-weight">{{ outlet.outletName }}</span>
-            <br>
-            <!--Details-->
-            <span class="info-time" [innerHTML]="outlet.ecpNumber"></span>
-            <br>
-          </ion-col>
-          <ion-col class="centered-col">
-            <ion-img [src]="outlet.iconSrc"></ion-img>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      
-      <ion-button class="buttonClass" [routerLink]="['/complete-inspection', outlet.caseId]">
-        Complete Inspection
-      </ion-button>
+        <ion-grid class="top">
+          <ion-row>
+            <ion-col>
+              <ion-img></ion-img>
+            </ion-col>
+            <ion-col >
+              <!--Header-->
+              <span class="detail-header font-weight">{{ outlet.outletName }}</span>
+              <br>
+              <!--Details-->
+              <span class="info-time" [innerHTML]="outlet.ecpNumber"></span>
+              <br>
+            </ion-col>
+            <ion-col class="centered-col">
+              <ion-img [src]="outlet.iconSrc"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        
+        <ion-button class="buttonClass" [routerLink]="['/complete-inspection', outlet.caseId]">
+          Complete Inspection
+        </ion-button>
       </div>
     </ion-card>
+    
   </div>
 </ion-content>

@@ -27,13 +27,17 @@ export class CompleteInspectionPage implements OnInit {
   inputVisible: boolean = true; 
   isNetworkConnected: boolean = true; // Flag to track network status
   dateFormatPlaceholder: string = "YYYY-MM-DD";
+
+  imageSources: { src: string, description: string }[] = [];
+  dropdownVisible: { [index: string]: boolean } = {};
+
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
 
   completeReportForm: FormGroup;
   caseId: any;
   caseNo: any;
-  imageSources: string[] = [];
+
   private geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}";
 
   inspectionReport: any;
@@ -384,11 +388,44 @@ export class CompleteInspectionPage implements OnInit {
       source: source
     });
     if (image.dataUrl) {
-      this.imageSources.push(image.dataUrl);
+      const description = await this.promptForDescription();
+      if (description !== null) {
+        this.imageSources.push({ src: image.dataUrl, description });
+      }
     }
   }
 
-  dropdownVisible: { [index: string]: boolean } = {};
+  async promptForDescription(): Promise<string | null> {
+    return new Promise(async (resolve) => {
+      const alert = await this.alertController.create({
+        header: 'Add Description',
+        inputs: [
+          {
+            name: 'description',
+            type: 'text',
+            placeholder: 'Enter image description'
+          }
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              resolve(null);
+            }
+          },
+          {
+            text: 'Save',
+            handler: (data) => {
+              resolve(data.description);
+            }
+          }
+        ]
+      });
+      await alert.present();
+    });
+  }
+ 
   toggleDropdown(event: Event, index: number) {
     event.stopPropagation();
     this.dropdownVisible[index] = !this.dropdownVisible[index];
@@ -435,58 +472,23 @@ export class CompleteInspectionPage implements OnInit {
   }
 
   private removeImage(imageUrl: string) {
-    const index = this.imageSources.indexOf(imageUrl);
+    const index = this.imageSources.findIndex(image => image.src === imageUrl);
     if (index !== -1) {
       this.imageSources.splice(index, 1);
       this.dropdownVisible[index] = false;
     }
   }
 
-  async showOptions(imageUrl: string) {
-    const alert = await this.alertController.create({
-      header: 'Options',
-      message: 'Choose an action for this image:',
-      buttons: [
-        {
-          text: 'View',
-          handler: () => {
-            console.log('View clicked for:', imageUrl);
-          }
-        },
-        {
-          text: 'Delete',
-          cssClass: 'danger',
-          handler: () => {
-            console.log('Delete clicked for:', imageUrl);
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-
-  viewImageUrl: string | null = null;
-
   async viewImage(image: string) {
     const modal = await this.modalController.create({
       component: ViewImagePage,
       componentProps: { image },
-      backdropDismiss: true
+      backdropDismiss: true // This enables clicking outside the modal to dismiss it
     });
     return await modal.present();
   }
 
   async dismissModal() {
-    this.viewImageUrl = null;
     await this.modalController.dismiss();
   }
 
