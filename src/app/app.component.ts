@@ -123,7 +123,7 @@ export class AppComponent {
   async ngOnInit() {
 
     await this.storage.create();
-    await this.promptForPin();
+  
     this.subscriptions.push(
       this.networkService.isOnline$.subscribe(status => {
         this.isOnline = status;
@@ -153,49 +153,7 @@ export class AppComponent {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  async promptForPin() {
-    const pin = await this.storage.get('userPin');
+  
 
-    if (pin) {
-      const alert = await this.alertController.create({
-        header: 'Enter PIN',
-        inputs: [
-          {
-            name: 'pin',
-            type: 'password',
-            placeholder: 'Enter your PIN',
-            attributes: {
-              maxlength: 4,
-              inputmode: 'numeric',
-            },
-          },
-        ],
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel',
-            cssClass: 'secondary',
-            handler: () => {
-              console.log('Confirm Cancel');
-            },
-          },
-          {
-            text: 'Confirm',
-            handler: async (data: { pin: any; }) => {
-              if (data.pin === pin) {
-                await this.router.navigate(['/dashboard']);
-              } else {
-                console.error('Invalid PIN');
-                await this.promptForPin(); // Prompt again if the PIN is incorrect
-              }
-            },
-          },
-        ],
-      });
-
-      await alert.present();
-    } else {
-      await this.router.navigate(['/signin']);
-    }
-  }
+  
 }

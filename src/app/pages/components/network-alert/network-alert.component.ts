@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { Subscription, interval } from 'rxjs';
-import { NetworkService } from 'src/app/util/service/network.service';
+import { Subscription, interval, fromEvent } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -14,11 +12,24 @@ import { Router, NavigationEnd } from '@angular/router';
             Connect to a Network
           </div>
           <div class="card-content">
-            To use the app, turn on mobile data or connect to Wi-Fi.
+          You are now working offline. turn on mobile data or connect to Wi-Fi.
           </div>
           <div class="card-actions">
             <button (click)="dismissAlert()">OK</button>
           </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="onlineNotificationVisible" class="network-alert-overlay">
+    <div class="network-alert">
+        <div class="card">
+          <div class="card-header">
+            Connected Successfully
+          </div>
+          <div class="card-content">
+          You are now working online!
+          </div>
+         
         </div>
       </div>
     </div>
@@ -77,18 +88,31 @@ import { Router, NavigationEnd } from '@angular/router';
     .card-actions button:hover {
       background-color: #822B35;
     }
+    .online-notification {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1001;
+      transition: opacity 0.5s ease;
+    }
   `]
 })
 export class NetworkAlertComponent implements OnInit, OnDestroy {
   isOnline: boolean = true;
   alertVisible: boolean = true;
+  onlineNotificationVisible: boolean = false;
   private networkStatusSubscription: Subscription = new Subscription();
   private routerSubscription: Subscription = new Subscription();
-  private dismissedRoutes: Set<string> = new Set<string>(); // Track dismissed routes
+  private offlineSubscription: Subscription = new Subscription();
+  private onlineSubscription: Subscription = new Subscription();
+  private alertShown: boolean = false; // Flag to track if the alert has been shown
 
   constructor(
-    private platform: Platform,
-    private networkService: NetworkService,
     private router: Router
   ) {}
 
@@ -96,13 +120,30 @@ export class NetworkAlertComponent implements OnInit, OnDestroy {
     // Subscribe to router events to update alert visibility on navigation
     this.routerSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.updateAlertVisibility(event.url);
+        this.updateAlertVisibility();
       }
     });
 
-    // Check network status periodically
-    this.networkStatusSubscription = interval(400).subscribe(() => {
+    // Check network status periodically (every 1 hour)
+    this.networkStatusSubscription = interval(3600000).subscribe(() => {
       this.checkNetworkStatus();
+    });
+
+    // Check network status immediately
+    this.checkNetworkStatus();
+
+    // Listen to offline events
+    this.offlineSubscription = fromEvent(window, 'offline').subscribe(() => {
+      this.isOnline = false;
+      this.alertVisible = true;
+      this.alertShown = false; // Reset flag to show alert again
+    });
+
+    // Listen to online events
+    this.onlineSubscription = fromEvent(window, 'online').subscribe(() => {
+      this.isOnline = true;
+      this.alertVisible = false;
+      this.showOnlineNotification();
     });
   }
 
@@ -114,39 +155,44 @@ export class NetworkAlertComponent implements OnInit, OnDestroy {
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
     }
+    if (this.offlineSubscription) {
+      this.offlineSubscription.unsubscribe();
+    }
+    if (this.onlineSubscription) {
+      this.onlineSubscription.unsubscribe();
+    }
   }
 
   dismissAlert() {
-    // Dismiss alert for the current route
-    const currentUrl = this.router.url;
-    if (this.isExcludedRoute(currentUrl)) {
-      if (currentUrl.includes('/inspection') || /^\/complete-inspection\/\d+$/.test(currentUrl)) {
-        this.dismissedRoutes.add(currentUrl); // Permanent dismissal for /inspection and /complete-inspection/{caseNumber} routes
-      }
-      this.alertVisible = false;
-    } else {
-      this.alertVisible = false;
-    }
+    // Dismiss the alert
+    this.alertVisible = false;
+    this.alertShown = true; // Set flag to indicate alert has been shown
   }
-  
 
-  private updateAlertVisibility(url: string) {
-    // Update alert visibility based on network status and dismissed routes
-    if (this.dismissedRoutes.has(url)) {
-      this.alertVisible = false; // Hide alert if route is dismissed
+  private updateAlertVisibility() {
+    // Update alert visibility based on network status
+    if (!this.isOnline && !this.alertShown) {
+      this.alertVisible = true;
     } else {
-      this.alertVisible = !this.isOnline; // Show alert if network is offline
+      this.alertVisible = false;
     }
   }
 
   private checkNetworkStatus() {
     // Check network status and update alert visibility
     this.isOnline = navigator.onLine;
-    this.updateAlertVisibility(this.router.url);
+    if (!this.isOnline && !this.alertShown) {
+      this.alertVisible = true;
+    }
   }
 
-  private isExcludedRoute(url: string): boolean {
-    return url.includes('/inspection') ||
-           /^\/complete-inspection\/\d+$/.test(url);
+  private showOnlineNotification() {
+    // Show online notification
+    this.onlineNotificationVisible = true;
+    
+    // Hide notification after 5 seconds
+    setTimeout(() => {
+      this.onlineNotificationVisible = false;
+    }, 1000); // Notification duration (in milliseconds)
   }
 }
