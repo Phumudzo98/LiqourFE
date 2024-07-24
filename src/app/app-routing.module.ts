@@ -197,7 +197,7 @@ const routes: Routes = [
     loadChildren: () => import('./outletHeaderFooter/outlethaeder/outlethaeder.module').then( m => m.OutlethaederPageModule)
   },
   {
-    path: 'special-event-inspections',
+    path: 'special-event-inspections/:caseId',
     loadChildren: () => import('./pages/special-event-inspections/special-event-inspections.module').then( m => m.SpecialEventInspectionsPageModule)
   },
   {
