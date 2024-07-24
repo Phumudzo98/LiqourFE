@@ -232,6 +232,11 @@ const routes: Routes = [
     path: 'email-verification',
     loadChildren: () => import('./Outlet/email-verification/email-verification.module').then( m => m.EmailVerificationPageModule)
   },
+  {
+    path: 'thank-you-2',
+    loadChildren: () => import('./pages/thank-you-2/thank-you-2.module').then( m => m.ThankYou2PageModule)
+  },
+
  
 ];
     

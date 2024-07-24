@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -10,56 +11,55 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class SpecialEventPage implements OnInit {
   loading: boolean = true;
   outlets: any[] = [];
-
-  constructor(private router: Router, private spinner: NgxSpinnerService) { }
+  collect: any[] = [];
+  filteredOutlets: any[] = [];
+  searchTerm: string = '';
+  constructor(private route: Router, private http: HttpClient, private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
-    this.loadOutlets();
+    this.spinner.show();
+    const token = localStorage.getItem("userToken");
+    const newHeader = new HttpHeaders({
+      "Authorization": "Bearer " + token,
+      "Accept": "*/*"
+    });
+
+    const url = "http://localhost:8081/api/general/get-inbox";
+
+    this.http.get<any[]>(url, { headers: newHeader }).subscribe(
+      response => {
+        this.spinner.hide();
+        console.log(response);
+        this.collect = response;
+        this.filteredOutlets = this.collect; // Initialize filteredOutlets
+
+        // Store the data in localStorage
+        localStorage.setItem('inspectionsData', JSON.stringify(this.collect));
+      },
+      error => {
+        console.log(error);
+        this.spinner.hide();
+
+        // Retrieve data from localStorage if available
+        const offlineData = localStorage.getItem('inspectionsData');
+        if (offlineData) {
+          this.collect = JSON.parse(offlineData);
+          this.filteredOutlets = this.collect; // Initialize filteredOutlets
+        }
+      }
+    );
   }
 
-  loadOutlets() {
-    this.spinner.show();
-    setTimeout(() => {
-      // Simulate a delay for loading data
-      this.outlets = [
-        {
-          imgSrc: '../../../assets/Images/kwa coca.jpeg',
-          header: 'Kwa Coca Tavern',
-          details: 'ECP08498/03017/OO <br>On & Off Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
-        {
-          imgSrc: '../../../assets/Images/pllas.jpeg',
-          header: 'POLLAS TAVERN',
-          details: 'ECP08500/03020/OO <br>On & Off Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
-        {
-          imgSrc: '../../../assets/Images/viva.jpeg',
-          header: 'VIVAS TAVERN',
-          details: 'ECP08507/90454/OO <br>On & Off Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
-        {
-          imgSrc: '../../../assets/Images/shakis.jpeg',
-          header: 'SAKHIS TAVERN',
-          details: 'ECP08517/03033/OO <br>On & Off Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
-        {
-          imgSrc: '../../../assets/Images/burguer nn.jpeg',
-          header: 'THE BURGER INN',
-          details: 'ECP00852/90454/ON <br>On Consumption',
-          iconSrc: '../../../assets/Images/Group 88.svg',
-        },
-      ];
-    
-      this.spinner.hide();
-    }, 2000); // Replace this with your actual data loading logic
-  }
+ 
 
   navigateToBack() {
   
-      this.router.navigate(['dashboard']);
+      this.route.navigate(['dashboard']);
+  }
+
+  filterOutlets() {
+    this.filteredOutlets = this.collect.filter(outlet =>
+      outlet.outletName.toLowerCase().startsWith(this.searchTerm.toLowerCase())
+    );
   }
 }
