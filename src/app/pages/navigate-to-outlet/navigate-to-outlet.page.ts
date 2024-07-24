@@ -14,12 +14,12 @@ export class NavigateToOutletPage implements OnInit {
   specific: any = '';
   loading: boolean = true; // Add loading state
   searchQuery: string = ''; // Add search query property
+  filterLetter: string = ''; // Property to store the letter for filtering
 
-  constructor(private route: Router, private http: HttpClient,private spinner: NgxSpinnerService) { }
+  constructor(private route: Router, private http: HttpClient, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.spinner.show();
-    let url = "/api/outlet"
     this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/outlet/get-outlets", { headers: headersSecure }).subscribe(response => {
         const large = response;
         this.specific = large;
@@ -67,9 +67,11 @@ export class NavigateToOutletPage implements OnInit {
   }
 
   filteredOutlets() {
-    return this.outlets.filter(outlet =>
-      outlet.header.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+    const letter = this.filterLetter.toLowerCase();
+    return this.outlets.filter(outlet => {
+      const header = outlet.header.toLowerCase();
+      return letter ? header.startsWith(letter) : header.includes(this.searchQuery.toLowerCase());
+    });
   }
 
   navigateToBack() {
