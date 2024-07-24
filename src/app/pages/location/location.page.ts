@@ -41,9 +41,14 @@ export class LocationPage implements OnInit {
 
       this.getAddressFromCoordinates(this.latitude, this.longitude);
       
+      let url = `geo:${this.latitude},${this.longitude}?q=${this.latitude},${this.longitude}`
+      window.open(url,'_system')
+      
+      
     } catch (err) {
       console.error('Error getting location', err);
     }
+   
   }
 
   ngOnInit() {
