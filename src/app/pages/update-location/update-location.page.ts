@@ -1,8 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Geolocation } from '@capacitor/geolocation';
-import { environment } from 'src/environments/environment';
+import { Geolocation, PositionOptions } from '@capacitor/geolocation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { headers, headersSecure } from 'src/app/util/service/const';
@@ -14,13 +13,8 @@ import { headers, headersSecure } from 'src/app/util/service/const';
 })
 export class UpdateLocationPage implements OnInit {
 
-  private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
-
-  latitude?: any;
-  longitude?: any;
-
-  lat?: number;
-  lon?: number;  
+  latitude?: number;
+  longitude?: number;
   gisReportForm: FormGroup;
 
   selectedOption: string = '';
@@ -30,7 +24,13 @@ export class UpdateLocationPage implements OnInit {
   @ViewChild('fileInput', { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private route: Router, private eRef: ElementRef, private alertController: AlertController, private formBuilder: FormBuilder, private http: HttpClient) {
+  constructor(
+    private route: Router,
+    private eRef: ElementRef,
+    private alertController: AlertController,
+    private formBuilder: FormBuilder,
+    private http: HttpClient
+  ) {
     this.gisReportForm = this.formBuilder.group({
       latitude: ['', Validators.required],
       longitude: ['', Validators.required],
@@ -41,24 +41,75 @@ export class UpdateLocationPage implements OnInit {
   }
 
   ngOnInit() {
+    this.loadLastKnownLocation();
   }
 
   async getCurrentPosition() {
-    try {
-      const coordinates = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
-      this.lat = coordinates.coords.latitude;
-      this.lon = coordinates.coords.longitude;
+    const options: PositionOptions = {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    };
 
-      this.longitude = this.lon;
-      this.latitude = this.lat;
+    try {
+      const coordinates = await Geolocation.getCurrentPosition(options);
+      this.latitude = coordinates.coords.latitude;
+      this.longitude = coordinates.coords.longitude;
 
       this.gisReportForm.patchValue({
         latitude: this.latitude,
         longitude: this.longitude
       });
 
-    } catch (err) {
-      console.error('Error getting location', err);
+      // Save the last known location
+      this.saveLastKnownLocation(this.latitude, this.longitude);
+
+    } catch (error) {
+      if (error instanceof GeolocationPositionError) {
+        console.error('Error getting location', error);
+        // Check for specific error codes and handle them
+        if (error.code === 1) {
+          await this.presentAlert('Permission Denied', 'Location access was denied.');
+        } else if (error.code === 2) {
+          await this.presentAlert('Position Unavailable', 'Unable to determine location.');
+          this.loadLastKnownLocation();
+        } else if (error.code === 3) {
+          await this.presentAlert('Timeout', 'Location request timed out.');
+        } else {
+          await this.presentAlert('Error', 'An unexpected error occurred while getting location.');
+        }
+      } else {
+        console.error('An unknown error occurred', error);
+      }
+    }
+  }
+
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  saveLastKnownLocation(lat: number, lon: number) {
+    localStorage.setItem('lastKnownLatitude', lat.toString());
+    localStorage.setItem('lastKnownLongitude', lon.toString());
+  }
+
+  loadLastKnownLocation() {
+    const lastLat = localStorage.getItem('lastKnownLatitude');
+    const lastLon = localStorage.getItem('lastKnownLongitude');
+
+    if (lastLat && lastLon) {
+      this.latitude = parseFloat(lastLat);
+      this.longitude = parseFloat(lastLon);
+      this.gisReportForm.patchValue({
+        latitude: this.latitude,
+        longitude: this.longitude
+      });
     }
   }
 
@@ -134,8 +185,8 @@ export class UpdateLocationPage implements OnInit {
     let url = "https://system.eclb.co.za/eclb2/api/general/save-gis-report";
 
     this.formData.append('outletId', '23456');
-    this.formData.append('longitude', this.longitude);
-    this.formData.append('latitude', this.latitude);
+    this.formData.append('longitude', this.longitude?.toString() || '');
+    this.formData.append('latitude', this.latitude?.toString() || '');
 
     this.http.post(url, this.formData, { headers: headersSecure }).subscribe(response => {
       console.log(response);
