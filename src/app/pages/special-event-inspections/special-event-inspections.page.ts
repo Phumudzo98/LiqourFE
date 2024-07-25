@@ -195,8 +195,7 @@ export class SpecialEventInspectionsPage implements OnInit {
         "Authorization": "Bearer " + token,
         "Accept": "/"
       };
-  
-      
+
       let url = "http://localhost:8081/api/general/universal-complete-report/" + this.caseNo;
   
       this.http.post(url, this.completeReportForm.value).subscribe(response => {
