@@ -13,7 +13,7 @@
 
     
       <ion-item class="search-item">
-        <ion-input name="search" placeholder="Search Outlets" class="search-input">
+        <ion-input name="search" placeholder="Search Outlets" class="search-input" [(ngModel)]="searchTerm" (ngModelChange)="filterOutlets()">
           <ion-icon slot="start" src="../../../assets/Images/search.svg" name="search-outline" class="search-icon"></ion-icon>
         </ion-input>
       </ion-item>

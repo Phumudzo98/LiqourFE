@@ -195,8 +195,7 @@ export class SpecialEventInspectionsPage implements OnInit {
         "Authorization": "Bearer " + token,
         "Accept": "/"
       };
-  
-      
+
       let url = "http://localhost:8081/api/general/universal-complete-report/" + this.caseNo;
   
       this.http.post(url, this.completeReportForm.value).subscribe(response => {
@@ -230,7 +229,7 @@ export class SpecialEventInspectionsPage implements OnInit {
         this.onSubmit();
       }
     }
-    formDataToObject(formData: FormData): any {
+    ToObject(formData: FormData): any {
       const obj: any = {};
       formData.forEach((value, key) => {
         obj[key] = value;
