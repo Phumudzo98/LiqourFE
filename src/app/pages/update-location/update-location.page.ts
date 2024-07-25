@@ -200,14 +200,16 @@ export class UpdateLocationPage implements OnInit {
         }
       ]
     });
-
+  
     await alert.present();
   }
-
+  
   deleteItem(index: number) {
-    this.uploadedFiles.splice(index, 1);
+    if (index > -1) {
+      this.reportFiles.splice(index, 1);
+    }
   }
-
+  
   selectFileReport(): void {
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -246,6 +248,9 @@ export class UpdateLocationPage implements OnInit {
       console.log(this.gisReport.file)
     });
   }
+
+
+  
 
   public getControl(controlName: string): FormControl { 
     return this.gisReportForm.get(controlName) as FormControl; 
