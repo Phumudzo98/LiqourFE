@@ -19,6 +19,7 @@ export class UpdateGisPage implements OnInit {
 
   url: string = "http://localhost:8081/api/general/save-gis"
   url2: string = "http://localhost:8081/api/general/get-inbox";
+  
 
   constructor(private route: Router, private spinner: NgxSpinnerService, private http: HttpClient) { }
 

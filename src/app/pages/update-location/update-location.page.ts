@@ -77,14 +77,24 @@ export class UpdateLocationPage implements OnInit {
       this.latitude = coordinates.coords.latitude;
       this.longitude = coordinates.coords.longitude;
 
-      this.gisReportForm.patchValue({
-        latitude: this.latitude,
-        longitude: this.longitude
-      });
-
-      // Save the last known location
-      this.saveLastKnownLocation(this.latitude, this.longitude);
-
+      if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
+        {
+        this.gisReportForm.patchValue({
+          latitude: this.latitude,
+          longitude: this.longitude
+        });
+  
+        this.saveLastKnownLocation(this.latitude, this.longitude);
+      }
+      else{
+        
+        this.gisReportForm.patchValue({
+          latitude: "Out of bounds",
+          longitude: "Out of bounds"
+        });
+        this.saveLastKnownLocation(0, 0);
+     
+      }
     } catch (error) {
       if (error instanceof GeolocationPositionError) {
         console.error('Error getting location', error);
