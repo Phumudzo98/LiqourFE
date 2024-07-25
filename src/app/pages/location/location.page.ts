@@ -50,8 +50,8 @@ export class LocationPage implements OnInit {
   async getCurrentPosition() {
     try {
   
-      let url = `geo:${this.latitude},${this.longitude}?q=${this.latitude},${this.longitude}`
-      //let url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+      //let url = `geo:${this.latitude},${this.longitude}?q=${this.latitude},${this.longitude}`
+      let url = `https://www.google.com/maps/dir/?api=1&destination=${this.latitude},${this.longitude}`;
 
       window.open(url,'_system')
       

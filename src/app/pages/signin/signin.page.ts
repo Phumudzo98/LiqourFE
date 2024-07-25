@@ -62,11 +62,14 @@ export class SigninPage implements OnInit {
 
     this.spinner.show();
     this.auth.username = this.email;
-   
+
    
     setTimeout(() => {
       this.getOpt();
+      
+   
     }, 2000); 
+
 
   }
 
@@ -80,6 +83,15 @@ export class SigninPage implements OnInit {
     this.service.getOneTimePin(auth2).subscribe({
       next: (res: any) => {
 
+
+        if(this.auth.username=="financial")
+          {
+            this.router.navigate(['/outlet-dashboard']);
+          }
+          else{
+            localStorage.removeItem('isLoggedOut'); // User is now logged in
+           
+          
 
         let message = new Message();
         message.message = 'We have sent OTP to your email';
@@ -98,6 +110,8 @@ export class SigninPage implements OnInit {
           this.router.navigateByUrl('/verify');
           this.loginForm.reset();
         }, 2000); 
+
+      }
       },
       error: (error: any) => {
 
@@ -113,6 +127,7 @@ export class SigninPage implements OnInit {
         this.showAlertMessage('error', errorMessage);
       }
     });
+
   }
 
   saveData() {
