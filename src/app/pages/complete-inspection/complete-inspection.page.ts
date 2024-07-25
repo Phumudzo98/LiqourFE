@@ -27,6 +27,7 @@ export class CompleteInspectionPage implements OnInit {
   inputVisible: boolean = true; 
   isNetworkConnected: boolean = true; // Flag to track network status
   dateFormatPlaceholder: string = "YYYY-MM-DD";
+  isPhotoAvailable:boolean=false;
 
   imageSources: { src: string, description: string }[] = [];
   dropdownVisible: { [index: string]: boolean } = {};
@@ -135,6 +136,7 @@ export class CompleteInspectionPage implements OnInit {
     const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
     return areFieldsValid && areNoticeFilesPresent;
   }
+
 
   //InspectionReport 
   isInspectionReport(){
@@ -392,6 +394,7 @@ export class CompleteInspectionPage implements OnInit {
       if (description !== null) {
         this.imageSources.push({ src: image.dataUrl, description });
       }
+      this.isPhotoAvailable=true;
     }
   }
 
@@ -465,9 +468,16 @@ export class CompleteInspectionPage implements OnInit {
           handler: () => {
             this.removeImage(imageUrl);
             console.log('Confirm delete');
+            
+          if(this.imageSources.length===0)
+            {
+              this.isPhotoAvailable=false
+            }
           }
+
         }
       ]
+      
     });
   }
 
