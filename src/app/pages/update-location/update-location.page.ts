@@ -145,17 +145,20 @@ export class UpdateLocationPage implements OnInit {
   async onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      if (this.isFileUploaded(file.name)) {
-        await this.presentFileExistsAlert();
+      this.report = file; 
+       if (this.reportFiles.length > 0) {
+        this.reportFiles.splice(0, 1, { name: file.name, size: file.size });
       } else {
-        this.uploadedFiles.push({ name: file.name, size: file.size });
+        this.reportFiles.push({ name: file.name, size: file.size });
       }
+       
     }
   }
-
   isFileUploaded(fileName: string): boolean {
     return this.uploadedFiles.some(file => file.name === fileName);
   }
+
+  
 
   async presentFileExistsAlert() {
     const alert = await this.alertController.create({
@@ -201,19 +204,37 @@ export class UpdateLocationPage implements OnInit {
   }
 
   formData = new FormData();
-  report = new CompleteGISReport();
+
+  reportFiles: { name: string, size: number }[] = [];
+  reportDoc:any;
+ 
+  report!: File;
+  report2=new CompleteGISReport();
+
+  
+  selectFileReport(): void {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = ".docx, .pdf"; // Adjust as needed for file types
+    fileInput.onchange = (event: Event) => this.onFileSelected(event);
+    fileInput.click();
+  }
 
   onSubmit() {
-    let url = "http://localhost:8081/api/general/save-gis-report";
+    let url = "https://system.eclb.co.za/eclb2/api/general/save-gis-report/";
 
     // this.formData.append('outletId', '23456');
     // this.formData.append('longitude', this.longitude?.toString() || '');
     // this.formData.append('latitude', this.latitude?.toString() || '');
 
-    this.report = Object.assign(this.report, this.gisReportForm.value);
+    this.report = Object.assign(this.report2, this.gisReportForm.value);
     const formData = new FormData();
     formData.append('gisreport', new Blob([JSON.stringify(this.report)], { type: 'application/json' }));
 
+
+
+    this.reportDoc = this.reportFiles[0];
+    formData.append('report', this.reportDoc);
     
     
     this.http.post(url+this.caseId, formData, { headers: headersSecure }).subscribe(response => {
