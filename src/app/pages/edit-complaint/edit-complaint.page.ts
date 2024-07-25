@@ -3,6 +3,9 @@ import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { headers, headersSecure } from 'src/app/util/service/const';
+import { AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-edit-complaint',
@@ -11,7 +14,10 @@ import { headers, headersSecure } from 'src/app/util/service/const';
 })
 export class EditComplaintPage implements OnInit {
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private aRoute: Router, private eRef: ElementRef,private spinner: NgxSpinnerService) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private aRoute: Router, private eRef: ElementRef,private spinner: NgxSpinnerService,
+    private alertController: AlertController,
+    private navController: NavController
+  ) {}
 
   reference: string = "";
   description: string = "";
@@ -92,39 +98,51 @@ export class EditComplaintPage implements OnInit {
     this.aRoute.navigate(['complaints']);
   }
 
-
-  updateComplaint()
-  {
+  async updateComplaint() {
     this.spinner.show();
-    let token = localStorage.getItem("userToken") 
-    const newHeader={
-      "Authorization":"Bearer "+token, 
-      "Accept":"*/*"}
-
-    const form={
-        "referenceNumber":this.referenceNo,
-        "offendingOutlet":this.offOutlet,
-        "ecpNumber": this.ecpNo,
-        "address":this.strAddress,
-        "districtName": this.districMunicipalty,
-        "localMunicipality":this.localMunicipality,
-        "town":this.town,
-        "inspector":this.selectedInspector,
-        "comment":this.comment,
-        "commentHistory":this.history,
-        "status":this.status,
-        "comments":[]
-    }
-    let url ="https://system.eclb.co.za/eclb2/api/general/update-complain"
-    this.http.put(url,form, {headers: newHeader}).subscribe(response=>
-      {
+    let token = localStorage.getItem("userToken");
+    const newHeader = {
+      "Authorization": "Bearer " + token,
+      "Accept": "*/*"
+    };
+  
+    const form = {
+      "referenceNumber": this.referenceNo,
+      "offendingOutlet": this.offOutlet,
+      "ecpNumber": this.ecpNo,
+      "address": this.strAddress,
+      "districtName": this.districMunicipalty,
+      "localMunicipality": this.localMunicipality,
+      "town": this.town,
+      "inspector": this.selectedInspector,
+      "comment": this.comment,
+      "commentHistory": this.history,
+      "status": this.status,
+      "comments": []
+    };
+  
+    let url = "https://system.eclb.co.za/eclb2/api/general/update-complain";
+    this.http.put(url, form, { headers: newHeader }).subscribe(
+      async response => {
         console.log(response);
         this.spinner.hide();
-      },error=>
-        {
-          console.log(error);
-          this.spinner.hide();
-        }
-    )
+        const alert = await this.alertController.create({
+          header: 'Success',
+          message: 'Complaint edited successfully',
+          buttons: [  {
+            text: 'OK',
+            handler: () => {
+              this.navController.navigateBack('complaints');
+            }
+          }]
+        });
+        await alert.present();
+      },
+      error => {
+        console.log(error);
+        this.spinner.hide();
+      }
+    );
   }
+  
 }
