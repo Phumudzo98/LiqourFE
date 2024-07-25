@@ -230,7 +230,7 @@ export class SpecialEventInspectionsPage implements OnInit {
         this.onSubmit();
       }
     }
-    formDataToObject(formData: FormData): any {
+    ToObject(formData: FormData): any {
       const obj: any = {};
       formData.forEach((value, key) => {
         obj[key] = value;

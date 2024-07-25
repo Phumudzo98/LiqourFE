@@ -50,10 +50,7 @@ export class SpecialEventPage implements OnInit {
     );
   }
 
- 
-
   navigateToBack() {
-  
       this.route.navigate(['dashboard']);
   }
 
