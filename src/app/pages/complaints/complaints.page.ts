@@ -101,12 +101,13 @@ export class ComplaintsPage implements OnInit, OnDestroy {
   }
 
   // Searching for a Complaint
-  filterComplaints() {
-    const term = this.searchTerm.toLowerCase();
-    this.filteredCollect = this.collect.filter(complaint =>
-      complaint.outletName.toLowerCase().startsWith(term)
-    );
-  }
+filterComplaints() {
+  const term = this.searchTerm.toLowerCase();
+  this.filteredCollect = this.collect.filter(complaint =>
+    complaint.referenceNumber.toLowerCase().startsWith(term)
+  );
+}
+
 
   resetPage() {
     this.collect = [];
