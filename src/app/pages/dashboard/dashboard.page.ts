@@ -39,7 +39,7 @@ export class DashboardPage implements OnInit {
       this.currentIndex = (this.currentIndex + 1) % this.slides.length;
       this.slides[this.currentIndex].classList.add('visible');
       this.dots[this.currentIndex].classList.add('active');
-    }, 3000);
+    }, 15000);
   }
 
 

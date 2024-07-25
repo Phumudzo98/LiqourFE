@@ -3,23 +3,23 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ActionSheetController, AlertController, ModalController } from '@ionic/angular';
 import { ViewImagePage } from '../view-image/view-image.page';
 
-
 @Component({
   selector: 'app-upload-image',
   templateUrl: './upload-image.page.html',
   styleUrls: ['./upload-image.page.scss'],
 })
 export class UploadImagePage implements OnInit {
-  imageSources: string[] = [];
- 
-  user: boolean[] = [];
-  constructor(private actionSheetController: ActionSheetController,
+  imageSources: { src: string, description: string }[] = [];
+  dropdownVisible: { [index: string]: boolean } = {};
+
+  constructor(
+    private actionSheetController: ActionSheetController,
     private alertController: AlertController,
     private modalController: ModalController,
-    private eRef: ElementRef) 
-  { }
+    private eRef: ElementRef
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
@@ -57,12 +57,45 @@ export class UploadImagePage implements OnInit {
       source: source
     });
     if (image.dataUrl) {
-      this.imageSources.push(image.dataUrl);
+      const description = await this.promptForDescription();
+      if (description !== null) {
+        this.imageSources.push({ src: image.dataUrl, description });
+      }
     }
   }
 
-dropdownVisible: { [index: string]: boolean } = {};
-toggleDropdown(event: Event, index: number) {
+  async promptForDescription(): Promise<string | null> {
+    return new Promise(async (resolve) => {
+      const alert = await this.alertController.create({
+        header: 'Add Description',
+        inputs: [
+          {
+            name: 'description',
+            type: 'text',
+            placeholder: 'Enter image description'
+          }
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              resolve(null);
+            }
+          },
+          {
+            text: 'Save',
+            handler: (data) => {
+              resolve(data.description);
+            }
+          }
+        ]
+      });
+      await alert.present();
+    });
+  }
+
+  toggleDropdown(event: Event, index: number) {
     event.stopPropagation();
     this.dropdownVisible[index] = !this.dropdownVisible[index];
   }
@@ -75,11 +108,12 @@ toggleDropdown(event: Event, index: number) {
       }
     });
   }
+
   async deleteImage(imageUrl: string) {
     const alert = await this.createDeleteAlert(imageUrl);
     await alert.present();
   }
-  
+
   private async createDeleteAlert(imageUrl: string) {
     return this.alertController.create({
       header: 'Confirm Delete',
@@ -105,56 +139,14 @@ toggleDropdown(event: Event, index: number) {
       ]
     });
   }
-  
+
   private removeImage(imageUrl: string) {
-    const index = this.imageSources.indexOf(imageUrl);
+    const index = this.imageSources.findIndex(image => image.src === imageUrl);
     if (index !== -1) {
       this.imageSources.splice(index, 1);
       this.dropdownVisible[index] = false;
     }
   }
-  
-
-  
-async showOptions(imageUrl: string) {
-  const alert = await this.alertController.create({
-    header: 'Options',
-    message: 'Choose an action for this image:',
-    buttons: [
-      {
-        text: 'View',
-        handler: () => {
-          // Handle view action
-          console.log('View clicked for:', imageUrl);
-        }
-      },
-      {
-        text: 'Delete',
-        cssClass: 'danger',
-        handler: () => {
-          // Handle delete action
-          console.log('Delete clicked for:', imageUrl);
-        }
-      },
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {
-          // Handle cancel action
-          console.log('Cancel clicked');
-        }
-      }
-    ]
-  });
-
-  await alert.present();
-}
-
-
-  viewImageUrl: string | null = null;
-
- 
 
   async viewImage(image: string) {
     const modal = await this.modalController.create({
@@ -165,9 +157,7 @@ async showOptions(imageUrl: string) {
     return await modal.present();
   }
 
-
   async dismissModal() {
-    this.viewImageUrl = null;
     await this.modalController.dismiss();
   }
 }

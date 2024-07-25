@@ -17,29 +17,22 @@
 
   <ion-card class="upload">
     <ng-container *ngIf="imageSources.length > 0; else noPhoto">
-      <ng-container *ngIf="imageSources.length === 1; else multiplePhotos">
-        <img [src]="imageSources[0]" alt="Uploaded Photo" class="single-uploaded-photo" (click)="toggleDropdown($event, 0)">
-        <div class="dropdown-content"  [class.show]="dropdownVisible[0]">
-          <ion-item (click)="viewImage(imageSources[0])">View</ion-item>
-          <ion-item (click)="deleteImage(imageSources[0])">Delete</ion-item>
-        </div>
-      </ng-container>
-      <ng-template #multiplePhotos>
-        <div class="image-grid">
-          <div *ngFor="let image of imageSources; let i = index">
-            <img [src]="image" alt="Uploaded Photo" class="uploaded-photo" (click)="toggleDropdown($event, i)">
-            <div  class="dropdown-content" [class.show]="dropdownVisible[i]">
-              <ion-item (click)="viewImage(image)">View</ion-item>
-              <ion-item (click)="deleteImage(image)">Delete</ion-item>
-            </div>
+        <div *ngFor="let image of imageSources.slice().reverse(); let i = index">
+          <img [src]="image.src" alt="Uploaded Photo" class="single-uploaded-photo"  (click)="toggleDropdown($event, i)">
+          <p class="image-description">{{ image.description }}</p>
+          <div class="dropdown-content" [class.show]="dropdownVisible[i]">
+            <ion-item (click)="viewImage(image.src)">View</ion-item>
+            <ion-item (click)="deleteImage(image.src)">Delete</ion-item>
           </div>
         </div>
-      </ng-template>
+      
     </ng-container>
     <ng-template #noPhoto>
       <p class="no-photo-text">No photo uploaded yet</p>
     </ng-template>
   </ion-card>
+  
+  
 
   <div class="add-ticket-container">
     <ion-buttons slot="end">

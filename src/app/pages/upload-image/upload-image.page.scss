@@ -57,15 +57,11 @@
     object-fit: cover;
   }
   
-  .single-uploaded-photo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+  .uploaded-photo,
+.single-uploaded-photo {
+  display: block;
+  margin: auto;
+}
   
   .add-ticket-container {
     display: flex;
@@ -199,5 +195,40 @@ ion-label{
   right: 0.0em;
 }
 
+
+
+.uploaded-photo,
+.single-uploaded-photo {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.image-description {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.no-photo-text {
+  text-align: center;
+  margin: 16px 0;
+}
 
 

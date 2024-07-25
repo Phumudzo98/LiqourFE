@@ -226,7 +226,14 @@ ion-input{
   
 
   
-  .upload3{
+  .upload3 {
+    max-height: 400px; /* Adjust this value as needed */
+    overflow-y: scroll; /* Make scrollbar visible */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #888 #e0e0e0; /* Firefox */
+    border: 1px solid #EAECF0;
+    border-radius: 2px;
+    box-shadow: none;
     margin: 20px;
     padding: 20px;
     text-align: center;
@@ -236,41 +243,63 @@ ion-input{
    // height: 300px;
     overflow-y: auto;
     position: relative;
-   
-  }
-  .no-photo-text {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
   
-  
-  .image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3%;
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 10px;
+  .upload3::-webkit-scrollbar {
+    width: 12px; /* Adjust width as needed */
   }
   
-  .uploaded-photo {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+  .upload3::-webkit-scrollbar-track {
+    background: #e0e0e0; /* Background of the scrollbar track */
+  }
+  
+  .upload3::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounding of the scrollbar thumb */
+    border: 3px solid #e0e0e0; /* Padding around the thumb */
+  }
+  
+  .scrollable-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
   }
   
   .single-uploaded-photo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    margin-bottom: 8px;
   }
+  
+  .image-description {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content.show {
+    display: block;
+  }
+  
+  .no-photo-text {
+    text-align: center;
+    margin: 16px 0;
+    margin-top: 50%;
+  }
+  
   
   .add-ticket-container {
     display: flex;
@@ -451,5 +480,36 @@ ion-item:hover, ion-item:hover ion-label, ion-item:hover ion-radio {
   --padding-end: 8px;
   --inner-padding: 0;
 }
+
+.single-uploaded-photo {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.image-description {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+
+
 
 
