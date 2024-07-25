@@ -25,7 +25,7 @@ export class OutletDashboardPage implements OnInit {
 
     setInterval(() => {
       this.showSlide((this.currentIndex + 1) % this.slides.length);
-    }, 3000);
+    }, 15000);
   }
 
   private showSlide(index: number) {
