@@ -535,11 +535,10 @@ export class CompleteInspectionPage implements OnInit {
         longitude: "Out of bounds"
       });
 
-      alert("You're possibly not within Eastern Cape");
-      
-      this.saveLastKnownLocation(0, 0);
+       await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
+        this.saveLastKnownLocation(0, 0);
+      }
    
-    }
 
     } catch (error) {
        if (error instanceof GeolocationPositionError) {
@@ -560,6 +559,16 @@ export class CompleteInspectionPage implements OnInit {
     }
   }
   
+}
+
+async presentAlert2(message: string) {
+  const alert = await this.alertController.create({
+    header: 'Alert',
+    message,
+    buttons: ['OK']
+  });
+
+  await alert.present();
 }
 
   saveLastKnownLocation(lat: number, lon: number) {
