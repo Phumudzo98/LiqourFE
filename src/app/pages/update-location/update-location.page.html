@@ -1,19 +1,21 @@
 <ion-content>
   <div class="header-container">
-    <a><img src="assets/Images/Back Icon.svg" class="back-Arrow" routerLink="/update-gis"></a>
+    <a routerLink="/update-gis"><img src="assets/Images/Back Icon.svg" class="back-Arrow"></a>
     <h1 class="header-text" style="color: black;">Update GIS</h1>
   </div>
 
   <span class="inspection-report">Update GIS report</span>
 
   <form [formGroup]="gisReportForm">
+    <!-- File Upload Section -->
     <ion-card class="upload" (click)="triggerFileInput()">
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload GIS Report</span>
       <span>PDF</span>
       <input type="file" #fileInput (change)="onFileSelected($event)" accept=".docx, .pdf" style="display: none;">
     </ion-card>
-    
+
+    <!-- Display Uploaded File -->
     <ion-card *ngIf="reportFiles.length > 0" class="upload2">
       <div class="header-content2">
         <ion-card-title>{{ reportFiles[0].name }}</ion-card-title>
@@ -25,10 +27,12 @@
       <span>No file uploaded</span>
     </ion-card>
 
+    <!-- Latitude and Longitude Inputs -->
     <ion-label>Latitude of Outlet (South)</ion-label>
     <ion-item>
       <ion-input class="custom-input" type="text" placeholder="Latitude" formControlName="latitude"></ion-input>
     </ion-item>
+
     <ion-label>Longitude of Outlet (East)</ion-label>
     <ion-item>
       <ion-input class="custom-input" type="text" placeholder="Longitude" formControlName="longitude"></ion-input>
@@ -36,20 +40,21 @@
 
     <p (click)="getCurrentPosition()" class="phone"><a>Use my location</a></p>
 
+    <!-- Radio Button Sections -->
     <ion-card class="upload2">
       <span>(a) Is there a school in 100m radius</span>
       <ion-grid>
         <ion-row>
           <ion-col>
             <div class="radios">
-              <input type="radio" name="schoolIn100m" formControlName="schoolIn100m" value="1">
-              <label for="yes_a">Yes</label>
+              <input type="radio" id="schoolIn100mYes" formControlName="schoolIn100m" value="1">
+              <label for="schoolIn100mYes">Yes</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" name="schoolIn100m" formControlName="schoolIn100m" value="2">
-              <label for="yes_a">No</label>
+              <input type="radio" id="schoolIn100mNo" formControlName="schoolIn100m" value="2">
+              <label for="schoolIn100mNo">No</label>
             </div>
           </ion-col>
         </ion-row>
@@ -61,14 +66,14 @@
         <ion-row>
           <ion-col>
             <div class="radios">
-              <input type="radio" name="churchIn100m" formControlName="churchIn100m" value="1">
-              <label for="yes_a">Yes</label>
+              <input type="radio" id="churchIn100mYes" formControlName="churchIn100m" value="1">
+              <label for="churchIn100mYes">Yes</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" name="churchIn100m" formControlName="churchIn100m" value="2">
-              <label for="yes_a">No</label>
+              <input type="radio" id="churchIn100mNo" formControlName="churchIn100m" value="2">
+              <label for="churchIn100mNo">No</label>
             </div>
           </ion-col>
         </ion-row>
@@ -80,20 +85,41 @@
         <ion-row>
           <ion-col>
             <div class="radios">
-              <input type="radio" name="wardBoundriesIn100m" formControlName="wardBoundriesIn100m" value="1">
-              <label for="yes_a">Yes</label>
+              <input type="radio" id="wardBoundariesIn100mYes" formControlName="wardBoundriesIn100m" value="1">
+              <label for="wardBoundariesIn100mYes">Yes</label>
             </div>
           </ion-col>
           <ion-col>
             <div class="radios">
-              <input type="radio" name="wardBoundriesIn100m" formControlName="wardBoundriesIn100m" value="2">
-              <label for="yes_a">No</label>
+              <input type="radio" id="wardBoundariesIn100mNo" formControlName="wardBoundriesIn100m" value="2">
+              <label for="wardBoundariesIn100mNo">No</label>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
       <hr>
-    </ion-card>      
+
+      <span>(d) Is the correct ward councilor contacted?</span>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="radios">
+              <input type="radio" id="councilorContactedYes" formControlName="councilorContacted" value="1">
+              <label for="councilorContactedYes">Yes</label>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="radios">
+              <input type="radio" id="councilorContactedNo" formControlName="councilorContacted" value="2">
+              <label for="councilorContactedNo">No</label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <hr>
+    </ion-card>
+
+    <!-- Submit Button -->
     <ion-button class="buttonClass" (click)="submitGISReport()">
       <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
       Save
