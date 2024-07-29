@@ -101,7 +101,7 @@ export class CompleteInspectionPage implements OnInit {
       console.log(this.caseNo);
     });
 
-    this.getCurrentPosition();
+    //this.getCurrentPosition();
 
   }
 
@@ -563,7 +563,6 @@ export class CompleteInspectionPage implements OnInit {
 
 async presentAlert2(message: string) {
   const alert = await this.alertController.create({
-    header: 'Alert',
     message,
     buttons: ['OK']
   });
