@@ -534,6 +534,9 @@ export class CompleteInspectionPage implements OnInit {
         latitude: "Out of bounds",
         longitude: "Out of bounds"
       });
+
+      alert("You're possibly not within Eastern Cape");
+      
       this.saveLastKnownLocation(0, 0);
    
     }
