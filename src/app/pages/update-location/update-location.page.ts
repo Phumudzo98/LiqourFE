@@ -1,39 +1,55 @@
-// update-location.page.ts
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Geolocation, PositionOptions } from '@capacitor/geolocation';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { headersSecure } from 'src/app/util/service/const';
+import { CompleteGISReport } from 'src/app/util/service/model';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-update-location',
   templateUrl: './update-location.page.html',
-  styleUrls: ['./update-location.page.scss']
+  styleUrls: ['./update-location.page.scss'],
 })
 export class UpdateLocationPage implements OnInit {
-  @ViewChild('fileInput', { static: false }) fileInput: ElementRef<HTMLInputElement> | undefined;
-  gisReportForm!: FormGroup;
-  reportFiles: File[] = [];
-  caseId: string = ''; // Ensure this is set appropriately
-  private apiUrl = 'http://localhost:8081/api/general/save-gis-report/2901139';
-  private headersSecure = new HttpHeaders({
-    'Content-Type': 'multipart/form-data'
-  });
+
+  latitude?: number;
+  longitude?: number;
+  
+  selectedOption: string = '';
+  uploadedFiles: { name: string, size: number }[] = [];
+  currentForm: string = 'landing';
+  
+  @ViewChild('fileInput', { static: false })
+  fileInput!: ElementRef<HTMLInputElement>;
+
+  caseId: any;
+
+  reportDoc: any;
+  reportFiles: { name: string, size: number }[] = [];
+  report2 = new CompleteGISReport();
+
+  gisReportForm: FormGroup;
+  gisReport!: { file: File, documentType: string };
 
   constructor(
-    private fb: FormBuilder,
+    private router: Router,
+    private eRef: ElementRef,
+    private alertController: AlertController,
+    private formBuilder: FormBuilder,
     private http: HttpClient,
-    private loadingController: LoadingController,
-    private alertController: AlertController
-  ) {}
-
-  ngOnInit() {
-    this.gisReportForm = this.fb.group({
+    private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService
+  ) { 
+    this.gisReportForm = this.formBuilder.group({
       latitude: ['', Validators.required],
       longitude: ['', Validators.required],
       schoolIn100m: ['', Validators.required],
       churchIn100m: ['', Validators.required],
       wardBoundriesIn100m: ['', Validators.required],
-      councilorContacted:['',Validators.required]
+      councilorContacted: ['1', Validators.required]
     });
   }
 
@@ -130,32 +146,56 @@ export class UpdateLocationPage implements OnInit {
   }
 
   triggerFileInput() {
-    this.fileInput?.nativeElement.click();
+    this.fileInput.nativeElement.click();
   }
 
-  onFileSelected(event: any) {
+  async onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.reportFiles = [file];
+      this.gisReport = { file, documentType: 'report' };
+      if (this.reportFiles.length > 0) {
+        this.reportFiles.splice(0, 1, { name: file.name, size: file.size });
+      } else {
+        this.reportFiles.push({ name: file.name, size: file.size });
+      }
     }
+  }
+
+  isFileUploaded(fileName: string): boolean {
+    return this.uploadedFiles.some(file => file.name === fileName);
+  }
+
+  async presentFileExistsAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'Document already uploaded.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  navigateToBack() {
+    this.router.navigate(['complete-inspection']);
   }
 
   async presentAlertConfirm(index: number) {
     const alert = await this.alertController.create({
-      header: 'Confirm!',
-      message: 'Are you sure you want to delete this file?',
+      header: 'Confirm Deletion',
+      message: 'Are you sure you want to delete this document?',
       buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteItem(index);
+          }
+        },
         {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
             console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Delete',
-          handler: () => {
-            this.reportFiles.splice(index, 1);
           }
         }
       ]
@@ -185,42 +225,28 @@ export class UpdateLocationPage implements OnInit {
       return;
     }
 
-    const loading = await this.loadingController.create({
-      message: 'Submitting...'
-    });
-    await loading.present();
-
+    this.spinner.show();
+    this.report = Object.assign(this.report, this.gisReportForm.value);
     const formData = new FormData();
-    formData.append('caseId', this.gisReportForm.get('caseId')?.value ?? '');
-    formData.append('latitude', this.gisReportForm.get('latitude')?.value ?? '');
-    formData.append('longitude', this.gisReportForm.get('longitude')?.value ?? '');
-    formData.append('schoolIn100m', this.gisReportForm.get('schoolIn100m')?.value ?? '');
-    formData.append('churchIn100m', this.gisReportForm.get('churchIn100m')?.value ?? '');
-    formData.append('wardBoundriesIn100m', this.gisReportForm.get('wardBoundriesIn100m')?.value ?? '');
-    formData.append('file', this.reportFiles[0]);
+    formData.append('gisreport', new Blob([JSON.stringify(this.report)], { type: 'application/json' }));
 
-    // Ensure caseId is included in the URL
-    this.http.post(`${this.apiUrl}`, formData, { headers: this.headersSecure }).subscribe(
-      async response => {
-        await loading.dismiss();
-        const alert = await this.alertController.create({
-          header: 'Success',
-          message: 'GIS Report submitted successfully.',
-          buttons: ['OK']
-        });
-        await alert.present();
-      },
-      async error => {
-        console.log(error)
-        await loading.dismiss();
-        const alert = await this.alertController.create({
-          header: 'Error',
-          message: 'There was an error submitting the report. Please try again.',
-          buttons: ['OK']
-        });
-        await alert.present();
-      }
-    );
+    if (this.gisReport) {
+      formData.append('report', this.gisReport.file);
+    }
+
+    this.http.post(url + this.caseId, formData, { headers: headersSecure }).subscribe(response => {
+      this.spinner.hide();
+      console.log("submitted");
+      setTimeout(() => {
+        this.router.navigateByUrl('/inbox');
+      }, 5000);
+    }, error => {
+
+      this.spinner.hide();
+      console.error(error);
+      console.log(this.gisReportForm);
+      console.log(this.gisReport.file)
+    });
   }
 
 
