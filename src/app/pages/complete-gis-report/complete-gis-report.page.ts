@@ -246,10 +246,22 @@ export class CompleteGisReportPage implements OnInit {
       console.log(this.latitude);
       console.log(this.longitude);
 
-      this.gisReportForm.patchValue({
-        latitude: this.latitude,
-        longitude: this.longitude
-      });
+      if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
+        {
+        this.gisReportForm.patchValue({
+          latitude: this.latitude,
+          longitude: this.longitude
+        });
+  }
+      else{
+        
+        this.gisReportForm.patchValue({
+          latitude: "Out of bounds",
+          longitude: "Out of bounds"
+        });
+        
+     
+      }
     } catch (err) {
       console.error('Error getting location', err);
     }

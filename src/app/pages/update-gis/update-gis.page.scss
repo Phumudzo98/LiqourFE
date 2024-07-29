@@ -47,6 +47,14 @@ ion-card{
     padding-right: 15px !important;
   
   }
+  ion-input, ion-select {
+    font-size: 11px;
+    --padding-start: 10px !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    width: 100%;
+  }
+  
   .top{
     margin-top: 15px;
   }
