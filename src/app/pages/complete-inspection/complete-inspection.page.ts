@@ -58,7 +58,8 @@ export class CompleteInspectionPage implements OnInit {
     private modalController: ModalController,
     private spinner: NgxSpinnerService,
     private offlineService: OfflineService,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    private test: String;
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
