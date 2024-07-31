@@ -149,6 +149,7 @@ export class CompleteInspectionPage implements OnInit {
   async onSubmit() {
     this.spinner.show();
     let token = localStorage.getItem("userToken");
+    
     const newHeader = {
       "Authorization": "Bearer " + token,
       "Accept": "/"
