@@ -90,6 +90,10 @@ export class MyTasksPage implements OnInit {
           break;
         case 'Complete GIS Report':
           this.route.navigate([`/complete-gis-report/${caseId}`])
+          break;
+        case 'Complete Inspection Report':
+          this.route.navigate([`/complete-inspection/${caseId}`]);
+          break;
 
       }
     }
