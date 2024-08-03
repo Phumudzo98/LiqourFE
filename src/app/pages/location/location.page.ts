@@ -13,8 +13,8 @@ import { environment } from 'src/environments/environment';
 })
 export class LocationPage implements OnInit {
 
-  latitude: any;
-  longitude: any;
+  latitude?: any;
+  longitude?: any;
   showManualInput = false;
   input:string='';
   addresses: any[] = [];
@@ -48,7 +48,7 @@ export class LocationPage implements OnInit {
 
   }
 
-  private googleMapsBaseUrl = 'https://www.google.com/maps/search/';
+  //private googleMapsBaseUrl = 'https://www.google.com/maps/search/';
   //address:any="10 Bonza Bay Rd, Beacon Bay North, East London, 5205"
 
   async getCurrentPosition() {
@@ -59,7 +59,7 @@ export class LocationPage implements OnInit {
       
 
 
-      window.open(`${this.googleMapsBaseUrl}${encodeURIComponent(url)}`,'_system')
+      window.open(url,'_system')
       
       
     } catch (err) {

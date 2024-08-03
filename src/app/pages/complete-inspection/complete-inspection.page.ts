@@ -394,6 +394,9 @@ export class CompleteInspectionPage implements OnInit {
       const description = await this.promptForDescription();
       if (description !== null) {
         this.imageSources.push({ src: image.dataUrl, description });
+        console.log(this.imageSources);
+        this.isPhotoAvailable = true;
+        
       }
       this.isPhotoAvailable=true;
     }

@@ -20,7 +20,7 @@ export class NavigateToOutletPage implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/outlet/get-outlets", { headers: headersSecure }).subscribe(response => {
+    this.http.get<any[]>("http://localhost:8081/api/outlet/get-outlets", { headers: headersSecure }).subscribe(response => {
         const large = response;
         this.specific = large;
 
