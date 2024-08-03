@@ -51,7 +51,7 @@ export class MyTasksPage implements OnInit {
 
         if(this.role==='INSPECTOR')
           {
-            this.collect = response.filter(item => item.action === 'Complete Report');
+            this.collect = response.filter(item => item.action === 'Complete Report' || item.action === 'Complete Inspection Report');
           }
           else{
             this.collect = response;
