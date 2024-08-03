@@ -49,17 +49,17 @@ export class LocationPage implements OnInit {
   }
 
   private googleMapsBaseUrl = 'https://www.google.com/maps/search/';
-  address:any="10 Bonza Bay Rd, Beacon Bay North, East London, 5205"
+  //address:any="10 Bonza Bay Rd, Beacon Bay North, East London, 5205"
 
   async getCurrentPosition() {
     try {
   
-      //let url = `geo:${this.latitude},${this.longitude}?q=${this.latitude},${this.longitude}`
+      let url = `geo:${this.latitude},${this.longitude}?q=${this.latitude},${this.longitude}`
       //let url = `https://www.google.com/maps/dir/?api=1&destination=${this.latitude},${this.longitude}`;
       
 
 
-      window.open(`${this.googleMapsBaseUrl}${encodeURIComponent(this.address)}`,'_system')
+      window.open(`${this.googleMapsBaseUrl}${encodeURIComponent(url)}`,'_system')
       
       
     } catch (err) {
