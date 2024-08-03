@@ -27,6 +27,7 @@ export class CompleteInspectionPage implements OnInit {
   inputVisible: boolean = true; 
   isNetworkConnected: boolean = true; // Flag to track network status
   dateFormatPlaceholder: string = "YYYY-MM-DD";
+  isPhotoAvailable:boolean=false;
 
   imageSources: { src: string, description: string }[] = [];
   dropdownVisible: { [index: string]: boolean } = {};
@@ -57,7 +58,7 @@ export class CompleteInspectionPage implements OnInit {
     private modalController: ModalController,
     private spinner: NgxSpinnerService,
     private offlineService: OfflineService,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
@@ -100,7 +101,7 @@ export class CompleteInspectionPage implements OnInit {
       console.log(this.caseNo);
     });
 
-    this.getCurrentPosition();
+    //this.getCurrentPosition();
 
   }
 
@@ -136,6 +137,7 @@ export class CompleteInspectionPage implements OnInit {
     return areFieldsValid && areNoticeFilesPresent;
   }
 
+
   //InspectionReport 
   isInspectionReport(){
     const areReportFilesPresent = this.reportFiles && this.reportFiles.length > 0;
@@ -164,7 +166,7 @@ export class CompleteInspectionPage implements OnInit {
     formData.append('notice', this.notice);
 
 
-    let url = "http://localhost:8081/api/general/complete-inspection-report/" + this.caseNo;
+    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
 
     this.http.post(url, formData).subscribe(response => {
       console.log(response);
@@ -392,6 +394,7 @@ export class CompleteInspectionPage implements OnInit {
       if (description !== null) {
         this.imageSources.push({ src: image.dataUrl, description });
       }
+      this.isPhotoAvailable=true;
     }
   }
 
@@ -465,9 +468,16 @@ export class CompleteInspectionPage implements OnInit {
           handler: () => {
             this.removeImage(imageUrl);
             console.log('Confirm delete');
+            
+          if(this.imageSources.length===0)
+            {
+              this.isPhotoAvailable=false
+            }
           }
+
         }
       ]
+      
     });
   }
 
@@ -508,13 +518,27 @@ export class CompleteInspectionPage implements OnInit {
       this.latitude = coordinates.coords.latitude;
       this.longitude = coordinates.coords.longitude;
 
+
+      if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
+      {
       this.completeReportForm.patchValue({
         latitude: this.latitude,
         longitude: this.longitude
       });
 
       this.saveLastKnownLocation(this.latitude, this.longitude);
+    }
+    else{
+      
+      this.completeReportForm.patchValue({
+        latitude: "Out of bounds",
+        longitude: "Out of bounds"
+      });
 
+       await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
+        this.saveLastKnownLocation(0, 0);
+      }
+   
 
     } catch (error) {
        if (error instanceof GeolocationPositionError) {
@@ -535,6 +559,15 @@ export class CompleteInspectionPage implements OnInit {
     }
   }
   
+}
+
+async presentAlert2(message: string) {
+  const alert = await this.alertController.create({
+    message,
+    buttons: ['OK']
+  });
+
+  await alert.present();
 }
 
   saveLastKnownLocation(lat: number, lon: number) {

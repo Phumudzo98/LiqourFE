@@ -94,7 +94,6 @@ export class MyTasksPage implements OnInit {
         case 'Complete Inspection Report':
             this.route.navigate([`/complete-inspection/${caseId}`]);
             break;
-
       }
     }
 
