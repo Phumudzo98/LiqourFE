@@ -56,10 +56,14 @@ export class UploadImagePage implements OnInit {
       resultType: CameraResultType.DataUrl,
       source: source
     });
+    console.log('Image Data:', image);
     if (image.dataUrl) {
+
+      
       const description = await this.promptForDescription();
       if (description !== null) {
         this.imageSources.push({ src: image.dataUrl, description });
+        console.log('Image Source Added:', { src: image.dataUrl, description });
       }
     }
   }

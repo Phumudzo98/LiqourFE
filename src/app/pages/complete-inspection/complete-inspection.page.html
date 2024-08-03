@@ -53,6 +53,19 @@
       </div>
       <ion-img src="../../../assets/Images/Step Trail.svg" class="step"></ion-img>
 
+
+      <div class="header-content">
+        <ion-img *ngIf="isDocumentationFormValid() " src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="!isDocumentationFormValid() " src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+
+        <ion-card-title (click)="toggleForms('comments')"
+        [class.red-text]="isDocumentationFormValid()">
+        Comments on Applicant, Premises, Community Consultation and Objections
+        </ion-card-title>
+        <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
+      </div>
+      <ion-img src="../../../assets/Images/Step Trail.svg" class="step"></ion-img>
+
       <div class="header-content">
         <ion-img *ngIf="isCommunityFormValid()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
         <ion-img *ngIf="!isCommunityFormValid()" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
@@ -390,11 +403,11 @@
         <ion-input placeholder="Enter Person Name" formControlName="contactPerson"></ion-input>
         </ion-item>
         <ion-label position="floating">Inspection Date</ion-label>
-        <ion-item>
+        <!--ion-item>
           <ion-input  placeholder="{{ dateFormatPlaceholder }}" id="inspection-date-input" formControlName="inspectionDate" class="small-input">
         <ion-icon name="calendar" slot="end" (click)="openDatetimePicker()"></ion-icon>
       </ion-input>
-        </ion-item>
+        </ion-item-->
         <ion-button id="open-datetime" fill="clear" style="display: none;"></ion-button>
         <ion-popover trigger="open-datetime">
          <ng-template>
@@ -944,7 +957,9 @@
   
   
      
-        <!-- Question (h) -->
+    
+       
+
         <span>(h) Was Form 2/8/12 appropriately served at the place of worship?</span>
         <ion-card-title class="general-name">
           <ion-grid>
@@ -978,6 +993,77 @@
           
         </ion-card-title>
         <hr>
+        <span>(i) Were any objections received at the time of the inspection</span>
+        <ion-card-title class="general-name">
+          <ion-grid>
+            <ion-row class="horizontal-radios">
+              <ion-col >
+                <ion-radio-group formControlName="formObjectionsInspection">
+                  <ion-row class="horizontal-radios">
+                    <ion-col >
+                      <div class="radios">
+                        <ion-radio id="yes_appt" class="move-radio" name="formObjectionsInspection" value="1"></ion-radio>
+                        <label for="yes_appt">Yes</label>
+                      </div>
+                    </ion-col>
+                    <ion-col >
+                      <div class="radios">
+                        <ion-radio id="no_appt" class="move-radio" name="formObjectionsInspection" value="2"></ion-radio>
+                        <label for="no_appt">No</label>
+                      </div>
+                    </ion-col>
+                    <ion-col>
+                      <div class="radios">
+                        <ion-radio id="na_appt" class="move-radio" name="formObjectionsInspection" value="3"></ion-radio>
+                        <label for="na_appt">N/A</label>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-radio-group>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+        </ion-card-title>
+        <hr>
+        <span>(k) Has the applicant responded to the objections?</span>
+        <ion-card-title class="general-name">
+          <ion-grid>
+            <ion-row class="horizontal-radios">
+              <ion-col >
+                <ion-radio-group formControlName="formApplicantRespondedToObjections">
+                  <ion-row class="horizontal-radios">
+                    <ion-col >
+                      <div class="radios">
+                        <ion-radio id="yes_appt" class="move-radio" name="formApplicantRespondedToObjections" value="1"></ion-radio>
+                        <label for="yes_appt">Yes</label>
+                      </div>
+                    </ion-col>
+                    <ion-col >
+                      <div class="radios">
+                        <ion-radio id="no_appt" class="move-radio" name="formApplicantRespondedToObjections" value="2"></ion-radio>
+                        <label for="no_appt">No</label>
+                      </div>
+                    </ion-col>
+                    <ion-col>
+                      <div class="radios">
+                        <ion-radio id="na_appt" class="move-radio" name="formApplicantRespondedToObjections" value="3"></ion-radio>
+                        <label for="na_appt">N/A</label>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-radio-group>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+        </ion-card-title>
+        <hr>
+        <div class="form-floating mb-3">
+          <textarea formControlName="comments" style="height: 100px; background-color: #fff;"
+              id="residentialAddress" class="form-control mb-3  mt-3"></textarea>
+          <label for="residentialAddress">Comments</label>
+      </div>
     </ion-card>
 
   
@@ -1047,7 +1133,7 @@
 
     <ion-label position="floating">Comments</ion-label>
     <ion-item>
-    <ion-input placeholder="Enter Comments" formControlName="comments"></ion-input>
+    <ion-input placeholder="Enter Comments" formControlName="comments1"></ion-input>
     </ion-item>    
 
     <!--Upload Docs-->  
@@ -1071,7 +1157,55 @@
     
 </div>
 
+<div *ngIf="currentForm ==='comments'">
 
+  <div class="header-container">
+    <img src="assets/Images/Back Icon.svg"  class="back-Arrow"(click)="toggleForms('landing')">
+    <h1 class="header-text">Comments</h1>
+  </div>
+  
+      <ion-label>Applicant</ion-label>
+      <ion-item>
+      <ion-input placeholder="Applicant" formControlName="applicant"></ion-input>
+      </ion-item>
+      <ion-label position="floating">Premises</ion-label>
+      <ion-item>
+        <ion-input placeholder="Right to Occupy Premises" formControlName="rightToOccupyPremises"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Building structure and means of communication" formControlName="buildingStructureAndMeansOfCommunication"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Counter/Point of Sake" formControlName="counterPointOfSake"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input placeholder="Display Area/Shelves" formControlName="displayAreaShelves"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input placeholder="Demarcated Drinking Area" formControlName="demarcatedDrinkingArea"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input placeholder="Storage Room" formControlName="storageRoom"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-input placeholder="Ablution facilities" formControlName="ablutionFacilities"></ion-input>
+                    </ion-item>
+   
+     
+      <ion-label position="floating">Community Consulation</ion-label>
+      <ion-item>
+      <ion-input placeholder="Compliance with Section 22(2)(d)(i) (State whether service of notice took place as prescribed and whether community consultation took place and if that consultation was proper)"id="specificInput" class="custom-placeholder"  formControlName="complianceSectionA"></ion-input>
+      </ion-item>
+     
+      <ion-item>
+      <ion-input placeholder="Compliance with Section 22(2)(d)(i) (State whether service of notice took place as prescribed)"id="specificInput" class="custom-placeholder"  formControlName="complianceSectionB"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="Compliance with Regulation 5 (State whether objections were received within prescribed timeframe)"id="specificInput" class="custom-placeholder"  formControlName="complianceSectionC"></ion-input>
+    </ion-item>
+   
+</div>
 <!--Photos-->
 
 <div *ngIf="currentForm ==='photos'">

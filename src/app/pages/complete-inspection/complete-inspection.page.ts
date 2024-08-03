@@ -60,36 +60,50 @@ export class CompleteInspectionPage implements OnInit {
     private popoverController: PopoverController
   ) {
     this.completeReportForm = this.fb.group({
-      contactPerson: ['', Validators.required],
-      inspectionDate: ['', Validators.required],
-      appointmentSet: ['', Validators.required],
-      consultedOrFound: ['', Validators.required],
-      applicantIndicatedPersonAtPremises: ['', Validators.required],
-      canPersonBeFound: [Validators.required],
-      interestInLiquorTrade: ['', Validators.required],
-      issuedComplience: ['', Validators.required],
-      complaintsReceived: ['', Validators.required],
-      rightToOccupy: ['', Validators.required],
-      leaseAttached: ['', Validators.required],
-      situatedInRightAddress: ['', Validators.required],
-      inLineWithSubmittedApplication: ['', Validators.required],
-      premisesSuitable: ['', Validators.required],
-      latitude: ['', Validators.required],
-      longitude: ['', Validators.required],
-      ablutionFacilityInOrder: ['', Validators.required],
-      readyForBusiness: ['', Validators.required],
-      formServedToCorrectWardCommittee: ['', Validators.required],
-      confirmedByCouncillor: ['', Validators.required],
-      wardCommiteeReport: ['', Validators.required],
-      communityConsultation: ['', Validators.required],
-      educationalInstitution: ['', Validators.required],
-      formServedAtEducationInstitution: ['', Validators.required],
-      placeOfWorship: ['', Validators.required],
-      formServedAtPlaceOfWorship: ['', Validators.required],
-      recommendation: ['', Validators.required],
-      futureInspectionDate: ['', Validators.required],
-      comments: ['']
-    });
+      contactPerson:['',Validators.required],
+      //inspectionDate:['',Validators.required],
+      appointmentSet:['',Validators.required],
+      consultedOrFound:['',Validators.required],
+      applicantIndicatedPersonAtPremises:['',Validators.required],
+      canPersonBeFound:[Validators.required],
+      interestInLiquorTrade:['',Validators.required],
+      issuedComplience:['',Validators.required],
+      complaintsReceived:['',Validators.required],
+      rightToOccupy:['',Validators.required],
+      leaseAttached:['',Validators.required],
+      latitude:['',[Validators.required]],
+      longitude:['',[Validators.required]],
+      situatedInRightAddress:['',Validators.required],
+      inLineWithSubmittedApplication:['',Validators.required],
+      premisesSuitable:['',Validators.required],
+      ablutionFacilityInOrder:['',Validators.required],
+      readyForBusiness:['',Validators.required],
+      formServedToCorrectWardCommittee:['',Validators.required],
+      confirmedByCouncillor:['',Validators.required],
+      wardCommiteeReport:['',Validators.required],
+      communityConsultation:['',Validators.required],
+      educationalInstitution:['',Validators.required],
+      formServedAtEducationInstitution:['',Validators.required],
+      placeOfWorship:['',Validators.required],
+      formServedAtPlaceOfWorship:['',Validators.required],
+      recommendation:['',Validators.required],
+      comments:[''],
+      comments1:[''],
+      formObjectionsInspection:[''],
+      formObjectionsReceived:[''],
+      formApplicantRespondedToObjections:[''],
+      complianceSectionC:[''],
+      complianceSectionB:[''],
+      complianceSectionA:[''],
+      ablutionFacilities:[''],
+      storageRoom:[''],
+      demarcatedDrinkingArea:[''],
+      displayAreaShelves:[''],
+      counterPointOfSake:[''],
+      buildingStructureAndMeansOfCommunication:[''],
+      rightToOccupyPremises:[''],
+      applicant:['']
+    })
 
   
   }
@@ -103,11 +117,41 @@ export class CompleteInspectionPage implements OnInit {
     this.getCurrentPosition();
 
   }
-
+  dummyData = {
+    contactPerson: "John Doe",
+    inspectionDate: "2024-05-03T08:00",
+    appointmentSet: "1",
+    consultedOrFound: "2",
+    applicantIndicatedPersonAtPremises: "1",
+    canPersonBeFound: "1",
+    interestInLiquorTrade: "1",
+    issuedComplience: "1",
+    complaintsReceived: "2",
+    rightToOccupy: "1",
+    leaseAttached: "1",
+    situatedInRightAddress: "1",
+    inLineWithSubmittedApplication: "1",
+    premisesSuitable: "1",
+    ablutionFacilityInOrder: "1",
+    readyForBusiness: "1",
+    formServedToCorrectWardCommittee: "1",
+    confirmedByCouncillor: "1",
+    wardCommiteeReport: "1",
+    communityConsultation: "1",
+    educationalInstitution: "1",
+    formServedAtEducationInstitution: "1",
+    placeOfWorship: "1",
+    formServedAtPlaceOfWorship: "1",
+    recommendation: "1",
+    futureInspectionDate: "2024-06-03T08:00",
+    comments: "Everything seems to be in order.",
+    latitude: "40.7128", 
+    longitude: "-74.0060", 
+  };
   
   //General Valid
   isGeneralFormValid(): boolean {
-    const generalFields = ['contactPerson', 'inspectionDate', 'latitude', 'longitude'];
+    const generalFields = ['contactPerson', 'latitude', 'longitude'];
     return generalFields.every(field => this.completeReportForm.get(field)?.valid);
   }
   //Applicant Valid
@@ -183,6 +227,7 @@ export class CompleteInspectionPage implements OnInit {
         },
         (error) => {
           // Handle error response
+          console.log(this.completeReportForm.value);
           console.error('Error saving report', error);
         }
       );
@@ -387,10 +432,12 @@ export class CompleteInspectionPage implements OnInit {
       resultType: CameraResultType.DataUrl,
       source: source
     });
+    console.log('Image Data:', image);
     if (image.dataUrl) {
       const description = await this.promptForDescription();
       if (description !== null) {
         this.imageSources.push({ src: image.dataUrl, description });
+        console.log('Image Source Added:', { src: image.dataUrl, description });
       }
     }
   }

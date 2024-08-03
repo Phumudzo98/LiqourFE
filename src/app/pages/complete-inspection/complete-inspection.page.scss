@@ -516,6 +516,9 @@ ion-item:hover, ion-item:hover ion-label, ion-item:hover ion-radio {
 .dropdown-content.show {
   display: block;
 }
+ion-input::part(placeholder) {
+  font-size: 0.5px !important; /* Use !important to ensure it overrides other styles */
+}
 
 
 
