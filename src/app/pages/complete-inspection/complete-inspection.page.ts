@@ -423,13 +423,13 @@ export class CompleteInspectionPage implements OnInit {
       source: source
     });
    // console.log('Image Data:', image);
+   const description = await this.promptForDescription();
+   const isDuplicate = this.imageSources.some(img => img.description.toLowerCase() === description?.toLowerCase());
     if (image.dataUrl) {
-      const description = await this.promptForDescription();
-      if (description !== null) {
+      if (!isDuplicate && description) {
         this.imageSources.push({ src: image.dataUrl, description });
         if (this.imageSources.length==0) {
-          this.isPhotoAvailable=false;
-          
+          this.isPhotoAvailable=false; 
         }else{
 
           this.isPhotoAvailable=true;
@@ -437,6 +437,9 @@ export class CompleteInspectionPage implements OnInit {
         console.log(this.imageSources);
         
         //console.log('Image Source Added:', { src: image.dataUrl, description });
+      }else{
+        //this.presentDuplicateDescriptionAlert();
+        return
       }
     }
   }
@@ -485,8 +488,15 @@ export class CompleteInspectionPage implements OnInit {
           },
           {
             text: 'Save',
-            handler: (data) => {
-              resolve(data.description);
+            handler: async (data) => {
+              const isDuplicate = this.imageSources.some(img => img.description === data.description);
+              if (isDuplicate) {
+                await this.presentDuplicateDescriptionAlert();
+                resolve(null);
+                return 
+              } else {
+                resolve(data.description);
+              }
             }
           }
         ]
@@ -494,7 +504,25 @@ export class CompleteInspectionPage implements OnInit {
       await alert.present();
     });
   }
- 
+  
+  async presentDuplicateDescriptionAlert() {
+    const alert = await this.alertController.create({
+      message: 'Description already exists. Please use a different one.',
+      buttons: [
+        {
+          text: 'OK',
+          handler: async () => {
+            const description = await this.promptForDescription();
+            if (description)
+            {
+            }
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+   
   toggleDropdown(event: Event, index: number) {
     event.stopPropagation();
     this.dropdownVisible[index] = !this.dropdownVisible[index];
