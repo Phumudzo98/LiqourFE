@@ -145,6 +145,8 @@ export class CompleteInspectionPage implements OnInit {
     return communityFields.every(field => this.completeReportForm.get(field)?.valid);
   }
 
+  
+
    //Recommendation Valid
    isRecommendationFormValid(): boolean { 
     const recommendationFields = ['recommendation','comments'];
