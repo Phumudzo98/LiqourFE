@@ -173,8 +173,8 @@ export class CompleteInspectionPage implements OnInit {
     const formData = new FormData();
     formData.append('inspection', new Blob([JSON.stringify(this.inspectionReport)], { type: 'application/json' }));
 
-    //this.reportDoc = this.reportFiles[0];
-    //formData.append('report', this.report);
+    this.reportDoc = this.reportFiles[0];
+    formData.append('report', this.report);
 
     this.noticeDoc = this.noticeFiles[0];
     formData.append('notice', this.notice);
