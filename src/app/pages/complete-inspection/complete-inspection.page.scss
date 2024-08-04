@@ -175,9 +175,11 @@ ion-input{
     padding: 10px !important;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    width: 100%;
+    width: 100% !important;
     resize: none;
-    border: 1px solid #858585;
+    border: 1px solid #b9b9b9;
+    height: 75px;
+    border-radius: 5px;
   }
   
   textarea:focus {
@@ -188,6 +190,9 @@ ion-input{
 
   .recommend-comments{
     margin-top: 20px;
+  }
+  .recommend-comments1{
+    margin-top: 10px !important;
   }
   
   ion-col input{

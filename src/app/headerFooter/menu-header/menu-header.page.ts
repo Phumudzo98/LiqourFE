@@ -42,14 +42,14 @@ export class MenuHeaderPage implements OnInit {
 
         this.usernameWithSpaces = originalUsername.replace(/\./g, ' ');
         this.usernameWithDots = originalUsername.replace(/ /g, '.');
-        this.fetchProfilePictureByEmail(); // Call the method correctly
+        //this.fetchProfilePictureByEmail(); // Call the method correctly
       } catch (error) {
         console.error('Error decoding token:', error);
       }
     }
   }
 
-  fetchProfilePictureByEmail() {
+ /* fetchProfilePictureByEmail() {
     this.http.get(`http://localhost:8081/api/user/profile-image/${this.usernameWithDots}`, {
       responseType: 'blob'
     }).subscribe(
@@ -65,7 +65,7 @@ export class MenuHeaderPage implements OnInit {
         console.error('Error fetching profile image:', error);
       }
     );
-  }
+  }*/
 
   toDashboard() {
     if (this.router.url === '/complaints') {

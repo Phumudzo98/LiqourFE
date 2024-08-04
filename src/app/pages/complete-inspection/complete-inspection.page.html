@@ -55,11 +55,11 @@
 
 
       <div class="header-content">
-        <ion-img *ngIf="isDocumentationFormValid()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
-        <ion-img *ngIf="!isDocumentationFormValid() " src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+        <ion-img *ngIf="isCommentForm()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="!isCommentForm()" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
 
         <ion-card-title (click)="toggleForms('comments')"
-        [class.red-text]="isDocumentationFormValid()">
+        [class.red-text]="isCommentForm()">
         Comments on Applicant, Premises, Community Consultation and Objections
         </ion-card-title>
         <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
@@ -163,29 +163,29 @@
       <ion-card-title class="general-name">
         <ion-grid>
           <ion-row class="horizontal-radios">
-            <ion-col >
+            <ion-col>
               <ion-radio-group formControlName="appointmentSet">
                 <ion-row class="horizontal-radios">
-                  <ion-col >
+                  <ion-col>
                     <div class="radios">
-                      <ion-radio id="yes_appt" class="move-radio" name="appointmentSet" value="1"></ion-radio>
+                      <ion-radio id="yes_appt" class="move-radio" value="1"></ion-radio>
                       <label for="yes_appt">Yes</label>
                     </div>
                   </ion-col>
-                  <ion-col >
+                  <ion-col>
                     <div class="radios">
-                      <ion-radio id="no_appt" class="move-radio" name="appointmentSet" value="2"></ion-radio>
+                      <ion-radio id="no_appt" class="move-radio" value="2"></ion-radio>
                       <label for="no_appt">No</label>
                     </div>
                   </ion-col>
-                 
                 </ion-row>
               </ion-radio-group>
             </ion-col>
           </ion-row>
         </ion-grid>
-        
       </ion-card-title>
+      
+     
       <hr>
   
       <span>(b) Is the person found or consulted at the premises the applicant in this matter?</span>
@@ -207,14 +207,16 @@
                       <label for="no_appt">No</label>
                     </div>
                   </ion-col>
-                
                 </ion-row>
               </ion-radio-group>
             </ion-col>
           </ion-row>
         </ion-grid>
-        
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('consultedOrFound')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
       <!-- Repeat similar blocks for other questions with appropriate formControlName -->
@@ -1114,7 +1116,7 @@
                     </ion-item>
    
      
-      <ion-label position="floating">Community Consulation</ion-label>
+      <ion-label position="floating">Community Consultation</ion-label>
       <ion-item>
       <ion-input placeholder="Compliance with Section 22(2)(d)(i) (State whether service of notice took place as prescribed and whether community consultation took place and if that consultation was proper)"id="specificInput" class="custom-placeholder"  formControlName="complianceSectionA"></ion-input>
       </ion-item>
