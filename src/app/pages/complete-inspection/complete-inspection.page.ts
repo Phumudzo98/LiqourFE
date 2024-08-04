@@ -116,44 +116,14 @@ export class CompleteInspectionPage implements OnInit {
       console.log(this.caseNo);
     });
 
-    //this.getCurrentPosition();
+    this.getCurrentPosition();
 
   }
-  dummyData = {
-    contactPerson: "John Doe",
-    inspectionDate: "2024-05-03T08:00",
-    appointmentSet: "1",
-    consultedOrFound: "2",
-    applicantIndicatedPersonAtPremises: "1",
-    canPersonBeFound: "1",
-    interestInLiquorTrade: "1",
-    issuedComplience: "1",
-    complaintsReceived: "2",
-    rightToOccupy: "1",
-    leaseAttached: "1",
-    situatedInRightAddress: "1",
-    inLineWithSubmittedApplication: "1",
-    premisesSuitable: "1",
-    ablutionFacilityInOrder: "1",
-    readyForBusiness: "1",
-    formServedToCorrectWardCommittee: "1",
-    confirmedByCouncillor: "1",
-    wardCommiteeReport: "1",
-    communityConsultation: "1",
-    educationalInstitution: "1",
-    formServedAtEducationInstitution: "1",
-    placeOfWorship: "1",
-    formServedAtPlaceOfWorship: "1",
-    recommendation: "1",
-    futureInspectionDate: "2024-06-03T08:00",
-    comments: "Everything seems to be in order.",
-    latitude: "40.7128", 
-    longitude: "-74.0060", 
-  };
+
   
   //General Valid
   isGeneralFormValid(): boolean {
-    const generalFields = ['contactPerson', 'latitude', 'longitude'];
+    const generalFields = ['contactPerson', 'inspectionDate', 'latitude', 'longitude'];
     return generalFields.every(field => this.completeReportForm.get(field)?.valid);
   }
   //Applicant Valid
@@ -182,7 +152,6 @@ export class CompleteInspectionPage implements OnInit {
     return areFieldsValid && areNoticeFilesPresent;
   }
 
-
   //InspectionReport 
   isInspectionReport(){
     const areReportFilesPresent = this.reportFiles && this.reportFiles.length > 0;
@@ -193,7 +162,6 @@ export class CompleteInspectionPage implements OnInit {
   async onSubmit() {
     this.spinner.show();
     let token = localStorage.getItem("userToken");
-    
     const newHeader = {
       "Authorization": "Bearer " + token,
       "Accept": "/"
@@ -205,14 +173,14 @@ export class CompleteInspectionPage implements OnInit {
     const formData = new FormData();
     formData.append('inspection', new Blob([JSON.stringify(this.inspectionReport)], { type: 'application/json' }));
 
-    this.reportDoc = this.reportFiles[0];
-    formData.append('report', this.report);
+    //this.reportDoc = this.reportFiles[0];
+    //formData.append('report', this.report);
 
     this.noticeDoc = this.noticeFiles[0];
     formData.append('notice', this.notice);
 
 
-    let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
+    let url = "http://localhost:8081/api/general/complete-inspection-report/" + this.caseNo;
 
     this.http.post(url, formData).subscribe(response => {
       console.log(response);
@@ -223,7 +191,7 @@ export class CompleteInspectionPage implements OnInit {
     }, error => {
       console.log(error);
       this.spinner.hide();
-    
+    console.log(this.completeReportForm)
        this.offlineService.saveReport(formData, this.caseNo).then(
         () => {
           // Handle successful response
@@ -231,7 +199,6 @@ export class CompleteInspectionPage implements OnInit {
         },
         (error) => {
           // Handle error response
-          console.log(this.completeReportForm.value);
           console.error('Error saving report', error);
         }
       );
@@ -443,7 +410,6 @@ export class CompleteInspectionPage implements OnInit {
         this.imageSources.push({ src: image.dataUrl, description });
         console.log('Image Source Added:', { src: image.dataUrl, description });
       }
-      this.isPhotoAvailable=true;
     }
   }
 
@@ -517,16 +483,9 @@ export class CompleteInspectionPage implements OnInit {
           handler: () => {
             this.removeImage(imageUrl);
             console.log('Confirm delete');
-            
-          if(this.imageSources.length===0)
-            {
-              this.isPhotoAvailable=false
-            }
           }
-
         }
       ]
-      
     });
   }
 
@@ -567,27 +526,13 @@ export class CompleteInspectionPage implements OnInit {
       this.latitude = coordinates.coords.latitude;
       this.longitude = coordinates.coords.longitude;
 
-
-      if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
-      {
       this.completeReportForm.patchValue({
         latitude: this.latitude,
         longitude: this.longitude
       });
 
       this.saveLastKnownLocation(this.latitude, this.longitude);
-    }
-    else{
-      
-      this.completeReportForm.patchValue({
-        latitude: "Out of bounds",
-        longitude: "Out of bounds"
-      });
 
-       await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
-        this.saveLastKnownLocation(0, 0);
-      }
-   
 
     } catch (error) {
        if (error instanceof GeolocationPositionError) {
@@ -608,15 +553,6 @@ export class CompleteInspectionPage implements OnInit {
     }
   }
   
-}
-
-async presentAlert2(message: string) {
-  const alert = await this.alertController.create({
-    message,
-    buttons: ['OK']
-  });
-
-  await alert.present();
 }
 
   saveLastKnownLocation(lat: number, lon: number) {
