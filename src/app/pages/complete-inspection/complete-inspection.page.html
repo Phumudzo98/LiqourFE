@@ -55,8 +55,8 @@
 
 
       <div class="header-content">
-        <ion-img *ngIf="isDocumentationFormValid()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
-        <ion-img *ngIf="!isDocumentationFormValid() " src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+        <ion-img *ngIf="isCommentForm()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="!isCommentForm()" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
 
         <ion-card-title (click)="toggleForms('comments')"
         [class.red-text]="isCommentForm()">
@@ -207,6 +207,13 @@
                       <label for="no_appt">No</label>
                     </div>
                   </ion-col>
+                  <div class="recommend-comments" *ngIf="completeReportForm.get('consultedOrFound')?.value === '2'">
+                    <textarea formControlName="comments1" placeholder="Comments"
+                        id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+                   
+                </div>
+                
+                
                 
                 </ion-row>
               </ion-radio-group>

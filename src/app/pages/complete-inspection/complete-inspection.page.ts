@@ -153,7 +153,7 @@ export class CompleteInspectionPage implements OnInit {
 
    //Recommendation Valid
    isRecommendationFormValid(): boolean { 
-    const recommendationFields = ['recommendation','comments'];
+    const recommendationFields = ['recommendation','comments1'];
     const areFieldsValid = recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
     const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
     return areFieldsValid;
@@ -427,7 +427,13 @@ export class CompleteInspectionPage implements OnInit {
       const description = await this.promptForDescription();
       if (description !== null) {
         this.imageSources.push({ src: image.dataUrl, description });
+        if (this.imageSources.length==0) {
+          this.isPhotoAvailable=false;
+          
+        }else{
 
+          this.isPhotoAvailable=true;
+        }
         console.log(this.imageSources);
         
         //console.log('Image Source Added:', { src: image.dataUrl, description });
@@ -527,6 +533,7 @@ export class CompleteInspectionPage implements OnInit {
           cssClass: 'primary-button',
           handler: () => {
             this.removeImage(imageUrl);
+            
             console.log('Confirm delete');
           }
         }
@@ -538,6 +545,10 @@ export class CompleteInspectionPage implements OnInit {
     const index = this.imageSources.findIndex(image => image.src === imageUrl);
     if (index !== -1) {
       this.imageSources.splice(index, 1);
+      if (this.imageSources.length==0) {
+
+        this.isPhotoAvailable=false;
+      }
       this.dropdownVisible[index] = false;
     }
   }
