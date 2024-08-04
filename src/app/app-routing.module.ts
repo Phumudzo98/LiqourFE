@@ -235,7 +235,11 @@ const routes: Routes = [
   {
     path: 'thank-you-2',
     loadChildren: () => import('./pages/thank-you-2/thank-you-2.module').then( m => m.ThankYou2PageModule)
+  },  {
+    path: 'inspections',
+    loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
+
 
  
 ];

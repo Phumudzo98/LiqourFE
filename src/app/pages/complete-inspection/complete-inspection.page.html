@@ -1026,6 +1026,39 @@
           
         </ion-card-title>
         <hr>
+        <span>(j) If objections were received, were they served to the applicant for response?</span>
+        <ion-card-title class="general-name">
+          <ion-grid>
+            <ion-row class="horizontal-radios">
+              <ion-col >
+                <ion-radio-group formControlName="formObjectionsReceived">
+                  <ion-row class="horizontal-radios">
+                    <ion-col >
+                      <div class="radios">
+                        <ion-radio id="yes_appt" class="move-radio" name="formObjectionsReceived" value="1"></ion-radio>
+                        <label for="yes_appt">Yes</label>
+                      </div>
+                    </ion-col>
+                    <ion-col >
+                      <div class="radios">
+                        <ion-radio id="no_appt" class="move-radio" name="formObjectionsReceived" value="2"></ion-radio>
+                        <label for="no_appt">No</label>
+                      </div>
+                    </ion-col>
+                    <ion-col>
+                      <div class="radios">
+                        <ion-radio id="na_appt" class="move-radio" name="formObjectionsReceived" value="3"></ion-radio>
+                        <label for="na_appt">N/A</label>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-radio-group>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+        </ion-card-title>
+        <hr>
         <span>(k) Has the applicant responded to the objections?</span>
         <ion-card-title class="general-name">
           <ion-grid>
@@ -1102,8 +1135,20 @@
                   <label for="sec22_5">Section 22(5)</label>
                 </div>
                 <div class="radioss">
-                  <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="4"></ion-radio>
-                  <label for="hearing">Hearing</label>
+                  <ion-radio id="na_appt_sec22_5" class="move-radio" name="recommendation" value="4"></ion-radio>
+                  <label for="sec22_5">Section 22(6)</label>
+                </div>
+                <div class="radioss">
+                  <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="5"></ion-radio>
+                  <label for="hearing">Board Hearing</label>
+                </div>
+                <div class="radioss">
+                  <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="6"></ion-radio>
+                  <label for="hearing">Validation of Objections</label>
+                </div>
+                <div class="radioss">
+                  <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="7"></ion-radio>
+                  <label for="hearing">Cancellation</label>
                 </div>
               </ion-radio-group>
             </ion-row>
