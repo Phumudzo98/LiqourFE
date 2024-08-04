@@ -78,8 +78,8 @@
       <ion-img src="../../../assets/Images/Step Trail.svg" class="step"></ion-img>
       
       <div class="header-content">
-        <ion-img *ngIf="isInspectionReport()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
-        <ion-img *ngIf="!isInspectionReport()" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+        <ion-img *ngIf="isPhotoAvailable" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="!isPhotoAvailable" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
         <ion-card-title (click)="toggleForms('photos')">
           Photosform
         </ion-card-title >
@@ -1147,7 +1147,7 @@
     
       <ion-label position="floating">Inspection Date</ion-label>
       <ion-item>
-      <ion-input  placeholder="{{ dateFormatPlaceholder }}" id="inspection-date-input" formControlName="futureInspectionDate" class="small-input">
+      <ion-input  placeholder="{{ dateFormatPlaceholder }}" id="inspection-date-input"  class="small-input">
         <ion-icon name="calendar" slot="end" (click)="openDatetimePicker()"></ion-icon>
       </ion-input>
     </ion-item>
