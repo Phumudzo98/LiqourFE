@@ -89,22 +89,22 @@ export class CompleteInspectionPage implements OnInit {
       placeOfWorship: ['', Validators.required],
       formServedAtPlaceOfWorship: ['', Validators.required],
       recommendation: ['', Validators.required],
-      comments: [''],
-      comments1:[''],
-      formObjectionsInspection:[''],
-      formObjectionsReceived:[''],
-      formApplicantRespondedToObjections:[''],
-      complianceSectionC:[''],
-      complianceSectionB:[''],
-      complianceSectionA:[''],
-      ablutionFacilities:[''],
-      storageRoom:[''],
-      demarcatedDrinkingArea:[''],
-      displayAreaShelves:[''],
-      counterPointOfSake:[''],
-      buildingStructureAndMeansOfCommunication:[''],
-      rightToOccupyPremises:[''],
-      applicant:['']
+      comments: ['', Validators.required],
+      comments1:['', Validators.required],
+      formObjectionsInspection:['', Validators.required],
+      formObjectionsReceived:['', Validators.required],
+      formApplicantRespondedToObjections:['', Validators.required],
+      complianceSectionC:['', Validators.required],
+      complianceSectionB:['', Validators.required],
+      complianceSectionA:['', Validators.required],
+      ablutionFacilities:['', Validators.required],
+      storageRoom:['', Validators.required],
+      demarcatedDrinkingArea:['', Validators.required],
+      displayAreaShelves:['', Validators.required],
+      counterPointOfSake:['', Validators.required],
+      buildingStructureAndMeansOfCommunication:['', Validators.required],
+      rightToOccupyPremises:['', Validators.required],
+      applicant:['', Validators.required]
     })
 
   
@@ -123,7 +123,7 @@ export class CompleteInspectionPage implements OnInit {
   
   //General Valid
   isGeneralFormValid(): boolean {
-    const generalFields = ['contactPerson', 'inspectionDate', 'latitude', 'longitude'];
+    const generalFields = ['contactPerson', 'latitude', 'longitude'];
     return generalFields.every(field => this.completeReportForm.get(field)?.valid);
   }
   //Applicant Valid
@@ -131,7 +131,11 @@ export class CompleteInspectionPage implements OnInit {
     const applicantFields = ['appointmentSet', 'consultedOrFound', 'applicantIndicatedPersonAtPremises', 'canPersonBeFound', 'interestInLiquorTrade','issuedComplience', 'complaintsReceived'];
     return applicantFields.every(field => this.completeReportForm.get(field)?.valid);
   }
-
+  //comment Valid
+  isCommentForm():boolean {
+    const commentsFields= [ 'applicant','rightToOccupyPremises','buildingStructureAndMeansOfCommunication','counterPointOfSake','displayAreaShelves','demarcatedDrinkingArea','storageRoom','ablutionFacilities','complianceSectionA','complianceSectionB','complianceSectionC'];
+    return  commentsFields.every(field=>this.completeReportForm.get(field)?.valid);
+  }
   //Documentation Valid
   isDocumentationFormValid(): boolean {
     const documentationFields = ['rightToOccupy', 'leaseAttached', 'situatedInRightAddress', 'inLineWithSubmittedApplication', 'premisesSuitable','ablutionFacilityInOrder', 'readyForBusiness'];
