@@ -23,7 +23,7 @@ export class InspectionsPage implements OnInit {
       "Accept": "*/*"
     });
 
-    const url = "https://system.eclb.co.za/eclb2/api/general/get-inbox";
+    const url = "http://localhost:8081/api/general/get-inbox";
 
     this.http.get<any[]>(url, { headers: newHeader }).subscribe(
       response => {
