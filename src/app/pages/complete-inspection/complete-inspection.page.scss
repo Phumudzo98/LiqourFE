@@ -162,12 +162,32 @@ ion-input{
     margin-right: 10px;
   }
   
-  ion-input, ion-select {
+  ion-input, ion-select{
     font-size: 11px;
     --padding-start: 10px !important;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     width: 100%;
+  }
+
+  textarea {
+    font-size: 14px;
+    padding: 10px !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    width: 100%;
+    resize: none;
+    border: 1px solid #858585;
+  }
+  
+  textarea:focus {
+    outline: none; 
+    border-color: #858585; 
+  }
+  
+
+  .recommend-comments{
+    margin-top: 20px;
   }
   
   ion-col input{

@@ -60,6 +60,7 @@ export class CompleteInspectionPage implements OnInit {
     private spinner: NgxSpinnerService,
     private offlineService: OfflineService,
     private popoverController: PopoverController,
+    
   ) {
     this.completeReportForm = this.fb.group({
       contactPerson: ['', Validators.required],
@@ -148,18 +149,26 @@ export class CompleteInspectionPage implements OnInit {
     return communityFields.every(field => this.completeReportForm.get(field)?.valid);
   }
 
+  
+
    //Recommendation Valid
-   isRecommendationFormValid(): boolean {
-    const recommendationFields = ['recommendation', 'futureInspectionDate', 'comments'];
+   isRecommendationFormValid(): boolean { 
+    const recommendationFields = ['recommendation','comments'];
     const areFieldsValid = recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
     const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
-    return areFieldsValid && areNoticeFilesPresent;
+    return areFieldsValid;
   }
 
-  //InspectionReport 
+  /*InspectionReport 
   isInspectionReport(){
     const areReportFilesPresent = this.reportFiles && this.reportFiles.length > 0;
     return areReportFilesPresent;
+  }*/
+
+  //InspectionReport 
+  isInspectionReport(){
+    const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
+    return areNoticeFilesPresent;
   }
  
 
@@ -182,6 +191,12 @@ export class CompleteInspectionPage implements OnInit {
 
     this.noticeDoc = this.noticeFiles[0];
     formData.append('notice', this.notice);
+
+    this.imageSources.forEach((img, index) => {
+      const imgFile= this.convertSrcToFile(img.src, `photo_${index}.jpg`);
+      formData.append('files', imgFile);
+      formData.append('descriptions', img.description);
+    });
 
 
     let url = "http://localhost:8081/api/general/complete-inspection-report/" + this.caseNo;
@@ -402,19 +417,45 @@ export class CompleteInspectionPage implements OnInit {
 
   async selectImage(source: CameraSource) {
     const image = await Camera.getPhoto({
-      quality: 90,
+      quality: 100,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
       source: source
     });
-    console.log('Image Data:', image);
+   // console.log('Image Data:', image);
     if (image.dataUrl) {
       const description = await this.promptForDescription();
       if (description !== null) {
         this.imageSources.push({ src: image.dataUrl, description });
-        console.log('Image Source Added:', { src: image.dataUrl, description });
+
+        console.log(this.imageSources);
+        
+        //console.log('Image Source Added:', { src: image.dataUrl, description });
       }
     }
+  }
+
+  convertSrcToFile(dataURL: string, filename: string): File {
+    const arr = dataURL.split(',');
+    if (arr.length < 2) {
+      throw new Error('Invalid data URL');
+    }
+    
+    const mimeMatch = arr[0].match(/:(.*?);/);
+    if (!mimeMatch || mimeMatch.length < 2) {
+      throw new Error('Unable to extract MIME type');
+    }
+    
+    const mime = mimeMatch[1];
+    
+    const bstr = atob(arr[1]);
+    const n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    for (let i = 0; i < n; i++) {
+      u8arr[i] = bstr.charCodeAt(i);
+    }
+    
+    return new File([u8arr], filename, { type: mime });
   }
 
   async promptForDescription(): Promise<string | null> {
