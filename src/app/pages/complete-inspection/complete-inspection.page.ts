@@ -28,6 +28,7 @@ export class CompleteInspectionPage implements OnInit {
   isNetworkConnected: boolean = true; // Flag to track network status
   dateFormatPlaceholder: string = "YYYY-MM-DD";
   isPhotoAvailable:boolean=false;
+  test: String = '';
 
   imageSources: { src: string, description: string }[] = [];
   dropdownVisible: { [index: string]: boolean } = {};
