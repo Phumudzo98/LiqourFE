@@ -207,21 +207,16 @@
                       <label for="no_appt">No</label>
                     </div>
                   </ion-col>
-                  <div class="recommend-comments" *ngIf="completeReportForm.get('consultedOrFound')?.value === '2'">
-                    <textarea formControlName="comments1" placeholder="Comments"
-                        id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
-                   
-                </div>
-                
-                
-                
                 </ion-row>
               </ion-radio-group>
             </ion-col>
           </ion-row>
         </ion-grid>
-        
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('consultedOrFound')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
       <!-- Repeat similar blocks for other questions with appropriate formControlName -->
