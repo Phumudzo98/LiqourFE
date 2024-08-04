@@ -45,7 +45,7 @@ export class MyTasksPage implements OnInit {
       
     
     
-    this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/general/get-inbox", { headers: newHeader }).subscribe(
+    this.http.get<any[]>("http://localhost:8081/api/general/get-inbox", { headers: newHeader }).subscribe(
       response => {
         console.log(response);
 
