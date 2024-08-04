@@ -55,11 +55,11 @@
 
 
       <div class="header-content">
-        <ion-img *ngIf="isDocumentationFormValid()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
-        <ion-img *ngIf="!isDocumentationFormValid() " src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
+        <ion-img *ngIf="isCommentForm()" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
+        <ion-img *ngIf="!isCommentForm()" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
 
         <ion-card-title (click)="toggleForms('comments')"
-        [class.red-text]="isDocumentationFormValid()">
+        [class.red-text]="isCommentForm()">
         Comments on Applicant, Premises, Community Consultation and Objections
         </ion-card-title>
         <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
@@ -207,6 +207,13 @@
                       <label for="no_appt">No</label>
                     </div>
                   </ion-col>
+                  <div class="recommend-comments" *ngIf="completeReportForm.get('consultedOrFound')?.value === '2'">
+                    <textarea formControlName="comments1" placeholder="Comments"
+                        id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+                   
+                </div>
+                
+                
                 
                 </ion-row>
               </ion-radio-group>
@@ -1114,7 +1121,7 @@
                     </ion-item>
    
      
-      <ion-label position="floating">Community Consulation</ion-label>
+      <ion-label position="floating">Community Consultation</ion-label>
       <ion-item>
       <ion-input placeholder="Compliance with Section 22(2)(d)(i) (State whether service of notice took place as prescribed and whether community consultation took place and if that consultation was proper)"id="specificInput" class="custom-placeholder"  formControlName="complianceSectionA"></ion-input>
       </ion-item>

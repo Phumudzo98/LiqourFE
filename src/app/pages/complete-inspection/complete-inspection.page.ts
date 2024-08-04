@@ -90,22 +90,22 @@ export class CompleteInspectionPage implements OnInit {
       placeOfWorship: ['', Validators.required],
       formServedAtPlaceOfWorship: ['', Validators.required],
       recommendation: ['', Validators.required],
-      comments: [''],
-      comments1:[''],
-      formObjectionsInspection:[''],
-      formObjectionsReceived:[''],
-      formApplicantRespondedToObjections:[''],
-      complianceSectionC:[''],
-      complianceSectionB:[''],
-      complianceSectionA:[''],
-      ablutionFacilities:[''],
-      storageRoom:[''],
-      demarcatedDrinkingArea:[''],
-      displayAreaShelves:[''],
-      counterPointOfSake:[''],
-      buildingStructureAndMeansOfCommunication:[''],
-      rightToOccupyPremises:[''],
-      applicant:['']
+      comments: ['', Validators.required],
+      comments1:['', Validators.required],
+      formObjectionsInspection:['', Validators.required],
+      formObjectionsReceived:['', Validators.required],
+      formApplicantRespondedToObjections:['', Validators.required],
+      complianceSectionC:['', Validators.required],
+      complianceSectionB:['', Validators.required],
+      complianceSectionA:['', Validators.required],
+      ablutionFacilities:['', Validators.required],
+      storageRoom:['', Validators.required],
+      demarcatedDrinkingArea:['', Validators.required],
+      displayAreaShelves:['', Validators.required],
+      counterPointOfSake:['', Validators.required],
+      buildingStructureAndMeansOfCommunication:['', Validators.required],
+      rightToOccupyPremises:['', Validators.required],
+      applicant:['', Validators.required]
     })
 
   
@@ -124,7 +124,7 @@ export class CompleteInspectionPage implements OnInit {
   
   //General Valid
   isGeneralFormValid(): boolean {
-    const generalFields = ['contactPerson', 'inspectionDate', 'latitude', 'longitude'];
+    const generalFields = ['contactPerson', 'latitude', 'longitude'];
     return generalFields.every(field => this.completeReportForm.get(field)?.valid);
   }
   //Applicant Valid
@@ -132,7 +132,11 @@ export class CompleteInspectionPage implements OnInit {
     const applicantFields = ['appointmentSet', 'consultedOrFound', 'applicantIndicatedPersonAtPremises', 'canPersonBeFound', 'interestInLiquorTrade','issuedComplience', 'complaintsReceived'];
     return applicantFields.every(field => this.completeReportForm.get(field)?.valid);
   }
-
+  //comment Valid
+  isCommentForm():boolean {
+    const commentsFields= [ 'applicant','rightToOccupyPremises','buildingStructureAndMeansOfCommunication','counterPointOfSake','displayAreaShelves','demarcatedDrinkingArea','storageRoom','ablutionFacilities','complianceSectionA','complianceSectionB','complianceSectionC'];
+    return  commentsFields.every(field=>this.completeReportForm.get(field)?.valid);
+  }
   //Documentation Valid
   isDocumentationFormValid(): boolean {
     const documentationFields = ['rightToOccupy', 'leaseAttached', 'situatedInRightAddress', 'inLineWithSubmittedApplication', 'premisesSuitable','ablutionFacilityInOrder', 'readyForBusiness'];
@@ -149,7 +153,7 @@ export class CompleteInspectionPage implements OnInit {
 
    //Recommendation Valid
    isRecommendationFormValid(): boolean { 
-    const recommendationFields = ['recommendation','comments'];
+    const recommendationFields = ['recommendation','comments1'];
     const areFieldsValid = recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
     const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
     return areFieldsValid;
@@ -423,7 +427,13 @@ export class CompleteInspectionPage implements OnInit {
       const description = await this.promptForDescription();
       if (description !== null) {
         this.imageSources.push({ src: image.dataUrl, description });
+        if (this.imageSources.length==0) {
+          this.isPhotoAvailable=false;
+          
+        }else{
 
+          this.isPhotoAvailable=true;
+        }
         console.log(this.imageSources);
         
         //console.log('Image Source Added:', { src: image.dataUrl, description });
@@ -523,6 +533,7 @@ export class CompleteInspectionPage implements OnInit {
           cssClass: 'primary-button',
           handler: () => {
             this.removeImage(imageUrl);
+            
             console.log('Confirm delete');
           }
         }
@@ -534,6 +545,10 @@ export class CompleteInspectionPage implements OnInit {
     const index = this.imageSources.findIndex(image => image.src === imageUrl);
     if (index !== -1) {
       this.imageSources.splice(index, 1);
+      if (this.imageSources.length==0) {
+
+        this.isPhotoAvailable=false;
+      }
       this.dropdownVisible[index] = false;
     }
   }
