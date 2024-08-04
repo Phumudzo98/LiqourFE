@@ -16,11 +16,22 @@ export class InspectionsPage implements OnInit {
   constructor(private route: Router, private http: HttpClient, private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  ionViewWillEnter() {
+    this.loadData();
+  }
+
+  loadData() {
     this.spinner.show();
     const token = localStorage.getItem("userToken");
     const newHeader = new HttpHeaders({
       "Authorization": "Bearer " + token,
-      "Accept": "*/*"
+      "Accept": "*/*",
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+      'Expires': '0'
     });
 
     const url = "http://localhost:8081/api/general/get-inbox";
@@ -28,11 +39,10 @@ export class InspectionsPage implements OnInit {
     this.http.get<any[]>(url, { headers: newHeader }).subscribe(
       response => {
         this.spinner.hide();
-        console.log(response);
         this.collect = response;
-        this.filteredOutlets = this.collect; // Initialize filteredOutlets
+        this.filteredOutlets = this.collect; 
 
-        // Store the data in localStorage
+       
         localStorage.setItem('inspectionsData', JSON.stringify(this.collect));
       },
       error => {
@@ -43,7 +53,7 @@ export class InspectionsPage implements OnInit {
         const offlineData = localStorage.getItem('inspectionsData');
         if (offlineData) {
           this.collect = JSON.parse(offlineData);
-          this.filteredOutlets = this.collect; // Initialize filteredOutlets
+          this.filteredOutlets = this.collect; 
         }
       }
     );

@@ -210,7 +210,7 @@ export class CompleteInspectionPage implements OnInit {
     }, error => {
       console.log(error);
       this.spinner.hide();
-    console.log(this.completeReportForm)
+    
        this.offlineService.saveReport(formData, this.caseNo).then(
         () => {
           // Handle successful response
