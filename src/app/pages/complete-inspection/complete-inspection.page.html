@@ -81,7 +81,7 @@
         <ion-img *ngIf="isPhotoAvailable" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
         <ion-img *ngIf="!isPhotoAvailable" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
         <ion-card-title (click)="toggleForms('photos')">
-          Photosform
+          Photos
         </ion-card-title >
         <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
         
@@ -1135,8 +1135,20 @@
                   <label for="sec22_5">Section 22(5)</label>
                 </div>
                 <div class="radioss">
-                  <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="4"></ion-radio>
-                  <label for="hearing">Hearing</label>
+                  <ion-radio id="na_appt_sec22_5" class="move-radio" name="recommendation" value="4"></ion-radio>
+                  <label for="sec22_5">Section 22(6)</label>
+                </div>
+                <div class="radioss">
+                  <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="5"></ion-radio>
+                  <label for="hearing">Board Hearing</label>
+                </div>
+                <div class="radioss">
+                  <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="6"></ion-radio>
+                  <label for="hearing">Validation of Objections</label>
+                </div>
+                <div class="radioss">
+                  <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="7"></ion-radio>
+                  <label for="hearing">Cancellation</label>
                 </div>
               </ion-radio-group>
             </ion-row>
