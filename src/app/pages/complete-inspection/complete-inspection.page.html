@@ -111,7 +111,8 @@
       <h1 class="header-text" style="color: black;">Inspection Reports</h1>
     </div>
   
-    <span class="inspection-report">Inspection report</span>
+    <span class="inspection-report">Upload SAPS Notice</span>
+    <!--
     <ion-card class="upload" (click)="selectFileReport()">
       <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
       <span>Click to upload</span>
@@ -128,8 +129,25 @@
     </ion-card>
     <ion-card *ngIf="reportFiles.length === 0" class="upload2">
       <span>No file uploaded</span>
+    </ion-card>-->
+      
+     <ion-card class="upload" (click)="selectFileNotice()">
+      <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
+      <span>Click to upload</span>
+      <span>DOCX or PDF</span>
+      <input type="file" #fileInput (change)="onFileSelectedRecommendation($event)" accept=".docx, .pdf" style="display: none;">
     </ion-card>
   
+    <ion-card *ngIf="noticeFiles.length > 0" class="upload2">
+      <div class="header-content2">
+        <ion-card-title>{{ noticeFiles[0].name }}</ion-card-title>
+        <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirmNotice(0)" class=""></ion-img>
+      </div>
+      <span>{{ (noticeFiles[0].size / 1024).toFixed(2) }} KB</span>
+    </ion-card>
+    <ion-card *ngIf="noticeFiles.length === 0" class="upload2">
+      <span>No file uploaded</span>
+    </ion-card>
   </div>
   
 
@@ -1094,8 +1112,8 @@
         <hr>
         <div class="form-floating mb-3">
           <textarea formControlName="comments" style="height: 100px; background-color: #fff;"
-              id="residentialAddress" class="form-control mb-3  mt-3"></textarea>
-          <label for="residentialAddress">Comments</label>
+              id="residentialAddress" class="form-control mb-3  mt-3" placeholder="Comments"></textarea>
+
       </div>
     </ion-card>
 
@@ -1154,9 +1172,14 @@
             </ion-row>
           </ion-grid>
         </ion-card-title>
+
+        <div class="recommend-comments">
+          <textarea formControlName="comments1" style="height: 100px; background-color: #fff;"
+              id="residentialAddress" class="form-control mb-3  mt-3" placeholder="Comments"></textarea>
+      </div>
     </ion-card>
 
-    
+    <!--
       <ion-label position="floating">Inspection Date</ion-label>
       <ion-item>
       <ion-input  placeholder="{{ dateFormatPlaceholder }}" id="inspection-date-input"  class="small-input">
@@ -1173,32 +1196,11 @@
           ></ion-datetime>
         </ion-content>
       </ng-template>
-    </ion-popover>
+    </ion-popover>-->
 
+    
+   
 
-    <ion-label position="floating">Comments</ion-label>
-    <ion-item>
-    <ion-input placeholder="Enter Comments" formControlName="comments1"></ion-input>
-    </ion-item>    
-
-    <!--Upload Docs-->  
-     <ion-card class="upload" (click)="selectFileNotice()">
-      <ion-img src="../../../assets/Images/uploads.svg"></ion-img>
-      <span>Click to upload</span>
-      <span>DOCX or PDF</span>
-      <input type="file" #fileInput (change)="onFileSelectedRecommendation($event)" accept=".docx, .pdf" style="display: none;">
-    </ion-card>
-  
-    <ion-card *ngIf="noticeFiles.length > 0" class="upload2">
-      <div class="header-content2">
-        <ion-card-title>{{ noticeFiles[0].name }}</ion-card-title>
-        <ion-img src="../../../assets/Images/Trash.svg" (click)="presentAlertConfirmNotice(0)" class=""></ion-img>
-      </div>
-      <span>{{ (noticeFiles[0].size / 1024).toFixed(2) }} KB</span>
-    </ion-card>
-    <ion-card *ngIf="noticeFiles.length === 0" class="upload2">
-      <span>No file uploaded</span>
-    </ion-card>
     
 </div>
 

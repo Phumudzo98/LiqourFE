@@ -145,17 +145,23 @@ export class CompleteInspectionPage implements OnInit {
   }
 
    //Recommendation Valid
-   isRecommendationFormValid(): boolean {
-    const recommendationFields = ['recommendation', 'futureInspectionDate', 'comments'];
+   isRecommendationFormValid(): boolean { 
+    const recommendationFields = ['recommendation','comments'];
     const areFieldsValid = recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
     const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
-    return areFieldsValid && areNoticeFilesPresent;
+    return areFieldsValid;
   }
 
-  //InspectionReport 
+  /*InspectionReport 
   isInspectionReport(){
     const areReportFilesPresent = this.reportFiles && this.reportFiles.length > 0;
     return areReportFilesPresent;
+  }*/
+
+  //InspectionReport 
+  isInspectionReport(){
+    const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
+    return areNoticeFilesPresent;
   }
  
 
