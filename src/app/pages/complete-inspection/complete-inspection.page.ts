@@ -468,7 +468,7 @@ export class CompleteInspectionPage implements OnInit {
   }
 
   async promptForDescription(): Promise<string | null> {
-    return new Promise(async (resolve) => {
+    return new Promise<string | null>(async (resolve) => {
       const alert = await this.alertController.create({
         header: 'Add Description',
         inputs: [
@@ -491,9 +491,7 @@ export class CompleteInspectionPage implements OnInit {
             handler: async (data) => {
               const isDuplicate = this.imageSources.some(img => img.description === data.description);
               if (isDuplicate) {
-                await this.presentDuplicateDescriptionAlert();
-                resolve(null);
-                return 
+                await this.presentDuplicateDescriptionAlert(resolve);
               } else {
                 resolve(data.description);
               }
@@ -505,7 +503,7 @@ export class CompleteInspectionPage implements OnInit {
     });
   }
   
-  async presentDuplicateDescriptionAlert() {
+  async presentDuplicateDescriptionAlert(resolve: (value: string | null) => void) {
     const alert = await this.alertController.create({
       message: 'Description already exists. Please use a different one.',
       buttons: [
@@ -513,8 +511,8 @@ export class CompleteInspectionPage implements OnInit {
           text: 'OK',
           handler: async () => {
             const description = await this.promptForDescription();
-            if (description)
-            {
+            if (description) {
+              resolve(description);
             }
           }
         }
@@ -522,6 +520,7 @@ export class CompleteInspectionPage implements OnInit {
     });
     await alert.present();
   }
+  
    
   toggleDropdown(event: Event, index: number) {
     event.stopPropagation();
