@@ -105,7 +105,28 @@ export class CompleteInspectionPage implements OnInit {
       counterPointOfSake:['', Validators.required],
       buildingStructureAndMeansOfCommunication:['', Validators.required],
       rightToOccupyPremises:['', Validators.required],
-      applicant:['', Validators.required]
+      applicant:['', Validators.required],
+        /**Comments */
+        formApplicantRespondedToObjectionsComment:[''],
+        formObjectionsReceivedComment:[''],
+        formObjectionsInspectionComment:[''],
+        formServedAtPlaceOfWorshipComment:[''],
+        placeOfWorshipComment:[''],
+        formServedAtEducationInstitutionComment:[''],
+        educationalInstitutionComment:[''],
+        communityConsultationComment:[''],
+        wardCommiteeReportComment:[''],
+        confirmedByCouncillorComment:[''],
+        formServedToCorrectWardCommitteeComment:[''],
+        readyForBusinessComment:[''],
+        ablutionFacilityInOrderComment:[''],
+        premisesSuitableComment:[''],
+        inLineWithSubmittedApplicationComment:[''],
+        situatedInRightAddressComment:[''],
+        leaseAttachedComment:[''],
+        rightToOccupyComment:[''],
+        complaintsReceivedComment:[''],issuedComplienceComment:[''],interestInLiquorTradeComment:[''],canPersonBeFoundComment:[''],
+        applicantIndicatedPersonAtPremisesComment:[''],consultedOrFoundComment:[''],appointmentSetComment:['']
     })
 
   
@@ -153,7 +174,7 @@ export class CompleteInspectionPage implements OnInit {
 
    //Recommendation Valid
    isRecommendationFormValid(): boolean { 
-    const recommendationFields = ['recommendation','comments1'];
+    const recommendationFields = ['recommendation','comments'];
     const areFieldsValid = recommendationFields.every(field => this.completeReportForm.get(field)?.valid);
     const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
     return areFieldsValid;
@@ -215,7 +236,7 @@ export class CompleteInspectionPage implements OnInit {
       }, error => {
         console.log(error);
         this.spinner.hide();
-      
+      console.log(this.completeReportForm);
         this.offlineService.saveReport(formData, this.caseNo).then(
           () => {
             // Handle successful response

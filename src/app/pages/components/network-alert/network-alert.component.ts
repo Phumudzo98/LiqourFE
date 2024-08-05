@@ -190,9 +190,9 @@ export class NetworkAlertComponent implements OnInit, OnDestroy {
     // Show online notification
     this.onlineNotificationVisible = true;
     
-    // Hide notification after 5 seconds
+    // Hide notification after 3 seconds
     setTimeout(() => {
       this.onlineNotificationVisible = false;
-    }, 1000); // Notification duration (in milliseconds)
+    }, 3000); // Notification duration (in milliseconds)
   }
 }
