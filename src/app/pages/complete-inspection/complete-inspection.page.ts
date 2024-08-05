@@ -91,7 +91,7 @@ export class CompleteInspectionPage implements OnInit {
       formServedAtPlaceOfWorship: ['', Validators.required],
       recommendation: ['', Validators.required],
       comments: ['', Validators.required],
-      comments1:['', Validators.required],
+      //comments1:['', Validators.required],
       formObjectionsInspection:['', Validators.required],
       formObjectionsReceived:['', Validators.required],
       formApplicantRespondedToObjections:['', Validators.required],
