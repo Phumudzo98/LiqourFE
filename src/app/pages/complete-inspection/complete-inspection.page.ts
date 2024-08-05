@@ -225,7 +225,7 @@ export class CompleteInspectionPage implements OnInit {
     // {
 
       
-      let url = "http://localhost:8081/api/general/complete-inspection-report/" + this.caseNo;
+      let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
 
       this.http.post(url, formData).subscribe(response => {
         console.log(response);
@@ -661,7 +661,7 @@ export class CompleteInspectionPage implements OnInit {
         longitude: "Out of bounds"
       });
 
-       await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
+       //await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
         this.saveLastKnownLocation(0, 0);
       }
    
