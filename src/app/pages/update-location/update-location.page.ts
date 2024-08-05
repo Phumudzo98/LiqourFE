@@ -75,7 +75,7 @@ export class UpdateLocationPage implements OnInit {
       this.latitude = coordinates.coords.latitude;
       this.longitude = coordinates.coords.longitude;
 
-      if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
+      if(this.latitude<-31 && this.latitude>-34 && this.longitude>24 && this.longitude<34)
         {
         this.gisReportForm.patchValue({
           latitude: this.latitude,
@@ -234,11 +234,15 @@ export class UpdateLocationPage implements OnInit {
       formData.append('report', this.gisReport.file);
     }
 
-    this.http.post(url + this.caseId, formData, { headers: headersSecure }).subscribe(response => {
+
+    console.log(this.gisReport.file);
+    
+
+    this.http.post(url + this.caseId, formData).subscribe(response => {
       this.spinner.hide();
       console.log("submitted");
       setTimeout(() => {
-        this.router.navigateByUrl('/inbox');
+        this.router.navigate(['/inbox']);
       }, 5000);
     }, error => {
 
