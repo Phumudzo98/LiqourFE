@@ -80,7 +80,8 @@
       <div class="header-content">
         <ion-img *ngIf="isPhotoAvailable" src="../../../assets/Images/Step Symboltick.svg" class="size"></ion-img>
         <ion-img *ngIf="!isPhotoAvailable" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
-        <ion-card-title (click)="toggleForms('photos')">
+        <ion-card-title (click)="toggleForms('photos')"
+        [class.red-text]="isPhotoAvailable">
           Photos
         </ion-card-title >
         <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
@@ -97,6 +98,7 @@
         <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
       </div>
       <hr>
+
       <ion-button class="buttonClass2" (click)="onSubmit()">
         <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
         Save
