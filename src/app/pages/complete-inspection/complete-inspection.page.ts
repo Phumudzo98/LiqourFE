@@ -609,6 +609,7 @@ export class CompleteInspectionPage implements OnInit {
   latitude: any;
   longitude: any;
 
+ 
   async getCurrentPosition() {
 
     const options: PositionOptions = {
@@ -622,13 +623,27 @@ export class CompleteInspectionPage implements OnInit {
       this.latitude = coordinates.coords.latitude;
       this.longitude = coordinates.coords.longitude;
 
+
+      if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
+      {
       this.completeReportForm.patchValue({
         latitude: this.latitude,
         longitude: this.longitude
       });
 
       this.saveLastKnownLocation(this.latitude, this.longitude);
+    }
+    else{
+      
+      this.completeReportForm.patchValue({
+        latitude: "Out of bounds",
+        longitude: "Out of bounds"
+      });
 
+       await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
+        this.saveLastKnownLocation(0, 0);
+      }
+   
 
     } catch (error) {
        if (error instanceof GeolocationPositionError) {
@@ -664,6 +679,15 @@ export class CompleteInspectionPage implements OnInit {
       buttons: ['OK']
     });
 
+    await alert.present();
+  }
+
+  async presentAlert2(message: string) {
+    const alert = await this.alertController.create({
+      message,
+      buttons: ['OK']
+    });
+  
     await alert.present();
   }
 
