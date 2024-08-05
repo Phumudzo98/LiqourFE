@@ -234,6 +234,9 @@ export class UpdateLocationPage implements OnInit {
       formData.append('report', this.gisReport.file);
     }
 
+    console.log(this.gisReport.file);
+    
+
     this.http.post(url + this.caseId, formData, { headers: headersSecure }).subscribe(response => {
       this.spinner.hide();
       console.log("submitted");
