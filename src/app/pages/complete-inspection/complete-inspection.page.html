@@ -184,7 +184,10 @@
           </ion-row>
         </ion-grid>
       </ion-card-title>
-      
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('appointmentSet')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
      
       <hr>
   
@@ -249,6 +252,10 @@
       </ion-grid>
       
     </ion-card-title>
+    <div class="recommend-comments1" *ngIf="completeReportForm.get('applicantIndicatedPersonAtPremises')?.value === '2'">
+      <textarea formControlName="comments1" placeholder="Comments"
+          id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+  </div>
     <hr>
 
     <span>(d) If not the applicant, can the person found at the premises confirm the applicant?</span>
@@ -278,6 +285,10 @@
       </ion-grid>
       
     </ion-card-title>
+    <div class="recommend-comments1" *ngIf="completeReportForm.get('canPersonBeFound')?.value === '2'">
+      <textarea formControlName="comments1" placeholder="Comments"
+          id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+  </div>
     <hr>
 
 
@@ -308,6 +319,10 @@
       </ion-grid>
       
     </ion-card-title>
+     <div class="recommend-comments1" *ngIf="completeReportForm.get('interestInLiquorTrade')?.value === '1'">
+        <textarea formControlName="comments1" placeholder="Specify"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
     <hr>
 
 
@@ -338,6 +353,10 @@
       </ion-grid>
       
     </ion-card-title>
+    <div class="recommend-comments1" *ngIf="completeReportForm.get('issuedComplience')?.value === '1'">
+      <textarea formControlName="comments1" placeholder="Comments"
+          id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+  </div>
     <hr>
 
 
@@ -368,6 +387,10 @@
       </ion-grid>
       
     </ion-card-title>
+    <div class="recommend-comments1" *ngIf="completeReportForm.get('complaintsReceived')?.value === '1'">
+      <textarea formControlName="comments1" placeholder="Comments"
+          id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+  </div>
     <hr>
 
 
@@ -452,6 +475,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('rightToOccupy')?.value === '1'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -482,6 +509,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('leaseAttached')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -512,6 +543,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('situatedInRightAddress')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
       <span>(d) Are the premises in line with the plan submitted with the application?</span>
@@ -541,6 +576,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('inLineWithSubmittedApplication')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -571,6 +610,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('premisesSuitable')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -601,6 +644,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('ablutionFacilityInOrder')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
       <span>(g) Are the premises ready to commence with the business?</span>
@@ -630,6 +677,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('readyForBusiness')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -676,6 +727,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('formServedToCorrectWardCommittee')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -708,6 +763,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('confirmedByCouncillor')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -740,6 +799,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('wardCommiteeReport')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -772,6 +835,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('communityConsultation')?.value === '2'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -804,6 +871,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('educationalInstitution')?.value === '1'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -836,6 +907,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('formServedAtEducationInstitution')?.value === '1'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -868,6 +943,10 @@
         </ion-grid>
         
       </ion-card-title>
+      <div class="recommend-comments1" *ngIf="completeReportForm.get('placeOfWorship')?.value === '1'">
+        <textarea formControlName="comments1" placeholder="Comments"
+            id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+    </div>
       <hr>
   
   
@@ -902,6 +981,10 @@
           </ion-grid>
           
         </ion-card-title>
+        <div class="recommend-comments1" *ngIf="completeReportForm.get('formServedAtPlaceOfWorship')?.value === '2'">
+          <textarea formControlName="comments1" placeholder="Comments"
+              id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+      </div>
         <hr>
         <span>(i) Were any objections received at the time of the inspection</span>
         <ion-card-title class="general-name">
@@ -930,6 +1013,10 @@
           </ion-grid>
           
         </ion-card-title>
+        <div class="recommend-comments1" *ngIf="completeReportForm.get('formObjectionsInspection')?.value === '1'">
+          <textarea formControlName="comments1" placeholder="Comments"
+              id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+      </div>
         <hr>
         <span>(j) If objections were received, were they served to the applicant for response?</span>
         <ion-card-title class="general-name">
@@ -958,6 +1045,10 @@
           </ion-grid>
           
         </ion-card-title>
+        <div class="recommend-comments1" *ngIf="completeReportForm.get('formObjectionsReceived')?.value === '2'">
+          <textarea formControlName="comments1" placeholder="Comments"
+              id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
+      </div>
         <hr>
         <span>(k) Has the applicant responded to the objections?</span>
         <ion-card-title class="general-name">
@@ -986,12 +1077,12 @@
           </ion-grid>
           
         </ion-card-title>
-        <hr>
-        <div class="form-floating mb-3">
-          <textarea formControlName="comments" style="height: 100px; background-color: #fff;"
-              id="residentialAddress" class="form-control mb-3  mt-3" placeholder="Comments"></textarea>
-
+        <div class="recommend-comments1" *ngIf="completeReportForm.get('formApplicantRespondedToObjections')?.value === '2'">
+          <textarea formControlName="comments1" placeholder="Comments"
+              id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
       </div>
+        <hr>
+        
     </ion-card>
 
   
