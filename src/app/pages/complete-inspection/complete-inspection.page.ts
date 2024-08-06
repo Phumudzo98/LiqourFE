@@ -91,7 +91,7 @@ export class CompleteInspectionPage implements OnInit {
       formServedAtPlaceOfWorship: ['', Validators.required],
       recommendation: ['', Validators.required],
       comments: ['', Validators.required],
-      comments1:['', Validators.required],
+      //comments1:['', Validators.required],
       formObjectionsInspection:['', Validators.required],
       formObjectionsReceived:['', Validators.required],
       formApplicantRespondedToObjections:['', Validators.required],
@@ -191,7 +191,17 @@ export class CompleteInspectionPage implements OnInit {
     const areNoticeFilesPresent = this.noticeFiles && this.noticeFiles.length > 0;
     return areNoticeFilesPresent;
   }
- 
+  isFormValid(): boolean {
+    return this.isGeneralFormValid() &&
+           this.isApplicantFormValid() &&
+           this.isCommunityFormValid() &&
+           this.isDocumentationFormValid() &&
+           this.isCommunityFormValid() &&
+           this.isRecommendationFormValid() &&
+           this.isInspectionReport() &&
+           this.isPhotoAvailable ==true;
+          
+  }
     
 
   async onSubmit() {
@@ -379,6 +389,7 @@ export class CompleteInspectionPage implements OnInit {
       }
       this.inputVisible = false; 
     }
+    
   }
 
   isFileUploadedNotice(fileName: string): boolean {

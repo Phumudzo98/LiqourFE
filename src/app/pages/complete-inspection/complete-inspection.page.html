@@ -99,9 +99,9 @@
       </div>
       <hr>
 
-      <ion-button class="buttonClass2" (click)="onSubmit()">
+      <ion-button class="buttonClass2" (click)="onSubmit()" [disabled]="!isFormValid()">
         <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-        Save
+        Submit
       </ion-button>
     </ion-card>
   </div>
