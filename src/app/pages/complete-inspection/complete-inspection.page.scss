@@ -180,6 +180,7 @@ ion-input{
     border: 1px solid #b9b9b9;
     height: 75px;
     border-radius: 5px;
+    background-color: white !important;
   }
   
   textarea:focus {
@@ -187,6 +188,22 @@ ion-input{
     border-color: #858585; 
   }
   
+  .next-button{
+    background-color: #CFAA35;
+    border-radius: 30px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: inline-end;
+    margin-right: 3%;
+    height: 35px;
+    width: 75px;
+  }
 
   .recommend-comments{
     margin-top: 20px;
@@ -260,22 +277,34 @@ ion-input{
 
   
   .upload3 {
-    max-height: 400px; /* Adjust this value as needed */
-    overflow-y: scroll; /* Make scrollbar visible */
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #888 #e0e0e0; /* Firefox */
+    max-height: 400px; 
+    overflow-y: scroll; 
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #e0e0e0;
     border: 1px solid #EAECF0;
     border-radius: 2px;
     box-shadow: none;
     margin: 20px;
-    padding: 20px;
     text-align: center;
-    width: calc(100% - 40px);
     height: 400px !important;
     box-shadow: none;
-   // height: 300px;
     overflow-y: auto;
     position: relative;
+  }
+
+  .photos-card{
+    max-height: 60%; 
+    overflow-y: scroll; 
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #e0e0e0;
+    border: 1px solid #EAECF0;
+    box-shadow: none;
+    height: 500px !important;
+    overflow-y: auto;
+    position: relative;
+    overflow-y: scroll; 
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #e0e0e0;
   }
   
   .upload3::-webkit-scrollbar {
@@ -338,19 +367,28 @@ ion-input{
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
+    position: relative;
+    bottom: -200px !important;
+
   }
+
   
   .add-ticket-icon {
     width: 50px;
     height: 50px;
     cursor: pointer;
     margin-right: 20px;
+    float: inline-end;
   }
   
   .buttonClass {
     display: flex;
     justify-content: center;
     margin: 20px;
+  }
+
+  .last-input{
+    margin-bottom: 10px;
   }
   
   .image {

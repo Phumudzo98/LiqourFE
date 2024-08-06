@@ -396,10 +396,6 @@ export class CompleteInspectionPage implements OnInit {
     return this.noticeFiles.some(file => file.name === fileName);
   }
 
- 
-
-
-
   async presentAlertConfirmNotice(index: number) {
     const alert = await this.alertController.create({
       header: 'Confirm Deletion',
