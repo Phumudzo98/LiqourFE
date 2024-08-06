@@ -24,7 +24,7 @@
         <ion-img *ngIf="!isGeneralFormValid()" src="../../../assets/Images/Step Symbol.svg" class="size"></ion-img>
         <ion-card-title (click)="toggleForms('general')"
         [class.red-text]="isGeneralFormValid()">
-          General
+          Coodinates Capture
         </ion-card-title>
         <ion-img src="../../../assets/Images/New Line.svg" class="vector"></ion-img>
       </div>
@@ -99,10 +99,11 @@
       </div>
       <hr>
 
-      <ion-button class="buttonClass2" (click)="onSubmit()">
-        <img slot="start" class="image" src="../../../assets/Images/Icon (2).svg" alt="Image Alt Text">
-        Save
+      <ion-button class="buttonClass2" (click)="onSubmit()" [disabled]="!isFormValid()">
+        Submit
       </ion-button>
+
+      
     </ion-card>
   </div>
 
@@ -150,7 +151,9 @@
     <ion-card *ngIf="noticeFiles.length === 0" class="upload2">
       <span>No file uploaded</span>
     </ion-card>
-  </div>
+
+    <button class="next-button" (click)="toggleForms('general')" [disabled]="!isInspectionReport()">Next</button>
+    </div>
   
 
   <div *ngIf="currentForm === 'applicant'">
@@ -396,20 +399,21 @@
     <hr>
      
     </ion-card>
+    <button class="next-button" (click)="toggleForms('document')" [disabled]="!isApplicantFormValid()">Next</button>
+
   </div>
   
   
   <div *ngIf="currentForm === 'general'" >
     <div class="header-container">
       <img src="assets/Images/Back Icon.svg"  class="back-Arrow"(click)="toggleForms('landing')">
-      <h1 class="header-text">General</h1>
+      <h1 class="header-text">Coodinates Capture</h1>
     </div>
     
         <ion-label>Person Contact</ion-label>
         <ion-item>
         <ion-input placeholder="Enter Person Name" formControlName="contactPerson"></ion-input>
         </ion-item>
-        <ion-label position="floating"></ion-label>
         <!--ion-item>
           <ion-input  placeholder="{{ dateFormatPlaceholder }}" id="inspection-date-input" formControlName="inspectionDate" class="small-input">
         <ion-icon name="calendar" slot="end" (click)="openDatetimePicker()"></ion-icon>
@@ -437,6 +441,9 @@
       </ion-item>
       <div class="">
         <ion-button (click)="getCurrentPosition()" class="buttonClass2">Allow location access</ion-button>
+
+        <button class="next-button" (click)="toggleForms('applicant')" [disabled]="!isGeneralFormValid()">Next</button>
+
       </div>
   </div>
   <!--Documentation-->
@@ -681,10 +688,9 @@
             id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
     </div>
       <hr>
-  
-  
-   
     </ion-card>
+    <button class="next-button" (click)="toggleForms('comments')" [disabled]="!isDocumentationFormValid()">Next</button>
+
   </div>
   
   
@@ -1081,8 +1087,10 @@
               id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
       </div>
         <hr>
-        
     </ion-card>
+
+    <button class="next-button" (click)="toggleForms('photos')" [disabled]="!isCommunityFormValid()">Next</button>
+
 
   
 </div>
@@ -1147,6 +1155,9 @@
               id="residentialAddress" class="form-control mb-3  mt-3" placeholder="Comments"></textarea>
       </div>
     </ion-card>
+
+    <button class="next-button" (click)="toggleForms('landing')" [disabled]="!isRecommendationFormValid()">Next</button>
+
 
     <!--
       <ion-label position="floating">Inspection Date</ion-label>
@@ -1217,9 +1228,12 @@
       <ion-input placeholder="Compliance with Section 22(2)(d)(i) (State whether service of notice took place as prescribed)"id="specificInput" class="custom-placeholder"  formControlName="complianceSectionB"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="last-input">
       <ion-input placeholder="Compliance with Regulation 5 (State whether objections were received within prescribed timeframe)"id="specificInput" class="custom-placeholder"  formControlName="complianceSectionC"></ion-input>
     </ion-item>
+
+    <button class="next-button" (click)="toggleForms('community')" [disabled]="!isCommentForm()">Next</button>
+
    
 </div>
 <!--Photos-->
@@ -1232,7 +1246,7 @@
   </div>
     
 
-  <ion-card class="upload3">
+  <ion-card class="photos-card">
     <ng-container *ngIf="imageSources.length > 0; else noPhoto">
       <div class="scrollable-container">
         <div *ngFor="let image of imageSources.slice().reverse(); let i = index">
@@ -1248,17 +1262,13 @@
     <ng-template #noPhoto>
       <p class="no-photo-text">No photo uploaded yet</p>
     </ng-template>
+    <div class="add-ticket-container">
+      <ion-buttons slot="end">
+        <ion-img src="assets/Images/Vector.svg" (click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
+      </ion-buttons>
+    </div>
   </ion-card>
-  
-  
-
-  <div class="add-ticket-container">
-    <ion-buttons slot="end">
-      <ion-img src="assets/Images/Vector.svg" (click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
-    </ion-buttons>
-  </div>
-
-
+  <button class="next-button" (click)="toggleForms('recommendation')" [disabled]="!isPhotoAvailable">Next</button>
 </div>
 
 </form>
