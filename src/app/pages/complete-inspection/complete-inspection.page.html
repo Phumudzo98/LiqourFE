@@ -394,9 +394,6 @@
           id="commentCommunityProcess" class="form-control mb-3 mt-3"></textarea>
   </div>
     <hr>
-
-
-
      
     </ion-card>
   </div>
@@ -412,7 +409,7 @@
         <ion-item>
         <ion-input placeholder="Enter Person Name" formControlName="contactPerson"></ion-input>
         </ion-item>
-        <ion-label position="floating">Inspection Date</ion-label>
+        <ion-label position="floating"></ion-label>
         <!--ion-item>
           <ion-input  placeholder="{{ dateFormatPlaceholder }}" id="inspection-date-input" formControlName="inspectionDate" class="small-input">
         <ion-icon name="calendar" slot="end" (click)="openDatetimePicker()"></ion-icon>
@@ -1112,11 +1109,11 @@
               <ion-radio-group formControlName="recommendation">
                 <div class="radioss">
                   <ion-radio id="yes_appt" class="move-radio" name="recommendation" value="1"></ion-radio>
-                  <label for="yes_appt">Yes</label>
+                  <label for="yes_appt">Approval</label>
                 </div>
                 <div class="radioss">
                   <ion-radio id="no_appt" class="move-radio" name="recommendation" value="2"></ion-radio>
-                  <label for="no_appt">No</label>
+                  <label for="no_appt">Refusal</label>
                 </div>
                 <div class="radioss">
                   <ion-radio id="na_appt_sec22_5" class="move-radio" name="recommendation" value="3"></ion-radio>
@@ -1126,10 +1123,12 @@
                   <ion-radio id="na_appt_sec22_5" class="move-radio" name="recommendation" value="4"></ion-radio>
                   <label for="sec22_5">Section 22(6)</label>
                 </div>
+                <!--
                 <div class="radioss">
                   <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="5"></ion-radio>
                   <label for="hearing">Board Hearing</label>
                 </div>
+                -->
                 <div class="radioss">
                   <ion-radio id="na_appt_hearing" class="move-radio" name="recommendation" value="6"></ion-radio>
                   <label for="hearing">Validation of Objections</label>
