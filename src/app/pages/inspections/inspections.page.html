@@ -37,14 +37,12 @@
         </ion-grid>
     
         <ion-button
-        *ngIf="outlet.status !== 'Complete'" 
+       
           class="buttonClass"
           [routerLink]="['/complete-inspection', outlet.caseId]">Complete Inspection
         </ion-button>
 
-        <ion-button
-          *ngIf="outlet.status === 'Complete'" class="buttonClass" disabled>Completed
-        </ion-button>
+  
       </div>
     </ion-card>
   </div>
