@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Geolocation } from '@capacitor/geolocation';
+import { Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -30,7 +31,7 @@ export class LocationPage implements OnInit {
   private geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${environment.googleMapsApiKey}`;
   fullAddress: string = '';
 
-  constructor(private http:HttpClient, private router: ActivatedRoute) { }
+  constructor(private http:HttpClient, private router: ActivatedRoute, private platform: Platform) { }
 
 
 
@@ -39,8 +40,10 @@ export class LocationPage implements OnInit {
 
     this.router.paramMap.subscribe(param => {
 
-      this.latitude = param.get('latitude');
-      this.longitude = param.get('longitude');
+      this.latitude = -32.951330 //param.get('latitude'); -32.951330, 27.928185
+
+
+      this.longitude = 27.928185//param.get('longitude');
       
       console.log(this.latitude+"  "+ this.longitude);
       
@@ -57,7 +60,7 @@ export class LocationPage implements OnInit {
       let url = `geo:${this.latitude},${this.longitude}?q=${this.latitude},${this.longitude}`
       //let url = `https://www.google.com/maps/dir/?api=1&destination=${this.latitude},${this.longitude}`;
       
-
+     // if(this.platform.is("desktop"))
 
       window.open(url,'_system')
       

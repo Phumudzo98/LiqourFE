@@ -24,7 +24,7 @@ export class OtpServiceService {
 
   public validateOTP(auth2:any): Observable<any> {
     return this.httpClient.post<any>("https://system.eclb.co.za/eclb2/api/auth/validate-otp", auth2, { headers: headers }).pipe(
-      catchError((error) => {
+     catchError((error) => {
         console.error('Error occurred while validating OTP:', error); 
         return throwError(() => error);
       })

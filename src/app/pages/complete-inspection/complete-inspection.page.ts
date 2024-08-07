@@ -238,15 +238,16 @@ export class CompleteInspectionPage implements OnInit {
       let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
 
       this.http.post(url, formData).subscribe(response => {
-        console.log(response);
-        this.spinner.hide();
-      
+
         this.router.navigate(['/thank-you'])
+        this.spinner.hide();
         
       }, error => {
+
+
         console.log(error);
         this.spinner.hide();
-      console.log(this.completeReportForm);
+      
         this.offlineService.saveReport(formData, this.caseNo).then(
           () => {
             // Handle successful response
@@ -652,25 +653,25 @@ export class CompleteInspectionPage implements OnInit {
       this.longitude = coordinates.coords.longitude;
 
 
-      if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
-      {
+      // if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
+       //{
       this.completeReportForm.patchValue({
         latitude: this.latitude,
         longitude: this.longitude
       });
 
       this.saveLastKnownLocation(this.latitude, this.longitude);
-    }
-    else{
+    // }
+    // else{
       
-      this.completeReportForm.patchValue({
-        latitude: "Out of bounds",
-        longitude: "Out of bounds"
-      });
+    //   // this.completeReportForm.patchValue({
+    //   //   latitude: "Out of bounds",
+    //   //   longitude: "Out of bounds"
+    //   // });
 
-       //await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
-        this.saveLastKnownLocation(0, 0);
-      }
+    //    //await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
+    //     this.saveLastKnownLocation(0, 0);
+    //   }
    
 
     } catch (error) {
