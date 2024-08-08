@@ -299,7 +299,7 @@ ion-input{
     scrollbar-color: #888 #e0e0e0;
     border: 1px solid #EAECF0;
     box-shadow: none;
-    height: 500px !important;
+    height: 430px !important;
     overflow-y: auto;
     position: relative;
     overflow-y: scroll; 
@@ -379,6 +379,10 @@ ion-input{
     cursor: pointer;
     margin-right: 20px;
     float: inline-end;
+    margin-left: 84%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+	
   }
   
   .buttonClass {

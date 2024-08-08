@@ -58,12 +58,11 @@ export class UploadImagePage implements OnInit {
     });
     console.log('Image Data:', image);
     if (image.dataUrl) {
-
-      
       const description = await this.promptForDescription();
       if (description !== null) {
-        this.imageSources.push({ src: image.dataUrl, description });
-        console.log('Image Source Added:', { src: image.dataUrl, description });
+        const modifiedImage = await this.addTimestampToImage(image.dataUrl);
+        this.imageSources.push({ src: modifiedImage, description });
+        console.log('Image Source Added:', { src: modifiedImage, description });
       }
     }
   }
@@ -96,6 +95,36 @@ export class UploadImagePage implements OnInit {
         ]
       });
       await alert.present();
+    });
+  }
+
+  async addTimestampToImage(imageDataUrl: string): Promise<string> {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        if (ctx) {
+          canvas.width = img.width;
+          canvas.height = img.height;
+
+          // Draw the image on the canvas
+          ctx.drawImage(img, 0, 0);
+
+          // Add the timestamp
+          const timestamp = new Date().toLocaleString();
+          ctx.font = '30px Arial';
+          ctx.fillStyle = 'white';
+          ctx.textAlign = 'right';
+          ctx.fillText(timestamp, canvas.width - 20, canvas.height - 20);
+
+          // Convert canvas to data URL
+          const modifiedImage = canvas.toDataURL('image/jpeg');
+          resolve(modifiedImage);
+        }
+      };
+      img.src = imageDataUrl;
     });
   }
 

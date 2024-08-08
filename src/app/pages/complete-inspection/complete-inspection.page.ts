@@ -462,24 +462,19 @@ export class CompleteInspectionPage implements OnInit {
       resultType: CameraResultType.DataUrl,
       source: source
     });
-   // console.log('Image Data:', image);
-   const description = await this.promptForDescription();
-   const isDuplicate = this.imageSources.some(img => img.description.toLowerCase() === description?.toLowerCase());
+
+    const description = await this.promptForDescription();
+    const isDuplicate = this.imageSources.some(img => img.description.toLowerCase() === description?.toLowerCase());
     if (image.dataUrl) {
       if (!isDuplicate && description) {
-        this.imageSources.push({ src: image.dataUrl, description });
-        if (this.imageSources.length==0) {
-          this.isPhotoAvailable=false; 
-        }else{
+        const modifiedImage = await this.addTimestampToImage(image.dataUrl);
+        this.imageSources.push({ src: modifiedImage, description });
 
-          this.isPhotoAvailable=true;
-        }
+        this.isPhotoAvailable = this.imageSources.length > 0;
+
         console.log(this.imageSources);
-        
-        //console.log('Image Source Added:', { src: image.dataUrl, description });
-      }else{
-        //this.presentDuplicateDescriptionAlert();
-        return
+      } else {
+        return;
       }
     }
   }
@@ -607,6 +602,45 @@ export class CompleteInspectionPage implements OnInit {
       ]
     });
   }
+  async addTimestampToImage(imageDataUrl: string): Promise<string> {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+  
+        if (ctx) {
+          canvas.width = img.width;
+          canvas.height = img.height;
+  
+          // Draw the image on the canvas
+          ctx.drawImage(img, 0, 0);
+  
+          // Add the timestamp
+          const timestamp = new Date().toLocaleString();
+          const fontSize = Math.floor(canvas.width / 20);
+          ctx.font = `${fontSize}px Arial`;
+          ctx.fillStyle = 'white';
+          ctx.strokeStyle = 'black';
+          ctx.lineWidth = 3;
+          ctx.textAlign = 'right';
+          
+          const textX = canvas.width - 10;
+          const textY = canvas.height - 10;
+  
+          ctx.strokeText(timestamp, textX, textY);
+          ctx.fillText(timestamp, textX, textY);
+  
+          
+          // Convert canvas to data URL
+          const modifiedImage = canvas.toDataURL('image/jpeg');
+          resolve(modifiedImage);
+        }
+      };
+      img.src = imageDataUrl;
+    });
+  }
+  
 
   private removeImage(imageUrl: string) {
     const index = this.imageSources.findIndex(image => image.src === imageUrl);

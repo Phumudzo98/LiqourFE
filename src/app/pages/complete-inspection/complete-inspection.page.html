@@ -1263,11 +1263,12 @@
       <p class="no-photo-text">No photo uploaded yet</p>
     </ng-template>
     <div class="add-ticket-container">
-      <ion-buttons slot="end">
-        <ion-img src="assets/Images/Vector.svg" (click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
-      </ion-buttons>
+     
     </div>
   </ion-card>
+  <ion-buttons slot="end">
+    <ion-img src="assets/Images/Vector.svg" (click)="presentActionSheet()" class="add-ticket-icon"></ion-img>
+  </ion-buttons>
   <button class="next-button" (click)="toggleForms('recommendation')" [disabled]="!isPhotoAvailable">Next</button>
 </div>
 
