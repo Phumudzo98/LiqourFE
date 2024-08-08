@@ -15,6 +15,7 @@
       <p class="new">New</p>
 
       <div *ngFor="let task of collect" (click)="navigateToTask(task.action, task.caseId)">
+        <div *ngIf="task.status!=='Complete'">
         <ion-row>
           <ion-col class="center-content" offset="0.2">   
             <p class="col-header">{{task.outletName}}</p>
@@ -30,6 +31,7 @@
             </div>
           </ion-col>
         </ion-row>
+        </div>
       </div>
     </ion-grid>
   </div>

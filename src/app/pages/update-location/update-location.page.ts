@@ -63,55 +63,80 @@ export class UpdateLocationPage implements OnInit {
     });
   }
 
+  
   async getCurrentPosition() {
     const options: PositionOptions = {
       enableHighAccuracy: true,
       timeout: 10000,
       maximumAge: 0
     };
-
-    try {
-      const coordinates = await Geolocation.getCurrentPosition(options);
-      this.latitude = coordinates.coords.latitude;
-      this.longitude = coordinates.coords.longitude;
-
-      if(this.latitude<-31 && this.latitude>-34 && this.longitude>24 && this.longitude<34)
-        {
-        this.gisReportForm.patchValue({
-          latitude: this.latitude,
-          longitude: this.longitude
-        });
   
-        this.saveLastKnownLocation(this.latitude, this.longitude);
-      }
-      else{
-        
+    // Function to save the last known location using localStorage
+    const saveLastKnownLocation = (latitude: number, longitude: number) => {
+      localStorage.setItem('lastKnownLatitude', latitude.toString());
+      localStorage.setItem('lastKnownLongitude', longitude.toString());
+    };
+  
+    // Function to load the last known location from localStorage
+    const loadLastKnownLocation = () => {
+      const latitude = localStorage.getItem('lastKnownLatitude');
+      const longitude = localStorage.getItem('lastKnownLongitude');
+      if (latitude && longitude) {
         this.gisReportForm.patchValue({
-          latitude: "Out of bounds",
-          longitude: "Out of bounds"
+          latitude: parseFloat(latitude),
+          longitude: parseFloat(longitude)
         });
-        this.saveLastKnownLocation(0, 0);
-     
       }
+    };
+  
+    try {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.latitude = position.coords.latitude;
+          this.longitude = position.coords.longitude;
+  
+          // Check if the coordinates are within the specified bounds
+         // if (this.latitude < -31 && this.latitude > -34 && this.longitude > 24 && this.longitude < 34) {
+            this.gisReportForm.patchValue({
+              latitude: this.latitude,
+              longitude: this.longitude
+            });
+            saveLastKnownLocation(this.latitude, this.longitude);
+          //} else {
+            // this.gisReportForm.patchValue({
+            //   latitude: "Out of bounds",
+            //   longitude: "Out of bounds"
+            // }
+          //);
+           // saveLastKnownLocation(0, 0);
+         // }
+        },
+        (error) => {
+          console.error('Error getting location', error);
+  
+          switch (error.code) {
+            case 1:
+              this.presentAlert('Permission Denied', 'Location access was denied.');
+              break;
+            case 2:
+              this.presentAlert('Position Unavailable', 'Unable to determine location.');
+              loadLastKnownLocation();
+              break;
+            case 3:
+              this.presentAlert('Timeout', 'Location request timed out.');
+              break;
+            default:
+              this.presentAlert('Error', 'An unexpected error occurred while getting location.');
+              break;
+          }
+        },
+        options
+      );
     } catch (error) {
-      if (error instanceof GeolocationPositionError) {
-        console.error('Error getting location', error);
-        if (error.code === 1) {
-          await this.presentAlert('Permission Denied', 'Location access was denied.');
-        } else if (error.code === 2) {
-          await this.presentAlert('Position Unavailable', 'Unable to determine location.');
-          this.loadLastKnownLocation();
-        } else if (error.code === 3) {
-          await this.presentAlert('Timeout', 'Location request timed out.');
-        } else {
-          await this.presentAlert('Error', 'An unexpected error occurred while getting location.');
-        }
-      } else {
-        console.error('An unknown error occurred', error);
-      }
+      console.error('An unknown error occurred', error);
     }
   }
-
+  
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header: header,
