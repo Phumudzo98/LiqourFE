@@ -235,36 +235,32 @@ export class CompleteInspectionPage implements OnInit {
     // {
 
       
-    let url = "http://localhost:8081/api/general/complete-inspection-report/" + this.caseNo;
+    const url = `https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/${this.caseNo}`;
 
-    this.http.post(url, formData).subscribe(response => {
-      console.log(response);
-      this.spinner.hide();
+  this.http.post(url, formData).subscribe({
+  next: () => {
+    this.spinner.hide();
+    this.router.navigate(['/thank-you']);
     
-      this.router.navigate(['/thank-you'])
-      
-    }, error => {
-      console.log(error);
-      this.spinner.hide();
-    console.log(this.completeReportForm);
-      this.offlineService.saveReport(formData, this.caseNo).then(
-        () => {
-          // Handle successful response
-          console.log('Report saved successfully');
-        },
-        (error) => {
-          // Handle error response
-          console.error('Error saving report', error);
-        }
-      );
-    
-    }
-  
-   );//}else
-  // {
-  //   alert("Your coordinates are not within Eastern Cape")
-  // }
+  },
+  error: (error) => {
+    console.error(error);
+    this.spinner.hide();
 
+    this.offlineService.saveReport(formData, this.caseNo).then(
+      () => {
+        console.log('Report saved successfully');
+      },
+      (error) => {
+        console.error('Error saving report', error);
+      }
+    );
+  }
+});
+//}else
+    // {
+    //   alert("Your coordinates are not within Eastern Cape")
+    // }
 
   }
   
