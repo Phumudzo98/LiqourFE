@@ -142,6 +142,12 @@ export class CompleteInspectionPage implements OnInit {
 
   }
 
+  missingFields:any=[];
+
+ 
+
+
+  
   
   //General Valid
   isGeneralFormValid(): boolean {
@@ -211,6 +217,29 @@ export class CompleteInspectionPage implements OnInit {
       "Authorization": "Bearer " + token,
       "Accept": "/"
     };
+
+
+    // for (const field of Object.keys(this.completeReportForm.controls)) {
+    //   const control = this.completeReportForm.get(field);
+
+    //   if (control && control.value.trim() === '') {
+    //      switch (field) {
+    //       case 'premiseTown':
+    //         this.missingFields.push('Town');
+    //         break;
+    //       case 'premiseDistrict':
+    //         this.missingFields.push('District');
+    //         break;
+    //       case 'premiseWard':
+    //         this.missingFields.push('Ward');
+    //         break;
+          
+         
+    //     }
+    //   }
+    // }
+      
+      
 
     this.inspectionReport = this.inspectionReport || {};
     this.inspectionReport = Object.assign(this.inspectionReport, this.completeReportForm.value);
@@ -647,6 +676,11 @@ export class CompleteInspectionPage implements OnInit {
       this.longitude = coordinates.coords.longitude;
 
 
+
+      console.log(this.latitude);
+      console.log(this.longitude);
+      
+      
       // if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
        //{
       this.completeReportForm.patchValue({
@@ -654,7 +688,7 @@ export class CompleteInspectionPage implements OnInit {
         longitude: this.longitude
       });
 
-      this.saveLastKnownLocation(this.latitude, this.longitude);
+      //this.saveLastKnownLocation(this.latitude, this.longitude);
     // }
     // else{
       
@@ -676,7 +710,7 @@ export class CompleteInspectionPage implements OnInit {
           await this.presentAlert('Permission Denied', 'Location access was denied.');
         } else if (error.code === 2) {
           await this.presentAlert('Position Unavailable', 'Unable to determine location.');
-          this.loadLastKnownLocation();
+         // this.loadLastKnownLocation();
         } else if (error.code === 3) {
           await this.presentAlert('Timeout', 'Location request timed out.');
         } else {
@@ -720,19 +754,19 @@ export class CompleteInspectionPage implements OnInit {
     });
   }
 
-  loadLastKnownLocation() {
-    const lastLat = localStorage.getItem('lastKnownLatitude');
-    const lastLon = localStorage.getItem('lastKnownLongitude');
+  // loadLastKnownLocation() {
+  //   const lastLat = localStorage.getItem('lastKnownLatitude');
+  //   const lastLon = localStorage.getItem('lastKnownLongitude');
 
-    if (lastLat && lastLon) {
-      this.latitude = parseFloat(lastLat);
-      this.longitude = parseFloat(lastLon);
-      this.completeReportForm.patchValue({
-        latitude: this.latitude,
-        longitude: this.longitude
-      });
-    }
-  }
+  //   if (lastLat && lastLon) {
+  //     this.latitude = parseFloat(lastLat);
+  //     this.longitude = parseFloat(lastLon);
+  //     this.completeReportForm.patchValue({
+  //       latitude: this.latitude,
+  //       longitude: this.longitude
+  //     });
+  //   }
+  // }
  
   openDatetimePicker() {
     const button = document.getElementById('open-datetime');
