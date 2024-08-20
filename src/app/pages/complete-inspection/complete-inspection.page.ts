@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Geolocation } from '@capacitor/geolocation';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { OfflineService } from 'src/app/util/service/services/offline.service';
+import { GeolocationService } from 'src/app/util/service/geolocation.service';
 
 @Component({
   selector: 'app-complete-inspection',
@@ -60,6 +61,7 @@ export class CompleteInspectionPage implements OnInit {
     private spinner: NgxSpinnerService,
     private offlineService: OfflineService,
     private popoverController: PopoverController,
+    private geolocationService: GeolocationService
     
   ) {
     this.completeReportForm = this.fb.group({
@@ -433,13 +435,15 @@ export class CompleteInspectionPage implements OnInit {
     const actionSheet = await this.actionSheetController.create({
       header: 'Select Image Source',
       buttons: [
-        {
+
+        //Commented Out the Photos
+        /*{
           text: 'Photos',
           icon: 'image',
           handler: () => {
             this.selectImage(CameraSource.Photos);
           }
-        },
+        },*/
         {
           text: 'Camera',
           icon: 'camera',
@@ -638,67 +642,51 @@ export class CompleteInspectionPage implements OnInit {
   latitude: any;
   longitude: any;
 
- 
   async getCurrentPosition() {
+    if (navigator.geolocation) {
+      const options: PositionOptions = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0,
+      };
 
-    const options: PositionOptions = {
-      enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 50
-    };
+      navigator.geolocation.getCurrentPosition(
+        (position: GeolocationPosition) => {
+          this.latitude = position.coords.latitude;
+          this.longitude = position.coords.longitude;
 
-    try {
-      const coordinates = await Geolocation.getCurrentPosition();
-      this.latitude = coordinates.coords.latitude;
-      this.longitude = coordinates.coords.longitude;
+          // Log the coordinates
+          console.log('Latitude:', this.latitude);
+          console.log('Longitude:', this.longitude);
 
+          // Patch the coordinates into your form
+          this.completeReportForm.patchValue({
+            latitude: this.latitude,
+            longitude: this.longitude,
+          });
+        },
+        async (error: GeolocationPositionError) => {
+          console.error('Error getting location', error);
 
-      // if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
-       //{
-      this.completeReportForm.patchValue({
-        latitude: this.latitude,
-        longitude: this.longitude
-      });
-
-      this.saveLastKnownLocation(this.latitude, this.longitude);
-    // }
-    // else{
-      
-    //   // this.completeReportForm.patchValue({
-    //   //   latitude: "Out of bounds",
-    //   //   longitude: "Out of bounds"
-    //   // });
-
-    //    //await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
-    //     this.saveLastKnownLocation(0, 0);
-    //   }
-   
-
-    } catch (error) {
-       if (error instanceof GeolocationPositionError) {
-        console.error('Error getting location', error);
-        // Check for specific error codes and handle them
-        if (error.code === 1) {
-          await this.presentAlert('Permission Denied', 'Location access was denied.');
-        } else if (error.code === 2) {
-          await this.presentAlert('Position Unavailable', 'Unable to determine location.');
-          this.loadLastKnownLocation();
-        } else if (error.code === 3) {
-          await this.presentAlert('Timeout', 'Location request timed out.');
-        } else {
-          await this.presentAlert('Error', 'An unexpected error occurred while getting location.');
-        }
-    } else{
-      console.error('An unknown error occurred', error);
+          if (error.code === 1) {
+            await this.presentAlert('Permission Denied', 'Location access was denied.');
+          } else if (error.code === 2) {
+            await this.presentAlert('Position Unavailable', 'Unable to determine location.');
+          } else if (error.code === 3) {
+            await this.presentAlert('Timeout', 'Location request timed out.');
+          } else {
+            await this.presentAlert('Error', 'An unexpected error occurred while getting location.');
+          }
+        },
+        options
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      await this.presentAlert('Error', 'Geolocation is not supported by this browser.');
     }
   }
-  
-}
 
-  saveLastKnownLocation(lat: number, lon: number) {
-    localStorage.setItem('lastKnownLatitude', lat.toString());
-    localStorage.setItem('lastKnownLongitude', lon.toString());
-  }
+
 
   
   async presentAlert(header: string, message: string) {
