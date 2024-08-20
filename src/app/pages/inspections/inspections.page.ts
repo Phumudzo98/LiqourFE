@@ -34,7 +34,7 @@ export class InspectionsPage implements OnInit {
       'Expires': '0'
     });
 
-    const url = "https://system.eclb.co.za/eclb2/general/get-inbox";
+    const url = "https://system.eclb.co.za/eclb2/api/general/get-inbox";
 
     this.http.get<any[]>(url, { headers: newHeader }).subscribe(
       response => {
