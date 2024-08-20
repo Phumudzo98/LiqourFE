@@ -142,12 +142,6 @@ export class CompleteInspectionPage implements OnInit {
 
   }
 
-  missingFields:any=[];
-
- 
-
-
-  
   
   //General Valid
   isGeneralFormValid(): boolean {
@@ -218,29 +212,6 @@ export class CompleteInspectionPage implements OnInit {
       "Accept": "/"
     };
 
-
-    // for (const field of Object.keys(this.completeReportForm.controls)) {
-    //   const control = this.completeReportForm.get(field);
-
-    //   if (control && control.value.trim() === '') {
-    //      switch (field) {
-    //       case 'premiseTown':
-    //         this.missingFields.push('Town');
-    //         break;
-    //       case 'premiseDistrict':
-    //         this.missingFields.push('District');
-    //         break;
-    //       case 'premiseWard':
-    //         this.missingFields.push('Ward');
-    //         break;
-          
-         
-    //     }
-    //   }
-    // }
-      
-      
-
     this.inspectionReport = this.inspectionReport || {};
     this.inspectionReport = Object.assign(this.inspectionReport, this.completeReportForm.value);
 
@@ -264,32 +235,38 @@ export class CompleteInspectionPage implements OnInit {
     // {
 
       
-    const url = `https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/${this.caseNo}`;
+      let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
 
-  this.http.post(url, formData).subscribe({
-  next: () => {
-    this.spinner.hide();
-    this.router.navigate(['/thank-you']);
-    
-  },
-  error: (error) => {
-    console.error(error);
-    this.spinner.hide();
+      this.http.post(url, formData).subscribe(response => {
 
-    this.offlineService.saveReport(formData, this.caseNo).then(
-      () => {
-        console.log('Report saved successfully');
-      },
-      (error) => {
-        console.error('Error saving report', error);
+        this.router.navigate(['/thank-you'])
+        this.spinner.hide();
+        
+      }, error => {
+
+
+        console.log(error);
+        this.spinner.hide();
+      
+        this.offlineService.saveReport(formData, this.caseNo).then(
+          () => {
+            // Handle successful response
+            console.log('Report saved successfully');
+          },
+          (error) => {
+            // Handle error response
+            console.error('Error saving report', error);
+          }
+        );
+      
       }
-    );
-  }
-});
-//}else
+    
+     );//}else
     // {
     //   alert("Your coordinates are not within Eastern Cape")
     // }
+
+
 
   }
   
@@ -487,19 +464,24 @@ export class CompleteInspectionPage implements OnInit {
       resultType: CameraResultType.DataUrl,
       source: source
     });
-
-    const description = await this.promptForDescription();
-    const isDuplicate = this.imageSources.some(img => img.description.toLowerCase() === description?.toLowerCase());
+   // console.log('Image Data:', image);
+   const description = await this.promptForDescription();
+   const isDuplicate = this.imageSources.some(img => img.description.toLowerCase() === description?.toLowerCase());
     if (image.dataUrl) {
       if (!isDuplicate && description) {
-        const modifiedImage = await this.addTimestampToImage(image.dataUrl);
-        this.imageSources.push({ src: modifiedImage, description });
+        this.imageSources.push({ src: image.dataUrl, description });
+        if (this.imageSources.length==0) {
+          this.isPhotoAvailable=false; 
+        }else{
 
-        this.isPhotoAvailable = this.imageSources.length > 0;
-
+          this.isPhotoAvailable=true;
+        }
         console.log(this.imageSources);
-      } else {
-        return;
+        
+        //console.log('Image Source Added:', { src: image.dataUrl, description });
+      }else{
+        //this.presentDuplicateDescriptionAlert();
+        return
       }
     }
   }
@@ -627,45 +609,6 @@ export class CompleteInspectionPage implements OnInit {
       ]
     });
   }
-  async addTimestampToImage(imageDataUrl: string): Promise<string> {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-  
-        if (ctx) {
-          canvas.width = img.width;
-          canvas.height = img.height;
-  
-          // Draw the image on the canvas
-          ctx.drawImage(img, 0, 0);
-  
-          // Add the timestamp
-          const timestamp = new Date().toLocaleString();
-          const fontSize = Math.floor(canvas.width / 20);
-          ctx.font = `${fontSize}px Arial`;
-          ctx.fillStyle = 'white';
-          ctx.strokeStyle = 'black';
-          ctx.lineWidth = 3;
-          ctx.textAlign = 'right';
-          
-          const textX = canvas.width - 10;
-          const textY = canvas.height - 10;
-  
-          ctx.strokeText(timestamp, textX, textY);
-          ctx.fillText(timestamp, textX, textY);
-  
-          
-          // Convert canvas to data URL
-          const modifiedImage = canvas.toDataURL('image/jpeg');
-          resolve(modifiedImage);
-        }
-      };
-      img.src = imageDataUrl;
-    });
-  }
-  
 
   private removeImage(imageUrl: string) {
     const index = this.imageSources.findIndex(image => image.src === imageUrl);
@@ -701,7 +644,7 @@ export class CompleteInspectionPage implements OnInit {
     const options: PositionOptions = {
       enableHighAccuracy: true,
       timeout: 10000,
-      maximumAge: 0
+      maximumAge: 50
     };
 
     try {
@@ -710,11 +653,6 @@ export class CompleteInspectionPage implements OnInit {
       this.longitude = coordinates.coords.longitude;
 
 
-
-      console.log(this.latitude);
-      console.log(this.longitude);
-      
-      
       // if(this.latitude<=-31 && this.latitude>=-34 && this.longitude>=24 && this.longitude<=34)
        //{
       this.completeReportForm.patchValue({
@@ -722,18 +660,18 @@ export class CompleteInspectionPage implements OnInit {
         longitude: this.longitude
       });
 
-      //this.saveLastKnownLocation(this.latitude, this.longitude);
-     //}
-     //else{
+      this.saveLastKnownLocation(this.latitude, this.longitude);
+    // }
+    // else{
       
-     // this.completeReportForm.patchValue({
-     //   latitude: "Out of bounds",
-      //  longitude: "Out of bounds"
-      //});
+    //   // this.completeReportForm.patchValue({
+    //   //   latitude: "Out of bounds",
+    //   //   longitude: "Out of bounds"
+    //   // });
 
-       //await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
-        //this.saveLastKnownLocation(0, 0);
-     // }
+    //    //await this.presentAlert2("GPS coordinates can only be for Eastern Cape.");
+    //     this.saveLastKnownLocation(0, 0);
+    //   }
    
 
     } catch (error) {
@@ -744,7 +682,7 @@ export class CompleteInspectionPage implements OnInit {
           await this.presentAlert('Permission Denied', 'Location access was denied.');
         } else if (error.code === 2) {
           await this.presentAlert('Position Unavailable', 'Unable to determine location.');
-         // this.loadLastKnownLocation();
+          this.loadLastKnownLocation();
         } else if (error.code === 3) {
           await this.presentAlert('Timeout', 'Location request timed out.');
         } else {
@@ -788,19 +726,19 @@ export class CompleteInspectionPage implements OnInit {
     });
   }
 
-  // loadLastKnownLocation() {
-  //   const lastLat = localStorage.getItem('lastKnownLatitude');
-  //   const lastLon = localStorage.getItem('lastKnownLongitude');
+  loadLastKnownLocation() {
+    const lastLat = localStorage.getItem('lastKnownLatitude');
+    const lastLon = localStorage.getItem('lastKnownLongitude');
 
-  //   if (lastLat && lastLon) {
-  //     this.latitude = parseFloat(lastLat);
-  //     this.longitude = parseFloat(lastLon);
-  //     this.completeReportForm.patchValue({
-  //       latitude: this.latitude,
-  //       longitude: this.longitude
-  //     });
-  //   }
-  // }
+    if (lastLat && lastLon) {
+      this.latitude = parseFloat(lastLat);
+      this.longitude = parseFloat(lastLon);
+      this.completeReportForm.patchValue({
+        latitude: this.latitude,
+        longitude: this.longitude
+      });
+    }
+  }
  
   openDatetimePicker() {
     const button = document.getElementById('open-datetime');
