@@ -50,6 +50,7 @@
     "jwt-decode": "^4.0.0",
     "ngx-spinner": "^17.0.0",
     "rxjs": "^7.8.1",
+    "signature_pad": "^5.0.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
