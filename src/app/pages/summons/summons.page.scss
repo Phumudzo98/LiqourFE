@@ -1,0 +1,139 @@
+.quick-action{
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif; 
+    color:#822B23;
+    margin-top: 15px;
+    margin-left: 6px;
+}
+.dashboard-container{
+    padding: 10px;
+    margin-top: 10px;
+}
+.outlet{
+    color:#2A2A2A;
+    font-weight: 500;
+}
+ion-card {
+  --border-radius: 2px;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px rgba(0, 255, 0, 0.1); 
+  font-family: 'Inter', sans-serif;
+  padding: 5px 5px; 
+  cursor:pointer;
+  padding: 8px 10px;
+}
+.clickable {
+  cursor: pointer;
+}
+
+.buttonClass {
+    --background: #822B23;
+    --color: #fff;
+    width: calc(100%);
+    margin-top: 15px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 2px;
+    border: 1px solid #822B23;
+    border-radius: 2px; 
+    text-transform: none; 
+    font-family: 'Inter', sans-serif;
+    margin-top: 5px;
+  }
+  ion-input {
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 1px solid #858585;
+    border-radius: 2px;
+    height: 50px; 
+    width: calc(100%) !important; /* Account for padding of the container */
+    --highlight-background: transparent;
+    font-family: 'Inter', sans-serif; 
+    padding-right: 15px !important;
+  
+  }
+  .top{
+    margin-bottom: 15px;
+  }
+  .active {
+    background-color: rgba(60, 175, 71, 0.12);
+    width: 75px;
+    padding: 5px 2.5px;
+    text-align: center;
+    font-size: 13px;
+    color: #50A719;
+    font-weight: 500;
+    border-radius: 2px;
+    margin-top: 10px;
+  }
+ 
+ 
+  
+  .detail-header{
+    color:#2A2A2A;
+    font-size: 18px !important;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .position-relative {
+    position: relative;
+  }
+  
+  .inspect-tick {
+    position: absolute;
+    bottom: 5px; 
+    right: 0;
+  }
+
+  .active-tick{
+    height: 20px;
+    width:20px;
+  }
+  
+  
+  .centered-col {
+    margin-top: 35px;
+  }
+  .info-time {
+    color: #434545;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 15px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .search-item {
+    position: relative;
+  }
+
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-left: 0%;
+    font-family: 'Inter', sans-serif;
+  }
+  .location-info {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 10px;
+}
+
+  .location-icon {
+    width: 20px; 
+    height: 20px;
+    margin-right: 8px; 
+  }
+  
+  .info-time {
+    color: #434545;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+
+  

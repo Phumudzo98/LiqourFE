@@ -239,6 +239,14 @@ const routes: Routes = [
     path: 'inspections',
     loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
+  {
+    path: 'page-2',
+    loadChildren: () => import('./pages/page-2/page-2.module').then( m => m.Page2PageModule)
+  },
+  {
+    path: 'summons',
+    loadChildren: () => import('./pages/summons/summons.module').then( m => m.SummonsPageModule)
+  },
 
 
  

@@ -61,4 +61,7 @@ export class DashboardPage implements OnInit {
   navigateToNavigate(){
     this.route.navigate(['navigate-to-outlet'])
   }
+  navigateToSummons(){
+    this.route.navigate(['summons'])
+  }
 }
