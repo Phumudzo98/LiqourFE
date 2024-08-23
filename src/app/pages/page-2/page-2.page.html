@@ -6,15 +6,15 @@
   <form [formGroup]="page2Form">
     <ion-label > (a) Delivering a true copy to (Name) personally.</ion-label>
     <ion-item>
-      <ion-input class="custom-input" type="text" formControlName="trueCopyTo" placeholder="Name of the owner"></ion-input>
+      <ion-input class="custom-input" type="text" formControlName="toBeServedTo" placeholder="Name of the owner"></ion-input>
     </ion-item>
     <ion-label>(b) If the person is not found, deliver to someone else at their place of employment:</ion-label>
     <ion-item>
-      <ion-input class="custom-input" type="text" formControlName="deliveringTo" placeholder="Name of a person receiving"></ion-input>
+      <ion-input class="custom-input" type="text" formControlName="receivedBy" placeholder="Name of a person receiving"></ion-input>
     </ion-item>
       <ion-label >Date and Time</ion-label>
       <ion-item>
-        <ion-input class="custom-input" type="datetime-local" formControlName="dateTime" ></ion-input>
+        <ion-input class="custom-input" type="datetime-local" formControlName="time" ></ion-input>
       </ion-item>
       <!--
     <ion-label >Inspector of the board</ion-label>
