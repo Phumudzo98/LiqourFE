@@ -655,11 +655,11 @@ export class CompleteInspectionPage implements OnInit {
           this.latitude = position.coords.latitude;
           this.longitude = position.coords.longitude;
 
-          // Log the coordinates
+          
           console.log('Latitude:', this.latitude);
           console.log('Longitude:', this.longitude);
 
-          // Patch the coordinates into your form
+          
           this.completeReportForm.patchValue({
             latitude: this.latitude,
             longitude: this.longitude,
