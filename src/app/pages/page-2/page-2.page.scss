@@ -52,32 +52,41 @@
     white-space: normal; 
     display: inline-block; 
 }
-.buttonClass2 {
-  --background: #CFAA35;
-  --color: #fff;
-  width: auto;
-  margin-top: 15px;
-  height: 35px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 2px;
-  border-radius: 2px; 
-  text-transform: none; 
+
+.buttonClass2{
+  background-color: #CFAA35;
+  border-radius: 30px;
+  color: white;
   font-family: 'Inter', sans-serif;
-  margin-top: 5px;
+  font-size: 14px !important;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  float: inline-end;
+  margin-right: 3%;
+  height: 35px;
+  width: 75px;
 }
 
-.clearButton {
-  --background: #822B23;
-  --color: #fff;
-  width: auto;
-  margin-top: 15px;
-  height: 35px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 2px;
-  border-radius: 2px; 
-  text-transform: none; 
+.clearButton{
+  background-color: #822B23 !important;
+  border-radius: 30px;
+  color: white;
   font-family: 'Inter', sans-serif;
-  margin-top: 5px;
+  font-size: 14px !important;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  float: inline-end;
+  margin-right: 3%;
+  height: 35px;
+  width: 75px;
 }
+.signature-canvas {
+  height: 100px; 
+  width: calc(100%) !important; 
+ 
+}
+
