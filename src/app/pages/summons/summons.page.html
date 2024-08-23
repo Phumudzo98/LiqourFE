@@ -14,27 +14,35 @@
     <!-- Main Content Section -->
     <p class="quick-action">Summons</p>
 
+
+    <!--
+    private Long summon;
+    private String toBeServedTo;
+    private boolean served;
+    private Date summonDate;
+    -->
+
     <div>
-      <ion-card>
+      <ion-card *ngFor="let summon of collectSummons">
               <!--Header-->
-              <span class="detail-header font-weight">Name</span>
+              <span class="detail-header font-weight">{{summon.toBeServedTo}}</span>
               <br>
               <!-- Location Icon and Address -->
               <div class="location-info">
                 <img src="../../../assets/Images/Address.svg" alt="Address Icon" class="location-icon">
-                <span class="info-time">104A Caar Street - Dobsonville - 1582 - Soweto</span>
+                <span class="info-time">{{summon.address}}</span>
               </div>
               <div class="location-info" style="margin-top: -20px !important;">
                 <img src="../../../assets/Images/Date.svg" alt="Date Icon" class="location-icon">
-                <span class="info-time">23-08-2024</span>
+                <span class="info-time">{{summon.summonDate | date:'yyyy-MM-dd'}}</span>
               </div>
               <div class="location-info" style="margin-top: -20px !important;">
                 <img src="../../../assets/Images/Time.svg" alt="Time Icon" class="location-icon">
-                <span class="info-time">12:37</span>
+                <span class="info-time">{{formattedDate(summon.summonDate)}}</span>
               </div>
        
-        <ion-button [routerLink]="" class="buttonClass" (click)="onSubmit()">
-          Serve
+        <ion-button [disabled]="summon.served" [routerLink]="" class="buttonClass" (click)="onSubmit(summon.summon)">
+          {{summon.served?"Summon Served":"Serve Summon"}}
         </ion-button>
       </ion-card>
     </div>

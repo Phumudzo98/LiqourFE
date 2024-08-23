@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import SignaturePad from 'signature_pad';
+import { headers, headersSecure } from 'src/app/util/service/const';
 
 
 
@@ -21,7 +22,7 @@ export class Page2Page implements OnInit {
   caseid:any
   summons: any;
   summon:any;
-  constructor(private fb: FormBuilder, private spinner: NgxSpinnerService, private http: HttpClient, private aRoute: Router,) {
+  constructor(private fb: FormBuilder,private router: ActivatedRoute, private spinner: NgxSpinnerService, private http: HttpClient, private aRoute: Router,) {
     this.page2Form = this.fb.group({
       //trueCopyTo: ['', Validators.required],
       receivedBy:['', Validators.required],
@@ -33,10 +34,20 @@ export class Page2Page implements OnInit {
     })
    }
 
+   caseNo:any
+   
   ngOnInit() {
-  }
 
- 
+    this.router.paramMap.subscribe(param => {
+      this.caseNo = param.get('caseId');
+
+      this.router.paramMap.subscribe(param => {
+        this.summon = param.get('summon');
+      })
+
+  })
+}
+
 
   public onSubmit(): void {
     this.spinner.show();
@@ -55,20 +66,17 @@ export class Page2Page implements OnInit {
 
     
 
-    let url = `http://localhost:8081/api/general/update-summons/${this.caseid}/${this.summon}`;
+    let url = `http://localhost:8081/api/general/update-summons/${this.caseNo}/${this.summon}`;
 
-    this.http.post(url, formData).subscribe(response => {
+    this.http.put(url, formData).subscribe(response => {
 
-      this.aRoute.navigate(['/thank-you'])
+      this.aRoute.navigate([`/summons/${this.caseNo}`])
       this.spinner.hide();
       
     }, error => {
 
-
       console.log(error);
       this.spinner.hide();
-    
-      
     })
 
   
@@ -102,9 +110,12 @@ export class Page2Page implements OnInit {
     this.signaturePad.clear();
   }
 
-  savePad() {
+  async savePad() {
     const base64Data = this.signaturePad.toDataURL();
     this.signatureImg = base64Data;
+
+    
+    this.showAlertMessage('error', 'Signature Served');
     
   }
 
@@ -132,7 +143,7 @@ export class Page2Page implements OnInit {
   }
 
 
-  showAlertMessage(type: string, message: string) {
+   showAlertMessage(type: string, message: string) {
     this.alertType = type;
     this.alertMessage = message;
     this.showAlert = true;

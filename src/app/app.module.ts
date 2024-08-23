@@ -13,7 +13,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpRequestInterceptor } from './util/service/interceptor';
 import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
-import { NgClass } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NetworkService } from './util/service/network.service';
 import { NetworkAlertComponent } from './pages/components/network-alert/network-alert.component';
@@ -44,6 +44,7 @@ import { NetworkAlertComponent } from './pages/components/network-alert/network-
     ModalController ,// Add ModalController to the providers array
     ScreenOrientation,
     NetworkService,
+    DatePipe,
   
     MenuController, { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }, provideAnimationsAsync()
   ],

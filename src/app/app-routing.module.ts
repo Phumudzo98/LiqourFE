@@ -235,16 +235,17 @@ const routes: Routes = [
   {
     path: 'thank-you-2',
     loadChildren: () => import('./pages/thank-you-2/thank-you-2.module').then( m => m.ThankYou2PageModule)
-  },  {
+  },
+  {
     path: 'inspections',
     loadChildren: () => import('./pages/inspections/inspections.module').then( m => m.InspectionsPageModule)
   },
   {
-    path: 'page-2',
+    path: 'page-2/:caseId/:summon',
     loadChildren: () => import('./pages/page-2/page-2.module').then( m => m.Page2PageModule)
   },
   {
-    path: 'summons',
+    path: 'summons/:caseId',
     loadChildren: () => import('./pages/summons/summons.module').then( m => m.SummonsPageModule)
   },
 
