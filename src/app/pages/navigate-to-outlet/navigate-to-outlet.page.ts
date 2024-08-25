@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { headers, headersSecure } from 'src/app/util/service/const';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-navigate-to-outlet',
@@ -20,7 +21,7 @@ export class NavigateToOutletPage implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    this.http.get<any[]>("https://system.eclb.co.za/eclb2/api/outlet/get-outlets", { headers: headersSecure }).subscribe(response => {
+    this.http.get<any[]>(environment.eclbDomain+"api/outlet/get-outlets", { headers: headersSecure }).subscribe(response => {
         const large = response;
         this.specific = large;
 

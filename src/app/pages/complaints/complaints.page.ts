@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription } from 'rxjs';
 import { CommunicationService } from 'src/app/util/service/shared/communication.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-complaints',
@@ -43,7 +44,7 @@ export class ComplaintsPage implements OnInit, OnDestroy {
 
   fetchComplaints() {
     this.spinner.show();
-    const url = "https://system.eclb.co.za/eclb2/api/general/get-complaints";
+    const url = environment.eclbDomain+"api/general/get-complaints";
     const token = localStorage.getItem("userToken");
     const newHeader = {
       "Authorization": "Bearer " + token,

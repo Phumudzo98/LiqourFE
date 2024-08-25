@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { headersSecure } from 'src/app/util/service/const';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-view-complaint',
@@ -29,7 +30,7 @@ export class ViewComplaintPage implements OnInit {
 
       this.referenceNo = param.get('referenceNumber');
 
-      let url = "https://system.eclb.co.za/eclb2/api/general/get-complaint-details/"+this.referenceNo;
+      let url = environment.eclbDomain+"api/general/get-complaint-details/"+this.referenceNo;
       
       this.http.get<any>(url,{headers: newHeader}).subscribe(response => {
         console.log(response)

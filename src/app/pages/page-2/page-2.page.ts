@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import SignaturePad from 'signature_pad';
 import { headers, headersSecure } from 'src/app/util/service/const';
+import { environment } from 'src/environments/environment.prod';
 
 
 
@@ -66,7 +67,7 @@ export class Page2Page implements OnInit {
 
     
 
-    let url = `http://localhost:8081/api/general/update-summons/${this.caseNo}/${this.summon}`;
+    let url = environment.eclbDomain+"api/general/update-summons/"+this.caseNo+"/"+this.summon;
 
     this.http.put(url, formData).subscribe(response => {
 

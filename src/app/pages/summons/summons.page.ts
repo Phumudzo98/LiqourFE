@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { headersSecure } from 'src/app/util/service/const';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -37,7 +38,7 @@ public formattedDate(date:any){
  
 public getSummons(caseId:any)
 {
-  let urlSummons =`http://localhost:8081/api/general/get-summons/${caseId}`
+  let urlSummons =environment.eclbDomain+"api/general/get-summons/"+caseId
 
 
   this.http.get<any>(urlSummons, {headers: headersSecure}).subscribe(response=>

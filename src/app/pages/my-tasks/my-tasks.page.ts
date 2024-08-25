@@ -6,6 +6,7 @@ import { headers, headersSecure } from 'src/app/util/service/const';
 import { HelperService } from 'src/app/util/service/helper.service';
 //import * as jwt_decode from 'jwt-decode';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from 'src/environments/environment.prod';
 
 
 
@@ -45,7 +46,7 @@ export class MyTasksPage implements OnInit {
       
     
     
-    this.http.get<any[]>("http://localhost:8081/api/general/get-inbox", { headers: newHeader }).subscribe(
+    this.http.get<any[]>(environment.eclbDomain+"api/general/get-inbox", { headers: newHeader }).subscribe(
       response => {
         console.log(response);
 

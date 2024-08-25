@@ -237,7 +237,7 @@ export class CompleteInspectionPage implements OnInit {
     // {
 
       
-      let url = "https://system.eclb.co.za/eclb2/api/general/complete-inspection-report/" + this.caseNo;
+      let url = environment.eclbDomain+"api/general/complete-inspection-report/" + this.caseNo;
 
       this.http.post(url, formData).subscribe(response => {
 

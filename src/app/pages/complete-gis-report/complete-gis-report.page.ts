@@ -104,7 +104,7 @@ export class CompleteGisReportPage implements OnInit {
     
 
 
-    let url = "https://system.eclb.co.za/eclb2/api/general/save-gis-report/"+this.caseNo;
+    let url = environment.eclbDomain+"api/general/save-gis-report/"+this.caseNo;
 
     this.http.post(url, formData).subscribe(response => {
       console.log(response);

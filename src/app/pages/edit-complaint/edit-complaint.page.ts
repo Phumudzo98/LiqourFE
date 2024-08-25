@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { headers, headersSecure } from 'src/app/util/service/const';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -121,7 +122,7 @@ export class EditComplaintPage implements OnInit {
       "comments": []
     };
   
-    let url = "https://system.eclb.co.za/eclb2/api/general/update-complain";
+    let url = environment.eclbDomain+"api/general/update-complain";
     this.http.put(url, form, { headers: newHeader }).subscribe(
       async response => {
         console.log(response);
