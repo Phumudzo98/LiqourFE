@@ -196,7 +196,7 @@ export class SpecialEventInspectionsPage implements OnInit {
         "Accept": "/"
       };
 
-      let url = "http://localhost:8081/api/general/universal-complete-report/" + this.caseNo;
+      let url = environment.eclbDomain+"api/general/universal-complete-report/" + this.caseNo;
   
       this.http.post(url, this.completeReportForm.value).subscribe(response => {
         console.log(response);

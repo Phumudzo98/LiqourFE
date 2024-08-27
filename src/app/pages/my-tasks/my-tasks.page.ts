@@ -45,6 +45,9 @@ export class MyTasksPage implements OnInit {
       console.log(this.role);
       
     
+
+      console.log(environment.eclbDomain+"api/general/get-inbox");
+      
     
     this.http.get<any[]>(environment.eclbDomain+"api/general/get-inbox", { headers: newHeader }).subscribe(
       response => {
@@ -52,7 +55,8 @@ export class MyTasksPage implements OnInit {
 
         if(this.role==='INSPECTOR')
           {
-            this.collect = response.filter(item => item.action === 'Complete Report' || item.action === 'Complete Inspection Report');
+            //this.collect = response;
+            this.collect = response.filter(item => item.action === 'Complete Report' || item.action === 'Complete Inspection Report' || item.action === 'Inspector Serve Summons');
           }
           else{
             this.collect = response;

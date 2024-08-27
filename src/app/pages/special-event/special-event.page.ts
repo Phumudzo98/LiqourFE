@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-special-event',
@@ -24,7 +25,7 @@ export class SpecialEventPage implements OnInit {
       "Accept": "*/*"
     });
 
-    const url = "http://localhost:8081/api/general/get-inbox";
+    const url = environment.eclbDomain+"api/general/get-inbox";
 
     this.http.get<any[]>(url, { headers: newHeader }).subscribe(
       response => {
