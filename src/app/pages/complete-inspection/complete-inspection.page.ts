@@ -463,7 +463,7 @@ export class CompleteInspectionPage implements OnInit {
 
   async selectImage(source: CameraSource) {
     const image = await Camera.getPhoto({
-      quality: 100,
+      quality: 70,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
       source: source
